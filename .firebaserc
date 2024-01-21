@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "xtra-hrms": {
+      "hosting": {
+        "xtra-hrms-client": [
+          "xtra-hrms"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "xtra-hrms"
+  }
+}
