@@ -1,9 +1,18 @@
 import {BaseModel} from "./base.model";
 
 export interface UserModel extends BaseModel {
+  username?: string;
   email: string;
   phone: string;
   password: string;
+  permissions: string[];
+  avatar?: string | null;
+  bio?: string;
+  token?: string;
+}
+
+export interface UserResponse {
+  user: UserModel;
 }
 
 export interface Login {
@@ -43,4 +52,12 @@ export interface EmailVerifyOtp {
 export interface Profile {
   email: string;
   name: string;
+  username: string;
+  bio: string;
+  image: string;
+  loading: boolean;
+}
+
+export interface ProfileResponse {
+  profile: Profile;
 }

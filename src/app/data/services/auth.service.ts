@@ -7,8 +7,10 @@ import {
   Login,
   PhoneVerifyOtp,
   Register,
-  ResetPassword
+  ResetPassword, UserModel, UserResponse
 } from "../models/user.model";
+import {Observable, of} from "rxjs";
+import {environment} from "../../../environments/environment.development";
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +21,19 @@ export class AuthService {
 
   constructor() { }
 
-  login(data: Login) {}
+  user(): Observable<UserResponse> {
+    return of()
+  }
 
-  register(data: Register) {}
+  login(data: Login): Observable<any> {
+    const url = `${environment.BASE_API_URL}auth/login`;
+    return this.#http.post<UserModel>(url, data);
+  }
+
+  register(data: Register): Observable<any> {
+    const url = `${environment.BASE_API_URL}auth/register`;
+    return this.#http.post<UserModel>(url, data);
+  }
 
   forgotPassword(data: ForgotPassword) {}
 
@@ -30,4 +42,12 @@ export class AuthService {
   verifyOtp(data: EmailVerifyOtp | PhoneVerifyOtp) {}
 
   logOut() {}
+
+  getCurrentUser(): Observable<any> {
+    return of()
+  }
+
+  getToken(): string {
+    return localStorage.getItem('token')!;
+  }
 }

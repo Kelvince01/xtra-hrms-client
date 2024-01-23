@@ -2,3 +2,7 @@
 
 @use './assets/theme/theme.scss';
 @import "./assets/styles/base";
+
+a {
+  cursor: pointer;
+}
