@@ -1,4 +1,5 @@
 import {Routes} from "@angular/router";
+import {authGuard} from "../../../core/guards/auth.guard";
 
 export const employeesRoutes: Routes = [
   {
@@ -10,7 +11,12 @@ export const employeesRoutes: Routes = [
     loadComponent: () => import('./employee-page/employee-page.component').then(c => c.EmployeePageComponent)
   },
   {
-    path: 'edit/:id',
-    loadComponent: () => import('./employee-page/employee-page.component').then(c => c.EmployeePageComponent)
-  }
+    path: 'edit',
+    loadChildren: () => import('./employee-page/employee-page.routes').then((c) => c.employeePageRoutes),
+    canActivate: [authGuard],
+  },
+  // {
+  //   path: 'edit/:id',
+  //   loadComponent: () => import('./employee-page/employee-page.component').then(c => c.EmployeePageComponent)
+  // }
 ]

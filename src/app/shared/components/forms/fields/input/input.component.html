@@ -1,8 +1,9 @@
-<fieldset [formGroup]="group" class="form-group">
+<mat-form-field [formGroup]="group" class="form-group">
   <input
-    [formControlName]="field?.name!"
-    [attr.placeholder]="field?.placeholder"
+    [formControlName]="field.name!"
+    [attr.placeholder]="field.placeholder"
     class="form-control form-control-lg"
-    [attr.type]="field?.attrs?.type || 'text'"
+    matInput
+    [attr.type]="field.attrs.type || 'text'"
   />
-</fieldset>
+</mat-form-field>

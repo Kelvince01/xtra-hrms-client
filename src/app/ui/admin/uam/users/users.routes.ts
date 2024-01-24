@@ -10,10 +10,12 @@ export const usersRoutes: Routes = [
   {
     path: 'add',
     loadComponent: () => import('./user-page/user-page.component').then(c => c.UserPageComponent),
-    canActivate: [hasPermissionGuard("CreateUser")],
+    loadChildren: () => import('./user-page/user-page-routes').then(r => r.userPageRoutes),
+    // canActivate: [hasPermissionGuard("CreateUser")],
   },
   {
     path: 'edit/:id',
     loadComponent: () => import('./user-page/user-page.component').then(c => c.UserPageComponent)
-  }
+  },
+  // { path: 'add', redirectTo: 'add/contact', pathMatch: 'full' }
 ]

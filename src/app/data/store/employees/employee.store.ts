@@ -14,12 +14,13 @@ import {formsActions} from "../forms/forms.actions";
 import {EmployeeModel} from "../../models/employee.model";
 
 export const employeeInitialState: EmployeeState = {
-  data: {
+  employee: {
     firstname: '',
     surname: '',
     date_of_birth: new Date(),
     gender: '',
-    marital_status: ''
+    marital_status: '',
+    email: ''
   }
 };
 
@@ -41,10 +42,10 @@ export const ArticleStore = signalStore(
             articlesService.getById(id).pipe(
               tapResponse({
                 next: (employee) => {
-                  patchState(store, { data: employee, ...setLoaded('getEmployee') });
+                  patchState(store, { employee: employee, ...setLoaded('getEmployee') });
                 },
                 error: () => {
-                  patchState(store, { data: employeeInitialState.data, ...setLoaded('getEmployee') });
+                  patchState(store, { employee: employeeInitialState.employee, ...setLoaded('getEmployee') });
                 },
               }),
             ),
@@ -58,11 +59,11 @@ export const ArticleStore = signalStore(
             articlesService.get().pipe(
               tapResponse({
                 next: (employees) => {
-                  patchState(store, { datas: employees });
+                  patchState(store, { employees: employees });
                   setLoaded('getEmployees');
                 },
                 error: () => {
-                  patchState(store, { data: employeeInitialState.data });
+                  patchState(store, { employee: employeeInitialState.employee });
                   setLoaded('getEmployees');
                 },
               }),
@@ -85,11 +86,11 @@ export const ArticleStore = signalStore(
       addEmployee: rxMethod<EmployeeModel>(
         pipe(
           concatLatestFrom(() => reduxStore.select(ngrxFormsQuery.selectData)),
-          switchMap(([data]) =>
-            articlesService.create(data).pipe(
+          switchMap(([employee]) =>
+            articlesService.create(employee).pipe(
               tapResponse({
                 // next: () => patchState(store, { data: [data.comment, ...store.comments()] }),
-                next: () => patchState(store, { data }),
+                next: () => patchState(store, { employee }),
                 error: ({ error }) => reduxStore.dispatch(formsActions.setErrors({ errors: error.errors })),
               }),
             ),

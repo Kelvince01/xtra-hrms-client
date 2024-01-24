@@ -32,13 +32,13 @@ export class AdminComponent  implements OnInit {
   $user = this.authStore.user;
   $isLoggedIn = this.authStore.isAuthenticated;
 
-  ngOnInit() {
-    this.localStorageJwtService
+  ngOnInit(): void {
+    /*this.localStorageJwtService
       .getItem()
       .pipe(
         take(1),
         filter((token) => !!token),
       )
-      .subscribe(() => this.authStore.getUser());
+      .subscribe(() => this.authStore.getUser());*/
   }
 }
