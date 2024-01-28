@@ -8,19 +8,24 @@ import {
   Output,
   inject,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Observable, combineLatest } from 'rxjs';
-import { debounceTime, map, tap, filter } from 'rxjs/operators';
-import { DynamicFieldDirective } from './dynamic-field.directive';
-import { AsyncPipe } from '@angular/common';
-import {Field} from "../../../../data/store/forms/forms.interfaces";
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {Observable, combineLatest} from 'rxjs';
+import {debounceTime, map, tap, filter} from 'rxjs/operators';
+import {DynamicFieldDirective} from '@shared/components/forms/dynamic-form';
+import {AsyncPipe} from '@angular/common';
+import {Field} from '@stores/forms';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'cdt-dynamic-form',
+  selector: 'xtra-dynamic-form',
   standalone: true,
-  templateUrl: './dynamic-form.component.html',
+  template: `
+    <form class="dynamic-form" [formGroup]="form" autocomplete="off">
+      @for (field of structure$ | async; track field.name) {
+        <ng-container xtraDynamicField [field]="field" [group]="form"></ng-container>
+      }
+    </form>
+  `,
   imports: [ReactiveFormsModule, DynamicFieldDirective, AsyncPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -62,11 +67,11 @@ export class DynamicFormComponent implements OnInit {
   };
 
   private control = (field: Field): FormControl => {
-    return this.fb.control('', field.validator);
+    return this.fb.control('' || field.value, field.validator);
   };
 
   private patchValue = ([form, data]: [FormGroup, any]) => {
-    data ? form.patchValue(data, { emitEvent: false }) : form.patchValue({}, { emitEvent: false });
+    data ? form.patchValue(data, {emitEvent: false}) : form.patchValue({}, {emitEvent: false});
   };
 
   private listenFormChanges(form: FormGroup) {

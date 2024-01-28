@@ -1,13 +1,22 @@
-import { ComponentRef, Directive, Input, OnChanges, OnInit, Type, ViewContainerRef, inject } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import {
+  ComponentRef,
+  Directive,
+  Input,
+  OnChanges,
+  OnInit,
+  Type,
+  ViewContainerRef,
+  inject,
+} from '@angular/core';
+import {FormGroup} from '@angular/forms';
 
-import { InputComponent } from '../fields/input/input.component';
-import { TextareaComponent } from '../fields/textarea/textarea.component';
-import { Field } from '../../../../data/store/forms/forms.interfaces';
+import {InputComponent} from '../fields/input/input.component';
+import {TextareaComponent} from '@shared/components/forms/fields';
+import {Field} from '@stores/forms';
 
 type Components = InputComponent | TextareaComponent;
 
-const componentsMapper: { [key: string]: Type<Components> } = {
+const componentsMapper: {[key: string]: Type<Components>} = {
   INPUT: InputComponent,
   TEXTAREA: TextareaComponent,
 };

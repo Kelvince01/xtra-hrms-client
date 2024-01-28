@@ -1,31 +1,28 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
-import {RouterOutlet} from "@angular/router";
-import { LocalStorageJwtService } from '../../shared/services/local-storage-jwt.service';
-import {AuthStore} from "../../data/store/auth/auth.store";
-import {filter, take} from "rxjs";
-import {NavbarComponent} from "./partials/navbar/navbar.component";
-import {FooterComponent} from "./partials/footer/footer.component";
+import {ChangeDetectionStrategy, Component, OnInit, inject} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
+import {LocalStorageJwtService} from '@shared/services';
+import {AuthStore} from '@stores/auth';
+import {filter, take} from 'rxjs';
+import {FooterComponent} from './partials/footer/footer.component';
+import {SidenavComponent} from '@admin-ui/partials/sidenav/sidenav.component';
 
 @Component({
   selector: 'xtra-admin',
   standalone: true,
-  imports: [
-    RouterOutlet,
-    NavbarComponent,
-    FooterComponent
-  ],
+  imports: [RouterOutlet, FooterComponent, SidenavComponent],
   template: `
-    <xtra-navbar [isLoggedIn]="$isLoggedIn()" [user]="$user()"></xtra-navbar>
-    <router-outlet></router-outlet>
+    <xtra-sidenav [isLoggedIn]="$isLoggedIn()" [user]="$user()">
+      <router-outlet></router-outlet>
 
-    @defer (on idle) {
-      <xtra-footer></xtra-footer>
-    }
+      @defer (on idle) {
+        <xtra-footer></xtra-footer>
+      }
+    </xtra-sidenav>
   `,
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdminComponent  implements OnInit {
+export class AdminComponent implements OnInit {
   private readonly localStorageJwtService = inject(LocalStorageJwtService);
   private readonly authStore = inject(AuthStore);
 
@@ -33,12 +30,12 @@ export class AdminComponent  implements OnInit {
   $isLoggedIn = this.authStore.isAuthenticated;
 
   ngOnInit(): void {
-    /*this.localStorageJwtService
+    this.localStorageJwtService
       .getItem()
       .pipe(
         take(1),
         filter((token) => !!token),
       )
-      .subscribe(() => this.authStore.getUser());*/
+      .subscribe(() => this.authStore.getUser());
   }
 }

@@ -1,13 +1,14 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { Field } from '../../../data/store/forms/forms.interfaces';
-import { Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { AuthStore } from '../../../data/store/auth/auth.store';
-import { ngrxFormsQuery } from '../../../data/store/forms/forms.selectors';
-import { formsActions } from '../../../data/store/forms/forms.actions';
-import {RouterLink} from "@angular/router";
-import {ListErrorsComponent} from "../../../shared/components/forms/list-errors/list-errors.component";
-import {DynamicFormComponent} from "../../../shared/components/forms/dynamic-form/dynamic-form.component";
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject} from '@angular/core';
+import {Field} from '@stores/forms';
+import {Validators} from '@angular/forms';
+import {Store} from '@ngrx/store';
+import {AuthStore} from '@stores/auth';
+import {ngrxFormsQuery} from '@stores/forms';
+import {formsActions} from '@stores/forms';
+import {RouterLink} from '@angular/router';
+import {ListErrorsComponent} from '@shared/components/forms/list-errors';
+import {DynamicFormComponent} from '@shared/components/forms/dynamic-form';
+import {StrongPasswordRegx} from '@shared/utils';
 
 const structure: Field[] = [
   {
@@ -26,7 +27,7 @@ const structure: Field[] = [
     type: 'INPUT',
     name: 'password',
     placeholder: 'Password',
-    validator: [Validators.required],
+    validator: [Validators.required, Validators.pattern(StrongPasswordRegx)],
     attrs: {
       type: 'password',
     },
@@ -36,11 +37,7 @@ const structure: Field[] = [
 @Component({
   selector: 'xtra-sign-up',
   standalone: true,
-  imports: [
-    RouterLink,
-    ListErrorsComponent,
-    DynamicFormComponent
-  ],
+  imports: [RouterLink, ListErrorsComponent, DynamicFormComponent],
   template: `
     <div class="auth-page">
       <div class="container page">
@@ -51,11 +48,19 @@ const structure: Field[] = [
               <a [routerLink]="['/accounts/sign-in']">Have an account?</a>
             </p>
 
-            <cdt-list-errors></cdt-list-errors>
+            <xtra-list-errors></xtra-list-errors>
 
-            <cdt-dynamic-form (updateForm)="updateForm($event)" [data$]="data$" [structure$]="structure$">
-            </cdt-dynamic-form>
-            <button data-e2e-id="sign-up" (click)="submit()" class="btn btn-lg btn-primary pull-xs-right" type="submit">
+            <xtra-dynamic-form
+              (updateForm)="updateForm($event)"
+              [data$]="data$"
+              [structure$]="structure$"
+            ></xtra-dynamic-form>
+            <button
+              data-e2e-id="sign-up"
+              (click)="submit()"
+              class="btn btn-lg btn-primary pull-xs-right"
+              type="submit"
+            >
               Sign up
             </button>
           </div>
@@ -64,9 +69,9 @@ const structure: Field[] = [
     </div>
   `,
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignUpComponent  implements OnInit, OnDestroy {
+export class SignUpComponent implements OnInit, OnDestroy {
   private readonly store = inject(Store);
   private readonly authStore = inject(AuthStore);
 
@@ -74,11 +79,11 @@ export class SignUpComponent  implements OnInit, OnDestroy {
   data$ = this.store.select(ngrxFormsQuery.selectData);
 
   ngOnInit() {
-    this.store.dispatch(formsActions.setStructure({ structure }));
+    this.store.dispatch(formsActions.setStructure({structure}));
   }
 
   updateForm(changes: any) {
-    this.store.dispatch(formsActions.updateData({ data: changes }));
+    this.store.dispatch(formsActions.updateData({data: changes}));
   }
 
   submit() {

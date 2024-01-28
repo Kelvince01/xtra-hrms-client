@@ -11,7 +11,7 @@ import {CookieService} from "../../../shared/services/cookie.service";
 export class AuthEffects {
   login$ = createEffect(() =>
     { return this.actions$.pipe(
-      ofType('[Login] User Login'),
+      ofType(login),
       switchMap(({ email, password }) =>
         this.authService.login({email, password}).pipe(
           map(token => loginSuccess({ token })),

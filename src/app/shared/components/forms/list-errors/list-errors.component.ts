@@ -7,16 +7,25 @@ import {
   OnInit,
   inject,
 } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ngrxFormsQuery } from '../../../../data/store/forms/forms.selectors';
-import {formsActions} from "../../../../data/store/forms/forms.actions";
+import {Store} from '@ngrx/store';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {ngrxFormsQuery} from '@stores/forms';
+import {formsActions} from '@stores/forms';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'cdt-list-errors',
+  selector: 'xtra-list-errors',
   standalone: true,
-  templateUrl: './list-errors.component.html',
+  template: `
+    @if (errors.length! > 0) {
+      <ul class="error-messages">
+        @for (error of errors; track error) {
+          <li data-e2e-id="error">
+            {{ error }}
+          </li>
+        }
+      </ul>
+    }
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListErrorsComponent implements OnInit, OnDestroy {

@@ -1,13 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit, effect, inject, untracked } from '@angular/core';
-import {Field} from "../../../data/store/forms/forms.interfaces";
-import {Validators} from "@angular/forms";
-import {ListErrorsComponent} from "../../../shared/components/forms/list-errors/list-errors.component";
-import {DynamicFormComponent} from "../../../shared/components/forms/dynamic-form/dynamic-form.component";
-import { Store } from '@ngrx/store';
-import { AuthStore } from '../../../data/store/auth/auth.store';
-import { SettingsStoreService } from './profile.store';
-import { ngrxFormsQuery } from '../../../data/store/forms/forms.selectors';
-import { formsActions } from '../../../data/store/forms/forms.actions';
+import {ChangeDetectionStrategy, Component, OnInit, effect, inject, untracked} from '@angular/core';
+import {Field} from '@stores/forms';
+import {Validators} from '@angular/forms';
+import {ListErrorsComponent} from '../../../shared/components/forms/list-errors/list-errors.component';
+import {DynamicFormComponent} from '../../../shared/components/forms/dynamic-form/dynamic-form.component';
+import {Store} from '@ngrx/store';
+import {AuthStore} from '@stores/auth';
+import {SettingsStoreService} from './profile.store';
+import {ngrxFormsQuery} from '@stores/forms';
+import {formsActions} from '@stores/forms';
 
 const structure: Field[] = [
   {
@@ -48,10 +48,7 @@ const structure: Field[] = [
 @Component({
   selector: 'xtra-profile',
   standalone: true,
-  imports: [
-    ListErrorsComponent,
-    DynamicFormComponent
-  ],
+  imports: [ListErrorsComponent, DynamicFormComponent],
   template: `
     <div class="settings-page">
       <div class="container page">
@@ -59,29 +56,38 @@ const structure: Field[] = [
           <div class="col-md-6 offset-md-3 col-xs-12">
             <h1 class="text-xs-center">Your Settings</h1>
 
-            <cdt-list-errors></cdt-list-errors>
+            <xtra-list-errors></xtra-list-errors>
 
-            <cdt-dynamic-form (updateForm)="updateForm($event)" [data$]="data$" [structure$]="structure$">
-            </cdt-dynamic-form>
+            <xtra-dynamic-form
+              (updateForm)="updateForm($event)"
+              [data$]="data$"
+              [structure$]="structure$"
+            ></xtra-dynamic-form>
             <div class="edit-button-container">
-              <button (click)="submit()" class="btn btn-lg btn-primary pull-xs-right" type="submit">Update Settings</button>
+              <button (click)="submit()" class="btn btn-lg btn-primary pull-xs-right" type="submit">
+                Update Settings
+              </button>
             </div>
 
             <hr />
 
-            <button class="btn btn-outline-danger" (click)="logout()">Or click here to logout.</button>
+            <button class="btn btn-outline-danger" (click)="logout()">
+              Or click here to logout.
+            </button>
           </div>
         </div>
       </div>
     </div>
   `,
-  styles: [`
-    .edit-button-container {
-      display: flex;
-      justify-content: flex-end;
-    }
-  `],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styles: [
+    `
+      .edit-button-container {
+        display: flex;
+        justify-content: flex-end;
+      }
+    `,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileComponent implements OnInit {
   private readonly store = inject(Store);
@@ -94,17 +100,17 @@ export class ProfileComponent implements OnInit {
   readonly fillInForm = effect(() => {
     const isLoggedIn = this.authStore.isAuthenticated();
     if (isLoggedIn) {
-      untracked(() => this.store.dispatch(formsActions.setData({ data: this.authStore.user() })));
+      untracked(() => this.store.dispatch(formsActions.setData({data: this.authStore.user()})));
     }
   });
 
   ngOnInit() {
     this.authStore.getUser();
-    this.store.dispatch(formsActions.setStructure({ structure }));
+    this.store.dispatch(formsActions.setStructure({structure}));
   }
 
   updateForm(changes: any) {
-    this.store.dispatch(formsActions.updateData({ data: changes }));
+    this.store.dispatch(formsActions.updateData({data: changes}));
   }
 
   submit() {

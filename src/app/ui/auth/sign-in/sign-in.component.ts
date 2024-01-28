@@ -13,8 +13,8 @@ import {NgIf} from "@angular/common";
   template: `
     <form (ngSubmit)="onSubmit()">
       <label>
-        Username:
-        <input type="text" [(ngModel)]="authFacade.email" name="email" required>
+        Email:
+        <input type="email" [(ngModel)]="authFacade.email" name="email" required>
       </label>
       <br>
       <label>

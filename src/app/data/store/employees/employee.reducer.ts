@@ -1,6 +1,6 @@
-import { createFeature, createReducer, on } from '@ngrx/store';
-import {EmployeeModel} from "../../models/employee.model";
-import {articleListActions, articlesActions} from "./employee.action";
+import {createFeature, createReducer, on} from '@ngrx/store';
+import {EmployeeModel} from '@data/models';
+import {articleListActions, articlesActions} from './employee.action';
 
 export const articleListFeatureKey = 'articles-list';
 
@@ -52,7 +52,7 @@ export const articleListFeature = createFeature({
   name: 'articlesList',
   reducer: createReducer(
     articleListInitialState,
-    on(articleListActions.setListPage, (state, { page }) => {
+    on(articleListActions.setListPage, (state, {page}) => {
       const filters = {
         ...state.listConfig.filters,
         offset: (state?.listConfig?.filters?.limit ?? 10) * (page - 1),
@@ -62,15 +62,15 @@ export const articleListFeature = createFeature({
         currentPage: page,
         filters,
       };
-      return { ...state, listConfig };
+      return {...state, listConfig};
     }),
-    on(articleListActions.setListConfig, (state, { config }) => ({
+    on(articleListActions.setListConfig, (state, {config}) => ({
       ...state,
       listConfig: config,
     })),
     on(articleListActions.loadArticles, (state) => {
-      const articles = { ...state.articles, loading: true };
-      return { ...state, articles };
+      const articles = {...state.articles, loading: true};
+      return {...state, articles};
     }),
     on(articleListActions.loadArticlesSuccess, (state, action) => {
       const articles = {
@@ -80,7 +80,7 @@ export const articleListFeature = createFeature({
         loading: false,
         loaded: true,
       };
-      return { ...state, articles };
+      return {...state, articles};
     }),
     on(articleListActions.loadArticlesFailure, (state, _) => {
       const articles = {
@@ -90,9 +90,9 @@ export const articleListFeature = createFeature({
         loading: false,
         loaded: true,
       };
-      return { ...state, articles };
+      return {...state, articles};
     }),
-    on(articlesActions.unfavoriteSuccess, articlesActions.favoriteSuccess, (state, { article }) => ({
+    on(articlesActions.unfavoriteSuccess, articlesActions.favoriteSuccess, (state, {article}) => ({
       ...state,
       articles: replaceArticle(state.articles, article),
     })),
@@ -106,5 +106,5 @@ function replaceArticle(articles: Articles, payload: EmployeeModel): Articles {
     Object.assign({}, articles.entities[articleIndex], payload),
     ...articles.entities.slice(articleIndex + 1),
   ];
-  return { ...articles, entities, loading: false, loaded: true };
+  return {...articles, entities, loading: false, loaded: true};
 }

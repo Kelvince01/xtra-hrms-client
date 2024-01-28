@@ -1,4 +1,4 @@
-import {UserModel} from "../../models/user.model";
+import {UserModel} from '@data/models';
 
 export interface AuthState {
   token: string;
@@ -12,19 +12,19 @@ export interface AuthState {
 }
 
 export const initialUserValue: UserModel = {
-  password: "",
+  password: '',
   permissions: [],
-  phone: "",
+  phone: '',
   email: '',
   username: '',
   bio: '',
-  avatar: ''
+  avatar: '',
 };
 
 export const authInitialState: AuthState = {
-  token: "",
+  token: '',
   error: '',
   isAuthenticated: false,
   isLoading: false,
-  user: initialUserValue
+  user: initialUserValue,
 };

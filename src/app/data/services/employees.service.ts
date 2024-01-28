@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import {BaseService} from "./base.service";
-import {EmployeeModel} from "../models/employee.model";
+import {Injectable} from '@angular/core';
+import {BaseService} from './base.service';
+import {EmployeeModel} from '@data/models';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeesService extends BaseService<EmployeeModel> {
   protected collectionName: string = 'employees';

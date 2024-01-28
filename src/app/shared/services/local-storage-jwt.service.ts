@@ -1,10 +1,13 @@
-import { Observable, of } from 'rxjs';
-import { Injectable } from '@angular/core';
+import {Observable, of} from 'rxjs';
+import {inject, Injectable} from '@angular/core';
+import {WindowService} from '@shared/services/window.service';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class LocalStorageJwtService {
+  #windowService = inject(WindowService);
+
   getItem(): Observable<string | null> {
-    const data = localStorage.getItem('jwtToken');
+    const data = this.#windowService.getLocalStorage('xtra-hrms-token');
     if (data) {
       return of(data);
     }
@@ -12,12 +15,12 @@ export class LocalStorageJwtService {
   }
 
   setItem(data: string): Observable<string> {
-    localStorage.setItem('jwtToken', data);
+    this.#windowService.setLocalStorage('xtra-hrms-token', data);
     return of(data);
   }
 
   removeItem(): Observable<boolean> {
-    localStorage.removeItem('jwtToken');
+    this.#windowService.removeLocalStorage('xtra-hrms-token');
     return of(true);
   }
 }

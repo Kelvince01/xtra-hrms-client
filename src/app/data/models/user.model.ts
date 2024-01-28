@@ -1,4 +1,4 @@
-import {BaseModel} from "./base.model";
+import {BaseModel} from './base.model';
 
 export interface UserModel extends BaseModel {
   username?: string;
@@ -39,6 +39,12 @@ export interface ResetPassword {
   email: string;
   old_password: string;
   new_password: string;
+}
+
+export interface ChangePassword {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
 }
 
 export interface PhoneVerifyOtp {

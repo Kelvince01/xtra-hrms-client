@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
-import {BaseService} from "./base.service";
-import {UserModel} from "../models/user.model";
-import {Observable, of} from "rxjs";
+import {Injectable} from '@angular/core';
+import {BaseService} from './base.service';
+import {UserModel} from '@data/models';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService extends BaseService<UserModel> {
   protected collectionName: string = 'users';

@@ -1,6 +1,6 @@
-import { inject } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { selectHasPermission } from "../../data/store/permissions/permission.selector";
+import {inject} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {selectHasPermission} from '@stores/permissions';
 
 export function hasPermissionGuard(permission: string) {
   return function () {

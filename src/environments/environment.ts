@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   buildId: `${new Date().getTime()}`,
-  BASE_API_URL: 'http://loaclhost:8000/',
+  BASE_API_URL: 'http://localhost:8000/api/v1/',
   PushNotifications: {
     publicKey: 'BJ0lExu5b8iS3PxARFJyErsOKuqE0K05ed3E_7wKL2uEzeCRqf9sR9eFZJuynDtvwS369BhzYHfM5NuiCsUEg_Y',
     privateKey: '1c9PDXp3ySj4JeI2br98j-zgVlBdCexhcwEuk7BmwT0'

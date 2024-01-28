@@ -1,14 +1,11 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {UserModel} from "../../../../data/models/user.model";
-import {RouterLink, RouterLinkActive} from "@angular/router";
+import {UserModel} from '@data/models';
+import {RouterLink, RouterLinkActive} from '@angular/router';
 
 @Component({
   selector: 'xtra-navbar',
   standalone: true,
-  imports: [
-    RouterLink,
-    RouterLinkActive
-  ],
+  imports: [RouterLink, RouterLinkActive],
   template: `
     <nav class="navbar navbar-light">
       <div class="container">
@@ -20,10 +17,14 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
               <a class="nav-link" routerLink="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/login" routerLinkActive="active">Sign in</a>
+              <a class="nav-link" routerLink="/accounts/sign-in" routerLinkActive="active">
+                Sign in
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/register" routerLinkActive="active">Sign up</a>
+              <a class="nav-link" routerLink="/accounts/sign-up" routerLinkActive="active">
+                Sign up
+              </a>
             </li>
           </ul>
         } @else {
@@ -34,18 +35,21 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
                 class="nav-link active"
                 [routerLink]="['/']"
                 routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-              >Home</a
+                [routerLinkActiveOptions]="{exact: true}"
               >
+                Home
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/editor" routerLinkActive="active">
-                <i class="ion-compose"></i>&nbsp;New Post
+              <a class="nav-link" routerLink="/employees" routerLinkActive="active">
+                <i class="ion-compose"></i>
+                &nbsp;Employees
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="/settings" routerLinkActive="active">
-                <i class="ion-gear-a"></i>&nbsp;Settings
+                <i class="ion-gear-a"></i>
+                &nbsp;Settings
               </a>
             </li>
             <li class="nav-item">
@@ -64,7 +68,7 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
     </nav>
   `,
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
   @Input() user!: UserModel;

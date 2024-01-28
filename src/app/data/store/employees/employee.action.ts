@@ -1,6 +1,6 @@
 import {createActionGroup, emptyProps, props} from '@ngrx/store';
-import {ArticleListConfig} from "./employee.reducer";
-import {EmployeeModel} from "../../models/employee.model";
+import {ArticleListConfig} from './employee.reducer';
+import {EmployeeModel} from '@data/models';
 
 export const articleEditActions = createActionGroup({
   source: 'Article Edit',
@@ -13,22 +13,22 @@ export const articleEditActions = createActionGroup({
 export const articleListActions = createActionGroup({
   source: 'Article List',
   events: {
-    setListPage: props<{ page: number }>(),
-    setListConfig: props<{ config: ArticleListConfig }>(),
+    setListPage: props<{page: number}>(),
+    setListConfig: props<{config: ArticleListConfig}>(),
     loadArticles: emptyProps(),
-    loadArticlesFailure: props<{ error: Error }>(),
-    loadArticlesSuccess: props<{ articles: EmployeeModel[]; articlesCount: number }>(),
+    loadArticlesFailure: props<{error: Error}>(),
+    loadArticlesSuccess: props<{articles: EmployeeModel[]; articlesCount: number}>(),
   },
 });
 
 export const articlesActions = createActionGroup({
   source: 'Articles',
   events: {
-    favorite: props<{ slug: string }>(),
-    favoriteFailure: props<{ error: Error }>(),
-    favoriteSuccess: props<{ article: EmployeeModel }>(),
-    unfavorite: props<{ slug: string }>(),
-    unfavoriteFailure: props<{ error: Error }>(),
-    unfavoriteSuccess: props<{ article: EmployeeModel }>(),
+    favorite: props<{slug: string}>(),
+    favoriteFailure: props<{error: Error}>(),
+    favoriteSuccess: props<{article: EmployeeModel}>(),
+    unfavorite: props<{slug: string}>(),
+    unfavoriteFailure: props<{error: Error}>(),
+    unfavoriteSuccess: props<{article: EmployeeModel}>(),
   },
 });

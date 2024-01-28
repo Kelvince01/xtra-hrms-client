@@ -3,6 +3,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
+    "baseUrl": "./",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
@@ -22,6 +23,44 @@
     "lib": [
       "ES2022",
       "dom"
+    ],
+    "paths": {
+      "@core/*": [
+        "src/app/core/*"
+      ],
+      "@data/*": [
+        "src/app/data/*"
+      ],
+      "@models/*": [
+        "src/app/data/models/*"
+      ],
+      "@services/*": [
+        "src/app/data/services/*"
+      ],
+      "@stores/*": [
+        "src/app/data/store/*"
+      ],
+      "@auth-ui/*": [
+        "src/app/ui/auth/*"
+      ],
+      "@main-ui/*": [
+        "src/app/ui/main/*"
+      ],
+      "@admin-ui/*": [
+        "src/app/ui/admin/*"
+      ],
+      "@shared/*": [
+        "src/app/shared/*"
+      ],
+      "@env": [
+        "src/environments/*"
+      ]
+    },
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "node"
     ]
   },
   "angularCompilerOptions": {

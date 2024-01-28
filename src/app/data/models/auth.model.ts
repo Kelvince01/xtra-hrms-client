@@ -12,6 +12,11 @@ export interface LoginUserRequest {
   user: LoginUser;
 }
 
+export interface LoginResponse {
+  access: string;
+  refresh: string;
+}
+
 export interface LoginUser {
   email: string;
   password: string;

@@ -1,4 +1,4 @@
-import {EmployeeModel} from "../../models/employee.model";
+import {EmployeeModel} from '@data/models';
 
 export interface EmployeeState {
   employee: EmployeeModel;

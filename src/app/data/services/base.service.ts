@@ -1,11 +1,11 @@
 import {inject, Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Paginated} from "../models/paginated-data.model";
-import {environment} from "../../../environments/environment";
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Paginated} from '@data/models';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export abstract class BaseService<T> {
   protected abstract collectionName?: string;
@@ -18,29 +18,44 @@ export abstract class BaseService<T> {
     return `${environment.BASE_API_URL + this.collectionName}/`;
   }
 
-  constructor() { }
+  constructor() {}
 
   create(dto: T): Observable<T> {
-    return this.#http.post<T>(`${this.url}`, dto);
+    return this.#http.post<T>(`${this.url}`, JSON.stringify(dto), {headers: this.headers});
   }
 
-  get(): Observable<T[]> {
-    return this.#http.get<T[]>(`${this.url}`);
+  get(params: HttpParams = new HttpParams()): Observable<T[]> {
+    return this.#http.get<T[]>(`${this.url}`, {
+      headers: this.headers,
+      params,
+    });
   }
 
-  getPaginated(): Observable<Paginated<T>> {
-    return this.#http.get<Paginated<T>>(`${this.url}`);
+  getPaginated(params: HttpParams = new HttpParams()): Observable<Paginated<T>> {
+    return this.#http.get<Paginated<T>>(`${this.url}`, {
+      headers: this.headers,
+      params,
+    });
   }
 
   getById(id: number): Observable<T> {
-    return this.#http.get<T>(`${this.url + id}`);
+    return this.#http.get<T>(`${this.url + id}`, {headers: this.headers});
   }
 
   update(dto: T): Observable<T> {
-    return this.#http.put<T>(`${`${this.url}`}`, dto);
+    return this.#http.put<T>(`${`${this.url}`}`, JSON.stringify(dto), {headers: this.headers});
   }
 
   delete(id: number): Observable<T> {
-    return this.#http.delete<T>(`${this.url + id}`);
+    return this.#http.delete<T>(`${this.url + id}`, {headers: this.headers});
+  }
+
+  get headers(): HttpHeaders {
+    const headersConfig = {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    };
+
+    return new HttpHeaders(headersConfig);
   }
 }

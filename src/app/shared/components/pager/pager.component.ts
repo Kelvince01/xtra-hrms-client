@@ -1,17 +1,16 @@
-import { NgClass } from '@angular/common';
-import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core';
+import {NgClass} from '@angular/common';
+import {Component, Output, EventEmitter, Input, ChangeDetectionStrategy} from '@angular/core';
 
 @Component({
   standalone: true,
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'cdt-pager',
+  selector: 'xtra-pager',
   template: `
     <ul class="pagination">
       @for (pageNumber of totalPages; track pageNumber) {
         <li
           data-e2e-id="pagination-item"
           class="page-item"
-          [ngClass]="{ active: pageNumber === currentPage }"
+          [ngClass]="{active: pageNumber === currentPage}"
           (click)="setPage.emit(pageNumber)"
         >
           <a data-e2e-id="pagination-link" class="page-link">{{ pageNumber }}</a>
@@ -19,11 +18,13 @@ import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy } from 
       }
     </ul>
   `,
-  styles: [`
-    .page-link {
-      cursor: pointer;
-    }
-  `],
+  styles: [
+    `
+      .page-link {
+        cursor: pointer;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgClass],
 })

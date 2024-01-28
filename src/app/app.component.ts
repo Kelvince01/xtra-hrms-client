@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {NgxSpinnerModule} from "ngx-spinner";
-import { SeoService } from './core/services/seo.service';
+import {Component, inject} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
+import {NgxSpinnerModule} from 'ngx-spinner';
+import {SeoService} from '@core/services';
 
 @Component({
   selector: 'xtra-root',
@@ -13,13 +13,14 @@ import { SeoService } from './core/services/seo.service';
         bdColor="rgba(0,0,0,0.2)"
         size="medium"
         color="#0049AF"
-        type="ball-spin-clockwise-fade">
+        type="ball-spin-clockwise-fade"
+      >
         <p style="font-size: 20px; color: white">Loading...</p>
       </ngx-spinner>
       <router-outlet />
     </div>
   `,
-  styles: [``]
+  styles: [``],
 })
 export class AppComponent {
   title = 'Xtra HRMS (Client)';

@@ -1,13 +1,15 @@
 import {ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit} from '@angular/core';
-import { Field } from '../../../data/store/forms/forms.interfaces';
-import { Validators } from '@angular/forms';
-import {Store} from "@ngrx/store";
-import {AuthStore} from "../../../data/store/auth/auth.store";
-import {ngrxFormsQuery} from "../../../data/store/forms/forms.selectors";
-import {formsActions} from "../../../data/store/forms/forms.actions";
-import {RouterLink} from "@angular/router";
-import {ListErrorsComponent} from "../../../shared/components/forms/list-errors/list-errors.component";
-import {DynamicFormComponent} from "../../../shared/components/forms/dynamic-form/dynamic-form.component";
+import {Field} from '@stores/forms';
+import {Validators} from '@angular/forms';
+import {Store} from '@ngrx/store';
+import {AuthStore} from '@stores/auth';
+import {ngrxFormsQuery} from '@stores/forms';
+import {formsActions} from '@stores/forms';
+import {RouterLink} from '@angular/router';
+import {ListErrorsComponent} from '@shared/components/forms/list-errors';
+import {DynamicFormComponent} from '@shared/components/forms/dynamic-form';
+import {MatButton} from '@angular/material/button';
+import {MatCard} from '@angular/material/card';
 
 const structure: Field[] = [
   {
@@ -30,36 +32,46 @@ const structure: Field[] = [
 @Component({
   selector: 'xtra-sign-in',
   standalone: true,
-  imports: [
-    RouterLink,
-    ListErrorsComponent,
-    DynamicFormComponent
-
-  ],
+  imports: [RouterLink, ListErrorsComponent, DynamicFormComponent, MatButton, MatCard],
   template: `
     <div class="auth-page">
-      <div class="container page">
-        <div class="row">
-          <div class="col-md-6 offset-md-3 col-xs-12">
-            <h1 class="text-xs-center">Sign in</h1>
-            <p class="text-xs-center">
-              <a [routerLink]="['/accounts/sign-up']">Need an account?</a>
-            </p>
+      <div class="container mx-auto px-4">
+        <div class="columns-1">
+          <div class="offset-md-3 col-xs-12 mt-3 mx-4">
+            <mat-card class="p-4">
+              <h1 class="text-xs-center">Sign in</h1>
+              <p class="text-xs-center">
+                <a [routerLink]="['/accounts/sign-up']">Need an account?</a>
+              </p>
 
-            <cdt-list-errors></cdt-list-errors>
+              <xtra-list-errors></xtra-list-errors>
 
-            <cdt-dynamic-form (updateForm)="updateForm($event)" [data$]="data$" [structure$]="structure$">
-            </cdt-dynamic-form>
-            <button data-e2e-id="sign-in" (click)="submit()" class="btn btn-lg btn-primary pull-xs-right" type="submit">
-              Sign in
-            </button>
+              <xtra-dynamic-form
+                (updateForm)="updateForm($event)"
+                [data$]="data$"
+                [structure$]="structure$"
+              ></xtra-dynamic-form>
+              <button data-e2e-id="sign-in" (click)="submit()" mat-flat-button type="submit">
+                Sign in
+              </button>
+            </mat-card>
           </div>
         </div>
       </div>
     </div>
   `,
-  styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styles: [
+    `
+      mat-card {
+        width: 600px;
+      }
+
+      mat-form-field {
+        display: block;
+      }
+    `,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInComponent implements OnInit, OnDestroy {
   private readonly store = inject(Store);
@@ -69,11 +81,11 @@ export class SignInComponent implements OnInit, OnDestroy {
   data$ = this.store.select(ngrxFormsQuery.selectData);
 
   ngOnInit() {
-    this.store.dispatch(formsActions.setStructure({ structure }));
+    this.store.dispatch(formsActions.setStructure({structure}));
   }
 
   updateForm(changes: any) {
-    this.store.dispatch(formsActions.updateData({ data: changes }));
+    this.store.dispatch(formsActions.updateData({data: changes}));
   }
 
   submit() {

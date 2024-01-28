@@ -1,24 +1,24 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import {EmployeeModel} from "../../../../../data/models/employee.model";
-import {DatePipe, NgClass} from "@angular/common";
-import {RouterLink} from "@angular/router";
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import {EmployeeModel} from '@data/models';
+import {DatePipe, NgClass} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'xtra-employee-list-item',
   standalone: true,
-  imports: [
-    DatePipe,
-    NgClass,
-    RouterLink
-  ],
+  imports: [DatePipe, NgClass, RouterLink],
   template: `
     <div class="article-preview">
       <div class="article-meta">
         <a>
-          <img [src]="employee.photo"/>
+          <img [src]="employee.photo" />
         </a>
         <div class="info">
-          <a data-e2e-id="article-author" class="author" [routerLink]="['/profile', employee.firstname]">
+          <a
+            data-e2e-id="article-author"
+            class="author"
+            [routerLink]="['/profile', employee.firstname]"
+          >
             {{ employee.firstname }}
           </a>
           <span class="date">
@@ -27,11 +27,13 @@ import {RouterLink} from "@angular/router";
         </div>
         <span [hidden]="!canModify">
           <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/edit', employee.id]">
-            <i class="ion-edit"></i> Edit Article
+            <i class="ion-edit"></i>
+            Edit Article
           </a>
 
           <button class="btn btn-sm btn-outline-danger" (click)="deleteArticle()">
-            <i class="ion-trash-a"></i> Delete Article
+            <i class="ion-trash-a"></i>
+            Delete Article
           </button>
         </span>
       </div>
@@ -41,9 +43,21 @@ import {RouterLink} from "@angular/router";
         <span>Read more...</span>
       </a>
     </div>
+
+    <!--
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Title</mat-card-title>
+        <mat-card-subtitle>Subtitle</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>Content here.</p>
+    </mat-card-content>
+</mat-card>
+-->
   `,
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeListItemComponent {
   @Input() employee!: EmployeeModel;
