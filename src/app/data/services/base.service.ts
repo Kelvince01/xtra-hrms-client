@@ -14,7 +14,7 @@ export abstract class BaseService<T> {
   /**
    * Path part for operation getObjects
    */
-  private get url(): string {
+  protected get url(): string {
     return `${environment.BASE_API_URL + this.collectionName}/`;
   }
 
@@ -39,7 +39,7 @@ export abstract class BaseService<T> {
   }
 
   getById(id: number): Observable<T> {
-    return this.#http.get<T>(`${this.url + id}`, {headers: this.headers});
+    return this.#http.get<T>(`${this.url + id}/`, {headers: this.headers});
   }
 
   update(dto: T): Observable<T> {

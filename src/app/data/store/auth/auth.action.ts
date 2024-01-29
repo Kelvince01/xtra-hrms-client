@@ -1,5 +1,5 @@
 import {createAction, props} from '@ngrx/store';
-import {UserModel} from '@data/models';
+import {IUser} from '@data/models';
 
 export const login = createAction('[Login] User Login', props<{email: string; password: string}>());
 
@@ -9,7 +9,7 @@ export const loginFailure = createAction('[Login] Login Failure', props<{error: 
 
 export const setToken = createAction('[Auth] Set Token', props<{token: string}>());
 
-export const setUser = createAction('[Auth] Set user', props<{user: UserModel}>());
+export const setUser = createAction('[Auth] Set user', props<{user: IUser}>());
 
 export const removeToken = createAction('[Auth] Remove Token');
 

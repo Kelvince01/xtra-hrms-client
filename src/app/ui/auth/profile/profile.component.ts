@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component, OnInit, effect, inject, untracked} from '@angular/core';
 import {Field} from '@stores/forms';
 import {Validators} from '@angular/forms';
-import {ListErrorsComponent} from '../../../shared/components/forms/list-errors/list-errors.component';
-import {DynamicFormComponent} from '../../../shared/components/forms/dynamic-form/dynamic-form.component';
+import {ListErrorsComponent} from '@shared/components/forms/list-errors';
+import {DynamicFormComponent} from '@shared/components/forms/dynamic-form';
 import {Store} from '@ngrx/store';
 import {AuthStore} from '@stores/auth';
 import {SettingsStoreService} from './profile.store';

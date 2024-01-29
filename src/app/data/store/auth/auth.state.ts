@@ -1,4 +1,4 @@
-import {UserModel} from '@data/models';
+import {IUser} from '@data/models';
 
 export interface AuthState {
   token: string;
@@ -8,17 +8,18 @@ export interface AuthState {
   isAuthenticated: boolean;
   isLoading: boolean;
   // if authenticated, there should be a user object
-  user: UserModel;
+  user: IUser;
 }
 
-export const initialUserValue: UserModel = {
+export const initialUserValue: IUser = {
+  photoURL: undefined,
   password: '',
-  permissions: [],
-  phone: '',
+  roles: [],
+  phone_no: '',
   email: '',
   username: '',
   bio: '',
-  avatar: '',
+  photo: '',
 };
 
 export const authInitialState: AuthState = {

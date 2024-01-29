@@ -15,6 +15,28 @@ export const routes: Routes = [
     loadChildren: () => import('./ui/auth/auth.routes').then((r) => r.authRoutes),
   },
   {
+    path: 'fp',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./ui/finance-portal/finance-portal.component').then((c) => c.FinancePortalComponent),
+    loadChildren: () =>
+      import('./ui/finance-portal/finance-portal.routes').then((r) => r.financePortalRoutes),
+    data: {revalidate: 60},
+    title: 'Finance Portal',
+  },
+  {
+    path: 'ep',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./ui/employee-portal/employee-portal.component').then(
+        (c) => c.EmployeePortalComponent,
+      ),
+    loadChildren: () =>
+      import('./ui/employee-portal/employee-portal.routes').then((r) => r.employeePortalRoutes),
+    data: {revalidate: 60},
+    title: 'Eemployee Portal',
+  },
+  {
     path: '',
     redirectTo: '',
     pathMatch: 'full',

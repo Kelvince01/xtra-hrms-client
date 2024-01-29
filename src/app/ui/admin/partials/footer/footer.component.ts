@@ -1,23 +1,37 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {RouterLink} from '@angular/router';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'xtra-footer',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, DatePipe],
   template: `
     <footer>
       <div class="container">
-        <a href="/" class="logo-font">Xtra HRMS (Client)</a>
+        <a routerLink="/" class="logo-font">Xtra HRMS (Client)</a>
         <span class="attribution">
-          An interactive learning project from
-          <a href="https://xtra-hrm.web.app">Xtra HRMS (Client)</a>. Code &amp; design licensed under MIT.
+          {{ date | date: 'yyyy' }}, Created with ♥ by
+          <a href="https://twitter.com/Kelvince_">Kelvince Phillips</a>
+          . Code &amp; design licensed under Private License.
         </span>
       </div>
     </footer>
   `,
-  styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styles: [
+    `
+      footer {
+        position: relative;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 1rem;
+        text-align: center;
+      }
+    `,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
-
+  date: Date = new Date();
 }

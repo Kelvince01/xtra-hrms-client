@@ -10,7 +10,6 @@ import {AuthService} from '@data/services';
 import {LocalStorageJwtService} from '@shared/services';
 import {ngrxFormsQuery} from '@stores/forms';
 import {formsActions} from '@stores/forms';
-import {LoginResponse} from '@data/models';
 
 export const AuthStore = signalStore(
   {providedIn: 'root'},
@@ -38,7 +37,7 @@ export const AuthStore = signalStore(
                 next: (user: any) => {
                   // let loggedInUser = authService.user();
                   patchState(store, {user, isAuthenticated: true});
-                  localStorageService.setItem(user.access);
+                  localStorageService.setItem(user);
                   router.navigateByUrl('/');
                 },
                 error: ({error}) =>
@@ -54,9 +53,9 @@ export const AuthStore = signalStore(
           exhaustMap(([, data]) =>
             authService.register(data).pipe(
               tapResponse({
-                next: ({user}) => {
+                next: (user) => {
                   patchState(store, {user, isAuthenticated: true});
-                  localStorageService.setItem(user.token);
+                  localStorageService.setItem(user!);
                   router.navigateByUrl('/');
                 },
                 error: ({error}) =>

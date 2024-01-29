@@ -9,3 +9,11 @@ export interface BaseModel {
   updated_by?: number;
   deleted_by?: number;
 }
+
+export interface GenericErrorModel {
+  errors: Errors;
+}
+
+export interface Errors {
+  body: string[];
+}

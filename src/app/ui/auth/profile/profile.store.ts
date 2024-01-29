@@ -1,15 +1,15 @@
-import { Injectable, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import {Injectable, inject} from '@angular/core';
+import {Router} from '@angular/router';
 
-import { ComponentStore } from '@ngrx/component-store';
-import { concatLatestFrom } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
-import { pipe } from 'rxjs';
-import { concatMap, map, tap } from 'rxjs/operators';
-import {ProfileService} from "./profile.service";
-import {LocalStorageJwtService} from "../../../shared/services/local-storage-jwt.service";
-import {AuthStore} from "../../../data/store/auth/auth.store";
-import {ngrxFormsQuery} from "../../../data/store/forms/forms.selectors";
+import {ComponentStore} from '@ngrx/component-store';
+import {concatLatestFrom} from '@ngrx/effects';
+import {Store} from '@ngrx/store';
+import {pipe} from 'rxjs';
+import {concatMap, map, tap} from 'rxjs/operators';
+import {ProfileService} from './profile.service';
+import {LocalStorageJwtService} from '@shared/services';
+import {AuthStore} from '@stores/auth';
+import {ngrxFormsQuery} from '@stores/forms';
 
 @Injectable()
 export class SettingsStoreService extends ComponentStore<Record<string, unknown>> {
@@ -26,7 +26,7 @@ export class SettingsStoreService extends ComponentStore<Record<string, unknown>
       concatMap(([, data]) =>
         this.settingsService.update(data).pipe(
           tap((result) => this.router.navigate(['profile', result.user.username])),
-          tap((result) => this.localStorageJwtService.setItem(result.user.token!)),
+          tap((result) => this.localStorageJwtService.setItem(result.user!)),
           map(() => this.authStore.getUser()),
         ),
       ),

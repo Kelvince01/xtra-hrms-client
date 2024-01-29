@@ -18,6 +18,11 @@ export const adminRoutes: Routes = [
     loadChildren: () => import('./uam/uam.routes').then((r) => r.uamRoutes),
   },
   {
+    path: 'org',
+    loadComponent: () => import('@admin-ui/orgs/orgs.component').then((c) => c.OrgsComponent),
+    loadChildren: () => import('@admin-ui/orgs/orgs.routes').then((c) => c.orgsRoutes),
+  },
+  {
     path: 'recruitments',
     loadComponent: () =>
       import('./recruitments/recruitments.component').then((c) => c.RecruitmentsComponent),

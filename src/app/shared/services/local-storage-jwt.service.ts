@@ -6,16 +6,16 @@ import {WindowService} from '@shared/services/window.service';
 export class LocalStorageJwtService {
   #windowService = inject(WindowService);
 
-  getItem(): Observable<string | null> {
-    const data = this.#windowService.getLocalStorage('xtra-hrms-token');
+  getItem(): Observable<object | null> {
+    const data = this.#windowService.getLocalStorageObject('xtra-hrms-token');
     if (data) {
       return of(data);
     }
     return of(null);
   }
 
-  setItem(data: string): Observable<string> {
-    this.#windowService.setLocalStorage('xtra-hrms-token', data);
+  setItem(data: object): Observable<any> {
+    this.#windowService.setLocalStorageObject('xtra-hrms-token', data);
     return of(data);
   }
 

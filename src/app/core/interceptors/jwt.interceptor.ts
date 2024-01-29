@@ -11,7 +11,7 @@ export const authInterceptor = (
   request: HttpRequest<any>,
   next: HttpHandlerFn,
 ): Observable<HttpEvent<any>> => {
-  let token: string | null = null;
+  let token: object | null = null;
   inject(LocalStorageJwtService)
     .getItem()
     .subscribe((t) => (token = t));
@@ -19,7 +19,7 @@ export const authInterceptor = (
   if (token) {
     request = request.clone({
       setHeaders: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${(<any>token).access}`,
       },
     });
   }

@@ -1,5 +1,16 @@
-import {ApplicationConfig, importProvidersFrom, isDevMode} from '@angular/core';
-import {provideRouter, withComponentInputBinding, withViewTransitions} from '@angular/router';
+import {
+  APP_INITIALIZER,
+  ApplicationConfig,
+  ErrorHandler,
+  importProvidersFrom,
+  isDevMode,
+} from '@angular/core';
+import {
+  provideRouter,
+  Router,
+  withComponentInputBinding,
+  withViewTransitions,
+} from '@angular/router';
 
 import {routes} from './app.routes';
 import {provideClientHydration} from '@angular/platform-browser';
@@ -34,6 +45,12 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {provideEcharts} from 'ngx-echarts';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatNativeDateModule} from '@angular/material/core';
+import * as Sentry from '@sentry/angular-ivy';
+import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
+
+// export function tokenGetter(): string {
+//   return localStorage.getItem('xtra-hrms-token')!;
+// }
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -63,6 +80,13 @@ export const appConfig: ApplicationConfig = {
     provideTranslation(),
     provideRecaptcha(),
     importProvidersFrom([
+      // JwtModule.forRoot({
+      //   config: {
+      //     tokenGetter,
+      //     allowedDomains: [environment.BASE_API_URL],
+      //     disallowedRoutes: [],
+      //   },
+      // }),
       provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
       provideAnalytics(() => getAnalytics()),
       providePerformance(() => getPerformance()),
@@ -78,6 +102,8 @@ export const appConfig: ApplicationConfig = {
         },
       }),
     ]),
+    {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
+    JwtHelperService,
     ScreenTrackingService,
     provideEcharts(),
     provideToastr({
@@ -97,6 +123,22 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
+    {
+      provide: ErrorHandler,
+      useValue: Sentry.createErrorHandler({
+        showDialog: false,
+      }),
+    },
+    {
+      provide: Sentry.TraceService,
+      deps: [Router],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => () => {},
+      deps: [Sentry.TraceService],
+      multi: true,
+    },
     {provide: API_URL, useValue: environment.BASE_API_URL},
   ],
 };

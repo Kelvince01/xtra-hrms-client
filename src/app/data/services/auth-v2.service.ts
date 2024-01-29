@@ -2,7 +2,7 @@ import {Injectable, inject} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ApiService} from './api.service';
 import {UserResponse} from '@data/models';
-import {LoginUser, LoginUserRequest, NewUser, NewUserRequest} from '../models/auth.model';
+import {LoginUser, LoginUserRequest, NewUser, NewUserRequest} from '@data/models';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {

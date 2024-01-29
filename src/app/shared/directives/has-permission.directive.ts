@@ -1,20 +1,20 @@
 import {Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
-import {Subject, takeUntil} from "rxjs";
-import {Store} from "@ngrx/store";
-import {selectHasPermission} from "../../data/store/permissions/permission.selector";
+import {Subject, takeUntil} from 'rxjs';
+import {Store} from '@ngrx/store';
+import {selectHasPermission} from '@stores/permissions';
 
 @Directive({
   selector: '[xtraHasPermission]',
-  standalone: true
+  standalone: true,
 })
 export class HasPermissionDirective implements OnInit, OnDestroy {
-  @Input("xtraHasPermission") permission!: string;
+  @Input('xtraHasPermission') permission!: string;
   destroy$ = new Subject<void>();
 
   constructor(
     private readonly templateRef: TemplateRef<any>,
     private readonly viewContainer: ViewContainerRef,
-    private readonly store: Store
+    private readonly store: Store,
   ) {}
 
   ngOnInit() {

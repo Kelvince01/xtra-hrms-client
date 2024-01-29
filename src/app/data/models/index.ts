@@ -1,8 +1,13 @@
-export {EmployeeModel, NewEmployeeModel, UpdateEmployeeModel} from './employee.model';
+export {
+  EmployeeModel,
+  NewEmployeeModel,
+  UpdateEmployeeModel,
+  IEmployee,
+  NewEmployee,
+  UpdateEmployee,
+} from './employee.model';
 export {BaseModel} from './base.model';
-export {NewUserRequest, NewUser, LoginUserRequest, LoginUser, LoginResponse} from './auth.model';
 export {Paginated} from './paginated-data.model';
-export {PermissionModel} from './permission.model';
 export {
   UserModel,
   UserResponse,
@@ -16,4 +21,15 @@ export {
   EmailVerifyOtp,
   Profile,
   ProfileResponse,
-} from './user.model';
+  NewUserRequest,
+  NewUser,
+  LoginUserRequest,
+  LoginUser,
+  ILogin,
+  PermissionModel,
+  IUser,
+  UpdateUser,
+  IProfile,
+} from './accounts.model';
+
+export {GenericError} from './generic-error.model';

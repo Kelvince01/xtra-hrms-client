@@ -8,6 +8,7 @@ export interface Field {
   placeholder?: string;
   validator?: ValidatorFn[];
   attrs?: FieldAttrs;
+  disabled?: boolean;
 }
 
 export type FieldType = 'INPUT' | 'TEXTAREA';
@@ -19,4 +20,17 @@ export interface FieldAttrs {
 
 export interface Errors {
   [key: string]: string;
+}
+
+export enum FieldTypeEnum {
+  email = 'email',
+  text = 'string',
+  textarea = 'textarea',
+  number = 'number',
+  radio = 'radio',
+  select = 'select',
+  checkbox = 'checkbox',
+  datepicker = 'datepicker',
+  tel = 'tel',
+  file = 'file',
 }
