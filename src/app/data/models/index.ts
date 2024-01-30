@@ -5,6 +5,12 @@ export {
   IEmployee,
   NewEmployee,
   UpdateEmployee,
+  IRotatingShift,
+  IRotatingShiftAssign,
+  IRotatingWorkType,
+  IRotatingWorkTypeAssign,
+  IShiftRequest,
+  IWorkTypeRequest,
 } from './employee.model';
 export {BaseModel} from './base.model';
 export {Paginated} from './paginated-data.model';
