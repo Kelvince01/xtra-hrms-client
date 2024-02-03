@@ -4,14 +4,15 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && npm run sentry:sourcemaps",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:xtra-hrms-client": "node dist/xtra-hrms-client/server/server.mjs",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
-    "docs:html": "npx compodoc -p tsconfig.json src  && npx serve documentation"
+    "docs:html": "npx compodoc -p tsconfig.json src  && npx serve documentation",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org timiza-technologies --project xtra-hrms-client ./dist && sentry-cli sourcemaps upload --org timiza-technologies --project xtra-hrms-client ./dist"
   },
   "private": true,
   "dependencies": {
@@ -44,6 +45,7 @@
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "@sentry/angular-ivy": "^7.98.0",
+    "@sentry/cli": "^2.27.0",
     "cropperjs": "^1.6.1",
     "date-fns": "^3.3.1",
     "echarts": "^5.4.3",
