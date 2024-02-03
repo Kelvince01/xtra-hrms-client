@@ -1,6 +1,6 @@
-import {EmployeeModel} from '@data/models';
+import {IEmployee} from '@data/models';
 
 export interface EmployeeState {
-  employee: EmployeeModel;
-  employees?: EmployeeModel[];
+  employee: IEmployee;
+  employees?: IEmployee[];
 }

@@ -7,4 +7,14 @@ export const candidatesRoutes: Routes = [
   {path: '', redirectTo: '', pathMatch: 'full'},
   {path: '', pathMatch: 'full', component: CandidateListComponent},
   {path: ':id', component: CandidatePageComponent, resolve: {candidate: candidateDetailsResolver}},
+  /*
+  {
+    path: 'add',
+    component: CandidateUpsertComponent
+  },
+  {
+    path: 'edit:/id',
+    component: CandidateUpsertComponent
+  }
+   */
 ];

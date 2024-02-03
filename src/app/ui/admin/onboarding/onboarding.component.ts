@@ -1,17 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'xtra-onboarding',
   standalone: true,
-  imports: [],
+  imports: [RouterOutlet],
   template: `
-    <p>
-      onboarding works!
-    </p>
+    <router-outlet></router-outlet>
   `,
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OnboardingComponent {
-
-}
+export class OnboardingComponent {}

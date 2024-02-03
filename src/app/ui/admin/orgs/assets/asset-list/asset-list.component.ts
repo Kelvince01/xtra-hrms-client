@@ -17,14 +17,17 @@ import {ToastrService} from 'ngx-toastr';
 import {AssetPageComponent} from '@admin-ui/orgs/assets/asset-page/asset-page.component';
 import {Sort} from '@angular/material/sort';
 import Swal from 'sweetalert2';
+import {BreadcrumbsComponent} from '@shared/components/breadcrumbs/breadcrumbs.component';
 
 // (sort)="sortData($event)"
 
 @Component({
   selector: 'xtra-asset-list',
   standalone: true,
-  imports: [TableComponent],
+  imports: [TableComponent, BreadcrumbsComponent],
   template: `
+    <xtra-breadcrumbs [items]="breadcrumbs"></xtra-breadcrumbs>
+
     <xtra-table
       [tableData]="assets"
       [tableColumns]="assetsTableColumns"
@@ -53,6 +56,7 @@ export class AssetListComponent implements OnInit {
   dialog = inject(MatDialog);
   toastr = inject(ToastrService);
   isLoading = true;
+  breadcrumbs: string[] = ['Projects', 'Angular Jira Clone', 'Kanban Board'];
 
   cols: any[] = [];
   exportColumns: any[] = [];

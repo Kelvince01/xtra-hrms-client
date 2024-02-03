@@ -27,7 +27,7 @@ export const employeesRoutes: Routes = [
   //   loadComponent: () => import('./employee-page/employee-page.component').then(c => c.EmployeePageComponent)
   // }
   {
-    path: 'hr',
+    path: 'hr-details',
     loadChildren: () => import('./hr-details/hr-details.routes').then((r) => r.hrDetailsRoutes),
   },
   {

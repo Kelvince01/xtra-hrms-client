@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BaseService} from './base.service';
 import {
-  EmployeeModel,
+  IEmployee,
   IRotatingShift,
   IRotatingShiftAssign,
   IRotatingWorkType,
@@ -14,7 +14,7 @@ import {IHrDetail} from '@data/models/employee.model';
 @Injectable({
   providedIn: 'root',
 })
-export class EmployeesService extends BaseService<EmployeeModel> {
+export class EmployeesService extends BaseService<IEmployee> {
   protected collectionName: string = 'employees';
 }
 

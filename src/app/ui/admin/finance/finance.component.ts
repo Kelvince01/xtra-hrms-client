@@ -1,17 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'xtra-finance',
   standalone: true,
-  imports: [],
+  imports: [RouterOutlet],
   template: `
-    <p>
-      finance works!
-    </p>
+    <router-outlet></router-outlet>
   `,
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FinanceComponent {
-
-}
+export class FinanceComponent {}

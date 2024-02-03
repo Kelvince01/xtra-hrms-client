@@ -15,12 +15,14 @@ const structure: Field[] = [
   {
     type: 'INPUT',
     name: 'email',
+    label: 'Email',
     placeholder: 'Email',
     validator: [Validators.required],
   },
   {
     type: 'INPUT',
     name: 'password',
+    label: 'Password',
     placeholder: 'Password',
     validator: [Validators.required],
     attrs: {
@@ -37,7 +39,7 @@ const structure: Field[] = [
     <div class="auth-page">
       <div class="container mx-auto px-4">
         <div class="columns-1">
-          <div class="offset-md-3 col-xs-12 mt-3 mx-4">
+          <div class="offset-md-3 col-xs-12 mt-3 mx-4 flex justify-center">
             <mat-card class="p-4">
               <h1 class="text-xs-center">Sign in</h1>
               <p class="text-xs-center">

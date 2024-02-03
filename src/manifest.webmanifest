@@ -1,7 +1,7 @@
 {
-  "name": "xtra-hrms-client",
-  "short_name": "xtra-hrms-client",
-  "theme_color": "#1976d2",
+  "name": "Xtra HRMS",
+  "short_name": "Xtra HRMS",
+  "theme_color": "#7234f3",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",

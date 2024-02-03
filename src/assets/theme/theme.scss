@@ -1,39 +1,29 @@
+/**
+Copyright (c) 2024-present, Kelvince Phillips
+
+All rights reserved.
+
+This code is licensed under the BSD-3 license found in the LICENSE file in the root directory of this source tree and at https://opensource.org/licenses/BSD-3-Clause.
+**/
+
 @use '@angular/material' as mat;
-@use './colors/palette-v1.scss' as xtra-ui;
+@use './colors/palette.scss' as xtra-ui;
 
-@include mat.core();
+@use './theme-bases';
 
-// Define a dark theme
-$dark-theme: mat.define-dark-theme((
-  color: (
-    //primary: mat.define-palette(mat.$pink-palette),
-    primary: mat.define-palette(xtra-ui.$xtra-ui-purple),
-    //accent: mat.define-palette(mat.$blue-grey-palette),
-    accent: mat.define-palette(xtra-ui.$xtra-ui-gray),
-  ),
-  // Only include `typography` and `density` in the default dark theme.
-  typography: mat.define-typography-config(),
-  density: 0,
-));
+$xtra-ui-blue-primary: theme-bases.$xtra-ui-blue-primary;
+$xtra-ui-blue-accent: theme-bases.$xtra-ui-blue-accent;
+$xtra-ui-blue-warn: theme-bases.$xtra-ui-blue-warn;
 
-// Define a light theme
-$light-theme: mat.define-light-theme((
-  color: (
-    //primary: mat.define-palette(mat.$indigo-palette),
-    primary: mat.define-palette(xtra-ui.$xtra-ui-purple),
-    //accent: mat.define-palette(mat.$pink-palette),
-    accent: mat.define-palette(xtra-ui.$xtra-ui-white),
-  ),
-));
+.xtra-ui-blue {
+  @include theme-bases.blue();
+}
 
-// Apply the dark theme by default
-@include mat.core-theme($dark-theme);
-@include mat.button-theme($dark-theme);
+$xtra-ui-blue-dark-primary: theme-bases.$xtra-ui-blue-dark-primary;
+$xtra-ui-blue-dark-accent: theme-bases.$xtra-ui-blue-dark-accent;
+$xtra-ui-blue-dark-warn: theme-bases.$xtra-ui-blue-dark-warn;
 
-// Apply the light theme only when the user prefers light themes.
-@media (prefers-color-scheme: light) {
-  // Use the `-color` mixins to only apply color styles without reapplying the same
-  // typography and density styles.
-  @include mat.core-color($light-theme);
-  @include mat.button-color($light-theme);
+// Blue Dark Theme
+.xtra-ui-blue-dark {
+  @include theme-bases.blueDark();
 }

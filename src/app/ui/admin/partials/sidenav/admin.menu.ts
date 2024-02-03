@@ -8,6 +8,31 @@ export interface MenuItem {
   children?: MenuItem[];
 }
 
+export interface NavItem {
+  children?: NavItem[];
+  title: string;
+  path: string;
+  icon?: string;
+}
+
+export type DrawerNavItem = {
+  statusColor?: string;
+  title: string;
+  subtitle?: string;
+  chevron?: boolean;
+  divider?: boolean;
+  items?: Array<Omit<DrawerNavItem, 'icon'>>;
+  onSelect?: any;
+  icon?: string;
+  hasChildren?: boolean;
+  ripple?: boolean;
+  expanded?: boolean;
+  hidePadding?: boolean;
+  hidden?: boolean;
+};
+
+export type ActiveItemBackgroundShape = 'round' | 'square';
+
 export const MENU_ITEMS: MenuItem[] = [
   {
     title: 'Dashboard',

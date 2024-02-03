@@ -1,17 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'xtra-comms',
   standalone: true,
-  imports: [],
+  imports: [RouterOutlet],
   template: `
-    <p>
-      comms works!
-    </p>
+    <router-outlet />
   `,
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommsComponent {
-
-}
+export class CommsComponent {}

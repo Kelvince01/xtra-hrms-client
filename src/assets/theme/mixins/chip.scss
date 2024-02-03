@@ -1,0 +1,128 @@
+@mixin xtra-ui-mat-chip-default($primary, $accent, $warn, $unselected) {
+  .mat-chip:not([variant='outline']):not([variant='stroked']) {
+    &.mat-chip-selected {
+      &.mat-primary {
+        @include chips-filled($primary);
+      }
+      &.mat-accent {
+        @include chips-filled($accent);
+      }
+      &.mat-warn {
+        @include chips-filled($warn);
+      }
+    }
+    &:not(.mat-chip-selected) {
+      @include chips-filled($unselected);
+    }
+  }
+}
+@mixin xtra-ui-mat-chip-outline($primary, $accent, $warn, $unselected, $disabled) {
+  .mat-chip[variant='outline'],
+  .mat-chip[variant='stroked'] {
+    &.mat-chip-selected {
+      &.mat-primary {
+        @include chips-outline($primary);
+      }
+
+      &.mat-accent {
+        @include chips-outline($accent);
+      }
+
+      &.mat-warn {
+        @include chips-outline($warn);
+      }
+    }
+
+    /* Mat chips that aren't selected will all use the same $unselected styles regardless of color. */
+    &:not(.mat-chip-selected),
+    &:not(.mat-chip-selected).mat-primary,
+    &:not(.mat-chip-selected).mat-accent,
+    &:not(.mat-chip-selected).mat-warn {
+      @include chips-outline($unselected);
+      &:not(.mat-chip-disabled) {
+        border-color: map-get($unselected, borderColor);
+      }
+    }
+
+    /* Outlined chips all default to the same disabled styles regardless of color. */
+    &.mat-chip-disabled,
+    &.mat-chip-disabled.mat-primary,
+    &.mat-chip-disabled.mat-accent,
+    &.mat-chip-disabled.mat-warn {
+      color: map-get($disabled, color);
+      border-color: map-get($disabled, borderColor);
+      .mat-chip-remove {
+        color: map-get($disabled, removeIconColor);
+      }
+    }
+  }
+}
+
+@mixin chips-filled($palette) {
+  color: map-get($palette, color);
+  background-color: map-get($palette, background);
+  &:hover:not(.mat-chip-disabled) {
+    color: map-get($palette, hoverColor);
+    background-color: map-get($palette, hoverBackground);
+  }
+  .mat-chip-remove {
+    opacity: 1;
+    color: map-get($palette, removeIconColor);
+  }
+  &:not(.mat-chip-disabled) .mat-chip-remove:hover {
+    color: map-get($palette, removeIconHoverColor);
+    opacity: 1;
+  }
+  .mat-chip-avatar:not(.mat-icon) {
+    color: map-get($palette, avatarColor);
+    background-color: map-get($palette, avatarBackground);
+  }
+  &.mat-chip-disabled {
+    opacity: 1;
+    color: map-get($palette, disabledColor);
+    background: map-get($palette, disabledBackground);
+    .mat-chip-avatar:not(.mat-icon) {
+      color: map-get($palette, avatarDisabledColor);
+    }
+    .mat-chip-remove {
+      color: map-get($palette, removeIconDisabledColor);
+    }
+  }
+}
+
+@mixin chips-outline($palette) {
+  border: solid 1px;
+  &:not(.mat-chip-disabled) {
+    color: map-get($palette, color);
+    border-color: map-get($palette, color);
+    background-color: map-get($palette, background);
+    .mat-chip-remove {
+      opacity: 1;
+      color: map-get($palette, removeIconColor);
+      &:hover {
+        color: map-get($palette, removeIconHoverColor);
+        opacity: 1;
+      }
+    }
+    &:hover {
+      color: map-get($palette, hoverColor);
+      background-color: map-get($palette, hoverBackground);
+    }
+    .mat-chip-avatar:not(.mat-icon) {
+      color: map-get($palette, avatarColor);
+      background-color: map-get($palette, avatarBackground);
+    }
+  }
+
+  &.mat-chip-disabled {
+    opacity: 1;
+    background: transparent;
+    .mat-chip-avatar:not(.mat-icon) {
+      color: map-get($palette, avatarDisabledColor);
+      background-color: map-get($palette, avatarDisabledBackground);
+    }
+    .mat-chip-remove {
+      color: map-get($palette, removeIconDisabledColor);
+    }
+  }
+}

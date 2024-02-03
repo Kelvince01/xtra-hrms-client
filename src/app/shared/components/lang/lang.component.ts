@@ -19,7 +19,7 @@ import {WindowService} from '@shared/services';
   styles: [
     `
       .lang-control {
-        width: 72px;
+        width: 100px;
         font-size: medium;
       }
     `,
@@ -34,6 +34,8 @@ export class LangComponent {
     {title: 'EN', value: 'en-US'},
     {title: 'UA', value: 'ua-UK'},
     {title: 'RU', value: 'ru-RU'},
+    {title: 'AR', value: 'ar-AR'},
+    {title: 'FR', value: 'fr-FR'},
   ];
   langControl = new FormControl();
 

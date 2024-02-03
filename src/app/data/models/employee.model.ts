@@ -49,6 +49,7 @@ export interface IEmployee extends BaseModel {
   kra_pin?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   photo?: any;
+  is_available?: boolean;
 }
 
 export interface NewEmployee {

@@ -170,7 +170,7 @@ export interface IEvent {
   id?: string;
   title?: string;
   description?: string;
-  attendees?: any;
+  attendees?: any[];
   owner?: number;
   start_at?: Date;
   end_at?: Date;

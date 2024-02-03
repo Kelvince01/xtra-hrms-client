@@ -24,6 +24,12 @@ export abstract class BaseService<T> {
     return this.#http.post<T>(`${this.url}`, JSON.stringify(dto), {headers: this.headers});
   }
 
+  createMany(dtos: T[]) {
+    dtos.forEach((dto) => {
+      return this.#http.post<T>(`${this.url}`, JSON.stringify(dto), {headers: this.headers});
+    });
+  }
+
   get(params: HttpParams = new HttpParams()): Observable<T[]> {
     return this.#http.get<T[]>(`${this.url}`, {
       headers: this.headers,
@@ -48,6 +54,12 @@ export abstract class BaseService<T> {
 
   delete(id: number): Observable<T> {
     return this.#http.delete<T>(`${this.url + id}`, {headers: this.headers});
+  }
+
+  deleteMany(ids: number[]) {
+    ids.forEach((id) => {
+      return this.#http.delete<T>(`${this.url + id}`, {headers: this.headers});
+    });
   }
 
   get headers(): HttpHeaders {

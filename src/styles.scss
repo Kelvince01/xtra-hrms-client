@@ -1,7 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
 
+@use './assets/theme/colors/palette.scss' as xtra-ui;
+@use '@angular/material' as mat;
 @use './assets/theme/theme.scss';
+//@use './assets/theme/quicksand.scss';
+
+@use './assets/theme/theme-bases' as theme-bases;
+
+@include mat.core();
+
 @import "./assets/styles/base";
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('assets/fonts/Quicksand/Quicksand-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --primary-color: '#7234f3';
+  --sidenav-width: 300px;
+  --sidenav-collapsed-width: 60px;
+
+  --xtra-ui-primary-50: rgb(224, 239, 248);
+  --xtra-ui-primary-100: rgb(179, 215, 236);
+  --xtra-ui-primary-200: rgb(128, 189, 224);
+  --xtra-ui-primary-300: rgb(77, 163, 212);
+  --xtra-ui-primary-500: rgb(0, 123, 193);
+  --xtra-ui-primary-700: rgb(0, 104, 179);
+
+  --xtra-ui-primary-contrast-50: black;
+  --xtra-ui-primary-contrast-100: black;
+  --xtra-ui-primary-contrast-200: black;
+  --xtra-ui-primary-contrast-500: white;
+  --xtra-ui-primary-contrast-700: white;
+
+  --xtra-ui-accent-50: rgb(215, 253, 180);
+  --xtra-ui-accent-100: rgb(178, 247, 114);
+  --xtra-ui-accent-200: rgb(156, 250, 68);
+  --xtra-ui-accent-300: rgb(125, 245, 12);
+  --xtra-ui-accent-500: rgb(95, 194, 2);
+  --xtra-ui-accent-700: rgb(75, 150, 5);
+  --xtra-ui-accent-contrast-100: black;
+  --xtra-ui-accent-contrast-500: black;
+  --xtra-ui-accent-contrast-700: black;
+
+  --xtra-ui-warn-50: rgb(249, 232, 232);
+  --xtra-ui-warn-100: rgb(239, 197, 197);
+  --xtra-ui-warn-200: rgb(229, 158, 158);
+  --xtra-ui-warn-300: rgb(218, 119, 119);
+  --xtra-ui-warn-500: rgb(202, 60, 61);
+  --xtra-ui-warn-700: rgb(189, 46, 47);
+  --xtra-ui-warn-contrast-100: black;
+  --xtra-ui-warn-contrast-500: black;
+  --xtra-ui-warn-contrast-700: white;
+}
 
 a {
   cursor: pointer;
@@ -17,4 +71,67 @@ a {
 
 .mat-mdc-input-element {
   box-shadow: none !important;
+}
+
+$primary: (
+  50: var(--xtra-ui-primary-50),
+  100: var(--xtra-ui-primary-100),
+  200: var(--xtra-ui-primary-200),
+  300: var(--xtra-ui-primary-300),
+  500: var(--xtra-ui-primary-500),
+  700: var(--xtra-ui-primary-700),
+  contrast: (
+    50: var(--xtra-ui-primary-contrast-50),
+    100: var(--xtra-ui-primary-contrast-100),
+    200: var(--xtra-ui-primary-contrast-200),
+    500: var(--xtra-ui-primary-contrast-500),
+    700: var(--xtra-ui-primary-contrast-700),
+  ),
+);
+$accent: (
+  50: var(--xtra-ui-accent-50),
+  100: var(--xtra-ui-accent-100),
+  200: var(--xtra-ui-accent-200),
+  300: var(--xtra-ui-accent-300),
+  500: var(--xtra-ui-accent-500),
+  700: var(--xtra-ui-accent-700),
+  contrast: (
+    100: var(--xtra-ui-accent-contrast-100),
+    500: var(--xtra-ui-accent-contrast-500),
+    700: var(--xtra-ui-accent-contrast-700),
+  ),
+);
+$warn: (
+  50: var(--xtra-ui-warn-50),
+  100: var(--xtra-ui-warn-100),
+  200: var(--xtra-ui-warn-200),
+  300: var(--xtra-ui-warn-300),
+  500: var(--xtra-ui-warn-500),
+  700: var(--xtra-ui-warn-700),
+  contrast: (
+    100: var(--xtra-ui-warn-contrast-100),
+    500: var(--xtra-ui-warn-contrast-500),
+    700: var(--xtra-ui-warn-contrast-700),
+  ),
+);
+
+.xtra-ui-blue {
+  $xtra-ui-blue-primary: theme-bases.$xtra-ui-blue-primary;
+  $xtra-ui-blue-accent: theme-bases.$xtra-ui-blue-accent;
+  $xtra-ui-blue-warn: theme-bases.$xtra-ui-blue-warn;
+
+  // Use these variables to test the styling with CSS Custom properties
+  // $xtra-ui-blue-primary: mat.define-palette($primary);
+  // $xtra-ui-blue-accent: mat.define-palette($accent);
+  // $xtra-ui-blue-warn: mat.define-palette($warn);
+
+  @include theme-bases.light-theme($xtra-ui-blue-primary, $xtra-ui-blue-accent, $xtra-ui-blue-warn);
+}
+
+.xtra-ui-blue-dark {
+  $xtra-ui-blue-dark-primary: theme-bases.$xtra-ui-blue-dark-primary;
+  $xtra-ui-blue-dark-accent: theme-bases.$xtra-ui-blue-dark-accent;
+  $xtra-ui-blue-dark-warn: theme-bases.$xtra-ui-blue-dark-warn;
+
+  @include theme-bases.dark-theme($xtra-ui-blue-dark-primary, $xtra-ui-blue-dark-accent, $xtra-ui-blue-dark-warn);
 }

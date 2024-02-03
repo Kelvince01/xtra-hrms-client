@@ -1,9 +1,12 @@
-import { TestBed } from '@angular/core/testing';
-import { provideMockActions } from '@ngrx/effects/testing';
+import {TestBed} from '@angular/core/testing';
+import {provideMockActions} from '@ngrx/effects/testing';
 
-import { NgrxFormsEffects } from './forms.effects';
-import { NgrxFormsFacade } from './forms.facade';
-import { hot } from 'jasmine-marbles';
+import {NgrxFormsFacade} from './forms.facade';
+import {hot} from 'jasmine-marbles';
+import {Injectable} from '@angular/core';
+
+@Injectable()
+export class NgrxFormsEffects {}
 
 describe('NgrxFormsEffects', () => {
   let actions;
@@ -19,7 +22,7 @@ describe('NgrxFormsEffects', () => {
 
   describe('someEffect', () => {
     it('should work', async () => {
-      actions = hot('-a-|', { a: { type: 'LOAD_DATA' } });
+      actions = hot('-a-|', {a: {type: 'LOAD_DATA'}});
       expect(true).toBeTruthy();
     });
   });

@@ -47,6 +47,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatNativeDateModule} from '@angular/material/core';
 import * as Sentry from '@sentry/angular-ivy';
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
+import {provideQuillConfig} from 'ngx-quill';
 
 // export function tokenGetter(): string {
 //   return localStorage.getItem('xtra-hrms-token')!;
@@ -80,13 +81,6 @@ export const appConfig: ApplicationConfig = {
     provideTranslation(),
     provideRecaptcha(),
     importProvidersFrom([
-      // JwtModule.forRoot({
-      //   config: {
-      //     tokenGetter,
-      //     allowedDomains: [environment.BASE_API_URL],
-      //     disallowedRoutes: [],
-      //   },
-      // }),
       provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
       provideAnalytics(() => getAnalytics()),
       providePerformance(() => getPerformance()),
@@ -112,6 +106,12 @@ export const appConfig: ApplicationConfig = {
       preventDuplicates: true,
       closeButton: true,
       progressBar: true,
+    }),
+    provideQuillConfig({
+      modules: {
+        syntax: true,
+        toolbar: [],
+      },
     }),
     provideErrorTailorConfig({
       errors: {

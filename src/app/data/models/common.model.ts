@@ -146,4 +146,10 @@ export interface Company {
   name: string;
   catchPhrase: string;
   bs: string;
+  id: string;
+
+  /** Federal Employer Identification Number */
+  fein?: string;
+  legalName?: string;
+  workAddress: I_Address;
 }

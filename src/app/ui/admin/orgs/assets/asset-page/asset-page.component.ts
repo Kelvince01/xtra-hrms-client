@@ -1,17 +1,15 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {AssetService} from '@services/assets.service';
 
 @Component({
   selector: 'xtra-asset-page',
   standalone: true,
   imports: [],
   template: `
-    <p>
-      asset-page works!
-    </p>
+    <p>asset-page works!</p>
   `,
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  providers: [AssetService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AssetPageComponent {
-
-}
+export class AssetPageComponent {}

@@ -49,11 +49,14 @@
       "@admin-ui/*": [
         "src/app/ui/admin/*"
       ],
+      "@ui-components/*": [
+        "src/app/ui/components/*"
+      ],
       "@shared/*": [
         "src/app/shared/*"
       ],
       "@env": [
-        "src/environments/*"
+        "src/environments/emvironment*"
       ]
     },
     "typeRoots": [

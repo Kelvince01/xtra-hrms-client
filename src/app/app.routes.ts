@@ -37,6 +37,16 @@ export const routes: Routes = [
     title: 'Eemployee Portal',
   },
   {
+    path: 'careers',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./ui/careers-portal/careers-portal.component').then((c) => c.CareersPortalComponent),
+    loadChildren: () =>
+      import('./ui/careers-portal/careers-portal.routes').then((r) => r.careersPortalRoutes),
+    data: {revalidate: 60},
+    title: 'Careers Portal',
+  },
+  {
     path: '',
     redirectTo: '',
     pathMatch: 'full',

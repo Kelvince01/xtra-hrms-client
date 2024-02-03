@@ -4,11 +4,19 @@
 
 import {BaseModel} from '@models/base.model';
 
+export type TrainingInterval = 'ONE_TIME' | 'MONTHLY' | 'YEARLY';
+
 export interface ITraining extends BaseModel {
+  amount: number;
+  type: string;
+  interval: TrainingInterval;
+  categoryId: number;
   employee?: number;
   training_name?: string;
   description?: string;
-  date?: Date;
+  date: Date;
+  start?: Date;
+  end?: Date;
 }
 
 export interface ITrainingSchedule extends BaseModel {

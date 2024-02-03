@@ -12,14 +12,29 @@ import {SidenavComponent} from '@admin-ui/partials/sidenav/sidenav.component';
   imports: [RouterOutlet, FooterComponent, SidenavComponent],
   template: `
     <xtra-sidenav [isLoggedIn]="$isLoggedIn()" [user]="$user()">
-      <router-outlet></router-outlet>
+      <div class="content">
+        <router-outlet></router-outlet>
 
-      @defer (on idle) {
-        <xtra-footer></xtra-footer>
-      }
+        @defer (on idle) {
+          <xtra-footer></xtra-footer>
+        }
+      </div>
     </xtra-sidenav>
   `,
-  styles: ``,
+  styles: [
+    `
+      :host {
+        //min-height: 100vh;
+
+        //display: flex;
+        //flex-direction: row;
+      }
+
+      .content {
+        //padding: 1rem;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminComponent implements OnInit {

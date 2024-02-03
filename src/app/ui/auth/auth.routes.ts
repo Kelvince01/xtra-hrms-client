@@ -11,12 +11,12 @@ export const authRoutes: Routes = [
         metaTags: [
           {
             name: 'description',
-            content: 'Xtra HRMS Login',
+            content: 'Xtra HRMS Sign In',
           },
-          {property: 'og:title', content: 'Login'},
+          {property: 'og:title', content: 'Sign In'},
           {
-            proprety: 'og:description',
-            content: 'Xtra HRMS Login',
+            property: 'og:description',
+            content: 'Xtra HRMS Sign In',
           },
           {
             property: 'og:image',
