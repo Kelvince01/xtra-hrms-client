@@ -1,0 +1,2132 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>xtra-hrms-client documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">xtra-hrms-client documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AttendanceListComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>CurrencyPipe</code>
+                            <code>DecimalPipe</code>
+                            <code>PercentPipe</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>xtra-attendance-list</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">Standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>MatTableModule</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code>
+      .example-container {
+        display: flex;
+        flex-direction: column;
+        max-height: 500px;
+        min-width: 300px;
+      }
+
+      .mat-table {
+        overflow: auto;
+        max-height: 500px;
+      }
+    </code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;example-container mat-elevation-z8&quot;&gt;
+  &lt;mat-table #table [dataSource]&#x3D;&quot;dataSource&quot; (scroll)&#x3D;&quot;onTableScroll($event)&quot;&gt;
+    &lt;!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition&quot; --&gt;
+
+    &lt;!-- Position Column --&gt;
+    &lt;ng-container matColumnDef&#x3D;&quot;position&quot;&gt;
+      &lt;mat-header-cell *matHeaderCellDef&gt;No.&lt;/mat-header-cell&gt;
+      &lt;mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.position }}&lt;/mat-cell&gt;
+    &lt;/ng-container&gt;
+
+    &lt;!-- Name Column --&gt;
+    &lt;ng-container matColumnDef&#x3D;&quot;name&quot;&gt;
+      &lt;mat-header-cell *matHeaderCellDef&gt;Name&lt;/mat-header-cell&gt;
+      &lt;mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.name }}&lt;/mat-cell&gt;
+    &lt;/ng-container&gt;
+
+    &lt;!-- Weight Column --&gt;
+    &lt;ng-container matColumnDef&#x3D;&quot;weight&quot;&gt;
+      &lt;mat-header-cell *matHeaderCellDef&gt;Weight&lt;/mat-header-cell&gt;
+      &lt;mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.weight }}&lt;/mat-cell&gt;
+    &lt;/ng-container&gt;
+
+    &lt;!-- Symbol Column --&gt;
+    &lt;ng-container matColumnDef&#x3D;&quot;symbol&quot;&gt;
+      &lt;mat-header-cell *matHeaderCellDef&gt;Symbol&lt;/mat-header-cell&gt;
+      &lt;mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.symbol }}&lt;/mat-cell&gt;
+    &lt;/ng-container&gt;
+
+    &lt;mat-header-row *matHeaderRowDef&#x3D;&quot;displayedColumns; sticky: isSticky()&quot;&gt;&lt;/mat-header-row&gt;
+    &lt;mat-row *matRowDef&#x3D;&quot;let row; columns: displayedColumns&quot;&gt;&lt;/mat-row&gt;
+  &lt;/mat-table&gt;
+&lt;/div&gt;
+</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#assets" >assets</a>
+                            </li>
+                            <li>
+                                <a href="#assetsTableColumns" >assetsTableColumns</a>
+                            </li>
+                            <li>
+                                <a href="#cols" >cols</a>
+                            </li>
+                            <li>
+                                <a href="#dataSource" >dataSource</a>
+                            </li>
+                            <li>
+                                <a href="#dialog" >dialog</a>
+                            </li>
+                            <li>
+                                <a href="#displayedColumns" >displayedColumns</a>
+                            </li>
+                            <li>
+                                <a href="#end" >end</a>
+                            </li>
+                            <li>
+                                <a href="#exportColumns" >exportColumns</a>
+                            </li>
+                            <li>
+                                <a href="#filesService" >filesService</a>
+                            </li>
+                            <li>
+                                <a href="#isLoading" >isLoading</a>
+                            </li>
+                            <li>
+                                <a href="#limit" >limit</a>
+                            </li>
+                            <li>
+                                <a href="#service" >service</a>
+                            </li>
+                            <li>
+                                <a href="#start" >start</a>
+                            </li>
+                            <li>
+                                <a href="#sticky" >sticky</a>
+                            </li>
+                            <li>
+                                <a href="#title" >title</a>
+                            </li>
+                            <li>
+                                <a href="#toastr" >toastr</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#editAsset" >editAsset</a>
+                            </li>
+                            <li>
+                                <a href="#exportExcel" >exportExcel</a>
+                            </li>
+                            <li>
+                                <a href="#exportPdf" >exportPdf</a>
+                            </li>
+                            <li>
+                                <a href="#getAssets" >getAssets</a>
+                            </li>
+                            <li>
+                                <a href="#getTableData" >getTableData</a>
+                            </li>
+                            <li>
+                                <a href="#initializeColumns" >initializeColumns</a>
+                            </li>
+                            <li>
+                                <a href="#isSticky" >isSticky</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onTableScroll" >onTableScroll</a>
+                            </li>
+                            <li>
+                                <a href="#openDialog" >openDialog</a>
+                            </li>
+                            <li>
+                                <a href="#removeAsset" >removeAsset</a>
+                            </li>
+                            <li>
+                                <a href="#saveAsExcelFile" >saveAsExcelFile</a>
+                            </li>
+                            <li>
+                                <a href="#sortData" >sortData</a>
+                            </li>
+                            <li>
+                                <a href="#updateIndex" >updateIndex</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(currencyPipe: CurrencyPipe, decimalPipe: DecimalPipe, percentPipe: PercentPipe)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:96</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>currencyPipe</td>
+                                                  
+                                                        <td>
+                                                                    <code>CurrencyPipe</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>decimalPipe</td>
+                                                  
+                                                        <td>
+                                                                    <code>DecimalPipe</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>percentPipe</td>
+                                                  
+                                                        <td>
+                                                                    <code>PercentPipe</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editAsset"></a>
+                    <span class="name">
+                        <span ><b>editAsset</b></span>
+                        <a href="#editAsset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>editAsset(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="182"
+                                    class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:182</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportExcel"></a>
+                    <span class="name">
+                        <span ><b>exportExcel</b></span>
+                        <a href="#exportExcel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>exportExcel()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="277"
+                                    class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:277</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportPdf"></a>
+                    <span class="name">
+                        <span ><b>exportPdf</b></span>
+                        <a href="#exportPdf"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>exportPdf()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="273"
+                                    class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:273</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAssets"></a>
+                    <span class="name">
+                        <span ><b>getAssets</b></span>
+                        <a href="#getAssets"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAssets()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="261"
+                                    class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:261</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTableData"></a>
+                    <span class="name">
+                        <span ><b>getTableData</b></span>
+                        <a href="#getTableData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTableData(start: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, end: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="144"
+                                    class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:144</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>start</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>end</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Element.html" target="_self" >Element[]</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initializeColumns"></a>
+                    <span class="name">
+                        <span ><b>initializeColumns</b></span>
+                        <a href="#initializeColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initializeColumns()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="220"
+                                    class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:220</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSticky"></a>
+                    <span class="name">
+                        <span ><b>isSticky</b></span>
+                        <a href="#isSticky"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isSticky()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="153"
+                                    class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:153</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="104"
+                                    class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:104</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onTableScroll"></a>
+                    <span class="name">
+                        <span ><b>onTableScroll</b></span>
+                        <a href="#onTableScroll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onTableScroll(e: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:129</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openDialog"></a>
+                    <span class="name">
+                        <span ><b>openDialog</b></span>
+                        <a href="#openDialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openDialog()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:157</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeAsset"></a>
+                    <span class="name">
+                        <span ><b>removeAsset</b></span>
+                        <a href="#removeAsset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeAsset(asset: <a href="../interfaces/IAsset.html" target="_self">IAsset</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="192"
+                                    class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:192</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>asset</td>
+                                            <td>
+                                                            <code><a href="../interfaces/IAsset.html" target="_self" >IAsset</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveAsExcelFile"></a>
+                    <span class="name">
+                        <span ><b>saveAsExcelFile</b></span>
+                        <a href="#saveAsExcelFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>saveAsExcelFile(buffer: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, fileName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="281"
+                                    class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:281</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>buffer</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>fileName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sortData"></a>
+                    <span class="name">
+                        <span ><b>sortData</b></span>
+                        <a href="#sortData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>sortData(sortParameters: Sort)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="165"
+                                    class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:165</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sortParameters</td>
+                                            <td>
+                                                        <code>Sort</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>void | []</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateIndex"></a>
+                    <span class="name">
+                        <span ><b>updateIndex</b></span>
+                        <a href="#updateIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateIndex()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="148"
+                                    class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:148</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="assets"></a>
+                    <span class="name">
+                        <span ><b>assets</b></span>
+                        <a href="#assets"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IAsset.html" target="_self" >IAsset[]</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="assetsTableColumns"></a>
+                    <span class="name">
+                        <span ><b>assetsTableColumns</b></span>
+                        <a href="#assetsTableColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ITableColumn.html" target="_self" >WritableSignal&lt;ITableColumn[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;ITableColumn[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cols"></a>
+                    <span class="name">
+                        <span ><b>cols</b></span>
+                        <a href="#cols"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataSource"></a>
+                    <span class="name">
+                        <span ><b>dataSource</b></span>
+                        <a href="#dataSource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ELEMENT_DATA</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dialog"></a>
+                    <span class="name">
+                        <span ><b>dialog</b></span>
+                        <a href="#dialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(MatDialog)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayedColumns"></a>
+                    <span class="name">
+                        <span ><b>displayedColumns</b></span>
+                        <a href="#displayedColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[&#x27;position&#x27;, &#x27;name&#x27;, &#x27;weight&#x27;, &#x27;symbol&#x27;]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="end"></a>
+                    <span class="name">
+                        <span ><b>end</b></span>
+                        <a href="#end"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.limit + this.start</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportColumns"></a>
+                    <span class="name">
+                        <span ><b>exportColumns</b></span>
+                        <a href="#exportColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filesService"></a>
+                    <span class="name">
+                        <span ><b>filesService</b></span>
+                        <a href="#filesService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FilesService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isLoading"></a>
+                    <span class="name">
+                        <span ><b>isLoading</b></span>
+                        <a href="#isLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="limit"></a>
+                    <span class="name">
+                        <span ><b>limit</b></span>
+                        <a href="#limit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>15</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:82</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="service"></a>
+                    <span class="name">
+                        <span ><b>service</b></span>
+                        <a href="#service"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AssetService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="start"></a>
+                    <span class="name">
+                        <span ><b>start</b></span>
+                        <a href="#start"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sticky"></a>
+                    <span class="name">
+                        <span ><b>sticky</b></span>
+                        <a href="#sticky"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="title"></a>
+                    <span class="name">
+                        <span ><b>title</b></span>
+                        <a href="#title"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Assets&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toastr"></a>
+                    <span class="name">
+                        <span ><b>toastr</b></span>
+                        <a href="#toastr"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ToastrService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/ui/admin/ams/attendance/attendance-list/attendance-list.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+  WritableSignal,
+} from &#x27;@angular/core&#x27;;
+import {CommonModule, CurrencyPipe, DecimalPipe, PercentPipe} from &#x27;@angular/common&#x27;;
+import {MatTableModule} from &#x27;@angular/material/table&#x27;;
+import {IAsset} from &#x27;@models/organizations.model&#x27;;
+import {FilesService} from &#x27;@services/common/files.service&#x27;;
+import {MatDialog} from &#x27;@angular/material/dialog&#x27;;
+import {ToastrService} from &#x27;ngx-toastr&#x27;;
+import {Sort} from &#x27;@angular/material/sort&#x27;;
+import Swal from &#x27;sweetalert2&#x27;;
+import {ITableColumn} from &#x27;@shared/components/table/table-column.model&#x27;;
+import {AssetService} from &#x27;@services/assets.service&#x27;;
+import {AssetPageComponent} from &#x27;@admin-ui/orgs/assets/asset-page/asset-page.component&#x27;;
+
+@Component({
+  selector: &#x27;xtra-attendance-list&#x27;,
+  standalone: true,
+  imports: [CommonModule, MatTableModule],
+  template: &#x60;
+    &lt;div class&#x3D;&quot;example-container mat-elevation-z8&quot;&gt;
+      &lt;mat-table #table [dataSource]&#x3D;&quot;dataSource&quot; (scroll)&#x3D;&quot;onTableScroll($event)&quot;&gt;
+        &lt;!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition&quot; --&gt;
+
+        &lt;!-- Position Column --&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;position&quot;&gt;
+          &lt;mat-header-cell *matHeaderCellDef&gt;No.&lt;/mat-header-cell&gt;
+          &lt;mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.position }}&lt;/mat-cell&gt;
+        &lt;/ng-container&gt;
+
+        &lt;!-- Name Column --&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;name&quot;&gt;
+          &lt;mat-header-cell *matHeaderCellDef&gt;Name&lt;/mat-header-cell&gt;
+          &lt;mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.name }}&lt;/mat-cell&gt;
+        &lt;/ng-container&gt;
+
+        &lt;!-- Weight Column --&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;weight&quot;&gt;
+          &lt;mat-header-cell *matHeaderCellDef&gt;Weight&lt;/mat-header-cell&gt;
+          &lt;mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.weight }}&lt;/mat-cell&gt;
+        &lt;/ng-container&gt;
+
+        &lt;!-- Symbol Column --&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;symbol&quot;&gt;
+          &lt;mat-header-cell *matHeaderCellDef&gt;Symbol&lt;/mat-header-cell&gt;
+          &lt;mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.symbol }}&lt;/mat-cell&gt;
+        &lt;/ng-container&gt;
+
+        &lt;mat-header-row *matHeaderRowDef&#x3D;&quot;displayedColumns; sticky: isSticky()&quot;&gt;&lt;/mat-header-row&gt;
+        &lt;mat-row *matRowDef&#x3D;&quot;let row; columns: displayedColumns&quot;&gt;&lt;/mat-row&gt;
+      &lt;/mat-table&gt;
+    &lt;/div&gt;
+  &#x60;,
+  styles: [
+    &#x60;
+      .example-container {
+        display: flex;
+        flex-direction: column;
+        max-height: 500px;
+        min-width: 300px;
+      }
+
+      .mat-table {
+        overflow: auto;
+        max-height: 500px;
+      }
+    &#x60;,
+  ],
+  providers: [CurrencyPipe, DecimalPipe, PercentPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class AttendanceListComponent implements OnInit {
+  displayedColumns &#x3D; [&#x27;position&#x27;, &#x27;name&#x27;, &#x27;weight&#x27;, &#x27;symbol&#x27;];
+  dataSource &#x3D; ELEMENT_DATA;
+  start: number &#x3D; 0;
+  limit: number &#x3D; 15;
+  end: number &#x3D; this.limit + this.start;
+  sticky: boolean &#x3D; true;
+
+  assets!: IAsset[];
+  assetsTableColumns: WritableSignal&lt;ITableColumn[]&gt; &#x3D; signal&lt;ITableColumn[]&gt;([]);
+  title &#x3D; &#x27;Assets&#x27;;
+  service &#x3D; inject(AssetService);
+  filesService &#x3D; inject(FilesService);
+  dialog &#x3D; inject(MatDialog);
+  toastr &#x3D; inject(ToastrService);
+  isLoading &#x3D; true;
+
+  cols: any[] &#x3D; [];
+  exportColumns: any[] &#x3D; [];
+
+  constructor(
+    private currencyPipe: CurrencyPipe,
+    private decimalPipe: DecimalPipe,
+    private percentPipe: PercentPipe,
+  ) {}
+
+  ngOnInit(): void {
+    this.dataSource &#x3D; this.getTableData(this.start, this.end);
+    this.updateIndex();
+
+    this.initializeColumns();
+    this.getAssets();
+
+    this.cols &#x3D; [
+      {
+        field: &#x27;name&#x27;,
+        header: &#x27;Name&#x27;,
+        customExportHeader: &#x27;Name&#x27;,
+        dataKey: &#x27;name&#x27;,
+      },
+      {field: &#x27;description&#x27;, header: &#x27;Description&#x27;, dataKey: &#x27;description&#x27;},
+      {field: &#x27;purchase_cost&#x27;, header: &#x27;Purchase Cost&#x27;, dataKey: &#x27;purchase_cost&#x27;},
+      {field: &#x27;purchase_date&#x27;, header: &#x27;Purchase Date&#x27;, dataKey: &#x27;purchase_date&#x27;},
+    ];
+
+    this.exportColumns &#x3D; this.cols.map((col) &#x3D;&gt; ({
+      title: col.header,
+      dataKey: col.field,
+    }));
+  }
+
+  onTableScroll(e: any): void {
+    const tableViewHeight &#x3D; e.target.offsetHeight; // viewport
+    const tableScrollHeight &#x3D; e.target.scrollHeight; // length of all table
+    const scrollLocation &#x3D; e.target.scrollTop; // how far user scrolled
+
+    // If the user has scrolled within 200px of the bottom, add more data
+    const buffer &#x3D; 200;
+    const limit &#x3D; tableScrollHeight - tableViewHeight - buffer;
+    if (scrollLocation &gt; limit) {
+      const data &#x3D; this.getTableData(this.start, this.end);
+      this.dataSource &#x3D; this.dataSource.concat(data);
+      this.updateIndex();
+    }
+  }
+
+  getTableData(start: any, end: any): Element[] {
+    return ELEMENT_DATA.filter((value, index) &#x3D;&gt; index &gt;&#x3D; start &amp;&amp; index &lt; end);
+  }
+
+  updateIndex(): void {
+    this.start &#x3D; this.end;
+    this.end &#x3D; this.limit + this.start;
+  }
+
+  isSticky(): boolean {
+    return this.sticky;
+  }
+
+  openDialog(): void {
+    const dialogRef &#x3D; this.dialog.open(AssetPageComponent, {});
+
+    dialogRef.afterClosed().subscribe((result) &#x3D;&gt; {
+      this.getAssets();
+    });
+  }
+
+  sortData(sortParameters: Sort): void | IAsset[] {
+    const keyName &#x3D; sortParameters.active;
+    if (sortParameters.direction &#x3D;&#x3D;&#x3D; &#x27;asc&#x27;) {
+      this.assets &#x3D; this.assets.sort((a: IAsset, b: IAsset) &#x3D;&gt;
+        (&lt;any&gt;a)[keyName].localeCompare((&lt;any&gt;b)[keyName]),
+      );
+    } else if (sortParameters.direction &#x3D;&#x3D;&#x3D; &#x27;desc&#x27;) {
+      this.assets &#x3D; this.assets.sort((a: IAsset, b: IAsset) &#x3D;&gt;
+        (&lt;any&gt;b)[keyName].localeCompare((&lt;any&gt;a)[keyName]),
+      );
+    } else {
+      return this.getAssets();
+    }
+
+    return this.assets;
+  }
+
+  editAsset(id: number): void {
+    const dialogRef &#x3D; this.dialog.open(AssetPageComponent, {
+      data: {id},
+    });
+
+    dialogRef.afterClosed().subscribe((result) &#x3D;&gt; {
+      this.getAssets();
+    });
+  }
+
+  removeAsset(asset: IAsset): void {
+    Swal.fire({
+      title: &#x27;Are you sure?&#x27;,
+      text: &#x27;This process is irreversible.&#x27;,
+      icon: &#x27;warning&#x27;,
+      showCancelButton: true,
+      confirmButtonText: &#x27;Delete&#x27;,
+      cancelButtonText: &#x27;Cancel&#x27;,
+    }).then((result) &#x3D;&gt; {
+      if (result.value) {
+        this.service.delete(asset.id!).subscribe(
+          () &#x3D;&gt; {
+            this.toastr.success(&#x27;Asset deleted successfully&#x27;, &#x27;Success&#x27;);
+            Swal.fire(&#x27;Removed!&#x27;, &#x27;Asset removed successfully.&#x27;, &#x27;success&#x27;);
+
+            this.getAssets();
+          },
+
+          (error) &#x3D;&gt; {
+            this.toastr.error(&#x60;Error when deleting asset ${error}&#x60;, &#x27;Failed&#x27;);
+          },
+        );
+      } else if (result.dismiss &#x3D;&#x3D;&#x3D; Swal.DismissReason.cancel) {
+        Swal.fire(&#x27;Cancelled&#x27;, &#x27;Asset not deleted.)&#x27;, &#x27;error&#x27;);
+      }
+    });
+  }
+
+  initializeColumns(): void {
+    this.assetsTableColumns.set([
+      {
+        name: &#x27;Name&#x27;,
+        dataKey: &#x27;name&#x27;,
+        position: &#x27;left&#x27;,
+        isSortable: true,
+      },
+      {
+        name: &#x27;Description&#x27;,
+        dataKey: &#x27;description&#x27;,
+        position: &#x27;left&#x27;,
+        isSortable: true,
+      },
+      {
+        name: &#x27;Status&#x27;,
+        dataKey: &#x27;status&#x27;,
+        position: &#x27;left&#x27;,
+        isSortable: true,
+      },
+      {
+        name: &#x27;Purchase Cost&#x27;,
+        dataKey: &#x27;purchase_cost&#x27;,
+        position: &#x27;right&#x27;,
+        isSortable: false,
+      },
+      {
+        name: &#x27;Purchase Date&#x27;,
+        dataKey: &#x27;purchase_date&#x27;,
+        position: &#x27;right&#x27;,
+        isSortable: true,
+      },
+      {
+        name: &#x27;Tracking ID&#x27;,
+        dataKey: &#x27;tracking_id&#x27;,
+        position: &#x27;right&#x27;,
+        isSortable: false,
+      },
+    ]);
+  }
+
+  getAssets(): void {
+    this.service.get().subscribe(
+      (_) &#x3D;&gt; {
+        this.isLoading &#x3D; false;
+        this.assets &#x3D; _;
+      },
+      (_: any) &#x3D;&gt; {
+        this.isLoading &#x3D; false;
+      },
+    );
+  }
+
+  exportPdf(): void {
+    this.filesService.exportPdf(this.cols, this.assets, &#x27;Assets List&#x27;);
+  }
+
+  exportExcel(): void {
+    this.filesService.exportExcel(this.cols, &#x27;Assets List&#x27;);
+  }
+
+  saveAsExcelFile(buffer: any, fileName: string): void {
+    this.filesService.saveAsExcelFile(buffer, fileName);
+  }
+}
+
+export interface Element {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
+}
+
+const ELEMENT_DATA: Element[] &#x3D; [
+  {position: 1, name: &#x27;Hydrogen&#x27;, weight: 1.0079, symbol: &#x27;H&#x27;},
+  {position: 2, name: &#x27;Helium&#x27;, weight: 4.0026, symbol: &#x27;He&#x27;},
+  {position: 3, name: &#x27;Lithium&#x27;, weight: 6.941, symbol: &#x27;Li&#x27;},
+  {position: 4, name: &#x27;Beryllium&#x27;, weight: 9.0122, symbol: &#x27;Be&#x27;},
+  {position: 5, name: &#x27;Boron&#x27;, weight: 10.811, symbol: &#x27;B&#x27;},
+  {position: 6, name: &#x27;Carbon&#x27;, weight: 12.0107, symbol: &#x27;C&#x27;},
+  {position: 7, name: &#x27;Nitrogen&#x27;, weight: 14.0067, symbol: &#x27;N&#x27;},
+  {position: 8, name: &#x27;Oxygen&#x27;, weight: 15.9994, symbol: &#x27;O&#x27;},
+  {position: 9, name: &#x27;Fluorine&#x27;, weight: 18.9984, symbol: &#x27;F&#x27;},
+  {position: 10, name: &#x27;Neon&#x27;, weight: 20.1797, symbol: &#x27;Ne&#x27;},
+  {position: 11, name: &#x27;Sodium&#x27;, weight: 22.9897, symbol: &#x27;Na&#x27;},
+  {position: 12, name: &#x27;Magnesium&#x27;, weight: 24.305, symbol: &#x27;Mg&#x27;},
+  {position: 13, name: &#x27;Aluminum&#x27;, weight: 26.9815, symbol: &#x27;Al&#x27;},
+  {position: 14, name: &#x27;Silicon&#x27;, weight: 28.0855, symbol: &#x27;Si&#x27;},
+  {position: 15, name: &#x27;Phosphorus&#x27;, weight: 30.9738, symbol: &#x27;P&#x27;},
+  {position: 16, name: &#x27;Sulfur&#x27;, weight: 32.065, symbol: &#x27;S&#x27;},
+  {position: 17, name: &#x27;Chlorine&#x27;, weight: 35.453, symbol: &#x27;Cl&#x27;},
+  {position: 18, name: &#x27;Argon&#x27;, weight: 39.948, symbol: &#x27;Ar&#x27;},
+  {position: 19, name: &#x27;Potassium&#x27;, weight: 39.0983, symbol: &#x27;K&#x27;},
+  {position: 20, name: &#x27;Calcium&#x27;, weight: 40.078, symbol: &#x27;Ca&#x27;},
+  {position: 21, name: &#x27;Hydrogen&#x27;, weight: 1.0079, symbol: &#x27;H&#x27;},
+  {position: 22, name: &#x27;Helium&#x27;, weight: 4.0026, symbol: &#x27;He&#x27;},
+  {position: 23, name: &#x27;Lithium&#x27;, weight: 6.941, symbol: &#x27;Li&#x27;},
+  {position: 24, name: &#x27;Beryllium&#x27;, weight: 9.0122, symbol: &#x27;Be&#x27;},
+  {position: 25, name: &#x27;Boron&#x27;, weight: 10.811, symbol: &#x27;B&#x27;},
+  {position: 26, name: &#x27;Carbon&#x27;, weight: 12.0107, symbol: &#x27;C&#x27;},
+  {position: 27, name: &#x27;Nitrogen&#x27;, weight: 14.0067, symbol: &#x27;N&#x27;},
+  {position: 28, name: &#x27;Oxygen&#x27;, weight: 15.9994, symbol: &#x27;O&#x27;},
+  {position: 29, name: &#x27;Fluorine&#x27;, weight: 18.9984, symbol: &#x27;F&#x27;},
+  {position: 30, name: &#x27;Neon&#x27;, weight: 20.1797, symbol: &#x27;Ne&#x27;},
+  {position: 31, name: &#x27;Sodium&#x27;, weight: 22.9897, symbol: &#x27;Na&#x27;},
+  {position: 32, name: &#x27;Magnesium&#x27;, weight: 24.305, symbol: &#x27;Mg&#x27;},
+  {position: 33, name: &#x27;Aluminum&#x27;, weight: 26.9815, symbol: &#x27;Al&#x27;},
+  {position: 34, name: &#x27;Silicon&#x27;, weight: 28.0855, symbol: &#x27;Si&#x27;},
+  {position: 35, name: &#x27;Phosphorus&#x27;, weight: 30.9738, symbol: &#x27;P&#x27;},
+  {position: 36, name: &#x27;Sulfur&#x27;, weight: 32.065, symbol: &#x27;S&#x27;},
+  {position: 37, name: &#x27;Chlorine&#x27;, weight: 35.453, symbol: &#x27;Cl&#x27;},
+  {position: 38, name: &#x27;Argon&#x27;, weight: 39.948, symbol: &#x27;Ar&#x27;},
+  {position: 39, name: &#x27;Potassium&#x27;, weight: 39.0983, symbol: &#x27;K&#x27;},
+  {position: 40, name: &#x27;Calcium&#x27;, weight: 40.078, symbol: &#x27;Ca&#x27;},
+  {position: 41, name: &#x27;Hydrogen&#x27;, weight: 1.0079, symbol: &#x27;H&#x27;},
+  {position: 42, name: &#x27;Helium&#x27;, weight: 4.0026, symbol: &#x27;He&#x27;},
+  {position: 43, name: &#x27;Lithium&#x27;, weight: 6.941, symbol: &#x27;Li&#x27;},
+  {position: 44, name: &#x27;Beryllium&#x27;, weight: 9.0122, symbol: &#x27;Be&#x27;},
+  {position: 45, name: &#x27;Boron&#x27;, weight: 10.811, symbol: &#x27;B&#x27;},
+  {position: 46, name: &#x27;Carbon&#x27;, weight: 12.0107, symbol: &#x27;C&#x27;},
+  {position: 47, name: &#x27;Nitrogen&#x27;, weight: 14.0067, symbol: &#x27;N&#x27;},
+  {position: 48, name: &#x27;Oxygen&#x27;, weight: 15.9994, symbol: &#x27;O&#x27;},
+  {position: 49, name: &#x27;Fluorine&#x27;, weight: 18.9984, symbol: &#x27;F&#x27;},
+  {position: 50, name: &#x27;Neon&#x27;, weight: 20.1797, symbol: &#x27;Ne&#x27;},
+  {position: 51, name: &#x27;Sodium&#x27;, weight: 22.9897, symbol: &#x27;Na&#x27;},
+  {position: 52, name: &#x27;Magnesium&#x27;, weight: 24.305, symbol: &#x27;Mg&#x27;},
+  {position: 53, name: &#x27;Aluminum&#x27;, weight: 26.9815, symbol: &#x27;Al&#x27;},
+  {position: 54, name: &#x27;Silicon&#x27;, weight: 28.0855, symbol: &#x27;Si&#x27;},
+  {position: 55, name: &#x27;Phosphorus&#x27;, weight: 30.9738, symbol: &#x27;P&#x27;},
+  {position: 56, name: &#x27;Sulfur&#x27;, weight: 32.065, symbol: &#x27;S&#x27;},
+  {position: 57, name: &#x27;Chlorine&#x27;, weight: 35.453, symbol: &#x27;Cl&#x27;},
+  {position: 58, name: &#x27;Argon&#x27;, weight: 39.948, symbol: &#x27;Ar&#x27;},
+  {position: 59, name: &#x27;Potassium&#x27;, weight: 39.0983, symbol: &#x27;K&#x27;},
+  {position: 60, name: &#x27;Calcium&#x27;, weight: 40.078, symbol: &#x27;Ca&#x27;},
+];
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="styleData">
+            <pre class="line-numbers"><code class="language-scss">
+      .example-container {
+        display: flex;
+        flex-direction: column;
+        max-height: 500px;
+        min-width: 300px;
+      }
+
+      .mat-table {
+        overflow: auto;
+        max-height: 500px;
+      }
+    
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="example-container mat-elevation-z8">  <mat-table #table [dataSource]="dataSource" (scroll)="onTableScroll($event)">    <!--- Note that these columns can be defined in any order.                      The actual rendered columns are set as a property on the row definition" -->    <!-- Position Column -->    <ng-container matColumnDef="position">      <mat-header-cell *matHeaderCellDef>No.</mat-header-cell>      <mat-cell *matCellDef="let element">{{ element.position }}</mat-cell>    </ng-container>    <!-- Name Column -->    <ng-container matColumnDef="name">      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>      <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>    </ng-container>    <!-- Weight Column -->    <ng-container matColumnDef="weight">      <mat-header-cell *matHeaderCellDef>Weight</mat-header-cell>      <mat-cell *matCellDef="let element">{{ element.weight }}</mat-cell>    </ng-container>    <!-- Symbol Column -->    <ng-container matColumnDef="symbol">      <mat-header-cell *matHeaderCellDef>Symbol</mat-header-cell>      <mat-cell *matCellDef="let element">{{ element.symbol }}</mat-cell>    </ng-container>    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: isSticky()"></mat-header-row>    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>  </mat-table></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'xtra-about'},{'name': 'AccountComponent', 'selector': 'xtra-user-account'},{'name': 'AddressComponent', 'selector': 'xtra-address'},{'name': 'AdminComponent', 'selector': 'xtra-admin'},{'name': 'AllowanceListComponent', 'selector': 'xtra-allowance-list'},{'name': 'AllowanceUpsertComponent', 'selector': 'xtra-allowance-upsert'},{'name': 'AmsComponent', 'selector': 'xtra-ams'},{'name': 'AnswerListComponent', 'selector': 'xtra-answer-list'},{'name': 'AnswerUpsertComponent', 'selector': 'xtra-answer-upsert'},{'name': 'AppComponent', 'selector': 'xtra-root'},{'name': 'ArticleListComponent', 'selector': 'xtra-article-list'},{'name': 'ArticlePageComponent', 'selector': 'xtra-article-page'},{'name': 'ArticlesComponent', 'selector': 'xtra-articles'},{'name': 'AssetAssignComponent', 'selector': 'xtra-asset-assign'},{'name': 'AssetCategoryListComponent', 'selector': 'xtra-asset-category-list'},{'name': 'AssetCategoryPageComponent', 'selector': 'xtra-asset-category-page'},{'name': 'AssetListComponent', 'selector': 'xtra-asset-list'},{'name': 'AssetLotListComponent', 'selector': 'xtra-asset-lot-list'},{'name': 'AssetLotPageComponent', 'selector': 'xtra-asset-lot-page'},{'name': 'AssetPageComponent', 'selector': 'xtra-asset-page'},{'name': 'AssetRequestListComponent', 'selector': 'xtra-asset-request-list'},{'name': 'AssetRequestPageComponent', 'selector': 'xtra-asset-request-page'},{'name': 'AttendanceActivityListComponent', 'selector': 'xtra-attendance-activity-list'},{'name': 'AttendanceActivityUpsertComponent', 'selector': 'xtra-attendance-activity-upsert'},{'name': 'AttendanceLateComeEarlyOutListComponent', 'selector': 'xtra-attendance-late-come-early-out-list'},{'name': 'AttendanceLateComeEarlyOutUpsertComponent', 'selector': 'xtra-attendance-late-come-early-out-upsert'},{'name': 'AttendanceListComponent', 'selector': 'xtra-attendance-list'},{'name': 'AttendanceOvertimeListComponent', 'selector': 'xtra-attendance-overtime-list'},{'name': 'AttendanceOvertimeUpsertComponent', 'selector': 'xtra-attendance-overtime-upsert'},{'name': 'AttendanceUpsertComponent', 'selector': 'xtra-attendance-upsert'},{'name': 'AttendanceValidationConditionListComponent', 'selector': 'xtra-attendance-validation-condition-list'},{'name': 'AttendanceValidationConditionUpsertComponent', 'selector': 'xtra-attendance-validation-condition-upsert'},{'name': 'AuthComponent', 'selector': 'xtra-auth'},{'name': 'AvailableLeaveListComponent', 'selector': 'xtra-available-leave-list'},{'name': 'AvailableLeaveUpsertComponent', 'selector': 'xtra-available-leave-upsert'},{'name': 'AvatarComponent', 'selector': 'xtra-avatar'},{'name': 'BankListComponent', 'selector': 'xtra-bank-list'},{'name': 'BankUpsertComponent', 'selector': 'xtra-bank-upsert'},{'name': 'BasePageComponent', 'selector': 'xtra-base-page'},{'name': 'BranchListComponent', 'selector': 'xtra-branch-list'},{'name': 'BranchPageComponent', 'selector': 'xtra-branch-page'},{'name': 'BreadcrumbsComponent', 'selector': 'xtra-breadcrumbs'},{'name': 'ButtonComponent', 'selector': 'xtra-button'},{'name': 'CandidateFinalizationComponent', 'selector': 'xtra-candidate-finalization'},{'name': 'CandidateListComponent', 'selector': 'xtra-candidate-list'},{'name': 'CandidatePageComponent', 'selector': 'xtra-candidate-page'},{'name': 'CandidateStageListComponent', 'selector': 'xtra-candidate-stage-list'},{'name': 'CandidateStageUpsertComponent', 'selector': 'xtra-candidate-stage-upsert'},{'name': 'CandidateTaskListComponent', 'selector': 'xtra-candidate-task-list'},{'name': 'CandidateTaskUpsertComponent', 'selector': 'xtra-candidate-task-upsert'},{'name': 'CareersPortalComponent', 'selector': 'xtra-careers-portal'},{'name': 'ChatBotComponent', 'selector': 'xtra-chat-bot'},{'name': 'ChatComponent', 'selector': 'xtra-chat'},{'name': 'ChatListComponent', 'selector': 'xtra-chat-list'},{'name': 'CmsComponent', 'selector': 'xtra-cms'},{'name': 'CommentListComponent', 'selector': 'xtra-comment-list'},{'name': 'CommentUpsertComponent', 'selector': 'xtra-comment-upsert'},{'name': 'CommsComponent', 'selector': 'xtra-comms'},{'name': 'ComposeMailComponent', 'selector': 'xtra-compose-mail'},{'name': 'ConfirmationDialogComponent', 'selector': 'xtra-confirmation-dialog'},{'name': 'ConfirmDialogComponent', 'selector': 'xtra-confirm-dialog'},{'name': 'ContactComponent', 'selector': 'xtra-contact'},{'name': 'ContactDetailsComponent', 'selector': 'xtra-user-contact-details'},{'name': 'ContractListComponent', 'selector': 'xtra-contract-list'},{'name': 'ContractUpsertComponent', 'selector': 'xtra-contract-upsert'},{'name': 'CurrencyListComponent', 'selector': 'xtra-currency-list'},{'name': 'CvEvaluationComponent', 'selector': 'xtra-cv-evaluation'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DeductionListComponent', 'selector': 'xtra-deduction-list'},{'name': 'DeductionUpsertComponent', 'selector': 'xtra-deduction-upsert'},{'name': 'DeptListComponent', 'selector': 'xtra-dept-list'},{'name': 'DeptPageComponent', 'selector': 'xtra-dept-page'},{'name': 'DynamicFormComponent', 'selector': 'xtra-dynamic-form'},{'name': 'EmailDetailComponent', 'selector': 'xtra-email-detail'},{'name': 'EmailListComponent', 'selector': 'xtra-email-list'},{'name': 'EmailPageComponent', 'selector': 'xtra-email-page'},{'name': 'EmailsComponent', 'selector': 'xtra-emails'},{'name': 'EmailSettingsComponent', 'selector': 'xtra-email-settings'},{'name': 'EmailSettingsV2Component', 'selector': 'xtra-email-settings'},{'name': 'EmployeeKeyResultListComponent', 'selector': 'xtra-employee-key-result-list'},{'name': 'EmployeeKeyResultUpsertComponent', 'selector': 'xtra-employee-key-result-upsert'},{'name': 'EmployeeListComponent', 'selector': 'xtra-employee-list'},{'name': 'EmployeeListItemComponent', 'selector': 'xtra-employee-list-item'},{'name': 'EmployeeObjectiveListComponent', 'selector': 'xtra-employee-objective-list'},{'name': 'EmployeeObjectiveUpsertComponent', 'selector': 'xtra-employee-objective-upsert'},{'name': 'EmployeePageComponent', 'selector': 'xtra-employee-page'},{'name': 'EmployeePortalComponent', 'selector': 'xtra-employee-portal'},{'name': 'EmployeesComponent', 'selector': 'xtra-employees'},{'name': 'EmployeeShiftListComponent', 'selector': 'xtra-employee-shift-list'},{'name': 'EmployeeShiftScheduleListComponent', 'selector': 'xtra-employee-shift-schedule-list'},{'name': 'EmployeeShiftScheduleUpsertComponent', 'selector': 'xtra-employee-shift-schedule-upsert'},{'name': 'EmployeeShiftUpsertComponent', 'selector': 'xtra-employee-shift-upsert'},{'name': 'ErrorComponent', 'selector': 'xtra-error'},{'name': 'ErrorMessageComponent', 'selector': '[xtra-error-message]'},{'name': 'EventDetailComponent', 'selector': 'xtra-event-detail'},{'name': 'EventListComponent', 'selector': 'xtra-event-list'},{'name': 'EventsComponent', 'selector': 'xtra-events'},{'name': 'EventUpsertComponent', 'selector': 'xtra-upsert-event'},{'name': 'FederalTaxListComponent', 'selector': 'xtra-federal-tax-list'},{'name': 'FederalTaxUpsertComponent', 'selector': 'xtra-federal-tax-upsert'},{'name': 'FeedbackListComponent', 'selector': 'xtra-feedback-list'},{'name': 'FeedbackUpsertComponent', 'selector': 'xtra-feedback-upsert'},{'name': 'FileInputComponent', 'selector': 'xtra-mat-file-input'},{'name': 'FileUploadComponent', 'selector': 'xtra-file-upload'},{'name': 'FilingStatusListComponent', 'selector': 'xtra-filing-status-list'},{'name': 'FilingStatusUpsertComponent', 'selector': 'xtra-filing-status-upsert'},{'name': 'FinanceComponent', 'selector': 'xtra-finance'},{'name': 'FinancePortalComponent', 'selector': 'xtra-finance-portal'},{'name': 'FooterComponent', 'selector': 'xtra-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'xtra-forgot-password'},{'name': 'FormLayoutComponent', 'selector': 'xtra-form-layout'},{'name': 'HolidayItemComponent', 'selector': 'xtra-holiday-item'},{'name': 'HolidayListComponent', 'selector': 'xtra-holiday-list'},{'name': 'HolidayUpsertComponent', 'selector': 'xtra-holiday-upsert'},{'name': 'HrDetailListComponent', 'selector': 'xtra-hr-detail-list'},{'name': 'HrDetailPageComponent', 'selector': 'xtra-hr-detail-page'},{'name': 'InputComponent', 'selector': 'xtra-input'},{'name': 'InputComponent', 'selector': 'xtra-input'},{'name': 'InterviewFeedbackComponent', 'selector': 'xtra-interview-feedback'},{'name': 'InterviewPreparationComponent', 'selector': 'xtra-interview-preparation'},{'name': 'JobRoleListComponent', 'selector': 'xtra-job-role-list'},{'name': 'JobRoleUpsertComponent', 'selector': 'xtra-job-role-upsert'},{'name': 'KeyResultFeedbackListComponent', 'selector': 'xtra-key-result-feedback-list'},{'name': 'KeyResultFeedbackUpsertComponent', 'selector': 'xtra-key-result-feedback-upsert'},{'name': 'LangComponent', 'selector': 'xtra-lang'},{'name': 'LeaveDetailComponent', 'selector': 'xtra-leave-detail'},{'name': 'LeaveListComponent', 'selector': 'xtra-leave-list'},{'name': 'LeaveListComponent', 'selector': 'xtra-leave-list'},{'name': 'LeaveRequestItemComponent', 'selector': 'xtra-leave-request-item'},{'name': 'LeaveRequestListComponent', 'selector': 'xtra-leave-request-list'},{'name': 'LeaveRequestUpsertComponent', 'selector': 'xtra-leave-request-upsert'},{'name': 'LeavesComponent', 'selector': 'xtra-leaves'},{'name': 'LeaveTypeListComponent', 'selector': 'xtra-leave-type-list'},{'name': 'LeaveTypeUpsertComponent', 'selector': 'xtra-leave-type-upsert'},{'name': 'LeaveUpsertComponent', 'selector': 'xtra-leave-upsert'},{'name': 'ListComponent', 'selector': 'xtra-email-settings-list'},{'name': 'ListErrorsComponent', 'selector': 'xtra-list-errors'},{'name': 'LmsComponent', 'selector': 'xtra-lms'},{'name': 'LoaderComponent', 'selector': 'xtra-loader'},{'name': 'MsgIconBtnComponent', 'selector': 'xtra-msg-icon-btn'},{'name': 'NavbarComponent', 'selector': 'xtra-navbar'},{'name': 'OfflineComponent', 'selector': 'xtra-offline'},{'name': 'OnboardingComponent', 'selector': 'xtra-onboarding'},{'name': 'OnboardingPortalListComponent', 'selector': 'xtra-onboarding-portal-list'},{'name': 'OnboardingPortalUpsertComponent', 'selector': 'xtra-onboarding-portal-upsert'},{'name': 'OnboardingPreparationComponent', 'selector': 'xtra-onboarding-preparation'},{'name': 'OnboardingStageListComponent', 'selector': 'xtra-onboarding-stage-list'},{'name': 'OnboardingStageUpsertComponent', 'selector': 'xtra-onboarding-stage-upsert'},{'name': 'OnboardingTaskListComponent', 'selector': 'xtra-onboarding-task-list'},{'name': 'OnboardingTaskUpsertComponent', 'selector': 'xtra-onboarding-task-upsert'},{'name': 'OrganizationLeaveListComponent', 'selector': 'xtra-organization-leave-list'},{'name': 'OrganizationLeaveUpsertComponent', 'selector': 'xtra-organization-leave-upsert'},{'name': 'OrgChartComponent', 'selector': 'xtra-org-chart'},{'name': 'OrgDetailComponent', 'selector': 'xtra-org-detail'},{'name': 'OrgPageComponent', 'selector': 'xtra-org-page'},{'name': 'OrgsComponent', 'selector': 'xtra-orgs'},{'name': 'OtpInputComponent', 'selector': 'xtra-otp-input'},{'name': 'PageComponent', 'selector': 'xtra-page'},{'name': 'PageNotFoundComponent', 'selector': 'xtra-page-not-found'},{'name': 'PagerComponent', 'selector': 'xtra-pager'},{'name': 'PaginationComponent', 'selector': 'xtra-pagination'},{'name': 'PasswordComponent', 'selector': 'xtra-password'},{'name': 'PayrollListComponent', 'selector': 'xtra-payroll-list'},{'name': 'PayrollSettingListComponent', 'selector': 'xtra-payroll-setting-list'},{'name': 'PayrollSettingUpsertComponent', 'selector': 'xtra-payroll-setting-upsert'},{'name': 'PayrollUpsertComponent', 'selector': 'xtra-payroll-upsert'},{'name': 'PayslipListComponent', 'selector': 'xtra-payslip-list'},{'name': 'PayslipUpsertComponent', 'selector': 'xtra-payslip-upsert'},{'name': 'PerformanceListComponent', 'selector': 'xtra-performance-list'},{'name': 'PerformanceUpsertComponent', 'selector': 'xtra-performance-upsert'},{'name': 'PeriodListComponent', 'selector': 'xtra-period-list'},{'name': 'PeriodUpsertComponent', 'selector': 'xtra-period-upsert'},{'name': 'PermissionAssignComponent', 'selector': 'xtra-permission-assign'},{'name': 'PermissionListComponent', 'selector': 'xtra-permission-list'},{'name': 'PermissionPageComponent', 'selector': 'xtra-permission-page'},{'name': 'PmComponent', 'selector': 'xtra-pm'},{'name': 'PmsComponent', 'selector': 'xtra-pms'},{'name': 'PositionListComponent', 'selector': 'xtra-position-list'},{'name': 'PositionsComponent', 'selector': 'xtra-positions'},{'name': 'PositionUpsertComponent', 'selector': 'xtra-position-upsert'},{'name': 'PrivacyPolicyComponent', 'selector': 'xtra-privacy-policy'},{'name': 'ProfileComponent', 'selector': 'xtra-profile'},{'name': 'ProfileComponent', 'selector': 'xtra-profile'},{'name': 'ProjectCardComponent', 'selector': 'xtra-project-card'},{'name': 'ProjectGanttComponent', 'selector': 'xtra-project-gantt'},{'name': 'ProjectListComponent', 'selector': 'xtra-project-list'},{'name': 'ProjectPageComponent', 'selector': 'xtra-project-page'},{'name': 'QuestionListComponent', 'selector': 'xtra-question-list'},{'name': 'QuestionOptionListComponent', 'selector': 'xtra-question-option-list'},{'name': 'QuestionOptionUpsertComponent', 'selector': 'xtra-question-option-upsert'},{'name': 'QuestionTemplateListComponent', 'selector': 'xtra-question-template-list'},{'name': 'QuestionTemplateUpsertComponent', 'selector': 'xtra-question-template-upsert'},{'name': 'QuestionUpsertComponent', 'selector': 'xtra-question-upsert'},{'name': 'RecruitmentListComponent', 'selector': 'xtra-recruitment-list'},{'name': 'RecruitmentPageComponent', 'selector': 'xtra-recruitment-page'},{'name': 'RecruitmentsComponent', 'selector': 'xtra-recruitments'},{'name': 'RecruitmentSurveyAnswerListComponent', 'selector': 'xtra-recruitment-survey-answer-list'},{'name': 'RecruitmentSurveyAnswerUpsertComponent', 'selector': 'xtra-recruitment-survey-answer-upsert'},{'name': 'RecruitmentSurveyListComponent', 'selector': 'xtra-recruitment-survey-list'},{'name': 'RecruitmentSurveyUpsertComponent', 'selector': 'xtra-recruitment-survey-upsert'},{'name': 'RejectionLetterComponent', 'selector': 'xtra-rejection-letter'},{'name': 'ResetPasswordComponent', 'selector': 'xtra-reset-password'},{'name': 'RichTextEditorComponent', 'selector': 'xtra-rich-text-editor'},{'name': 'RoleListComponent', 'selector': 'xtra-role-list'},{'name': 'RolePageComponent', 'selector': 'xtra-role-page'},{'name': 'RotatingShiftAssignListComponent', 'selector': 'xtra-rotating-shift-assign-list'},{'name': 'RotatingShiftAssignUpsertComponent', 'selector': 'xtra-rotating-shift-assign-upsert'},{'name': 'RotatingShiftListComponent', 'selector': 'xtra-rotating-shift-list'},{'name': 'RotatingShiftUpsertComponent', 'selector': 'xtra-rotating-shift-upsert'},{'name': 'RotatingWorkTypeAssignListComponent', 'selector': 'xtra-rotating-work-type-assign-list'},{'name': 'RotatingWorkTypeAssignUpsertComponent', 'selector': 'xtra-rotating-work-type-assign-upsert'},{'name': 'RotatingWorkTypeListComponent', 'selector': 'xtra-rotating-work-type-list'},{'name': 'RotatingWorkTypeUpsertComponent', 'selector': 'xtra-rotating-work-type-upsert'},{'name': 'SettingsComponent', 'selector': 'xtra-settings'},{'name': 'ShiftRequestListComponent', 'selector': 'xtra-shift-request-list'},{'name': 'ShiftRequestUpsertComponent', 'selector': 'xtra-shift-request-upsert'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavLinkComponent', 'selector': 'xtra-sidenav-link'},{'name': 'SidenavListItemComponent', 'selector': 'xtra-sidenav-list-item'},{'name': 'SignInComponent', 'selector': 'xtra-sign-in'},{'name': 'SignInComponent', 'selector': 'xtra-sign-in'},{'name': 'SignUpComponent', 'selector': 'xtra-sign-up'},{'name': 'SimpleDialogComponent', 'selector': 'xtra-simple-dialog'},{'name': 'SimplePageComponent', 'selector': 'xtra-simple-page'},{'name': 'SmsComponent', 'selector': 'xtra-sms'},{'name': 'SmsListComponent', 'selector': 'xtra-sms-list'},{'name': 'SmsListComponent', 'selector': 'xtra-sms-list'},{'name': 'SmsPageComponent', 'selector': 'xtra-sms-page'},{'name': 'StageListComponent', 'selector': 'xtra-stage-list'},{'name': 'StageNoteListComponent', 'selector': 'xtra-stage-note-list'},{'name': 'StageNoteUpsertComponent', 'selector': 'xtra-stage-note-upsert'},{'name': 'StageUpsertComponent', 'selector': 'xtra-stage-upsert'},{'name': 'SvgDefinitionsComponent', 'selector': 'xtra-svg-definitions'},{'name': 'SvgIconComponent', 'selector': 'xtra-svg-icon'},{'name': 'TableComponent', 'selector': 'xtra-table'},{'name': 'TableV2Component', 'selector': 'xtra-table-v2'},{'name': 'TaskAssignmentListComponent', 'selector': 'xtra-task-assignment-list'},{'name': 'TaskAssignmentUpsertComponent', 'selector': 'xtra-task-assignment-upsert'},{'name': 'TaskListComponent', 'selector': 'xtra-task-list'},{'name': 'TaskUpsertComponent', 'selector': 'xtra-task-upsert'},{'name': 'TelComponent', 'selector': 'xtra-tel'},{'name': 'TermsOfServiceComponent', 'selector': 'xtra-terms-of-service'},{'name': 'TextareaComponent', 'selector': 'xtra-textarea'},{'name': 'TimeOffMgtComponent', 'selector': 'xtra-time-off-mgt'},{'name': 'TitleComponent', 'selector': 'xtra-title'},{'name': 'TrainingListComponent', 'selector': 'xtra-training-list'},{'name': 'TrainingResourceListComponent', 'selector': 'xtra-training-resource-list'},{'name': 'TrainingResourceUpsertComponent', 'selector': 'xtra-training-resource-upsert'},{'name': 'TrainingScheduleListComponent', 'selector': 'xtra-training-schedule-list'},{'name': 'TrainingScheduleUpsertComponent', 'selector': 'xtra-training-schedule-upsert'},{'name': 'TrainingsComponent', 'selector': 'xtra-trainings'},{'name': 'TrainingUpsertComponent', 'selector': 'xtra-training-upsert'},{'name': 'UamComponent', 'selector': 'xtra-uam'},{'name': 'UiSpacerComponent', 'selector': 'xtra-ui-spacer'},{'name': 'UserAvatarComponent', 'selector': 'xtra-user-avatar'},{'name': 'UserCardComponent', 'selector': 'xtra-user-card'},{'name': 'UserListComponent', 'selector': 'xtra-user-list'},{'name': 'UserListComponent', 'selector': 'xtra-user-list'},{'name': 'UserPageComponent', 'selector': 'xtra-user-page'},{'name': 'UsersComponent', 'selector': 'xtra-users'},{'name': 'VerifyOtpComponent', 'selector': 'xtra-verify-otp'},{'name': 'WindowComponent', 'selector': 'xtra-window'},{'name': 'WorkRecordListComponent', 'selector': 'xtra-work-record-list'},{'name': 'WorkRecordUpsertComponent', 'selector': 'xtra-work-record-upsert'},{'name': 'WorkTypeListComponent', 'selector': 'xtra-work-type-list'},{'name': 'WorkTypeRequestListComponent', 'selector': 'xtra-work-type-request-list'},{'name': 'WorkTypeRequestUpsertComponent', 'selector': 'xtra-work-type-request-upsert'},{'name': 'WorkTypeUpsertComponent', 'selector': 'xtra-work-type-upsert'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[xtraAutofocus]'},{'name': 'ButtonDirective', 'selector': '[xtraButton]'},{'name': 'DynamicFieldDirective', 'selector': '[xtraDynamicField]'},{'name': 'EmailValidatorDirective', 'selector': '[xtraEmailValidator]'},{'name': 'EmployeeNotAvailableDirective', 'selector': 'a[routerLink]'},{'name': 'HasPermissionDirective', 'selector': '[xtraHasPermission]'},{'name': 'LoaderDirective', 'selector': '[loading]'},{'name': 'MinLengthDirective', 'selector': '[xtraMinLength]'},{'name': 'NgMatTableQueryReflectorDirective', 'selector': '[xtraNgMatTableQueryReflector]'},{'name': 'TooltipDirective', 'selector': 'xtraTooltip'},{'name': 'TruncateDirective', 'selector': '[xtraTruncate]'}];
+    var ACTUAL_COMPONENT = {'name': 'AttendanceListComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AttendanceListComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,604 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>xtra-hrms-client documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">xtra-hrms-client documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  IFederalTax</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/data/models/finance.model.ts</code>
+        </p>
+
+
+
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../interfaces/BaseModel.html" target="_self" >BaseModel</a></code>
+            </p>
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#filing_status" 
+>
+                                            filing_status
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#taxable_gross" 
+>
+                                            taxable_gross
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="filing_status"></a>
+                                        <span class="name "><b>filing_status</b>
+                                            <a href="#filing_status">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>filing_status:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="taxable_gross"></a>
+                                        <span class="name "><b>taxable_gross</b>
+                                            <a href="#taxable_gross">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>taxable_gross:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {BaseModel} from &#x27;@models/base.model&#x27;;
+
+export interface IPayroll extends BaseModel {
+  employee?: number;
+  job_department?: number;
+  salary_payroll?: number;
+  leave?: number;
+  salary?: number;
+  payment_date?: Date;
+  report?: string;
+  payment_method?: string;
+}
+
+export interface IPayslip extends BaseModel {
+  group_name?: string;
+  reference?: string;
+  employee?: number;
+  payroll_record?: number;
+  start_date?: Date;
+  end_date?: Date;
+  employee_nssf?: number;
+  employer_nssf?: number;
+  paye?: number;
+  total_nssf_contrib?: number;
+  overtime?: number;
+  bonus?: number;
+  sacco_deduction?: number;
+  damage_deduction?: number;
+  prorate?: string;
+  currency?: number;
+  pay_head_data?: string;
+  contract_wage?: number;
+  basic_pay?: number;
+  gross_pay?: number;
+  deduction?: number;
+  net_pay?: number;
+  status?: string;
+}
+
+export interface IWorkRecord extends BaseModel {
+  record_name?: string;
+  work_record_type?: string;
+  employee?: number;
+  date?: Date;
+  at_work?: string;
+  min_hour?: string;
+  at_work_second?: number;
+  min_hour_second?: number;
+  note?: string;
+  color?: string;
+  message?: string;
+  is_attendance_record?: boolean;
+  is_leave_record?: boolean;
+  day_percentage?: number;
+}
+
+export interface IContract extends BaseModel {
+  name?: string;
+  employee?: number;
+  start_date?: Date;
+  end_date?: Date;
+  wage_type?: string;
+  wage?: number;
+  calculate_daily_leave_amount?: boolean;
+  deduction_for_one_leave_amount?: number;
+  deduct_leave_from_basic_pay?: boolean;
+  department?: number;
+  job_position?: number;
+  job_role?: number;
+  shift?: number;
+  work_type?: number;
+  filing_status?: number;
+  pay_frequency?: string;
+  document?: any;
+  is_active?: boolean;
+  status?: string;
+  note?: string;
+  risk?: string;
+}
+
+export interface IAllowance extends BaseModel {
+  title?: string;
+  one_time_date?: Date;
+  include_active_employees?: boolean;
+  specific_employees?: number[];
+  exclude_employees?: number[];
+  is_taxable?: boolean;
+  is_condition_based?: boolean;
+  field?: string;
+  condition?: string;
+  value?: string;
+  is_fixed?: boolean;
+  amount?: number;
+  based_on?: string;
+  rate?: boolean;
+  per_attendance_fixed_amount?: number;
+  shift?: number;
+  shift_per_attendance_amount?: number;
+  amount_per_one_hr?: number;
+  work_type?: number;
+  work_type_per_attendance_amount?: number;
+  has_max_limit?: boolean;
+  maximum_amount?: number;
+  maximum_unit?: string;
+  if_choice?: string;
+  if_condition?: string;
+  if_amount?: number;
+  is_tax?: boolean;
+  is_pretax?: boolean;
+  update_compensation?: string;
+  employer_rate?: number;
+}
+
+export interface IDeduction extends BaseModel {
+  title?: string;
+  one_time_date?: Date;
+  include_active_employees?: boolean;
+  specific_employees?: number[];
+  exclude_employees?: number[];
+  is_condition_based?: boolean;
+  field?: string;
+  condition?: string;
+  value?: string;
+  is_fixed?: boolean;
+  amount?: number;
+  based_on?: string;
+  rate?: boolean;
+  has_max_limit?: boolean;
+  maximum_amount?: number;
+  maximum_unit?: string;
+  if_choice?: string;
+  if_condition?: string;
+  if_amount?: number;
+}
+
+export interface IFilingStatus extends BaseModel {
+  filing_status?: string;
+  based_on?: string;
+  description?: string;
+}
+
+export interface IPayrollSetting extends BaseModel {
+  currency_symbol?: string;
+}
+
+export interface ITaxBracket extends BaseModel {
+  filing_status?: number;
+  min_income?: number;
+  max_income?: number;
+  tax_rate?: number;
+}
+
+export interface IFederalTax extends BaseModel {
+  filing_status?: number;
+  taxable_gross?: number;
+}
+
+export interface IBank extends BaseModel {
+  name?: string;
+  short_name?: string;
+  branch?: string;
+  swift_code?: string;
+  po_box?: string;
+  zip_code?: string;
+  town?: string;
+  bank_no?: string;
+  country?: string;
+  added_on?: Date;
+}
+
+export interface IBankBranch extends BaseModel {
+  name?: string;
+  bank?: number;
+  branch_no?: string;
+  manager?: string;
+  telephone?: string;
+  email?: string;
+}
+
+export interface IEmployeeBankAccount extends BaseModel {
+  bank_name?: string;
+  reserved?: boolean;
+}
+
+export interface IEmployeeBank extends BaseModel {
+  employee?: number;
+  bank?: number;
+  account_no?: string;
+  currency?: number;
+  bank_branch?: number;
+  bank_account_no?: string;
+  bank_account_name?: string;
+  address?: string;
+  country?: string;
+  state?: string;
+  city?: string;
+  any_other_code1?: string;
+  any_other_code2?: string;
+  additional_info?: string;
+  added_on?: Date;
+}
+
+export interface IAccountType extends BaseModel {
+  type?: string;
+  description?: string;
+}
+
+export interface IAccount extends BaseModel {
+  account_no?: string;
+  name?: string;
+  description?: string;
+  reserved_ac?: boolean;
+  account_type_id?: number;
+  sub_account?: boolean;
+  main_account?: number;
+  active?: boolean;
+  bank_ac_no?: string;
+  bank?: string;
+  opening_bal?: number;
+  bal_date?: Date;
+  notes?: string;
+  tax_id?: number;
+  account_details?: string;
+  foreign?: boolean;
+  currency_id?: number;
+  exchange_rate?: number;
+  organization_id?: number;
+  frequency?: number;
+  number?: number;
+  rate?: number;
+  amount?: number;
+}
+
+export interface ITransaction extends BaseModel {
+  /*
+  type;
+  account_id;
+  progress;
+  status;
+  cut_off;
+  value_date;
+  currency;
+  amount;
+  transaction_id;
+  beneficiary;
+  notional;
+  coupon;
+   */
+}
+
+export interface IPaymentMethod extends BaseModel {
+  paymentSourceType?: string;
+  name?: string;
+  priceAmountCents?: number;
+  priceAmountFloat?: number;
+  formattedPriceAmount?: string;
+  orderId?: string;
+}
+
+export interface PaymentSourceModel extends BaseModel {
+  approvalUrl?: string;
+  cancelUrl?: string;
+  name?: string;
+  noteToPayer?: string;
+  returnUrl?: string;
+  status?: string;
+}
+
+export interface IPaypalPayment extends PaymentSourceModel, BaseModel {
+  orderId?: string;
+  paypalId?: string;
+  paypalPayerId?: string;
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'IFederalTax.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

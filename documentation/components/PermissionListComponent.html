@@ -1,0 +1,1763 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>xtra-hrms-client documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">xtra-hrms-client documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  PermissionListComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                                <code><a href="../injectables/PermissionsService.html" target="_self" >PermissionsService</a></code>
+                                <code><a href="../injectables/RolesService.html" target="_self" >RolesService</a></code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>xtra-permission-list</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">Standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>MatIconModule</code>
+                            <code>MatButtonModule</code>
+                            <code>FormsModule</code>
+                            <code>MatInputModule</code>
+                            <code>MatSelectModule</code>
+                            <code>MatTableModule</code>
+                            <code>MatSortModule</code>
+                            <code>RouterLink</code>
+                            <code>MatPaginatorModule</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code></code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;h3&gt;Permissions&lt;/h3&gt;
+&lt;div class&#x3D;&quot;mat-elevation z8&quot;&gt;
+  &lt;div class&#x3D;&quot;action-buttons&quot;&gt;
+    &lt;div&gt;
+      &lt;button (click)&#x3D;&quot;addNew()&quot; mat-stroked-button color&#x3D;&quot;primary&quot;&gt;
+        &lt;mat-icon&gt;add&lt;/mat-icon&gt;
+        New Permission
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;table-responsive&quot;&gt;
+    &lt;div class&#x3D;&quot;filter-data&quot;&gt;
+      &lt;!--  --&gt;
+      &lt;fieldset class&#x3D;&quot;scheduler-border&quot;&gt;
+        &lt;legend class&#x3D;&quot;scheduler-border&quot;&gt;&lt;small&gt;Filter&lt;/small&gt;&lt;/legend&gt;
+        &lt;form novalidate (ngSubmit)&#x3D;&quot;searchRolePerms()&quot;&gt;
+          &lt;mat-form-field id&#x3D;&quot;role-filter&quot;&gt;
+            &lt;mat-label&gt;Filter by role&lt;/mat-label&gt;
+            &lt;mat-select [(ngModel)]&#x3D;&quot;searchData.role_id&quot; name&#x3D;&quot;role_id&quot;&gt;
+              @for (role of roles; track role.id) {
+                &lt;mat-option [value]&#x3D;&quot;role.id&quot;&gt;
+                  {{ role.name }}
+                &lt;/mat-option&gt;
+              }
+            &lt;/mat-select&gt;
+          &lt;/mat-form-field&gt;
+          &lt;button style&#x3D;&quot;margin-left: 1.5em&quot; mat-stroked-button color&#x3D;&quot;primary&quot;&gt;Filter&lt;/button&gt;
+          &lt;button
+            type&#x3D;&quot;button&quot;
+            style&#x3D;&quot;margin-left: 1.5em&quot;
+            (click)&#x3D;&quot;resetData()&quot;
+            mat-stroked-button
+            color&#x3D;&quot;accent&quot;
+          &gt;
+            Reset
+          &lt;/button&gt;
+        &lt;/form&gt;
+      &lt;/fieldset&gt;
+    &lt;/div&gt;
+    &lt;table mat-table matSort [dataSource]&#x3D;&quot;allPermissions&quot;&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;name&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Action Name&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+          {{ element[&#x27;name&#x27;] }}
+        &lt;/td&gt;
+      &lt;/ng-container&gt;
+      &lt;!--Action column
+      &lt;ng-container matColumnDef&#x3D;&quot;action&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Action Name&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+          {{ element[&#x27;action.name&#x27;] }}
+        &lt;/td&gt;
+      &lt;/ng-container&gt;
+      --&gt;
+
+      &lt;!--Role column
+      &lt;ng-container matColumnDef&#x3D;&quot;role&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Role&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+          {{ element[&#x27;role.role&#x27;] }}
+        &lt;/td&gt;
+      &lt;/ng-container&gt;
+      --&gt;
+
+      &lt;!--Date created column--&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;created_at&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Date Created&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+          {{ element.created_at | date: &#x27;short&#x27; }}
+        &lt;/td&gt;
+      &lt;/ng-container&gt;
+
+      &lt;!--Date updated column--&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;updated_at&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Date Updated&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+          {{ element.updated_at | date: &#x27;short&#x27; }}
+        &lt;/td&gt;
+      &lt;/ng-container&gt;
+
+      &lt;!--Created By column--&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;created_by&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Created By&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+          &lt;a (click)&#x3D;&quot;viewUser(element.created_by)&quot; routerLink&#x3D;&quot;.&quot; title&#x3D;&quot;view&quot;&gt;
+            &lt;mat-icon&gt;visibility&lt;/mat-icon&gt;
+          &lt;/a&gt;
+        &lt;/td&gt;
+      &lt;/ng-container&gt;
+
+      &lt;!--Updated By column--&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;updated_by&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Updated By&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+          &lt;a (click)&#x3D;&quot;viewUser(element.updated_by)&quot; routerLink&#x3D;&quot;.&quot; title&#x3D;&quot;view&quot;&gt;
+            &lt;mat-icon&gt;visibility&lt;/mat-icon&gt;
+          &lt;/a&gt;
+        &lt;/td&gt;
+      &lt;/ng-container&gt;
+
+      &lt;!--actions--&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;actions&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Actions&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+          &lt;a
+            (click)&#x3D;&quot;deletePermission(element.id)&quot;
+            mat-stroked-button
+            color&#x3D;&quot;accent&quot;
+            title&#x3D;&quot;delete&quot;
+          &gt;
+            &lt;mat-icon&gt;delete&lt;/mat-icon&gt;
+          &lt;/a&gt;
+        &lt;/td&gt;
+      &lt;/ng-container&gt;
+      &lt;tr mat-header-row class&#x3D;&quot;mat-header&quot; *matHeaderRowDef&#x3D;&quot;tableColumns&quot;&gt;&lt;/tr&gt;
+      &lt;tr class&#x3D;&quot;mat-row&quot; mat-row *matRowDef&#x3D;&quot;let row; columns: tableColumns&quot;&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+    @if (!allPermissions.data.length) {
+      &lt;div class&#x3D;&quot;alert alert-info text-center&quot;&gt;
+        &lt;p&gt;No data&lt;/p&gt;
+      &lt;/div&gt;
+    }
+    &lt;mat-paginator
+      #paginator
+      [length]&#x3D;&quot;totalPermissions&quot;
+      [pageSize]&#x3D;&quot;10&quot;
+      [pageSizeOptions]&#x3D;&quot;[5, 10, 25, 100]&quot;
+    &gt;&lt;/mat-paginator&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#actions" >actions</a>
+                            </li>
+                            <li>
+                                <a href="#allPermissions" >allPermissions</a>
+                            </li>
+                            <li>
+                                <a href="#dialog" >dialog</a>
+                            </li>
+                            <li>
+                                <a href="#isHost" >isHost</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#paginator" >paginator</a>
+                            </li>
+                            <li>
+                                <a href="#permissions" >permissions</a>
+                            </li>
+                            <li>
+                                <a href="#permissionsService" >permissionsService</a>
+                            </li>
+                            <li>
+                                <a href="#roles" >roles</a>
+                            </li>
+                            <li>
+                                <a href="#rolesService" >rolesService</a>
+                            </li>
+                            <li>
+                                <a href="#searchData" >searchData</a>
+                            </li>
+                            <li>
+                                <a href="#snackbar" >snackbar</a>
+                            </li>
+                            <li>
+                                <a href="#tableColumns" >tableColumns</a>
+                            </li>
+                            <li>
+                                <a href="#totalPermissions" >totalPermissions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addNew" >addNew</a>
+                            </li>
+                            <li>
+                                <a href="#deletePermission" >deletePermission</a>
+                            </li>
+                            <li>
+                                <a href="#getAllPermissions" >getAllPermissions</a>
+                            </li>
+                            <li>
+                                <a href="#getClientRoles" >getClientRoles</a>
+                            </li>
+                            <li>
+                                <a href="#getRoles" >getRoles</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#resetData" >resetData</a>
+                            </li>
+                            <li>
+                                <a href="#searchRolePerms" >searchRolePerms</a>
+                            </li>
+                            <li>
+                                <a href="#viewUser" >viewUser</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addNew"></a>
+                    <span class="name">
+                        <span ><b>addNew</b></span>
+                        <a href="#addNew"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addNew()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="291"
+                                    class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:291</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deletePermission"></a>
+                    <span class="name">
+                        <span ><b>deletePermission</b></span>
+                        <a href="#deletePermission"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deletePermission(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="275"
+                                    class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:275</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllPermissions"></a>
+                    <span class="name">
+                        <span ><b>getAllPermissions</b></span>
+                        <a href="#getAllPermissions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAllPermissions(query?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="221"
+                                    class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:221</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>query</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getClientRoles"></a>
+                    <span class="name">
+                        <span ><b>getClientRoles</b></span>
+                        <a href="#getClientRoles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getClientRoles(query?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="236"
+                                    class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:236</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>query</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRoles"></a>
+                    <span class="name">
+                        <span ><b>getRoles</b></span>
+                        <a href="#getRoles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRoles(query?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="230"
+                                    class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:230</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>query</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="203"
+                                    class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:203</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetData"></a>
+                    <span class="name">
+                        <span ><b>resetData</b></span>
+                        <a href="#resetData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resetData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="286"
+                                    class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:286</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchRolePerms"></a>
+                    <span class="name">
+                        <span ><b>searchRolePerms</b></span>
+                        <a href="#searchRolePerms"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>searchRolePerms()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="281"
+                                    class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:281</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewUser"></a>
+                    <span class="name">
+                        <span ><b>viewUser</b></span>
+                        <a href="#viewUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>viewUser(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="262"
+                                    class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:262</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="actions"></a>
+                    <span class="name">
+                        <span ><b>actions</b></span>
+                        <a href="#actions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:187</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="allPermissions"></a>
+                    <span class="name">
+                        <span ><b>allPermissions</b></span>
+                        <a href="#allPermissions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatTableDataSource&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MatTableDataSource&lt;any&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:182</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dialog"></a>
+                    <span class="name">
+                        <span ><b>dialog</b></span>
+                        <a href="#dialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(MatDialog)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:197</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isHost"></a>
+                    <span class="name">
+                        <span ><b>isHost</b></span>
+                        <a href="#isHost"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:190</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="paginator"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>paginator</b></span>
+                        <a href="#paginator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatPaginator</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(MatPaginator, {static: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:170</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="permissions"></a>
+                    <span class="name">
+                        <span ><b>permissions</b></span>
+                        <a href="#permissions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IPermission.html" target="_self" >IPermission[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:189</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="permissionsService"></a>
+                    <span class="name">
+                        <span ><b>permissionsService</b></span>
+                        <a href="#permissionsService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(PermissionsService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:193</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="roles"></a>
+                    <span class="name">
+                        <span ><b>roles</b></span>
+                        <a href="#roles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IRole.html" target="_self" >IRole[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:188</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rolesService"></a>
+                    <span class="name">
+                        <span ><b>rolesService</b></span>
+                        <a href="#rolesService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(RolesService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:194</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchData"></a>
+                    <span class="name">
+                        <span ><b>searchData</b></span>
+                        <a href="#searchData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    role_id: null,
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:184</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="snackbar"></a>
+                    <span class="name">
+                        <span ><b>snackbar</b></span>
+                        <a href="#snackbar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(MatSnackBar)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:196</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tableColumns"></a>
+                    <span class="name">
+                        <span ><b>tableColumns</b></span>
+                        <a href="#tableColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    // &#x27;action&#x27;,
+    // &#x27;role&#x27;,
+    &#x27;name&#x27;,
+    &#x27;created_at&#x27;,
+    &#x27;updated_at&#x27;,
+    &#x27;created_by&#x27;,
+    &#x27;updated_by&#x27;,
+    &#x27;actions&#x27;,
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:171</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="totalPermissions"></a>
+                    <span class="name">
+                        <span ><b>totalPermissions</b></span>
+                        <a href="#totalPermissions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/app/ui/admin/uam/permissions/permission-list/permission-list.component.ts:183</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {ChangeDetectionStrategy, Component, inject, OnInit, ViewChild} from &#x27;@angular/core&#x27;;
+import {CommonModule} from &#x27;@angular/common&#x27;;
+import {MatIconModule} from &#x27;@angular/material/icon&#x27;;
+import {MatButtonModule} from &#x27;@angular/material/button&#x27;;
+import {FormsModule} from &#x27;@angular/forms&#x27;;
+import {MatInputModule} from &#x27;@angular/material/input&#x27;;
+import {MatSelectModule} from &#x27;@angular/material/select&#x27;;
+import {MatTableDataSource, MatTableModule} from &#x27;@angular/material/table&#x27;;
+import {MatSortModule} from &#x27;@angular/material/sort&#x27;;
+import {RouterLink} from &#x27;@angular/router&#x27;;
+import {MatPaginator, MatPaginatorModule} from &#x27;@angular/material/paginator&#x27;;
+import {MatSnackBar} from &#x27;@angular/material/snack-bar&#x27;;
+import {IPermission, IRole} from &#x27;@data/models/accounts.model&#x27;;
+import {MatDialog} from &#x27;@angular/material/dialog&#x27;;
+import {PermissionsService, RolesService} from &#x27;@data/services/users.service&#x27;;
+import {PermissionPageComponent} from &#x27;../permission-page/permission-page.component&#x27;;
+
+@Component({
+  selector: &#x27;xtra-permission-list&#x27;,
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatButtonModule,
+    FormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTableModule,
+    MatSortModule,
+    RouterLink,
+    MatPaginatorModule,
+  ],
+  template: &#x60;
+    &lt;h3&gt;Permissions&lt;/h3&gt;
+    &lt;div class&#x3D;&quot;mat-elevation z8&quot;&gt;
+      &lt;div class&#x3D;&quot;action-buttons&quot;&gt;
+        &lt;div&gt;
+          &lt;button (click)&#x3D;&quot;addNew()&quot; mat-stroked-button color&#x3D;&quot;primary&quot;&gt;
+            &lt;mat-icon&gt;add&lt;/mat-icon&gt;
+            New Permission
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;table-responsive&quot;&gt;
+        &lt;div class&#x3D;&quot;filter-data&quot;&gt;
+          &lt;!--  --&gt;
+          &lt;fieldset class&#x3D;&quot;scheduler-border&quot;&gt;
+            &lt;legend class&#x3D;&quot;scheduler-border&quot;&gt;&lt;small&gt;Filter&lt;/small&gt;&lt;/legend&gt;
+            &lt;form novalidate (ngSubmit)&#x3D;&quot;searchRolePerms()&quot;&gt;
+              &lt;mat-form-field id&#x3D;&quot;role-filter&quot;&gt;
+                &lt;mat-label&gt;Filter by role&lt;/mat-label&gt;
+                &lt;mat-select [(ngModel)]&#x3D;&quot;searchData.role_id&quot; name&#x3D;&quot;role_id&quot;&gt;
+                  @for (role of roles; track role.id) {
+                    &lt;mat-option [value]&#x3D;&quot;role.id&quot;&gt;
+                      {{ role.name }}
+                    &lt;/mat-option&gt;
+                  }
+                &lt;/mat-select&gt;
+              &lt;/mat-form-field&gt;
+              &lt;button style&#x3D;&quot;margin-left: 1.5em&quot; mat-stroked-button color&#x3D;&quot;primary&quot;&gt;Filter&lt;/button&gt;
+              &lt;button
+                type&#x3D;&quot;button&quot;
+                style&#x3D;&quot;margin-left: 1.5em&quot;
+                (click)&#x3D;&quot;resetData()&quot;
+                mat-stroked-button
+                color&#x3D;&quot;accent&quot;
+              &gt;
+                Reset
+              &lt;/button&gt;
+            &lt;/form&gt;
+          &lt;/fieldset&gt;
+        &lt;/div&gt;
+        &lt;table mat-table matSort [dataSource]&#x3D;&quot;allPermissions&quot;&gt;
+          &lt;ng-container matColumnDef&#x3D;&quot;name&quot;&gt;
+            &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Action Name&lt;/th&gt;
+            &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+              {{ element[&#x27;name&#x27;] }}
+            &lt;/td&gt;
+          &lt;/ng-container&gt;
+          &lt;!--Action column
+          &lt;ng-container matColumnDef&#x3D;&quot;action&quot;&gt;
+            &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Action Name&lt;/th&gt;
+            &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+              {{ element[&#x27;action.name&#x27;] }}
+            &lt;/td&gt;
+          &lt;/ng-container&gt;
+          --&gt;
+
+          &lt;!--Role column
+          &lt;ng-container matColumnDef&#x3D;&quot;role&quot;&gt;
+            &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Role&lt;/th&gt;
+            &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+              {{ element[&#x27;role.role&#x27;] }}
+            &lt;/td&gt;
+          &lt;/ng-container&gt;
+          --&gt;
+
+          &lt;!--Date created column--&gt;
+          &lt;ng-container matColumnDef&#x3D;&quot;created_at&quot;&gt;
+            &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Date Created&lt;/th&gt;
+            &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+              {{ element.created_at | date: &#x27;short&#x27; }}
+            &lt;/td&gt;
+          &lt;/ng-container&gt;
+
+          &lt;!--Date updated column--&gt;
+          &lt;ng-container matColumnDef&#x3D;&quot;updated_at&quot;&gt;
+            &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Date Updated&lt;/th&gt;
+            &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+              {{ element.updated_at | date: &#x27;short&#x27; }}
+            &lt;/td&gt;
+          &lt;/ng-container&gt;
+
+          &lt;!--Created By column--&gt;
+          &lt;ng-container matColumnDef&#x3D;&quot;created_by&quot;&gt;
+            &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Created By&lt;/th&gt;
+            &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+              &lt;a (click)&#x3D;&quot;viewUser(element.created_by)&quot; routerLink&#x3D;&quot;.&quot; title&#x3D;&quot;view&quot;&gt;
+                &lt;mat-icon&gt;visibility&lt;/mat-icon&gt;
+              &lt;/a&gt;
+            &lt;/td&gt;
+          &lt;/ng-container&gt;
+
+          &lt;!--Updated By column--&gt;
+          &lt;ng-container matColumnDef&#x3D;&quot;updated_by&quot;&gt;
+            &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Updated By&lt;/th&gt;
+            &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+              &lt;a (click)&#x3D;&quot;viewUser(element.updated_by)&quot; routerLink&#x3D;&quot;.&quot; title&#x3D;&quot;view&quot;&gt;
+                &lt;mat-icon&gt;visibility&lt;/mat-icon&gt;
+              &lt;/a&gt;
+            &lt;/td&gt;
+          &lt;/ng-container&gt;
+
+          &lt;!--actions--&gt;
+          &lt;ng-container matColumnDef&#x3D;&quot;actions&quot;&gt;
+            &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Actions&lt;/th&gt;
+            &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+              &lt;a
+                (click)&#x3D;&quot;deletePermission(element.id)&quot;
+                mat-stroked-button
+                color&#x3D;&quot;accent&quot;
+                title&#x3D;&quot;delete&quot;
+              &gt;
+                &lt;mat-icon&gt;delete&lt;/mat-icon&gt;
+              &lt;/a&gt;
+            &lt;/td&gt;
+          &lt;/ng-container&gt;
+          &lt;tr mat-header-row class&#x3D;&quot;mat-header&quot; *matHeaderRowDef&#x3D;&quot;tableColumns&quot;&gt;&lt;/tr&gt;
+          &lt;tr class&#x3D;&quot;mat-row&quot; mat-row *matRowDef&#x3D;&quot;let row; columns: tableColumns&quot;&gt;&lt;/tr&gt;
+        &lt;/table&gt;
+        @if (!allPermissions.data.length) {
+          &lt;div class&#x3D;&quot;alert alert-info text-center&quot;&gt;
+            &lt;p&gt;No data&lt;/p&gt;
+          &lt;/div&gt;
+        }
+        &lt;mat-paginator
+          #paginator
+          [length]&#x3D;&quot;totalPermissions&quot;
+          [pageSize]&#x3D;&quot;10&quot;
+          [pageSizeOptions]&#x3D;&quot;[5, 10, 25, 100]&quot;
+        &gt;&lt;/mat-paginator&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &#x60;,
+  styles: &#x60;&#x60;,
+  providers: [PermissionsService, RolesService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class PermissionListComponent implements OnInit {
+  @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
+  tableColumns: string[] &#x3D; [
+    // &#x27;action&#x27;,
+    // &#x27;role&#x27;,
+    &#x27;name&#x27;,
+    &#x27;created_at&#x27;,
+    &#x27;updated_at&#x27;,
+    &#x27;created_by&#x27;,
+    &#x27;updated_by&#x27;,
+    &#x27;actions&#x27;,
+  ];
+  // allPermissions: MatTableDataSource&lt;IPermission&gt;;
+  allPermissions: MatTableDataSource&lt;any&gt; &#x3D; new MatTableDataSource&lt;any&gt;();
+  totalPermissions: number &#x3D; 0;
+  searchData &#x3D; {
+    role_id: null,
+  };
+  actions: any[] &#x3D; [];
+  roles: IRole[] &#x3D; [];
+  permissions: IPermission[] &#x3D; [];
+  isHost: boolean &#x3D; false;
+
+  // authService &#x3D; inject(AuthService);
+  permissionsService &#x3D; inject(PermissionsService);
+  rolesService &#x3D; inject(RolesService);
+  // usersService &#x3D; inject(UsersService);
+  snackbar &#x3D; inject(MatSnackBar);
+  dialog &#x3D; inject(MatDialog);
+
+  /*constructor(private uam: UserActionManagementService, private snackbar: MatSnackBar,
+              private alert: AlertService, private dataService: DataService,
+              private uamCommon: UamCommonService) { }*/
+
+  ngOnInit(): void {
+    //current user
+    // const currentUser &#x3D; this.authService.user();
+    // eslint-disable-next-line no-console
+    // console.log(currentUser);
+    // this.isHost &#x3D; this.uamCommon.isHost(currentUser);
+    // this.isHost &#x3D; true;
+    /*this.isHost
+      ? (this.getAllPermissions(), this.getRoles({ revoked: false }))
+      : this.getClientRoles({
+          client_id: currentUser.client_id,
+          revoked: false
+        });*/
+    this.getAllPermissions();
+    this.getRoles();
+  }
+
+  //get permissions
+  getAllPermissions(query?: any): void {
+    this.permissionsService.get(query).subscribe((_) &#x3D;&gt; {
+      this.allPermissions &#x3D; new MatTableDataSource(_);
+      // this.allPermissions.data &#x3D; this.permissionsService.objects();
+      this.allPermissions.paginator &#x3D; this.paginator;
+      this.totalPermissions &#x3D; _ ? _.length : 0;
+    });
+  }
+
+  getRoles(query?: any): void {
+    this.rolesService.getPaginated(query).subscribe((_) &#x3D;&gt; {
+      this.roles &#x3D; _.results;
+    });
+  }
+
+  getClientRoles(query?: any): void {
+    /*this.rolesService.getAll(query).subscribe(response &#x3D;&gt; {
+      if (response) {
+        this.roles &#x3D; response;
+        const clientRolesId &#x3D; [];
+        this.roles.forEach(r &#x3D;&gt; {
+          clientRolesId.push(r.id);
+        });
+
+        const q &#x3D; {
+          role_id: clientRolesId
+        };
+        this.permissionsService
+          .getAll
+          //q
+          ()
+          .pipe(takeUntilDestroyed())
+          .subscribe(res &#x3D;&gt; {
+            this.allPermissions &#x3D; new MatTableDataSource(res) as any;
+            this.allPermissions.paginator &#x3D; this.paginator;
+            this.totalPermissions &#x3D; res ? res.length : 0;
+          });
+      }
+    });*/
+  }
+
+  viewUser(userId: number): void {
+    /*this.usersService.getById(userId).subscribe(response &#x3D;&gt; {
+      if (response) {
+        const { username, email, phone_no } &#x3D; response;
+        const user &#x3D; &#x60;${username} ${email}&#x60;;
+        this.snackbar.open(user, phone_no, {
+          duration: 10000
+        });
+      }
+    });*/
+  }
+
+  //delete permission
+  deletePermission(id: number): void {
+    // const isOk &#x3D; confirm(&#x27;Are you sure?&#x27;);
+    // if (!isOk) return;
+    this.permissionsService.delete(id);
+  }
+
+  searchRolePerms(): void {
+    // this.getAllPermissions(this.searchData);
+    this.getAllPermissions();
+  }
+
+  resetData(): void {
+    this.searchData.role_id &#x3D; null;
+    this.getAllPermissions();
+  }
+
+  addNew(): void {
+    const dialogRef &#x3D; this.dialog.open(PermissionPageComponent, {});
+
+    dialogRef.afterClosed().subscribe((result) &#x3D;&gt; {
+      // eslint-disable-next-line no-console
+      console.log(result);
+    });
+  }
+}
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="styleData">
+            <pre class="line-numbers"><code class="language-scss">
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><h3>Permissions</h3><div class="mat-elevation z8">  <div class="action-buttons">    <div>      <button (click)="addNew()" mat-stroked-button color="primary">        <mat-icon>add</mat-icon>        New Permission      </button>    </div>  </div>  <div class="table-responsive">    <div class="filter-data">      <!--  -->      <fieldset class="scheduler-border">        <legend class="scheduler-border"><small>Filter</small></legend>        <form novalidate (ngSubmit)="searchRolePerms()">          <mat-form-field id="role-filter">            <mat-label>Filter by role</mat-label>            <mat-select [(ngModel)]="searchData.role_id" name="role_id">              @for (role of roles; track role.id) {                <mat-option [value]="role.id">                  {{ role.name }}                </mat-option>              }            </mat-select>          </mat-form-field>          <button style="margin-left: 1.5em" mat-stroked-button color="primary">Filter</button>          <button            type="button"            style="margin-left: 1.5em"            (click)="resetData()"            mat-stroked-button            color="accent"          >            Reset          </button>        </form>      </fieldset>    </div>    <table mat-table matSort [dataSource]="allPermissions">      <ng-container matColumnDef="name">        <th mat-header-cell *matHeaderCellDef mat-sort-header>Action Name</th>        <td mat-cell *matCellDef="let element">          {{ element[\'name\'] }}        </td>      </ng-container>      <!--Action column      <ng-container matColumnDef="action">        <th mat-header-cell *matHeaderCellDef mat-sort-header>Action Name</th>        <td mat-cell *matCellDef="let element">          {{ element[\'action.name\'] }}        </td>      </ng-container>      -->      <!--Role column      <ng-container matColumnDef="role">        <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>        <td mat-cell *matCellDef="let element">          {{ element[\'role.role\'] }}        </td>      </ng-container>      -->      <!--Date created column-->      <ng-container matColumnDef="created_at">        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Created</th>        <td mat-cell *matCellDef="let element">          {{ element.created_at | date: \'short\' }}        </td>      </ng-container>      <!--Date updated column-->      <ng-container matColumnDef="updated_at">        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Updated</th>        <td mat-cell *matCellDef="let element">          {{ element.updated_at | date: \'short\' }}        </td>      </ng-container>      <!--Created By column-->      <ng-container matColumnDef="created_by">        <th mat-header-cell *matHeaderCellDef mat-sort-header>Created By</th>        <td mat-cell *matCellDef="let element">          <a (click)="viewUser(element.created_by)" routerLink="." title="view">            <mat-icon>visibility</mat-icon>          </a>        </td>      </ng-container>      <!--Updated By column-->      <ng-container matColumnDef="updated_by">        <th mat-header-cell *matHeaderCellDef mat-sort-header>Updated By</th>        <td mat-cell *matCellDef="let element">          <a (click)="viewUser(element.updated_by)" routerLink="." title="view">            <mat-icon>visibility</mat-icon>          </a>        </td>      </ng-container>      <!--actions-->      <ng-container matColumnDef="actions">        <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>        <td mat-cell *matCellDef="let element">          <a            (click)="deletePermission(element.id)"            mat-stroked-button            color="accent"            title="delete"          >            <mat-icon>delete</mat-icon>          </a>        </td>      </ng-container>      <tr mat-header-row class="mat-header" *matHeaderRowDef="tableColumns"></tr>      <tr class="mat-row" mat-row *matRowDef="let row; columns: tableColumns"></tr>    </table>    @if (!allPermissions.data.length) {      <div class="alert alert-info text-center">        <p>No data</p>      </div>    }    <mat-paginator      #paginator      [length]="totalPermissions"      [pageSize]="10"      [pageSizeOptions]="[5, 10, 25, 100]"    ></mat-paginator>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'xtra-about'},{'name': 'AccountComponent', 'selector': 'xtra-user-account'},{'name': 'AddressComponent', 'selector': 'xtra-address'},{'name': 'AdminComponent', 'selector': 'xtra-admin'},{'name': 'AllowanceListComponent', 'selector': 'xtra-allowance-list'},{'name': 'AllowanceUpsertComponent', 'selector': 'xtra-allowance-upsert'},{'name': 'AmsComponent', 'selector': 'xtra-ams'},{'name': 'AnswerListComponent', 'selector': 'xtra-answer-list'},{'name': 'AnswerUpsertComponent', 'selector': 'xtra-answer-upsert'},{'name': 'AppComponent', 'selector': 'xtra-root'},{'name': 'ArticleListComponent', 'selector': 'xtra-article-list'},{'name': 'ArticlePageComponent', 'selector': 'xtra-article-page'},{'name': 'ArticlesComponent', 'selector': 'xtra-articles'},{'name': 'AssetAssignComponent', 'selector': 'xtra-asset-assign'},{'name': 'AssetCategoryListComponent', 'selector': 'xtra-asset-category-list'},{'name': 'AssetCategoryPageComponent', 'selector': 'xtra-asset-category-page'},{'name': 'AssetListComponent', 'selector': 'xtra-asset-list'},{'name': 'AssetLotListComponent', 'selector': 'xtra-asset-lot-list'},{'name': 'AssetLotPageComponent', 'selector': 'xtra-asset-lot-page'},{'name': 'AssetPageComponent', 'selector': 'xtra-asset-page'},{'name': 'AssetRequestListComponent', 'selector': 'xtra-asset-request-list'},{'name': 'AssetRequestPageComponent', 'selector': 'xtra-asset-request-page'},{'name': 'AttendanceActivityListComponent', 'selector': 'xtra-attendance-activity-list'},{'name': 'AttendanceActivityUpsertComponent', 'selector': 'xtra-attendance-activity-upsert'},{'name': 'AttendanceLateComeEarlyOutListComponent', 'selector': 'xtra-attendance-late-come-early-out-list'},{'name': 'AttendanceLateComeEarlyOutUpsertComponent', 'selector': 'xtra-attendance-late-come-early-out-upsert'},{'name': 'AttendanceListComponent', 'selector': 'xtra-attendance-list'},{'name': 'AttendanceOvertimeListComponent', 'selector': 'xtra-attendance-overtime-list'},{'name': 'AttendanceOvertimeUpsertComponent', 'selector': 'xtra-attendance-overtime-upsert'},{'name': 'AttendanceUpsertComponent', 'selector': 'xtra-attendance-upsert'},{'name': 'AttendanceValidationConditionListComponent', 'selector': 'xtra-attendance-validation-condition-list'},{'name': 'AttendanceValidationConditionUpsertComponent', 'selector': 'xtra-attendance-validation-condition-upsert'},{'name': 'AuthComponent', 'selector': 'xtra-auth'},{'name': 'AvailableLeaveListComponent', 'selector': 'xtra-available-leave-list'},{'name': 'AvailableLeaveUpsertComponent', 'selector': 'xtra-available-leave-upsert'},{'name': 'AvatarComponent', 'selector': 'xtra-avatar'},{'name': 'BankListComponent', 'selector': 'xtra-bank-list'},{'name': 'BankUpsertComponent', 'selector': 'xtra-bank-upsert'},{'name': 'BasePageComponent', 'selector': 'xtra-base-page'},{'name': 'BranchListComponent', 'selector': 'xtra-branch-list'},{'name': 'BranchPageComponent', 'selector': 'xtra-branch-page'},{'name': 'BreadcrumbsComponent', 'selector': 'xtra-breadcrumbs'},{'name': 'ButtonComponent', 'selector': 'xtra-button'},{'name': 'CandidateFinalizationComponent', 'selector': 'xtra-candidate-finalization'},{'name': 'CandidateListComponent', 'selector': 'xtra-candidate-list'},{'name': 'CandidatePageComponent', 'selector': 'xtra-candidate-page'},{'name': 'CandidateStageListComponent', 'selector': 'xtra-candidate-stage-list'},{'name': 'CandidateStageUpsertComponent', 'selector': 'xtra-candidate-stage-upsert'},{'name': 'CandidateTaskListComponent', 'selector': 'xtra-candidate-task-list'},{'name': 'CandidateTaskUpsertComponent', 'selector': 'xtra-candidate-task-upsert'},{'name': 'CareersPortalComponent', 'selector': 'xtra-careers-portal'},{'name': 'ChatBotComponent', 'selector': 'xtra-chat-bot'},{'name': 'ChatComponent', 'selector': 'xtra-chat'},{'name': 'ChatListComponent', 'selector': 'xtra-chat-list'},{'name': 'CmsComponent', 'selector': 'xtra-cms'},{'name': 'CommentListComponent', 'selector': 'xtra-comment-list'},{'name': 'CommentUpsertComponent', 'selector': 'xtra-comment-upsert'},{'name': 'CommsComponent', 'selector': 'xtra-comms'},{'name': 'ComposeMailComponent', 'selector': 'xtra-compose-mail'},{'name': 'ConfirmationDialogComponent', 'selector': 'xtra-confirmation-dialog'},{'name': 'ConfirmDialogComponent', 'selector': 'xtra-confirm-dialog'},{'name': 'ContactComponent', 'selector': 'xtra-contact'},{'name': 'ContactDetailsComponent', 'selector': 'xtra-user-contact-details'},{'name': 'ContractListComponent', 'selector': 'xtra-contract-list'},{'name': 'ContractUpsertComponent', 'selector': 'xtra-contract-upsert'},{'name': 'CurrencyListComponent', 'selector': 'xtra-currency-list'},{'name': 'CvEvaluationComponent', 'selector': 'xtra-cv-evaluation'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DeductionListComponent', 'selector': 'xtra-deduction-list'},{'name': 'DeductionUpsertComponent', 'selector': 'xtra-deduction-upsert'},{'name': 'DeptListComponent', 'selector': 'xtra-dept-list'},{'name': 'DeptPageComponent', 'selector': 'xtra-dept-page'},{'name': 'DynamicFormComponent', 'selector': 'xtra-dynamic-form'},{'name': 'EmailDetailComponent', 'selector': 'xtra-email-detail'},{'name': 'EmailListComponent', 'selector': 'xtra-email-list'},{'name': 'EmailPageComponent', 'selector': 'xtra-email-page'},{'name': 'EmailsComponent', 'selector': 'xtra-emails'},{'name': 'EmailSettingsComponent', 'selector': 'xtra-email-settings'},{'name': 'EmailSettingsV2Component', 'selector': 'xtra-email-settings'},{'name': 'EmployeeKeyResultListComponent', 'selector': 'xtra-employee-key-result-list'},{'name': 'EmployeeKeyResultUpsertComponent', 'selector': 'xtra-employee-key-result-upsert'},{'name': 'EmployeeListComponent', 'selector': 'xtra-employee-list'},{'name': 'EmployeeListItemComponent', 'selector': 'xtra-employee-list-item'},{'name': 'EmployeeObjectiveListComponent', 'selector': 'xtra-employee-objective-list'},{'name': 'EmployeeObjectiveUpsertComponent', 'selector': 'xtra-employee-objective-upsert'},{'name': 'EmployeePageComponent', 'selector': 'xtra-employee-page'},{'name': 'EmployeePortalComponent', 'selector': 'xtra-employee-portal'},{'name': 'EmployeesComponent', 'selector': 'xtra-employees'},{'name': 'EmployeeShiftListComponent', 'selector': 'xtra-employee-shift-list'},{'name': 'EmployeeShiftScheduleListComponent', 'selector': 'xtra-employee-shift-schedule-list'},{'name': 'EmployeeShiftScheduleUpsertComponent', 'selector': 'xtra-employee-shift-schedule-upsert'},{'name': 'EmployeeShiftUpsertComponent', 'selector': 'xtra-employee-shift-upsert'},{'name': 'ErrorComponent', 'selector': 'xtra-error'},{'name': 'ErrorMessageComponent', 'selector': '[xtra-error-message]'},{'name': 'EventDetailComponent', 'selector': 'xtra-event-detail'},{'name': 'EventListComponent', 'selector': 'xtra-event-list'},{'name': 'EventsComponent', 'selector': 'xtra-events'},{'name': 'EventUpsertComponent', 'selector': 'xtra-upsert-event'},{'name': 'FederalTaxListComponent', 'selector': 'xtra-federal-tax-list'},{'name': 'FederalTaxUpsertComponent', 'selector': 'xtra-federal-tax-upsert'},{'name': 'FeedbackListComponent', 'selector': 'xtra-feedback-list'},{'name': 'FeedbackUpsertComponent', 'selector': 'xtra-feedback-upsert'},{'name': 'FileInputComponent', 'selector': 'xtra-mat-file-input'},{'name': 'FileUploadComponent', 'selector': 'xtra-file-upload'},{'name': 'FilingStatusListComponent', 'selector': 'xtra-filing-status-list'},{'name': 'FilingStatusUpsertComponent', 'selector': 'xtra-filing-status-upsert'},{'name': 'FinanceComponent', 'selector': 'xtra-finance'},{'name': 'FinancePortalComponent', 'selector': 'xtra-finance-portal'},{'name': 'FooterComponent', 'selector': 'xtra-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'xtra-forgot-password'},{'name': 'FormLayoutComponent', 'selector': 'xtra-form-layout'},{'name': 'HolidayItemComponent', 'selector': 'xtra-holiday-item'},{'name': 'HolidayListComponent', 'selector': 'xtra-holiday-list'},{'name': 'HolidayUpsertComponent', 'selector': 'xtra-holiday-upsert'},{'name': 'HrDetailListComponent', 'selector': 'xtra-hr-detail-list'},{'name': 'HrDetailPageComponent', 'selector': 'xtra-hr-detail-page'},{'name': 'InputComponent', 'selector': 'xtra-input'},{'name': 'InputComponent', 'selector': 'xtra-input'},{'name': 'InterviewFeedbackComponent', 'selector': 'xtra-interview-feedback'},{'name': 'InterviewPreparationComponent', 'selector': 'xtra-interview-preparation'},{'name': 'JobRoleListComponent', 'selector': 'xtra-job-role-list'},{'name': 'JobRoleUpsertComponent', 'selector': 'xtra-job-role-upsert'},{'name': 'KeyResultFeedbackListComponent', 'selector': 'xtra-key-result-feedback-list'},{'name': 'KeyResultFeedbackUpsertComponent', 'selector': 'xtra-key-result-feedback-upsert'},{'name': 'LangComponent', 'selector': 'xtra-lang'},{'name': 'LeaveDetailComponent', 'selector': 'xtra-leave-detail'},{'name': 'LeaveListComponent', 'selector': 'xtra-leave-list'},{'name': 'LeaveListComponent', 'selector': 'xtra-leave-list'},{'name': 'LeaveRequestItemComponent', 'selector': 'xtra-leave-request-item'},{'name': 'LeaveRequestListComponent', 'selector': 'xtra-leave-request-list'},{'name': 'LeaveRequestUpsertComponent', 'selector': 'xtra-leave-request-upsert'},{'name': 'LeavesComponent', 'selector': 'xtra-leaves'},{'name': 'LeaveTypeListComponent', 'selector': 'xtra-leave-type-list'},{'name': 'LeaveTypeUpsertComponent', 'selector': 'xtra-leave-type-upsert'},{'name': 'LeaveUpsertComponent', 'selector': 'xtra-leave-upsert'},{'name': 'ListComponent', 'selector': 'xtra-email-settings-list'},{'name': 'ListErrorsComponent', 'selector': 'xtra-list-errors'},{'name': 'LmsComponent', 'selector': 'xtra-lms'},{'name': 'LoaderComponent', 'selector': 'xtra-loader'},{'name': 'MsgIconBtnComponent', 'selector': 'xtra-msg-icon-btn'},{'name': 'NavbarComponent', 'selector': 'xtra-navbar'},{'name': 'OfflineComponent', 'selector': 'xtra-offline'},{'name': 'OnboardingComponent', 'selector': 'xtra-onboarding'},{'name': 'OnboardingPortalListComponent', 'selector': 'xtra-onboarding-portal-list'},{'name': 'OnboardingPortalUpsertComponent', 'selector': 'xtra-onboarding-portal-upsert'},{'name': 'OnboardingPreparationComponent', 'selector': 'xtra-onboarding-preparation'},{'name': 'OnboardingStageListComponent', 'selector': 'xtra-onboarding-stage-list'},{'name': 'OnboardingStageUpsertComponent', 'selector': 'xtra-onboarding-stage-upsert'},{'name': 'OnboardingTaskListComponent', 'selector': 'xtra-onboarding-task-list'},{'name': 'OnboardingTaskUpsertComponent', 'selector': 'xtra-onboarding-task-upsert'},{'name': 'OrganizationLeaveListComponent', 'selector': 'xtra-organization-leave-list'},{'name': 'OrganizationLeaveUpsertComponent', 'selector': 'xtra-organization-leave-upsert'},{'name': 'OrgChartComponent', 'selector': 'xtra-org-chart'},{'name': 'OrgDetailComponent', 'selector': 'xtra-org-detail'},{'name': 'OrgPageComponent', 'selector': 'xtra-org-page'},{'name': 'OrgsComponent', 'selector': 'xtra-orgs'},{'name': 'OtpInputComponent', 'selector': 'xtra-otp-input'},{'name': 'PageComponent', 'selector': 'xtra-page'},{'name': 'PageNotFoundComponent', 'selector': 'xtra-page-not-found'},{'name': 'PagerComponent', 'selector': 'xtra-pager'},{'name': 'PaginationComponent', 'selector': 'xtra-pagination'},{'name': 'PasswordComponent', 'selector': 'xtra-password'},{'name': 'PayrollListComponent', 'selector': 'xtra-payroll-list'},{'name': 'PayrollSettingListComponent', 'selector': 'xtra-payroll-setting-list'},{'name': 'PayrollSettingUpsertComponent', 'selector': 'xtra-payroll-setting-upsert'},{'name': 'PayrollUpsertComponent', 'selector': 'xtra-payroll-upsert'},{'name': 'PayslipListComponent', 'selector': 'xtra-payslip-list'},{'name': 'PayslipUpsertComponent', 'selector': 'xtra-payslip-upsert'},{'name': 'PerformanceListComponent', 'selector': 'xtra-performance-list'},{'name': 'PerformanceUpsertComponent', 'selector': 'xtra-performance-upsert'},{'name': 'PeriodListComponent', 'selector': 'xtra-period-list'},{'name': 'PeriodUpsertComponent', 'selector': 'xtra-period-upsert'},{'name': 'PermissionAssignComponent', 'selector': 'xtra-permission-assign'},{'name': 'PermissionListComponent', 'selector': 'xtra-permission-list'},{'name': 'PermissionPageComponent', 'selector': 'xtra-permission-page'},{'name': 'PmComponent', 'selector': 'xtra-pm'},{'name': 'PmsComponent', 'selector': 'xtra-pms'},{'name': 'PositionListComponent', 'selector': 'xtra-position-list'},{'name': 'PositionsComponent', 'selector': 'xtra-positions'},{'name': 'PositionUpsertComponent', 'selector': 'xtra-position-upsert'},{'name': 'PrivacyPolicyComponent', 'selector': 'xtra-privacy-policy'},{'name': 'ProfileComponent', 'selector': 'xtra-profile'},{'name': 'ProfileComponent', 'selector': 'xtra-profile'},{'name': 'ProjectCardComponent', 'selector': 'xtra-project-card'},{'name': 'ProjectGanttComponent', 'selector': 'xtra-project-gantt'},{'name': 'ProjectListComponent', 'selector': 'xtra-project-list'},{'name': 'ProjectPageComponent', 'selector': 'xtra-project-page'},{'name': 'QuestionListComponent', 'selector': 'xtra-question-list'},{'name': 'QuestionOptionListComponent', 'selector': 'xtra-question-option-list'},{'name': 'QuestionOptionUpsertComponent', 'selector': 'xtra-question-option-upsert'},{'name': 'QuestionTemplateListComponent', 'selector': 'xtra-question-template-list'},{'name': 'QuestionTemplateUpsertComponent', 'selector': 'xtra-question-template-upsert'},{'name': 'QuestionUpsertComponent', 'selector': 'xtra-question-upsert'},{'name': 'RecruitmentListComponent', 'selector': 'xtra-recruitment-list'},{'name': 'RecruitmentPageComponent', 'selector': 'xtra-recruitment-page'},{'name': 'RecruitmentsComponent', 'selector': 'xtra-recruitments'},{'name': 'RecruitmentSurveyAnswerListComponent', 'selector': 'xtra-recruitment-survey-answer-list'},{'name': 'RecruitmentSurveyAnswerUpsertComponent', 'selector': 'xtra-recruitment-survey-answer-upsert'},{'name': 'RecruitmentSurveyListComponent', 'selector': 'xtra-recruitment-survey-list'},{'name': 'RecruitmentSurveyUpsertComponent', 'selector': 'xtra-recruitment-survey-upsert'},{'name': 'RejectionLetterComponent', 'selector': 'xtra-rejection-letter'},{'name': 'ResetPasswordComponent', 'selector': 'xtra-reset-password'},{'name': 'RichTextEditorComponent', 'selector': 'xtra-rich-text-editor'},{'name': 'RoleListComponent', 'selector': 'xtra-role-list'},{'name': 'RolePageComponent', 'selector': 'xtra-role-page'},{'name': 'RotatingShiftAssignListComponent', 'selector': 'xtra-rotating-shift-assign-list'},{'name': 'RotatingShiftAssignUpsertComponent', 'selector': 'xtra-rotating-shift-assign-upsert'},{'name': 'RotatingShiftListComponent', 'selector': 'xtra-rotating-shift-list'},{'name': 'RotatingShiftUpsertComponent', 'selector': 'xtra-rotating-shift-upsert'},{'name': 'RotatingWorkTypeAssignListComponent', 'selector': 'xtra-rotating-work-type-assign-list'},{'name': 'RotatingWorkTypeAssignUpsertComponent', 'selector': 'xtra-rotating-work-type-assign-upsert'},{'name': 'RotatingWorkTypeListComponent', 'selector': 'xtra-rotating-work-type-list'},{'name': 'RotatingWorkTypeUpsertComponent', 'selector': 'xtra-rotating-work-type-upsert'},{'name': 'SettingsComponent', 'selector': 'xtra-settings'},{'name': 'ShiftRequestListComponent', 'selector': 'xtra-shift-request-list'},{'name': 'ShiftRequestUpsertComponent', 'selector': 'xtra-shift-request-upsert'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavLinkComponent', 'selector': 'xtra-sidenav-link'},{'name': 'SidenavListItemComponent', 'selector': 'xtra-sidenav-list-item'},{'name': 'SignInComponent', 'selector': 'xtra-sign-in'},{'name': 'SignInComponent', 'selector': 'xtra-sign-in'},{'name': 'SignUpComponent', 'selector': 'xtra-sign-up'},{'name': 'SimpleDialogComponent', 'selector': 'xtra-simple-dialog'},{'name': 'SimplePageComponent', 'selector': 'xtra-simple-page'},{'name': 'SmsComponent', 'selector': 'xtra-sms'},{'name': 'SmsListComponent', 'selector': 'xtra-sms-list'},{'name': 'SmsListComponent', 'selector': 'xtra-sms-list'},{'name': 'SmsPageComponent', 'selector': 'xtra-sms-page'},{'name': 'StageListComponent', 'selector': 'xtra-stage-list'},{'name': 'StageNoteListComponent', 'selector': 'xtra-stage-note-list'},{'name': 'StageNoteUpsertComponent', 'selector': 'xtra-stage-note-upsert'},{'name': 'StageUpsertComponent', 'selector': 'xtra-stage-upsert'},{'name': 'SvgDefinitionsComponent', 'selector': 'xtra-svg-definitions'},{'name': 'SvgIconComponent', 'selector': 'xtra-svg-icon'},{'name': 'TableComponent', 'selector': 'xtra-table'},{'name': 'TableV2Component', 'selector': 'xtra-table-v2'},{'name': 'TaskAssignmentListComponent', 'selector': 'xtra-task-assignment-list'},{'name': 'TaskAssignmentUpsertComponent', 'selector': 'xtra-task-assignment-upsert'},{'name': 'TaskListComponent', 'selector': 'xtra-task-list'},{'name': 'TaskUpsertComponent', 'selector': 'xtra-task-upsert'},{'name': 'TelComponent', 'selector': 'xtra-tel'},{'name': 'TermsOfServiceComponent', 'selector': 'xtra-terms-of-service'},{'name': 'TextareaComponent', 'selector': 'xtra-textarea'},{'name': 'TimeOffMgtComponent', 'selector': 'xtra-time-off-mgt'},{'name': 'TitleComponent', 'selector': 'xtra-title'},{'name': 'TrainingListComponent', 'selector': 'xtra-training-list'},{'name': 'TrainingResourceListComponent', 'selector': 'xtra-training-resource-list'},{'name': 'TrainingResourceUpsertComponent', 'selector': 'xtra-training-resource-upsert'},{'name': 'TrainingScheduleListComponent', 'selector': 'xtra-training-schedule-list'},{'name': 'TrainingScheduleUpsertComponent', 'selector': 'xtra-training-schedule-upsert'},{'name': 'TrainingsComponent', 'selector': 'xtra-trainings'},{'name': 'TrainingUpsertComponent', 'selector': 'xtra-training-upsert'},{'name': 'UamComponent', 'selector': 'xtra-uam'},{'name': 'UiSpacerComponent', 'selector': 'xtra-ui-spacer'},{'name': 'UserAvatarComponent', 'selector': 'xtra-user-avatar'},{'name': 'UserCardComponent', 'selector': 'xtra-user-card'},{'name': 'UserListComponent', 'selector': 'xtra-user-list'},{'name': 'UserListComponent', 'selector': 'xtra-user-list'},{'name': 'UserPageComponent', 'selector': 'xtra-user-page'},{'name': 'UsersComponent', 'selector': 'xtra-users'},{'name': 'VerifyOtpComponent', 'selector': 'xtra-verify-otp'},{'name': 'WindowComponent', 'selector': 'xtra-window'},{'name': 'WorkRecordListComponent', 'selector': 'xtra-work-record-list'},{'name': 'WorkRecordUpsertComponent', 'selector': 'xtra-work-record-upsert'},{'name': 'WorkTypeListComponent', 'selector': 'xtra-work-type-list'},{'name': 'WorkTypeRequestListComponent', 'selector': 'xtra-work-type-request-list'},{'name': 'WorkTypeRequestUpsertComponent', 'selector': 'xtra-work-type-request-upsert'},{'name': 'WorkTypeUpsertComponent', 'selector': 'xtra-work-type-upsert'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[xtraAutofocus]'},{'name': 'ButtonDirective', 'selector': '[xtraButton]'},{'name': 'DynamicFieldDirective', 'selector': '[xtraDynamicField]'},{'name': 'EmailValidatorDirective', 'selector': '[xtraEmailValidator]'},{'name': 'EmployeeNotAvailableDirective', 'selector': 'a[routerLink]'},{'name': 'HasPermissionDirective', 'selector': '[xtraHasPermission]'},{'name': 'LoaderDirective', 'selector': '[loading]'},{'name': 'MinLengthDirective', 'selector': '[xtraMinLength]'},{'name': 'NgMatTableQueryReflectorDirective', 'selector': '[xtraNgMatTableQueryReflector]'},{'name': 'TooltipDirective', 'selector': 'xtraTooltip'},{'name': 'TruncateDirective', 'selector': '[xtraTruncate]'}];
+    var ACTUAL_COMPONENT = {'name': 'PermissionListComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'PermissionListComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

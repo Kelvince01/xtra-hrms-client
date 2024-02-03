@@ -1,0 +1,979 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>xtra-hrms-client documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">xtra-hrms-client documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  PeriodicElement</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/ui/admin/lms/leaves/leave-list/leave-list.component.ts</code>
+        </p>
+
+
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#description" 
+>
+                                            description
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#name" 
+>
+                                            name
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#position" 
+>
+                                            position
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#symbol" 
+>
+                                            symbol
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#weight" 
+>
+                                            weight
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="description"></a>
+                                        <span class="name "><b>description</b>
+                                            <a href="#description">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>description:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="name"></a>
+                                        <span class="name "><b>name</b>
+                                            <a href="#name">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>name:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="position"></a>
+                                        <span class="name "><b>position</b>
+                                            <a href="#position">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>position:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="symbol"></a>
+                                        <span class="name "><b>symbol</b>
+                                            <a href="#symbol">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>symbol:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="weight"></a>
+                                        <span class="name "><b>weight</b>
+                                            <a href="#weight">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>weight:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {CommonModule} from &#x27;@angular/common&#x27;;
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+  ViewChild,
+  WritableSignal,
+} from &#x27;@angular/core&#x27;;
+import {MatButtonModule} from &#x27;@angular/material/button&#x27;;
+import {MatDialog} from &#x27;@angular/material/dialog&#x27;;
+import {MatFormFieldModule} from &#x27;@angular/material/form-field&#x27;;
+import {MatIconModule} from &#x27;@angular/material/icon&#x27;;
+import {MatInputModule} from &#x27;@angular/material/input&#x27;;
+import {MatMenuModule} from &#x27;@angular/material/menu&#x27;;
+import {MatPaginator, MatPaginatorModule, PageEvent} from &#x27;@angular/material/paginator&#x27;;
+import {MatProgressBarModule} from &#x27;@angular/material/progress-bar&#x27;;
+import {MatSort, MatSortModule, Sort} from &#x27;@angular/material/sort&#x27;;
+import {MatTableDataSource, MatTableModule} from &#x27;@angular/material/table&#x27;;
+import {MatToolbarModule} from &#x27;@angular/material/toolbar&#x27;;
+import {ActivatedRoute, Router, RouterLink} from &#x27;@angular/router&#x27;;
+import {IExportColumn} from &#x27;@models/export-column.model&#x27;;
+import {TranslateModule} from &#x27;@ngx-translate/core&#x27;;
+import {NgMatTableQueryReflectorDirective} from &#x27;@shared/directives/ng-mat-table-query-reflector.directive&#x27;;
+import {DataPropertyGetterPipe} from &#x27;@shared/pipes/data-property-getter.pipe&#x27;;
+import {ITableColumn} from &#x27;@shared/components/table/table-column.model&#x27;;
+import {LeaveUpsertComponent} from &#x27;@admin-ui/lms/leaves/leave-upsert/leave-upsert.component&#x27;;
+
+@Component({
+  selector: &#x27;xtra-leave-list&#x27;,
+  standalone: true,
+  imports: [
+    CommonModule,
+    DataPropertyGetterPipe,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatToolbarModule,
+    NgMatTableQueryReflectorDirective,
+    TranslateModule,
+    RouterLink,
+  ],
+  template: &#x60;
+    &lt;ng-container&gt;
+      &lt;mat-toolbar&gt;
+        &lt;mat-toolbar-row class&#x3D;&quot;flex-row&quot;&gt;
+          &lt;span class&#x3D;&quot;title basis-[100px]&quot;&gt;{{ title }}&lt;/span&gt;
+          @if (!newButtonHidden) {
+            &lt;button class&#x3D;&quot;right-2&quot; mat-raised-button color&#x3D;&quot;primary&quot; routerLink&#x3D;&quot;/leaves/add&quot;&gt;
+              {{ &#x27;common.new-button&#x27; | translate }}
+            &lt;/button&gt;
+          }
+        &lt;/mat-toolbar-row&gt;
+      &lt;/mat-toolbar&gt;
+
+      @if (isLoading) {
+        &lt;div
+          style&#x3D;&quot;display: flex; justify-content: center;
+           align-items: center; background: white;&quot;
+        &gt;
+          &lt;mat-progress-bar color&#x3D;&quot;primary&quot; mode&#x3D;&quot;indeterminate&quot;&gt;&lt;/mat-progress-bar&gt;
+        &lt;/div&gt;
+      }
+
+      &lt;!-- Table --&gt;
+      &lt;table
+        mat-table
+        [dataSource]&#x3D;&quot;dataSource&quot;
+        matSort
+        (matSortChange)&#x3D;&quot;sortTable($event)&quot;
+        xtraNgMatTableQueryReflector
+        (scroll)&#x3D;&quot;onTableScroll($event)&quot;
+        class&#x3D;&quot;table-container mat-elevation-z8&quot;
+      &gt;
+        @for (tableColumn of displayTableColumns; track tableColumn) {
+          &lt;ng-container [matColumnDef]&#x3D;&quot;tableColumn.name&quot;&gt;
+            &lt;!-- if sortable column header --&gt;
+            @if (tableColumn.isSortable) {
+              &lt;th
+                mat-header-cell
+                *matHeaderCellDef
+                [mat-sort-header]&#x3D;&quot;tableColumn.name&quot;
+                [arrowPosition]&#x3D;&quot;tableColumn.position &#x3D;&#x3D;&#x3D; &#x27;right&#x27; ? &#x27;before&#x27; : &#x27;after&#x27;&quot;
+              &gt;
+                {{ tableColumn.name }}
+              &lt;/th&gt;
+            } @else {
+              &lt;th
+                mat-header-cell
+                *matHeaderCellDef
+                [class.text-right]&#x3D;&quot;tableColumn.position &#x3D;&#x3D;&#x3D; &#x27;right&#x27;&quot;
+              &gt;
+                {{ tableColumn.name }}
+              &lt;/th&gt;
+            }
+            &lt;!-- else not sortable --&gt;
+
+            &lt;!-- column data --&gt;
+            &lt;td
+              mat-cell
+              *matCellDef&#x3D;&quot;let element&quot;
+              [class.text-right]&#x3D;&quot;tableColumn.position &#x3D;&#x3D;&#x3D; &#x27;right&#x27;&quot;
+            &gt;
+              {{ element | dataPropertyGetter: tableColumn.dataKey! }}
+            &lt;/td&gt;
+          &lt;/ng-container&gt;
+        }
+
+        &lt;!-- first header row --&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;header-row-first-group&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef [attr.colspan]&#x3D;&quot;6&quot;&gt;
+            &lt;div class&#x3D;&quot;flex justify-between items-center&quot;&gt;
+              &lt;div&gt;
+                &lt;!-- Filter --&gt;
+                @if (isFilterable) {
+                  &lt;ng-container [matColumnDef]&#x3D;&quot;this.rowFilterAction&quot;&gt;
+                    &lt;mat-form-field&gt;
+                      &lt;mat-label&gt;Filter&lt;/mat-label&gt;
+                      &lt;!--                    &lt;mat-icon [ngStyle]&#x3D;&quot;{&#x27;color&#x27;: &#x27;#88ACC1&#x27;}&quot;&gt;search&lt;/mat-icon&gt;--&gt;
+                      &lt;input
+                        matInput
+                        (keyup)&#x3D;&quot;applyFilter($event)&quot;
+                        placeholder&#x3D;&quot;filter&quot;
+                        #input
+                        type&#x3D;&quot;text&quot;
+                        name&#x3D;&quot;search&quot;
+                      /&gt;
+                    &lt;/mat-form-field&gt;
+                  &lt;/ng-container&gt;
+                }
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;space-x-2 pr-20 &quot;&gt;
+                &lt;button mat-button&gt;
+                  &lt;mat-icon class&#x3D;&quot;mat-icon-size&quot;&gt;tune&lt;/mat-icon&gt;
+                &lt;/button&gt;
+                @if (!exportButtonHidden) {
+                  &lt;button
+                    class&#x3D;&quot;right-2 export-button&quot;
+                    mat-raised-button
+                    color&#x3D;&quot;primary&quot;
+                    (click)&#x3D;&quot;exportPdf()&quot;
+                  &gt;
+                    &lt;mat-icon class&#x3D;&quot;mat-icon-size&quot;&gt;save_alt&lt;/mat-icon&gt;
+                    {{ &#x27;common.export-button&#x27; | translate }}
+                  &lt;/button&gt;
+                }
+                &lt;button mat-flat-button&gt;
+                  &lt;mat-icon class&#x3D;&quot;mat-icon-size&quot;&gt;print&lt;/mat-icon&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/th&gt;
+        &lt;/ng-container&gt;
+
+        &lt;!-- Menu Column --&gt;
+        @if (displayedColumns().includes(&#x27;menu&#x27;)) {
+          &lt;ng-container matColumnDef&#x3D;&quot;menu&quot;&gt;
+            &lt;th mat-header-cell *matHeaderCellDef&gt;{{ &#x27;common.caption.actions&#x27; | translate }}&lt;/th&gt;
+            &lt;td
+              mat-cell
+              *matCellDef&#x3D;&quot;let element&quot;
+              [attr.data-label]&#x3D;&quot;&#x27;common.caption.actions&#x27; | translate&quot;
+            &gt;
+              &lt;button mat-icon-button [matMenuTriggerFor]&#x3D;&quot;menu&quot;&gt;
+                &lt;mat-icon&gt;more_vert&lt;/mat-icon&gt;
+              &lt;/button&gt;
+              &lt;mat-menu #menu&#x3D;&quot;matMenu&quot;&gt;
+                &lt;button mat-menu-item (click)&#x3D;&quot;edit(element.id)&quot;&gt;
+                  &lt;mat-icon&gt;edit&lt;/mat-icon&gt;
+                  &lt;span&gt;{{ &#x27;common.menu.edit&#x27; | translate }}&lt;/span&gt;
+                &lt;/button&gt;
+                &lt;button mat-menu-item (click)&#x3D;&quot;delete(element)&quot;&gt;
+                  &lt;mat-icon&gt;delete&lt;/mat-icon&gt;
+                  &lt;span&gt;{{ &#x27;common.menu.remove&#x27; | translate }}&lt;/span&gt;
+                &lt;/button&gt;
+              &lt;/mat-menu&gt;
+            &lt;/td&gt;
+          &lt;/ng-container&gt;
+        }
+
+        &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;[&#x27;header-row-first-group&#x27;]&quot;&gt;&lt;/tr&gt;
+        &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;displayedColumns()&quot;&gt;&lt;/tr&gt;
+        &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: displayedColumns()&quot;&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+
+      &lt;ng-template #success&gt;
+        &lt;div class&#x3D;&quot;flex items-center space-x-1&quot;&gt;
+          &lt;mat-icon class&#x3D;&quot;mat-icon-size&quot; color&#x3D;&quot;primary&quot;&gt;check&lt;/mat-icon&gt;
+          &lt;span&gt;{{ 200 }}&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/ng-template&gt;
+
+      &lt;ng-template #failed&gt;
+        &lt;div class&#x3D;&quot;flex items-center space-x-1&quot;&gt;
+          &lt;mat-icon class&#x3D;&quot;text-customGreyColor mat-icon-size&quot;&gt;error_outline&lt;/mat-icon&gt;
+          &lt;span&gt;{{ 400 }}&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/ng-template&gt;
+
+      &lt;!-- No Data --&gt;
+      @if (dataSource.data.length &#x3D;&#x3D;&#x3D; 0) {
+        &lt;div&gt;No Records Found!&lt;/div&gt;
+      }
+
+      &lt;!-- Pagination --&gt;
+      @if (isPageable) {
+        &lt;mat-paginator
+          [pageSizeOptions]&#x3D;&quot;pageSizeOptions&quot;
+          [pageSize]&#x3D;&quot;defaultPageSize&quot;
+          (page)&#x3D;&quot;onPageChange($event)&quot;
+          [showFirstLastButtons]&#x3D;&quot;true&quot;
+          #paginator
+          [length]&#x3D;&quot;totalRows&quot;
+          [pageIndex]&#x3D;&quot;currentPage&quot;
+          aria-label&#x3D;&quot;Select page&quot;
+        &gt;&lt;/mat-paginator&gt;
+      }
+    &lt;/ng-container&gt;
+  &#x60;,
+  styles: [
+    &#x60;
+      table {
+        width: 100%;
+      }
+
+      th,
+      td {
+        padding: 10px !important;
+      }
+
+      mat-form-field {
+        width: 100%;
+        display: block;
+      }
+
+      .text-right {
+        text-align: right !important;
+      }
+
+      .title {
+        margin-right: 12px;
+      }
+
+      .export-button {
+        right: 0;
+        margin-left: 20px;
+      }
+    &#x60;,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class LeaveListComponent implements OnInit, AfterViewInit {
+  public dataSource &#x3D; new MatTableDataSource&lt;any&gt;([]);
+  public displayedColumns: WritableSignal&lt;string[]&gt; &#x3D; signal&lt;string[]&gt;([]);
+
+  @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort!: MatSort;
+  // @ViewContainerRef
+
+  hasMenu &#x3D; true;
+  isPageable &#x3D; true;
+  isPaginated &#x3D; false;
+  isSortable &#x3D; true;
+  isFilterable &#x3D; true;
+  rowFilterAction: string &#x3D; &#x27;filter&#x27;;
+  pageSizeOptions: number[] &#x3D; [5, 10, 25, 100];
+  defaultPageSize &#x3D; this.pageSizeOptions[1];
+  newButtonHidden: boolean &#x3D; false;
+  exportButtonHidden: boolean &#x3D; false;
+  addNewRoute &#x3D; &#x27;&#x27;;
+  hasNewRoute &#x3D; false;
+  isLoading &#x3D; false;
+
+  title &#x3D; &#x27;Leaves&#x27;;
+  cols: IExportColumn[] &#x3D; [];
+  filename &#x3D; &#x27;Leaves&#x27;;
+  tableColumns: WritableSignal&lt;ITableColumn[]&gt; &#x3D; signal&lt;ITableColumn[]&gt;([
+    {
+      name: &#x27;position&#x27;,
+      dataKey: &#x27;position&#x27;,
+      position: &#x27;left&#x27;,
+      isSortable: true,
+    },
+    {
+      name: &#x27;name&#x27;,
+      dataKey: &#x27;name&#x27;,
+      position: &#x27;left&#x27;,
+      isSortable: true,
+    },
+    {
+      name: &#x27;weight&#x27;,
+      dataKey: &#x27;weight&#x27;,
+      position: &#x27;left&#x27;,
+      isSortable: true,
+    },
+    {
+      name: &#x27;symbol&#x27;,
+      dataKey: &#x27;symbol&#x27;,
+      position: &#x27;right&#x27;,
+      isSortable: false,
+    },
+  ]);
+
+  page &#x3D; 1;
+  per_page &#x3D; 10;
+  totalData: number &#x3D; 0;
+  totalRows &#x3D; 0;
+  currentPage &#x3D; 0;
+  pageSize &#x3D; 5;
+  objects!: PeriodicElement[];
+  exportColumns: any[] &#x3D; [];
+
+  private dialog &#x3D; inject(MatDialog);
+  protected router &#x3D; inject(Router);
+  protected route &#x3D; inject(ActivatedRoute);
+  // filesService &#x3D; inject(FilesService);
+
+  private upsert!: LeaveUpsertComponent;
+
+  constructor() {} // private upsert: BaseFormComponent&lt;PeriodicElement&gt; // private service: BaseApiService&lt;PeriodicElement&gt;
+
+  get displayTableColumns(): ITableColumn[] {
+    // tslint:disable-next-line:no-non-null-assertion
+    return this.tableColumns()!.filter((x) &#x3D;&gt; x.name !&#x3D;&#x3D; &#x27;menu&#x27;);
+  }
+
+  // we need this, to make pagination work with *ngIf
+  ngAfterViewInit(): void {
+    this.dataSource.paginator &#x3D; this.paginator;
+  }
+
+  ngOnInit(): void {
+    const columnNames &#x3D; this.tableColumns().map((tableColumn: ITableColumn) &#x3D;&gt; tableColumn.name);
+
+    this.displayedColumns.set(columnNames);
+
+    if (this.hasMenu) {
+      this.displayedColumns().push(&#x27;menu&#x27;);
+    }
+
+    if (this.cols.length) {
+      this.exportColumns &#x3D; this.cols.map((col) &#x3D;&gt; ({
+        title: col.header,
+        dataKey: col.field,
+      }));
+    }
+
+    // this.loadData(this.page, this.per_page);
+    this.loadData();
+  }
+
+  loadData(page?: number, per_page?: number): void {
+    // this.isLoading &#x3D; true;
+    this.objects &#x3D; ELEMENT_DATA;
+    // this.dataSource &#x3D; new MatTableDataSource&lt;PeriodicElement&gt;(ELEMENT_DATA);
+    this.dataSource.data &#x3D; ELEMENT_DATA;
+
+    /*setTimeout(() &#x3D;&gt; {
+      this.paginator.pageIndex &#x3D; this.currentPage;
+      this.paginator.length &#x3D; ELEMENT_DATA.length;
+    });*/
+
+    // eslint-disable-next-line no-console
+    console.log(this.objects);
+
+    // this.dataSource.paginator &#x3D; this.paginator;
+    // this.dataSource.sort &#x3D; this.sort;
+    // this.isLoading &#x3D; false;
+  }
+
+  add(): void {}
+
+  edit(id: number): void {}
+
+  delete(element: any): void {}
+
+  exportPdf(): void {
+    // this.filesService.exportPdf(this.cols, this.objects, this.filename);
+  }
+
+  exportExcel(): void {
+    // this.filesService.exportExcel(this.cols, this.filename);
+  }
+
+  saveAsExcelFile(buffer: any, fileName: string): void {
+    // this.filesService.saveAsExcelFile(buffer, fileName);
+  }
+
+  sortData(sortParameters: Sort): PeriodicElement[] {
+    const keyName &#x3D; sortParameters.active;
+    if (sortParameters.direction &#x3D;&#x3D;&#x3D; &#x27;asc&#x27;) {
+      this.objects &#x3D; this.objects.sort((a: PeriodicElement, b: PeriodicElement) &#x3D;&gt;
+        (a as any)[keyName].localeCompare((b as any)[keyName]),
+      );
+    } else if (sortParameters.direction &#x3D;&#x3D;&#x3D; &#x27;desc&#x27;) {
+      this.objects &#x3D; this.objects.sort((a: PeriodicElement, b: PeriodicElement) &#x3D;&gt;
+        (b as any)[keyName].localeCompare((a as any)[keyName]),
+      );
+    } else {
+      return ELEMENT_DATA;
+    }
+
+    return this.objects;
+  }
+
+  onTableScroll(e: any): void {
+    const tableViewHeight &#x3D; e.target.offsetHeight; // viewport: ~500px
+    const tableScrollHeight &#x3D; e.target.scrollHeight; // length of all table
+    const scrollLocation &#x3D; e.target.scrollTop; // how far user scrolled
+
+    // If the user has scrolled within 200px of the bottom, add more data
+    const buffer &#x3D; 200;
+    const limit &#x3D; tableScrollHeight - tableViewHeight - buffer;
+    if (scrollLocation &gt; limit) {
+      // this.tableDataSource &#x3D; this.tableDataSource.concat(ELEMENT_DATA);
+    }
+  }
+
+  onPageChange(event: PageEvent): void {
+    // Handle page change event
+    this.page &#x3D; event.pageIndex + 1; // Update page based on event
+    this.per_page &#x3D; event.pageSize; // Update perPage based on event
+    this.loadData(this.page, this.per_page); // Reload data with updated page and perPage
+  }
+
+  applyFilter(event: Event): void {
+    const filterValue &#x3D; (event.target as HTMLInputElement).value;
+    this.dataSource.filter &#x3D; filterValue.trim().toLowerCase();
+  }
+
+  sortTable(sortParameters: Sort): void {
+    // defining name of data property, to sort by, instead of column name
+    sortParameters.active &#x3D; this.tableColumns().find(
+      (column) &#x3D;&gt; column.name &#x3D;&#x3D;&#x3D; sortParameters.active,
+    )!.dataKey!;
+    this.sortData(sortParameters);
+  }
+
+  newRouteNav(): void {
+    this.router.navigate([&#x27;add&#x27;], {relativeTo: this.route});
+  }
+}
+
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
+  description: string;
+}
+
+const ELEMENT_DATA: PeriodicElement[] &#x3D; [
+  {
+    position: 1,
+    name: &#x27;Hydrogen&#x27;,
+    weight: 1.0079,
+    symbol: &#x27;H&#x27;,
+    description: &#x60;Hydrogen is a chemical element with symbol H and atomic number 1. With a standard
+        atomic weight of 1.008, hydrogen is the lightest element on the periodic table.&#x60;,
+  },
+  {
+    position: 2,
+    name: &#x27;Helium&#x27;,
+    weight: 4.0026,
+    symbol: &#x27;He&#x27;,
+    description: &#x60;Helium is a chemical element with symbol He and atomic number 2. It is a
+        colorless, odorless, tasteless, non-toxic, inert, monatomic gas, the first in the noble gas
+        group in the periodic table. Its boiling point is the lowest among all the elements.&#x60;,
+  },
+  {
+    position: 3,
+    name: &#x27;Lithium&#x27;,
+    weight: 6.941,
+    symbol: &#x27;Li&#x27;,
+    description: &#x60;Lithium is a chemical element with symbol Li and atomic number 3. It is a soft,
+        silvery-white alkali metal. Under standard conditions, it is the lightest metal and the
+        lightest solid element.&#x60;,
+  },
+  {
+    position: 4,
+    name: &#x27;Beryllium&#x27;,
+    weight: 9.0122,
+    symbol: &#x27;Be&#x27;,
+    description: &#x60;Beryllium is a chemical element with symbol Be and atomic number 4. It is a
+        relatively rare element in the universe, usually occurring as a product of the spallation of
+        larger atomic nuclei that have collided with cosmic rays.&#x60;,
+  },
+  {
+    position: 5,
+    name: &#x27;Boron&#x27;,
+    weight: 10.811,
+    symbol: &#x27;B&#x27;,
+    description: &#x60;Boron is a chemical element with symbol B and atomic number 5. Produced entirely
+        by cosmic ray spallation and supernovae and not by stellar nucleosynthesis, it is a
+        low-abundance element in the Solar system and in the Earth&#x27;s crust.&#x60;,
+  },
+  {
+    position: 6,
+    name: &#x27;Carbon&#x27;,
+    weight: 12.0107,
+    symbol: &#x27;C&#x27;,
+    description: &#x60;Carbon is a chemical element with symbol C and atomic number 6. It is nonmetallic
+        and tetravalent—making four electrons available to form covalent chemical bonds. It belongs
+        to group 14 of the periodic table.&#x60;,
+  },
+  {
+    position: 7,
+    name: &#x27;Nitrogen&#x27;,
+    weight: 14.0067,
+    symbol: &#x27;N&#x27;,
+    description: &#x60;Nitrogen is a chemical element with symbol N and atomic number 7. It was first
+        discovered and isolated by Scottish physician Daniel Rutherford in 1772.&#x60;,
+  },
+  {
+    position: 8,
+    name: &#x27;Oxygen&#x27;,
+    weight: 15.9994,
+    symbol: &#x27;O&#x27;,
+    description: &#x60;Oxygen is a chemical element with symbol O and atomic number 8. It is a member of
+         the chalcogen group on the periodic table, a highly reactive nonmetal, and an oxidizing
+         agent that readily forms oxides with most elements as well as with other compounds.&#x60;,
+  },
+  {
+    position: 9,
+    name: &#x27;Fluorine&#x27;,
+    weight: 18.9984,
+    symbol: &#x27;F&#x27;,
+    description: &#x60;Fluorine is a chemical element with symbol F and atomic number 9. It is the
+        lightest halogen and exists as a highly toxic pale yellow diatomic gas at standard
+        conditions.&#x60;,
+  },
+  {
+    position: 10,
+    name: &#x27;Neon&#x27;,
+    weight: 20.1797,
+    symbol: &#x27;Ne&#x27;,
+    description: &#x60;Neon is a chemical element with symbol Ne and atomic number 10. It is a noble gas.
+        Neon is a colorless, odorless, inert monatomic gas under standard conditions, with about
+        two-thirds the density of air.&#x60;,
+  },
+];
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'PeriodicElement-2.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,615 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>xtra-hrms-client documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">xtra-hrms-client documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  LeaveRequestUpsertComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/ui/admin/lms/requests/leave-request-upsert/leave-request-upsert.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>xtra-leave-request-upsert</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">Standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                                <code><a href="../components/LeaveRequestItemComponent.html" target="_self" >LeaveRequestItemComponent</a></code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code></code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">@if (!inEditMode) {
+  &lt;button (click)&#x3D;&quot;onEdit()&quot;&gt;Edit&lt;/button&gt;
+}
+
+@if (inEditMode) {
+  &lt;button (click)&#x3D;&quot;onCancel()&quot;&gt;Cancel&lt;/button&gt;
+  &lt;button (click)&#x3D;&quot;onSave()&quot;&gt;Save&lt;/button&gt;
+}
+
+&lt;xtra-leave-request-item #leaveRequestForm [inEditMode]&#x3D;&quot;inEditMode&quot;&gt;&lt;/xtra-leave-request-item&gt;
+</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#forms" >forms</a>
+                            </li>
+                            <li>
+                                <a href="#inEditMode" >inEditMode</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#onCancel" >onCancel</a>
+                            </li>
+                            <li>
+                                <a href="#onEdit" >onEdit</a>
+                            </li>
+                            <li>
+                                <a href="#onSave" >onSave</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCancel"></a>
+                    <span class="name">
+                        <span ><b>onCancel</b></span>
+                        <a href="#onCancel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onCancel()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/app/ui/admin/lms/requests/leave-request-upsert/leave-request-upsert.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onEdit"></a>
+                    <span class="name">
+                        <span ><b>onEdit</b></span>
+                        <a href="#onEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onEdit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="30"
+                                    class="link-to-prism">src/app/ui/admin/lms/requests/leave-request-upsert/leave-request-upsert.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSave"></a>
+                    <span class="name">
+                        <span ><b>onSave</b></span>
+                        <a href="#onSave"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSave()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">src/app/ui/admin/lms/requests/leave-request-upsert/leave-request-upsert.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="forms"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>forms</b></span>
+                        <a href="#forms"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>QueryList&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChildren(&#x27;leaveRequestForm&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/ui/admin/lms/requests/leave-request-upsert/leave-request-upsert.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="inEditMode"></a>
+                    <span class="name">
+                        <span ><b>inEditMode</b></span>
+                        <a href="#inEditMode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/ui/admin/lms/requests/leave-request-upsert/leave-request-upsert.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {ChangeDetectionStrategy, Component, QueryList, ViewChildren} from &#x27;@angular/core&#x27;;
+import {CommonModule} from &#x27;@angular/common&#x27;;
+import {LeaveRequestItemComponent} from &#x27;../leave-request-item/leave-request-item.component&#x27;;
+
+@Component({
+  selector: &#x27;xtra-leave-request-upsert&#x27;,
+  standalone: true,
+  imports: [CommonModule, LeaveRequestItemComponent],
+  template: &#x60;
+    @if (!inEditMode) {
+      &lt;button (click)&#x3D;&quot;onEdit()&quot;&gt;Edit&lt;/button&gt;
+    }
+
+    @if (inEditMode) {
+      &lt;button (click)&#x3D;&quot;onCancel()&quot;&gt;Cancel&lt;/button&gt;
+      &lt;button (click)&#x3D;&quot;onSave()&quot;&gt;Save&lt;/button&gt;
+    }
+
+    &lt;xtra-leave-request-item #leaveRequestForm [inEditMode]&#x3D;&quot;inEditMode&quot;&gt;&lt;/xtra-leave-request-item&gt;
+  &#x60;,
+  styles: &#x60;&#x60;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class LeaveRequestUpsertComponent {
+  @ViewChildren(&#x27;leaveRequestForm&#x27;)
+  forms!: QueryList&lt;any&gt;;
+
+  inEditMode: boolean &#x3D; false;
+
+  onEdit(): void {
+    this.inEditMode &#x3D; true;
+  }
+
+  onCancel(): void {
+    this.forms.forEach((c) &#x3D;&gt; c.cancel());
+    this.inEditMode &#x3D; false;
+  }
+
+  onSave(): void {
+    this.forms.forEach((c) &#x3D;&gt; c.save());
+    this.inEditMode &#x3D; false;
+  }
+}
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="styleData">
+            <pre class="line-numbers"><code class="language-scss">
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div>@if (!inEditMode) {  <button (click)="onEdit()">Edit</button>}@if (inEditMode) {  <button (click)="onCancel()">Cancel</button>  <button (click)="onSave()">Save</button>}<xtra-leave-request-item #leaveRequestForm [inEditMode]="inEditMode"></xtra-leave-request-item></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'xtra-about'},{'name': 'AccountComponent', 'selector': 'xtra-user-account'},{'name': 'AddressComponent', 'selector': 'xtra-address'},{'name': 'AdminComponent', 'selector': 'xtra-admin'},{'name': 'AllowanceListComponent', 'selector': 'xtra-allowance-list'},{'name': 'AllowanceUpsertComponent', 'selector': 'xtra-allowance-upsert'},{'name': 'AmsComponent', 'selector': 'xtra-ams'},{'name': 'AnswerListComponent', 'selector': 'xtra-answer-list'},{'name': 'AnswerUpsertComponent', 'selector': 'xtra-answer-upsert'},{'name': 'AppComponent', 'selector': 'xtra-root'},{'name': 'ArticleListComponent', 'selector': 'xtra-article-list'},{'name': 'ArticlePageComponent', 'selector': 'xtra-article-page'},{'name': 'ArticlesComponent', 'selector': 'xtra-articles'},{'name': 'AssetAssignComponent', 'selector': 'xtra-asset-assign'},{'name': 'AssetCategoryListComponent', 'selector': 'xtra-asset-category-list'},{'name': 'AssetCategoryPageComponent', 'selector': 'xtra-asset-category-page'},{'name': 'AssetListComponent', 'selector': 'xtra-asset-list'},{'name': 'AssetLotListComponent', 'selector': 'xtra-asset-lot-list'},{'name': 'AssetLotPageComponent', 'selector': 'xtra-asset-lot-page'},{'name': 'AssetPageComponent', 'selector': 'xtra-asset-page'},{'name': 'AssetRequestListComponent', 'selector': 'xtra-asset-request-list'},{'name': 'AssetRequestPageComponent', 'selector': 'xtra-asset-request-page'},{'name': 'AttendanceActivityListComponent', 'selector': 'xtra-attendance-activity-list'},{'name': 'AttendanceActivityUpsertComponent', 'selector': 'xtra-attendance-activity-upsert'},{'name': 'AttendanceLateComeEarlyOutListComponent', 'selector': 'xtra-attendance-late-come-early-out-list'},{'name': 'AttendanceLateComeEarlyOutUpsertComponent', 'selector': 'xtra-attendance-late-come-early-out-upsert'},{'name': 'AttendanceListComponent', 'selector': 'xtra-attendance-list'},{'name': 'AttendanceOvertimeListComponent', 'selector': 'xtra-attendance-overtime-list'},{'name': 'AttendanceOvertimeUpsertComponent', 'selector': 'xtra-attendance-overtime-upsert'},{'name': 'AttendanceUpsertComponent', 'selector': 'xtra-attendance-upsert'},{'name': 'AttendanceValidationConditionListComponent', 'selector': 'xtra-attendance-validation-condition-list'},{'name': 'AttendanceValidationConditionUpsertComponent', 'selector': 'xtra-attendance-validation-condition-upsert'},{'name': 'AuthComponent', 'selector': 'xtra-auth'},{'name': 'AvailableLeaveListComponent', 'selector': 'xtra-available-leave-list'},{'name': 'AvailableLeaveUpsertComponent', 'selector': 'xtra-available-leave-upsert'},{'name': 'AvatarComponent', 'selector': 'xtra-avatar'},{'name': 'BankListComponent', 'selector': 'xtra-bank-list'},{'name': 'BankUpsertComponent', 'selector': 'xtra-bank-upsert'},{'name': 'BasePageComponent', 'selector': 'xtra-base-page'},{'name': 'BranchListComponent', 'selector': 'xtra-branch-list'},{'name': 'BranchPageComponent', 'selector': 'xtra-branch-page'},{'name': 'BreadcrumbsComponent', 'selector': 'xtra-breadcrumbs'},{'name': 'ButtonComponent', 'selector': 'xtra-button'},{'name': 'CandidateFinalizationComponent', 'selector': 'xtra-candidate-finalization'},{'name': 'CandidateListComponent', 'selector': 'xtra-candidate-list'},{'name': 'CandidatePageComponent', 'selector': 'xtra-candidate-page'},{'name': 'CandidateStageListComponent', 'selector': 'xtra-candidate-stage-list'},{'name': 'CandidateStageUpsertComponent', 'selector': 'xtra-candidate-stage-upsert'},{'name': 'CandidateTaskListComponent', 'selector': 'xtra-candidate-task-list'},{'name': 'CandidateTaskUpsertComponent', 'selector': 'xtra-candidate-task-upsert'},{'name': 'CareersPortalComponent', 'selector': 'xtra-careers-portal'},{'name': 'ChatBotComponent', 'selector': 'xtra-chat-bot'},{'name': 'ChatComponent', 'selector': 'xtra-chat'},{'name': 'ChatListComponent', 'selector': 'xtra-chat-list'},{'name': 'CmsComponent', 'selector': 'xtra-cms'},{'name': 'CommentListComponent', 'selector': 'xtra-comment-list'},{'name': 'CommentUpsertComponent', 'selector': 'xtra-comment-upsert'},{'name': 'CommsComponent', 'selector': 'xtra-comms'},{'name': 'ComposeMailComponent', 'selector': 'xtra-compose-mail'},{'name': 'ConfirmationDialogComponent', 'selector': 'xtra-confirmation-dialog'},{'name': 'ConfirmDialogComponent', 'selector': 'xtra-confirm-dialog'},{'name': 'ContactComponent', 'selector': 'xtra-contact'},{'name': 'ContactDetailsComponent', 'selector': 'xtra-user-contact-details'},{'name': 'ContractListComponent', 'selector': 'xtra-contract-list'},{'name': 'ContractUpsertComponent', 'selector': 'xtra-contract-upsert'},{'name': 'CurrencyListComponent', 'selector': 'xtra-currency-list'},{'name': 'CvEvaluationComponent', 'selector': 'xtra-cv-evaluation'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DeductionListComponent', 'selector': 'xtra-deduction-list'},{'name': 'DeductionUpsertComponent', 'selector': 'xtra-deduction-upsert'},{'name': 'DeptListComponent', 'selector': 'xtra-dept-list'},{'name': 'DeptPageComponent', 'selector': 'xtra-dept-page'},{'name': 'DynamicFormComponent', 'selector': 'xtra-dynamic-form'},{'name': 'EmailDetailComponent', 'selector': 'xtra-email-detail'},{'name': 'EmailListComponent', 'selector': 'xtra-email-list'},{'name': 'EmailPageComponent', 'selector': 'xtra-email-page'},{'name': 'EmailsComponent', 'selector': 'xtra-emails'},{'name': 'EmailSettingsComponent', 'selector': 'xtra-email-settings'},{'name': 'EmailSettingsV2Component', 'selector': 'xtra-email-settings'},{'name': 'EmployeeKeyResultListComponent', 'selector': 'xtra-employee-key-result-list'},{'name': 'EmployeeKeyResultUpsertComponent', 'selector': 'xtra-employee-key-result-upsert'},{'name': 'EmployeeListComponent', 'selector': 'xtra-employee-list'},{'name': 'EmployeeListItemComponent', 'selector': 'xtra-employee-list-item'},{'name': 'EmployeeObjectiveListComponent', 'selector': 'xtra-employee-objective-list'},{'name': 'EmployeeObjectiveUpsertComponent', 'selector': 'xtra-employee-objective-upsert'},{'name': 'EmployeePageComponent', 'selector': 'xtra-employee-page'},{'name': 'EmployeePortalComponent', 'selector': 'xtra-employee-portal'},{'name': 'EmployeesComponent', 'selector': 'xtra-employees'},{'name': 'EmployeeShiftListComponent', 'selector': 'xtra-employee-shift-list'},{'name': 'EmployeeShiftScheduleListComponent', 'selector': 'xtra-employee-shift-schedule-list'},{'name': 'EmployeeShiftScheduleUpsertComponent', 'selector': 'xtra-employee-shift-schedule-upsert'},{'name': 'EmployeeShiftUpsertComponent', 'selector': 'xtra-employee-shift-upsert'},{'name': 'ErrorComponent', 'selector': 'xtra-error'},{'name': 'ErrorMessageComponent', 'selector': '[xtra-error-message]'},{'name': 'EventDetailComponent', 'selector': 'xtra-event-detail'},{'name': 'EventListComponent', 'selector': 'xtra-event-list'},{'name': 'EventsComponent', 'selector': 'xtra-events'},{'name': 'EventUpsertComponent', 'selector': 'xtra-upsert-event'},{'name': 'FederalTaxListComponent', 'selector': 'xtra-federal-tax-list'},{'name': 'FederalTaxUpsertComponent', 'selector': 'xtra-federal-tax-upsert'},{'name': 'FeedbackListComponent', 'selector': 'xtra-feedback-list'},{'name': 'FeedbackUpsertComponent', 'selector': 'xtra-feedback-upsert'},{'name': 'FileInputComponent', 'selector': 'xtra-mat-file-input'},{'name': 'FileUploadComponent', 'selector': 'xtra-file-upload'},{'name': 'FilingStatusListComponent', 'selector': 'xtra-filing-status-list'},{'name': 'FilingStatusUpsertComponent', 'selector': 'xtra-filing-status-upsert'},{'name': 'FinanceComponent', 'selector': 'xtra-finance'},{'name': 'FinancePortalComponent', 'selector': 'xtra-finance-portal'},{'name': 'FooterComponent', 'selector': 'xtra-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'xtra-forgot-password'},{'name': 'FormLayoutComponent', 'selector': 'xtra-form-layout'},{'name': 'HolidayItemComponent', 'selector': 'xtra-holiday-item'},{'name': 'HolidayListComponent', 'selector': 'xtra-holiday-list'},{'name': 'HolidayUpsertComponent', 'selector': 'xtra-holiday-upsert'},{'name': 'HrDetailListComponent', 'selector': 'xtra-hr-detail-list'},{'name': 'HrDetailPageComponent', 'selector': 'xtra-hr-detail-page'},{'name': 'InputComponent', 'selector': 'xtra-input'},{'name': 'InputComponent', 'selector': 'xtra-input'},{'name': 'InterviewFeedbackComponent', 'selector': 'xtra-interview-feedback'},{'name': 'InterviewPreparationComponent', 'selector': 'xtra-interview-preparation'},{'name': 'JobRoleListComponent', 'selector': 'xtra-job-role-list'},{'name': 'JobRoleUpsertComponent', 'selector': 'xtra-job-role-upsert'},{'name': 'KeyResultFeedbackListComponent', 'selector': 'xtra-key-result-feedback-list'},{'name': 'KeyResultFeedbackUpsertComponent', 'selector': 'xtra-key-result-feedback-upsert'},{'name': 'LangComponent', 'selector': 'xtra-lang'},{'name': 'LeaveDetailComponent', 'selector': 'xtra-leave-detail'},{'name': 'LeaveListComponent', 'selector': 'xtra-leave-list'},{'name': 'LeaveListComponent', 'selector': 'xtra-leave-list'},{'name': 'LeaveRequestItemComponent', 'selector': 'xtra-leave-request-item'},{'name': 'LeaveRequestListComponent', 'selector': 'xtra-leave-request-list'},{'name': 'LeaveRequestUpsertComponent', 'selector': 'xtra-leave-request-upsert'},{'name': 'LeavesComponent', 'selector': 'xtra-leaves'},{'name': 'LeaveTypeListComponent', 'selector': 'xtra-leave-type-list'},{'name': 'LeaveTypeUpsertComponent', 'selector': 'xtra-leave-type-upsert'},{'name': 'LeaveUpsertComponent', 'selector': 'xtra-leave-upsert'},{'name': 'ListComponent', 'selector': 'xtra-email-settings-list'},{'name': 'ListErrorsComponent', 'selector': 'xtra-list-errors'},{'name': 'LmsComponent', 'selector': 'xtra-lms'},{'name': 'LoaderComponent', 'selector': 'xtra-loader'},{'name': 'MsgIconBtnComponent', 'selector': 'xtra-msg-icon-btn'},{'name': 'NavbarComponent', 'selector': 'xtra-navbar'},{'name': 'OfflineComponent', 'selector': 'xtra-offline'},{'name': 'OnboardingComponent', 'selector': 'xtra-onboarding'},{'name': 'OnboardingPortalListComponent', 'selector': 'xtra-onboarding-portal-list'},{'name': 'OnboardingPortalUpsertComponent', 'selector': 'xtra-onboarding-portal-upsert'},{'name': 'OnboardingPreparationComponent', 'selector': 'xtra-onboarding-preparation'},{'name': 'OnboardingStageListComponent', 'selector': 'xtra-onboarding-stage-list'},{'name': 'OnboardingStageUpsertComponent', 'selector': 'xtra-onboarding-stage-upsert'},{'name': 'OnboardingTaskListComponent', 'selector': 'xtra-onboarding-task-list'},{'name': 'OnboardingTaskUpsertComponent', 'selector': 'xtra-onboarding-task-upsert'},{'name': 'OrganizationLeaveListComponent', 'selector': 'xtra-organization-leave-list'},{'name': 'OrganizationLeaveUpsertComponent', 'selector': 'xtra-organization-leave-upsert'},{'name': 'OrgChartComponent', 'selector': 'xtra-org-chart'},{'name': 'OrgDetailComponent', 'selector': 'xtra-org-detail'},{'name': 'OrgPageComponent', 'selector': 'xtra-org-page'},{'name': 'OrgsComponent', 'selector': 'xtra-orgs'},{'name': 'OtpInputComponent', 'selector': 'xtra-otp-input'},{'name': 'PageComponent', 'selector': 'xtra-page'},{'name': 'PageNotFoundComponent', 'selector': 'xtra-page-not-found'},{'name': 'PagerComponent', 'selector': 'xtra-pager'},{'name': 'PaginationComponent', 'selector': 'xtra-pagination'},{'name': 'PasswordComponent', 'selector': 'xtra-password'},{'name': 'PayrollListComponent', 'selector': 'xtra-payroll-list'},{'name': 'PayrollSettingListComponent', 'selector': 'xtra-payroll-setting-list'},{'name': 'PayrollSettingUpsertComponent', 'selector': 'xtra-payroll-setting-upsert'},{'name': 'PayrollUpsertComponent', 'selector': 'xtra-payroll-upsert'},{'name': 'PayslipListComponent', 'selector': 'xtra-payslip-list'},{'name': 'PayslipUpsertComponent', 'selector': 'xtra-payslip-upsert'},{'name': 'PerformanceListComponent', 'selector': 'xtra-performance-list'},{'name': 'PerformanceUpsertComponent', 'selector': 'xtra-performance-upsert'},{'name': 'PeriodListComponent', 'selector': 'xtra-period-list'},{'name': 'PeriodUpsertComponent', 'selector': 'xtra-period-upsert'},{'name': 'PermissionAssignComponent', 'selector': 'xtra-permission-assign'},{'name': 'PermissionListComponent', 'selector': 'xtra-permission-list'},{'name': 'PermissionPageComponent', 'selector': 'xtra-permission-page'},{'name': 'PmComponent', 'selector': 'xtra-pm'},{'name': 'PmsComponent', 'selector': 'xtra-pms'},{'name': 'PositionListComponent', 'selector': 'xtra-position-list'},{'name': 'PositionsComponent', 'selector': 'xtra-positions'},{'name': 'PositionUpsertComponent', 'selector': 'xtra-position-upsert'},{'name': 'PrivacyPolicyComponent', 'selector': 'xtra-privacy-policy'},{'name': 'ProfileComponent', 'selector': 'xtra-profile'},{'name': 'ProfileComponent', 'selector': 'xtra-profile'},{'name': 'ProjectCardComponent', 'selector': 'xtra-project-card'},{'name': 'ProjectGanttComponent', 'selector': 'xtra-project-gantt'},{'name': 'ProjectListComponent', 'selector': 'xtra-project-list'},{'name': 'ProjectPageComponent', 'selector': 'xtra-project-page'},{'name': 'QuestionListComponent', 'selector': 'xtra-question-list'},{'name': 'QuestionOptionListComponent', 'selector': 'xtra-question-option-list'},{'name': 'QuestionOptionUpsertComponent', 'selector': 'xtra-question-option-upsert'},{'name': 'QuestionTemplateListComponent', 'selector': 'xtra-question-template-list'},{'name': 'QuestionTemplateUpsertComponent', 'selector': 'xtra-question-template-upsert'},{'name': 'QuestionUpsertComponent', 'selector': 'xtra-question-upsert'},{'name': 'RecruitmentListComponent', 'selector': 'xtra-recruitment-list'},{'name': 'RecruitmentPageComponent', 'selector': 'xtra-recruitment-page'},{'name': 'RecruitmentsComponent', 'selector': 'xtra-recruitments'},{'name': 'RecruitmentSurveyAnswerListComponent', 'selector': 'xtra-recruitment-survey-answer-list'},{'name': 'RecruitmentSurveyAnswerUpsertComponent', 'selector': 'xtra-recruitment-survey-answer-upsert'},{'name': 'RecruitmentSurveyListComponent', 'selector': 'xtra-recruitment-survey-list'},{'name': 'RecruitmentSurveyUpsertComponent', 'selector': 'xtra-recruitment-survey-upsert'},{'name': 'RejectionLetterComponent', 'selector': 'xtra-rejection-letter'},{'name': 'ResetPasswordComponent', 'selector': 'xtra-reset-password'},{'name': 'RichTextEditorComponent', 'selector': 'xtra-rich-text-editor'},{'name': 'RoleListComponent', 'selector': 'xtra-role-list'},{'name': 'RolePageComponent', 'selector': 'xtra-role-page'},{'name': 'RotatingShiftAssignListComponent', 'selector': 'xtra-rotating-shift-assign-list'},{'name': 'RotatingShiftAssignUpsertComponent', 'selector': 'xtra-rotating-shift-assign-upsert'},{'name': 'RotatingShiftListComponent', 'selector': 'xtra-rotating-shift-list'},{'name': 'RotatingShiftUpsertComponent', 'selector': 'xtra-rotating-shift-upsert'},{'name': 'RotatingWorkTypeAssignListComponent', 'selector': 'xtra-rotating-work-type-assign-list'},{'name': 'RotatingWorkTypeAssignUpsertComponent', 'selector': 'xtra-rotating-work-type-assign-upsert'},{'name': 'RotatingWorkTypeListComponent', 'selector': 'xtra-rotating-work-type-list'},{'name': 'RotatingWorkTypeUpsertComponent', 'selector': 'xtra-rotating-work-type-upsert'},{'name': 'SettingsComponent', 'selector': 'xtra-settings'},{'name': 'ShiftRequestListComponent', 'selector': 'xtra-shift-request-list'},{'name': 'ShiftRequestUpsertComponent', 'selector': 'xtra-shift-request-upsert'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavLinkComponent', 'selector': 'xtra-sidenav-link'},{'name': 'SidenavListItemComponent', 'selector': 'xtra-sidenav-list-item'},{'name': 'SignInComponent', 'selector': 'xtra-sign-in'},{'name': 'SignInComponent', 'selector': 'xtra-sign-in'},{'name': 'SignUpComponent', 'selector': 'xtra-sign-up'},{'name': 'SimpleDialogComponent', 'selector': 'xtra-simple-dialog'},{'name': 'SimplePageComponent', 'selector': 'xtra-simple-page'},{'name': 'SmsComponent', 'selector': 'xtra-sms'},{'name': 'SmsListComponent', 'selector': 'xtra-sms-list'},{'name': 'SmsListComponent', 'selector': 'xtra-sms-list'},{'name': 'SmsPageComponent', 'selector': 'xtra-sms-page'},{'name': 'StageListComponent', 'selector': 'xtra-stage-list'},{'name': 'StageNoteListComponent', 'selector': 'xtra-stage-note-list'},{'name': 'StageNoteUpsertComponent', 'selector': 'xtra-stage-note-upsert'},{'name': 'StageUpsertComponent', 'selector': 'xtra-stage-upsert'},{'name': 'SvgDefinitionsComponent', 'selector': 'xtra-svg-definitions'},{'name': 'SvgIconComponent', 'selector': 'xtra-svg-icon'},{'name': 'TableComponent', 'selector': 'xtra-table'},{'name': 'TableV2Component', 'selector': 'xtra-table-v2'},{'name': 'TaskAssignmentListComponent', 'selector': 'xtra-task-assignment-list'},{'name': 'TaskAssignmentUpsertComponent', 'selector': 'xtra-task-assignment-upsert'},{'name': 'TaskListComponent', 'selector': 'xtra-task-list'},{'name': 'TaskUpsertComponent', 'selector': 'xtra-task-upsert'},{'name': 'TelComponent', 'selector': 'xtra-tel'},{'name': 'TermsOfServiceComponent', 'selector': 'xtra-terms-of-service'},{'name': 'TextareaComponent', 'selector': 'xtra-textarea'},{'name': 'TimeOffMgtComponent', 'selector': 'xtra-time-off-mgt'},{'name': 'TitleComponent', 'selector': 'xtra-title'},{'name': 'TrainingListComponent', 'selector': 'xtra-training-list'},{'name': 'TrainingResourceListComponent', 'selector': 'xtra-training-resource-list'},{'name': 'TrainingResourceUpsertComponent', 'selector': 'xtra-training-resource-upsert'},{'name': 'TrainingScheduleListComponent', 'selector': 'xtra-training-schedule-list'},{'name': 'TrainingScheduleUpsertComponent', 'selector': 'xtra-training-schedule-upsert'},{'name': 'TrainingsComponent', 'selector': 'xtra-trainings'},{'name': 'TrainingUpsertComponent', 'selector': 'xtra-training-upsert'},{'name': 'UamComponent', 'selector': 'xtra-uam'},{'name': 'UiSpacerComponent', 'selector': 'xtra-ui-spacer'},{'name': 'UserAvatarComponent', 'selector': 'xtra-user-avatar'},{'name': 'UserCardComponent', 'selector': 'xtra-user-card'},{'name': 'UserListComponent', 'selector': 'xtra-user-list'},{'name': 'UserListComponent', 'selector': 'xtra-user-list'},{'name': 'UserPageComponent', 'selector': 'xtra-user-page'},{'name': 'UsersComponent', 'selector': 'xtra-users'},{'name': 'VerifyOtpComponent', 'selector': 'xtra-verify-otp'},{'name': 'WindowComponent', 'selector': 'xtra-window'},{'name': 'WorkRecordListComponent', 'selector': 'xtra-work-record-list'},{'name': 'WorkRecordUpsertComponent', 'selector': 'xtra-work-record-upsert'},{'name': 'WorkTypeListComponent', 'selector': 'xtra-work-type-list'},{'name': 'WorkTypeRequestListComponent', 'selector': 'xtra-work-type-request-list'},{'name': 'WorkTypeRequestUpsertComponent', 'selector': 'xtra-work-type-request-upsert'},{'name': 'WorkTypeUpsertComponent', 'selector': 'xtra-work-type-upsert'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[xtraAutofocus]'},{'name': 'ButtonDirective', 'selector': '[xtraButton]'},{'name': 'DynamicFieldDirective', 'selector': '[xtraDynamicField]'},{'name': 'EmailValidatorDirective', 'selector': '[xtraEmailValidator]'},{'name': 'EmployeeNotAvailableDirective', 'selector': 'a[routerLink]'},{'name': 'HasPermissionDirective', 'selector': '[xtraHasPermission]'},{'name': 'LoaderDirective', 'selector': '[loading]'},{'name': 'MinLengthDirective', 'selector': '[xtraMinLength]'},{'name': 'NgMatTableQueryReflectorDirective', 'selector': '[xtraNgMatTableQueryReflector]'},{'name': 'TooltipDirective', 'selector': 'xtraTooltip'},{'name': 'TruncateDirective', 'selector': '[xtraTruncate]'}];
+    var ACTUAL_COMPONENT = {'name': 'LeaveRequestUpsertComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'LeaveRequestUpsertComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

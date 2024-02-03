@@ -1,0 +1,1825 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>xtra-hrms-client documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">xtra-hrms-client documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  OtpInputComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/ui/auth/verify-otp/otp-input.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>ControlValueAccessor</code>
+                <code>Validator</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>{
+    provide: NG_VALUE_ACCESSOR, useExisting: OtpInputComponent, multi: true,
+}</code>
+                            <code>{
+    provide: NG_VALIDATORS, useExisting: OtpInputComponent, multi: true,
+}</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>xtra-otp-input</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">Standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>ReactiveFormsModule</code>
+                            <code>CommonModule</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code>
+      :host {
+        display: flex;
+        gap: 0.3em;
+        font-size: 24px;
+      }
+
+      input {
+        aspect-ratio: 3/4;
+        width: 2em;
+        text-align: center;
+        border-radius: 4px;
+        font-size: inherit;
+        border: 0.1em solid #aaa;
+      }
+
+      input:focus {
+        outline: 0;
+        border-color: skyblue;
+        box-shadow: 0 0 0 0.1em skyblue;
+      }
+
+      input:disabled {
+        border-color: #eee;
+      }
+    </code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">@for (input of inputs.controls; track input; let i &#x3D; $index) {
+  &lt;input
+    #inputEl
+    (focus)&#x3D;&quot;handleFocus($event)&quot;
+    (blur)&#x3D;&quot;onTouched?.()&quot;
+    (keypress)&#x3D;&quot;handleKeyPress($event, i)&quot;
+    (input)&#x3D;&quot;handleInput()&quot;
+    (keydown)&#x3D;&quot;handleKeyDown($event, i)&quot;
+    (paste)&#x3D;&quot;handlePaste($event, i)&quot;
+    [formControl]&#x3D;&quot;$any(input)&quot;
+    [attr.autocomplete]&#x3D;&quot;i &#x3D;&#x3D;&#x3D; 0 ? &#x27;one-time-code&#x27; : null&quot;
+    type&#x3D;&quot;text&quot;
+    inputmode&#x3D;&quot;numeric&quot;
+  /&gt;
+}
+</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="##scheduledFocus" >#scheduledFocus</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="##size" >#size</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#inputEls" >inputEls</a>
+                            </li>
+                            <li>
+                                <a href="#inputs" >inputs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#onChange" >onChange</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#onTouched" >onTouched</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="##focusInput" >#focusInput</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="##updateWiredValue" >#updateWiredValue</a>
+                            </li>
+                            <li>
+                                <a href="#handleFocus" >handleFocus</a>
+                            </li>
+                            <li>
+                                <a href="#handleInput" >handleInput</a>
+                            </li>
+                            <li>
+                                <a href="#handleKeyDown" >handleKeyDown</a>
+                            </li>
+                            <li>
+                                <a href="#handleKeyPress" >handleKeyPress</a>
+                            </li>
+                            <li>
+                                <a href="#handlePaste" >handlePaste</a>
+                            </li>
+                            <li>
+                                <a href="#registerOnChange" >registerOnChange</a>
+                            </li>
+                            <li>
+                                <a href="#registerOnTouched" >registerOnTouched</a>
+                            </li>
+                            <li>
+                                <a href="#setDisabledState" >setDisabledState</a>
+                            </li>
+                            <li>
+                                <a href="#validate" >validate</a>
+                            </li>
+                            <li>
+                                <a href="#writeValue" >writeValue</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#size" >size</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#size" >size</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="size"></a>
+                        <b>size</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:105</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="#focusInput"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>#focusInput</b></span>
+                        <a href="##focusInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>#focusInput(idx: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="222"
+                                    class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:222</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idx</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="#updateWiredValue"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>#updateWiredValue</b></span>
+                        <a href="##updateWiredValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>#updateWiredValue()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="228"
+                                    class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:228</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleFocus"></a>
+                    <span class="name">
+                        <span ><b>handleFocus</b></span>
+                        <a href="#handleFocus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleFocus(e: FocusEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="217"
+                                    class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:217</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>FocusEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleInput"></a>
+                    <span class="name">
+                        <span ><b>handleInput</b></span>
+                        <a href="#handleInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleInput()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:157</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleKeyDown"></a>
+                    <span class="name">
+                        <span ><b>handleKeyDown</b></span>
+                        <a href="#handleKeyDown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleKeyDown(e: KeyboardEvent, idx: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="145"
+                                    class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:145</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>KeyboardEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>idx</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleKeyPress"></a>
+                    <span class="name">
+                        <span ><b>handleKeyPress</b></span>
+                        <a href="#handleKeyPress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleKeyPress(e: KeyboardEvent, idx: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="166"
+                                    class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:166</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>KeyboardEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>idx</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handlePaste"></a>
+                    <span class="name">
+                        <span ><b>handlePaste</b></span>
+                        <a href="#handlePaste"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handlePaste(e: ClipboardEvent, idx: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="190"
+                                    class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:190</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>ClipboardEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>idx</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerOnChange"></a>
+                    <span class="name">
+                        <span ><b>registerOnChange</b></span>
+                        <a href="#registerOnChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>registerOnChange(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="119"
+                                    class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:119</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fn</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerOnTouched"></a>
+                    <span class="name">
+                        <span ><b>registerOnTouched</b></span>
+                        <a href="#registerOnTouched"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>registerOnTouched(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="123"
+                                    class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:123</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fn</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setDisabledState"></a>
+                    <span class="name">
+                        <span ><b>setDisabledState</b></span>
+                        <a href="#setDisabledState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setDisabledState(isDisabled: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="127"
+                                    class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:127</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>isDisabled</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validate"></a>
+                    <span class="name">
+                        <span ><b>validate</b></span>
+                        <a href="#validate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validate(control: AbstractControl<string | string>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="135"
+                                    class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:135</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>control</td>
+                                            <td>
+                                                        <code>AbstractControl&lt;string | string&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>ValidationErrors | null</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="writeValue"></a>
+                    <span class="name">
+                        <span ><b>writeValue</b></span>
+                        <a href="#writeValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>writeValue(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="110"
+                                    class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:110</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="#scheduledFocus"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>#scheduledFocus</b></span>
+                        <a href="##scheduledFocus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null as any</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:102</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="#size"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>#size</b></span>
+                        <a href="##size"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>4</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="inputEls"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>inputEls</b></span>
+                        <a href="#inputEls"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Element.html" target="_self" >QueryList&lt;ElementRef&lt;HTMLInputElement&gt;&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChildren(&#x27;inputEl&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:97</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="inputs"></a>
+                    <span class="name">
+                        <span ><b>inputs</b></span>
+                        <a href="#inputs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>getFormArray(this.#size)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:101</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onChange"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>onChange</b></span>
+                        <a href="#onChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:98</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onTouched"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>onTouched</b></span>
+                        <a href="#onTouched"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="size"></a>
+                        <span class="name"><b>size</b><a href="#size"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>size(size: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/ui/auth/verify-otp/otp-input.component.ts:105</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>size</td>
+                                                    
+                                                            <td>
+                                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {CommonModule} from &#x27;@angular/common&#x27;;
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  isDevMode,
+  QueryList,
+  ViewChildren,
+} from &#x27;@angular/core&#x27;;
+import {
+  AbstractControl,
+  ControlValueAccessor,
+  FormArray,
+  FormControl,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule,
+  ValidationErrors,
+  Validator,
+} from &#x27;@angular/forms&#x27;;
+
+function getFormArray(size: number): FormArray {
+  const arr &#x3D; [];
+
+  for (let i &#x3D; 0; i &lt; size; i++) {
+    arr.push(new FormControl(&#x27;&#x27;));
+  }
+
+  return new FormArray(arr);
+}
+
+@Component({
+  selector: &#x27;xtra-otp-input&#x27;,
+  standalone: true,
+  imports: [ReactiveFormsModule, CommonModule],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: OtpInputComponent,
+      multi: true,
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: OtpInputComponent,
+      multi: true,
+    },
+  ],
+  template: &#x60;
+    @for (input of inputs.controls; track input; let i &#x3D; $index) {
+      &lt;input
+        #inputEl
+        (focus)&#x3D;&quot;handleFocus($event)&quot;
+        (blur)&#x3D;&quot;onTouched?.()&quot;
+        (keypress)&#x3D;&quot;handleKeyPress($event, i)&quot;
+        (input)&#x3D;&quot;handleInput()&quot;
+        (keydown)&#x3D;&quot;handleKeyDown($event, i)&quot;
+        (paste)&#x3D;&quot;handlePaste($event, i)&quot;
+        [formControl]&#x3D;&quot;$any(input)&quot;
+        [attr.autocomplete]&#x3D;&quot;i &#x3D;&#x3D;&#x3D; 0 ? &#x27;one-time-code&#x27; : null&quot;
+        type&#x3D;&quot;text&quot;
+        inputmode&#x3D;&quot;numeric&quot;
+      /&gt;
+    }
+  &#x60;,
+  styles: [
+    &#x60;
+      :host {
+        display: flex;
+        gap: 0.3em;
+        font-size: 24px;
+      }
+
+      input {
+        aspect-ratio: 3/4;
+        width: 2em;
+        text-align: center;
+        border-radius: 4px;
+        font-size: inherit;
+        border: 0.1em solid #aaa;
+      }
+
+      input:focus {
+        outline: 0;
+        border-color: skyblue;
+        box-shadow: 0 0 0 0.1em skyblue;
+      }
+
+      input:disabled {
+        border-color: #eee;
+      }
+    &#x60;,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class OtpInputComponent implements ControlValueAccessor, Validator {
+  @ViewChildren(&#x27;inputEl&#x27;) inputEls!: QueryList&lt;ElementRef&lt;HTMLInputElement&gt;&gt;;
+  onChange?: (value: string) &#x3D;&gt; void;
+  onTouched?: () &#x3D;&gt; void;
+  #size &#x3D; 4;
+  inputs &#x3D; getFormArray(this.#size);
+  #scheduledFocus: number &#x3D; null as any;
+
+  @Input()
+  set size(size: number) {
+    this.inputs &#x3D; getFormArray(size);
+    this.#size &#x3D; size;
+  }
+
+  writeValue(value: string): void {
+    if (isDevMode() &amp;&amp; value?.length) {
+      throw new Error(&#x27;Otp input is not supposed to be prefilled with data&#x27;);
+    }
+
+    // Reset all input values
+    this.inputs.setValue(new Array(this.#size).fill(&#x27;&#x27;));
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange &#x3D; fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched &#x3D; fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    if (isDisabled) {
+      this.inputs.disable();
+    } else {
+      this.inputs.enable();
+    }
+  }
+
+  validate(control: AbstractControl&lt;string, string&gt;): ValidationErrors | null {
+    if (!control.value || control.value.length &lt; this.#size) {
+      return {
+        otpInput: &#x27;Value is incorrect&#x27;,
+      };
+    }
+
+    return null;
+  }
+
+  handleKeyDown(e: KeyboardEvent, idx: number) {
+    if (e.key &#x3D;&#x3D;&#x3D; &#x27;Backspace&#x27; || e.key &#x3D;&#x3D;&#x3D; &#x27;Delete&#x27;) {
+      if (idx &gt; 0) {
+        this.#scheduledFocus &#x3D; idx - 1;
+      }
+    }
+  }
+
+  // Due to iOS/iPadOS Safari bug/special behavior, we are forced to
+  // schedule focus transition during keypress/keydown event and only
+  // after input event happened - execute the transition
+  // otherwise inputs don&#x27;t get their values filled
+  handleInput() {
+    this.#updateWiredValue();
+
+    if (this.#scheduledFocus !&#x3D; null) {
+      this.#focusInput(this.#scheduledFocus);
+      this.#scheduledFocus &#x3D; null as any;
+    }
+  }
+
+  handleKeyPress(e: KeyboardEvent, idx: number) {
+    const isDigit &#x3D; /\d/.test(e.key);
+
+    // Safari fires Cmd + V through keyPress event as well
+    // so we need to handle it here and let it through
+    if (e.key &#x3D;&#x3D;&#x3D; &#x27;v&#x27; &amp;&amp; e.metaKey) {
+      return true;
+    }
+
+    if (isDigit &amp;&amp; idx + 1 &lt; this.#size) {
+      // If user inputs digits &amp; we are not on the last input we want
+      // to advance the focus
+      this.#scheduledFocus &#x3D; idx + 1;
+    }
+
+    if (isDigit &amp;&amp; this.inputs.controls[idx].value) {
+      // If user deselects an input which already has a value
+      // we want to clear it so that it doesn&#x27;t have more than 1 digit
+      this.inputs.controls[idx].setValue(&#x27;&#x27;);
+    }
+
+    return isDigit;
+  }
+
+  handlePaste(e: ClipboardEvent, idx: number) {
+    e.preventDefault();
+
+    if (idx !&#x3D;&#x3D; 0) {
+      // If the target input is not the first one - ignore
+      return;
+    }
+
+    const pasteData &#x3D; e.clipboardData?.getData(&#x27;text&#x27;);
+    const regex &#x3D; new RegExp(&#x60;\\d{${this.#size}}&#x60;);
+
+    if (!pasteData || !regex.test(pasteData)) {
+      // If there is nothing to be pasted or the pasted data does not
+      // comply with the required format - ignore the event
+      return;
+    }
+
+    for (let i &#x3D; 0; i &lt; pasteData.length; i++) {
+      this.inputs.controls[i].setValue(pasteData[i]);
+    }
+
+    this.#focusInput(this.inputEls.length - 1);
+    this.#updateWiredValue();
+    // @ts-ignore
+    this.onTouched();
+  }
+
+  handleFocus(e: FocusEvent) {
+    // Select previously entered value to replace with a new input
+    (e.target as HTMLInputElement).select();
+  }
+
+  #focusInput(idx: number) {
+    // In order not to interfere with the input we setTimeout
+    // before advancing the focus
+    setTimeout(() &#x3D;&gt; this.inputEls.get(idx)?.nativeElement.focus());
+  }
+
+  #updateWiredValue() {
+    // We want to expose the value as a plain string
+    //
+    // In order not to interfere with the input we setTimeout
+    // before advancing the focus
+    setTimeout(() &#x3D;&gt; this.onChange?.(this.inputs.value.join(&#x27;&#x27;)));
+  }
+}
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="styleData">
+            <pre class="line-numbers"><code class="language-scss">
+      :host {
+        display: flex;
+        gap: 0.3em;
+        font-size: 24px;
+      }
+
+      input {
+        aspect-ratio: 3/4;
+        width: 2em;
+        text-align: center;
+        border-radius: 4px;
+        font-size: inherit;
+        border: 0.1em solid #aaa;
+      }
+
+      input:focus {
+        outline: 0;
+        border-color: skyblue;
+        box-shadow: 0 0 0 0.1em skyblue;
+      }
+
+      input:disabled {
+        border-color: #eee;
+      }
+    
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div>@for (input of inputs.controls; track input; let i = $index) {  <input    #inputEl    (focus)="handleFocus($event)"    (blur)="onTouched?.()"    (keypress)="handleKeyPress($event, i)"    (input)="handleInput()"    (keydown)="handleKeyDown($event, i)"    (paste)="handlePaste($event, i)"    [formControl]="$any(input)"    [attr.autocomplete]="i === 0 ? \'one-time-code\' : null"    type="text"    inputmode="numeric"  />}</div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'xtra-about'},{'name': 'AccountComponent', 'selector': 'xtra-user-account'},{'name': 'AddressComponent', 'selector': 'xtra-address'},{'name': 'AdminComponent', 'selector': 'xtra-admin'},{'name': 'AllowanceListComponent', 'selector': 'xtra-allowance-list'},{'name': 'AllowanceUpsertComponent', 'selector': 'xtra-allowance-upsert'},{'name': 'AmsComponent', 'selector': 'xtra-ams'},{'name': 'AnswerListComponent', 'selector': 'xtra-answer-list'},{'name': 'AnswerUpsertComponent', 'selector': 'xtra-answer-upsert'},{'name': 'AppComponent', 'selector': 'xtra-root'},{'name': 'ArticleListComponent', 'selector': 'xtra-article-list'},{'name': 'ArticlePageComponent', 'selector': 'xtra-article-page'},{'name': 'ArticlesComponent', 'selector': 'xtra-articles'},{'name': 'AssetAssignComponent', 'selector': 'xtra-asset-assign'},{'name': 'AssetCategoryListComponent', 'selector': 'xtra-asset-category-list'},{'name': 'AssetCategoryPageComponent', 'selector': 'xtra-asset-category-page'},{'name': 'AssetListComponent', 'selector': 'xtra-asset-list'},{'name': 'AssetLotListComponent', 'selector': 'xtra-asset-lot-list'},{'name': 'AssetLotPageComponent', 'selector': 'xtra-asset-lot-page'},{'name': 'AssetPageComponent', 'selector': 'xtra-asset-page'},{'name': 'AssetRequestListComponent', 'selector': 'xtra-asset-request-list'},{'name': 'AssetRequestPageComponent', 'selector': 'xtra-asset-request-page'},{'name': 'AttendanceActivityListComponent', 'selector': 'xtra-attendance-activity-list'},{'name': 'AttendanceActivityUpsertComponent', 'selector': 'xtra-attendance-activity-upsert'},{'name': 'AttendanceLateComeEarlyOutListComponent', 'selector': 'xtra-attendance-late-come-early-out-list'},{'name': 'AttendanceLateComeEarlyOutUpsertComponent', 'selector': 'xtra-attendance-late-come-early-out-upsert'},{'name': 'AttendanceListComponent', 'selector': 'xtra-attendance-list'},{'name': 'AttendanceOvertimeListComponent', 'selector': 'xtra-attendance-overtime-list'},{'name': 'AttendanceOvertimeUpsertComponent', 'selector': 'xtra-attendance-overtime-upsert'},{'name': 'AttendanceUpsertComponent', 'selector': 'xtra-attendance-upsert'},{'name': 'AttendanceValidationConditionListComponent', 'selector': 'xtra-attendance-validation-condition-list'},{'name': 'AttendanceValidationConditionUpsertComponent', 'selector': 'xtra-attendance-validation-condition-upsert'},{'name': 'AuthComponent', 'selector': 'xtra-auth'},{'name': 'AvailableLeaveListComponent', 'selector': 'xtra-available-leave-list'},{'name': 'AvailableLeaveUpsertComponent', 'selector': 'xtra-available-leave-upsert'},{'name': 'AvatarComponent', 'selector': 'xtra-avatar'},{'name': 'BankListComponent', 'selector': 'xtra-bank-list'},{'name': 'BankUpsertComponent', 'selector': 'xtra-bank-upsert'},{'name': 'BasePageComponent', 'selector': 'xtra-base-page'},{'name': 'BranchListComponent', 'selector': 'xtra-branch-list'},{'name': 'BranchPageComponent', 'selector': 'xtra-branch-page'},{'name': 'BreadcrumbsComponent', 'selector': 'xtra-breadcrumbs'},{'name': 'ButtonComponent', 'selector': 'xtra-button'},{'name': 'CandidateFinalizationComponent', 'selector': 'xtra-candidate-finalization'},{'name': 'CandidateListComponent', 'selector': 'xtra-candidate-list'},{'name': 'CandidatePageComponent', 'selector': 'xtra-candidate-page'},{'name': 'CandidateStageListComponent', 'selector': 'xtra-candidate-stage-list'},{'name': 'CandidateStageUpsertComponent', 'selector': 'xtra-candidate-stage-upsert'},{'name': 'CandidateTaskListComponent', 'selector': 'xtra-candidate-task-list'},{'name': 'CandidateTaskUpsertComponent', 'selector': 'xtra-candidate-task-upsert'},{'name': 'CareersPortalComponent', 'selector': 'xtra-careers-portal'},{'name': 'ChatBotComponent', 'selector': 'xtra-chat-bot'},{'name': 'ChatComponent', 'selector': 'xtra-chat'},{'name': 'ChatListComponent', 'selector': 'xtra-chat-list'},{'name': 'CmsComponent', 'selector': 'xtra-cms'},{'name': 'CommentListComponent', 'selector': 'xtra-comment-list'},{'name': 'CommentUpsertComponent', 'selector': 'xtra-comment-upsert'},{'name': 'CommsComponent', 'selector': 'xtra-comms'},{'name': 'ComposeMailComponent', 'selector': 'xtra-compose-mail'},{'name': 'ConfirmationDialogComponent', 'selector': 'xtra-confirmation-dialog'},{'name': 'ConfirmDialogComponent', 'selector': 'xtra-confirm-dialog'},{'name': 'ContactComponent', 'selector': 'xtra-contact'},{'name': 'ContactDetailsComponent', 'selector': 'xtra-user-contact-details'},{'name': 'ContractListComponent', 'selector': 'xtra-contract-list'},{'name': 'ContractUpsertComponent', 'selector': 'xtra-contract-upsert'},{'name': 'CurrencyListComponent', 'selector': 'xtra-currency-list'},{'name': 'CvEvaluationComponent', 'selector': 'xtra-cv-evaluation'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DeductionListComponent', 'selector': 'xtra-deduction-list'},{'name': 'DeductionUpsertComponent', 'selector': 'xtra-deduction-upsert'},{'name': 'DeptListComponent', 'selector': 'xtra-dept-list'},{'name': 'DeptPageComponent', 'selector': 'xtra-dept-page'},{'name': 'DynamicFormComponent', 'selector': 'xtra-dynamic-form'},{'name': 'EmailDetailComponent', 'selector': 'xtra-email-detail'},{'name': 'EmailListComponent', 'selector': 'xtra-email-list'},{'name': 'EmailPageComponent', 'selector': 'xtra-email-page'},{'name': 'EmailsComponent', 'selector': 'xtra-emails'},{'name': 'EmailSettingsComponent', 'selector': 'xtra-email-settings'},{'name': 'EmailSettingsV2Component', 'selector': 'xtra-email-settings'},{'name': 'EmployeeKeyResultListComponent', 'selector': 'xtra-employee-key-result-list'},{'name': 'EmployeeKeyResultUpsertComponent', 'selector': 'xtra-employee-key-result-upsert'},{'name': 'EmployeeListComponent', 'selector': 'xtra-employee-list'},{'name': 'EmployeeListItemComponent', 'selector': 'xtra-employee-list-item'},{'name': 'EmployeeObjectiveListComponent', 'selector': 'xtra-employee-objective-list'},{'name': 'EmployeeObjectiveUpsertComponent', 'selector': 'xtra-employee-objective-upsert'},{'name': 'EmployeePageComponent', 'selector': 'xtra-employee-page'},{'name': 'EmployeePortalComponent', 'selector': 'xtra-employee-portal'},{'name': 'EmployeesComponent', 'selector': 'xtra-employees'},{'name': 'EmployeeShiftListComponent', 'selector': 'xtra-employee-shift-list'},{'name': 'EmployeeShiftScheduleListComponent', 'selector': 'xtra-employee-shift-schedule-list'},{'name': 'EmployeeShiftScheduleUpsertComponent', 'selector': 'xtra-employee-shift-schedule-upsert'},{'name': 'EmployeeShiftUpsertComponent', 'selector': 'xtra-employee-shift-upsert'},{'name': 'ErrorComponent', 'selector': 'xtra-error'},{'name': 'ErrorMessageComponent', 'selector': '[xtra-error-message]'},{'name': 'EventDetailComponent', 'selector': 'xtra-event-detail'},{'name': 'EventListComponent', 'selector': 'xtra-event-list'},{'name': 'EventsComponent', 'selector': 'xtra-events'},{'name': 'EventUpsertComponent', 'selector': 'xtra-upsert-event'},{'name': 'FederalTaxListComponent', 'selector': 'xtra-federal-tax-list'},{'name': 'FederalTaxUpsertComponent', 'selector': 'xtra-federal-tax-upsert'},{'name': 'FeedbackListComponent', 'selector': 'xtra-feedback-list'},{'name': 'FeedbackUpsertComponent', 'selector': 'xtra-feedback-upsert'},{'name': 'FileInputComponent', 'selector': 'xtra-mat-file-input'},{'name': 'FileUploadComponent', 'selector': 'xtra-file-upload'},{'name': 'FilingStatusListComponent', 'selector': 'xtra-filing-status-list'},{'name': 'FilingStatusUpsertComponent', 'selector': 'xtra-filing-status-upsert'},{'name': 'FinanceComponent', 'selector': 'xtra-finance'},{'name': 'FinancePortalComponent', 'selector': 'xtra-finance-portal'},{'name': 'FooterComponent', 'selector': 'xtra-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'xtra-forgot-password'},{'name': 'FormLayoutComponent', 'selector': 'xtra-form-layout'},{'name': 'HolidayItemComponent', 'selector': 'xtra-holiday-item'},{'name': 'HolidayListComponent', 'selector': 'xtra-holiday-list'},{'name': 'HolidayUpsertComponent', 'selector': 'xtra-holiday-upsert'},{'name': 'HrDetailListComponent', 'selector': 'xtra-hr-detail-list'},{'name': 'HrDetailPageComponent', 'selector': 'xtra-hr-detail-page'},{'name': 'InputComponent', 'selector': 'xtra-input'},{'name': 'InputComponent', 'selector': 'xtra-input'},{'name': 'InterviewFeedbackComponent', 'selector': 'xtra-interview-feedback'},{'name': 'InterviewPreparationComponent', 'selector': 'xtra-interview-preparation'},{'name': 'JobRoleListComponent', 'selector': 'xtra-job-role-list'},{'name': 'JobRoleUpsertComponent', 'selector': 'xtra-job-role-upsert'},{'name': 'KeyResultFeedbackListComponent', 'selector': 'xtra-key-result-feedback-list'},{'name': 'KeyResultFeedbackUpsertComponent', 'selector': 'xtra-key-result-feedback-upsert'},{'name': 'LangComponent', 'selector': 'xtra-lang'},{'name': 'LeaveDetailComponent', 'selector': 'xtra-leave-detail'},{'name': 'LeaveListComponent', 'selector': 'xtra-leave-list'},{'name': 'LeaveListComponent', 'selector': 'xtra-leave-list'},{'name': 'LeaveRequestItemComponent', 'selector': 'xtra-leave-request-item'},{'name': 'LeaveRequestListComponent', 'selector': 'xtra-leave-request-list'},{'name': 'LeaveRequestUpsertComponent', 'selector': 'xtra-leave-request-upsert'},{'name': 'LeavesComponent', 'selector': 'xtra-leaves'},{'name': 'LeaveTypeListComponent', 'selector': 'xtra-leave-type-list'},{'name': 'LeaveTypeUpsertComponent', 'selector': 'xtra-leave-type-upsert'},{'name': 'LeaveUpsertComponent', 'selector': 'xtra-leave-upsert'},{'name': 'ListComponent', 'selector': 'xtra-email-settings-list'},{'name': 'ListErrorsComponent', 'selector': 'xtra-list-errors'},{'name': 'LmsComponent', 'selector': 'xtra-lms'},{'name': 'LoaderComponent', 'selector': 'xtra-loader'},{'name': 'MsgIconBtnComponent', 'selector': 'xtra-msg-icon-btn'},{'name': 'NavbarComponent', 'selector': 'xtra-navbar'},{'name': 'OfflineComponent', 'selector': 'xtra-offline'},{'name': 'OnboardingComponent', 'selector': 'xtra-onboarding'},{'name': 'OnboardingPortalListComponent', 'selector': 'xtra-onboarding-portal-list'},{'name': 'OnboardingPortalUpsertComponent', 'selector': 'xtra-onboarding-portal-upsert'},{'name': 'OnboardingPreparationComponent', 'selector': 'xtra-onboarding-preparation'},{'name': 'OnboardingStageListComponent', 'selector': 'xtra-onboarding-stage-list'},{'name': 'OnboardingStageUpsertComponent', 'selector': 'xtra-onboarding-stage-upsert'},{'name': 'OnboardingTaskListComponent', 'selector': 'xtra-onboarding-task-list'},{'name': 'OnboardingTaskUpsertComponent', 'selector': 'xtra-onboarding-task-upsert'},{'name': 'OrganizationLeaveListComponent', 'selector': 'xtra-organization-leave-list'},{'name': 'OrganizationLeaveUpsertComponent', 'selector': 'xtra-organization-leave-upsert'},{'name': 'OrgChartComponent', 'selector': 'xtra-org-chart'},{'name': 'OrgDetailComponent', 'selector': 'xtra-org-detail'},{'name': 'OrgPageComponent', 'selector': 'xtra-org-page'},{'name': 'OrgsComponent', 'selector': 'xtra-orgs'},{'name': 'OtpInputComponent', 'selector': 'xtra-otp-input'},{'name': 'PageComponent', 'selector': 'xtra-page'},{'name': 'PageNotFoundComponent', 'selector': 'xtra-page-not-found'},{'name': 'PagerComponent', 'selector': 'xtra-pager'},{'name': 'PaginationComponent', 'selector': 'xtra-pagination'},{'name': 'PasswordComponent', 'selector': 'xtra-password'},{'name': 'PayrollListComponent', 'selector': 'xtra-payroll-list'},{'name': 'PayrollSettingListComponent', 'selector': 'xtra-payroll-setting-list'},{'name': 'PayrollSettingUpsertComponent', 'selector': 'xtra-payroll-setting-upsert'},{'name': 'PayrollUpsertComponent', 'selector': 'xtra-payroll-upsert'},{'name': 'PayslipListComponent', 'selector': 'xtra-payslip-list'},{'name': 'PayslipUpsertComponent', 'selector': 'xtra-payslip-upsert'},{'name': 'PerformanceListComponent', 'selector': 'xtra-performance-list'},{'name': 'PerformanceUpsertComponent', 'selector': 'xtra-performance-upsert'},{'name': 'PeriodListComponent', 'selector': 'xtra-period-list'},{'name': 'PeriodUpsertComponent', 'selector': 'xtra-period-upsert'},{'name': 'PermissionAssignComponent', 'selector': 'xtra-permission-assign'},{'name': 'PermissionListComponent', 'selector': 'xtra-permission-list'},{'name': 'PermissionPageComponent', 'selector': 'xtra-permission-page'},{'name': 'PmComponent', 'selector': 'xtra-pm'},{'name': 'PmsComponent', 'selector': 'xtra-pms'},{'name': 'PositionListComponent', 'selector': 'xtra-position-list'},{'name': 'PositionsComponent', 'selector': 'xtra-positions'},{'name': 'PositionUpsertComponent', 'selector': 'xtra-position-upsert'},{'name': 'PrivacyPolicyComponent', 'selector': 'xtra-privacy-policy'},{'name': 'ProfileComponent', 'selector': 'xtra-profile'},{'name': 'ProfileComponent', 'selector': 'xtra-profile'},{'name': 'ProjectCardComponent', 'selector': 'xtra-project-card'},{'name': 'ProjectGanttComponent', 'selector': 'xtra-project-gantt'},{'name': 'ProjectListComponent', 'selector': 'xtra-project-list'},{'name': 'ProjectPageComponent', 'selector': 'xtra-project-page'},{'name': 'QuestionListComponent', 'selector': 'xtra-question-list'},{'name': 'QuestionOptionListComponent', 'selector': 'xtra-question-option-list'},{'name': 'QuestionOptionUpsertComponent', 'selector': 'xtra-question-option-upsert'},{'name': 'QuestionTemplateListComponent', 'selector': 'xtra-question-template-list'},{'name': 'QuestionTemplateUpsertComponent', 'selector': 'xtra-question-template-upsert'},{'name': 'QuestionUpsertComponent', 'selector': 'xtra-question-upsert'},{'name': 'RecruitmentListComponent', 'selector': 'xtra-recruitment-list'},{'name': 'RecruitmentPageComponent', 'selector': 'xtra-recruitment-page'},{'name': 'RecruitmentsComponent', 'selector': 'xtra-recruitments'},{'name': 'RecruitmentSurveyAnswerListComponent', 'selector': 'xtra-recruitment-survey-answer-list'},{'name': 'RecruitmentSurveyAnswerUpsertComponent', 'selector': 'xtra-recruitment-survey-answer-upsert'},{'name': 'RecruitmentSurveyListComponent', 'selector': 'xtra-recruitment-survey-list'},{'name': 'RecruitmentSurveyUpsertComponent', 'selector': 'xtra-recruitment-survey-upsert'},{'name': 'RejectionLetterComponent', 'selector': 'xtra-rejection-letter'},{'name': 'ResetPasswordComponent', 'selector': 'xtra-reset-password'},{'name': 'RichTextEditorComponent', 'selector': 'xtra-rich-text-editor'},{'name': 'RoleListComponent', 'selector': 'xtra-role-list'},{'name': 'RolePageComponent', 'selector': 'xtra-role-page'},{'name': 'RotatingShiftAssignListComponent', 'selector': 'xtra-rotating-shift-assign-list'},{'name': 'RotatingShiftAssignUpsertComponent', 'selector': 'xtra-rotating-shift-assign-upsert'},{'name': 'RotatingShiftListComponent', 'selector': 'xtra-rotating-shift-list'},{'name': 'RotatingShiftUpsertComponent', 'selector': 'xtra-rotating-shift-upsert'},{'name': 'RotatingWorkTypeAssignListComponent', 'selector': 'xtra-rotating-work-type-assign-list'},{'name': 'RotatingWorkTypeAssignUpsertComponent', 'selector': 'xtra-rotating-work-type-assign-upsert'},{'name': 'RotatingWorkTypeListComponent', 'selector': 'xtra-rotating-work-type-list'},{'name': 'RotatingWorkTypeUpsertComponent', 'selector': 'xtra-rotating-work-type-upsert'},{'name': 'SettingsComponent', 'selector': 'xtra-settings'},{'name': 'ShiftRequestListComponent', 'selector': 'xtra-shift-request-list'},{'name': 'ShiftRequestUpsertComponent', 'selector': 'xtra-shift-request-upsert'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavLinkComponent', 'selector': 'xtra-sidenav-link'},{'name': 'SidenavListItemComponent', 'selector': 'xtra-sidenav-list-item'},{'name': 'SignInComponent', 'selector': 'xtra-sign-in'},{'name': 'SignInComponent', 'selector': 'xtra-sign-in'},{'name': 'SignUpComponent', 'selector': 'xtra-sign-up'},{'name': 'SimpleDialogComponent', 'selector': 'xtra-simple-dialog'},{'name': 'SimplePageComponent', 'selector': 'xtra-simple-page'},{'name': 'SmsComponent', 'selector': 'xtra-sms'},{'name': 'SmsListComponent', 'selector': 'xtra-sms-list'},{'name': 'SmsListComponent', 'selector': 'xtra-sms-list'},{'name': 'SmsPageComponent', 'selector': 'xtra-sms-page'},{'name': 'StageListComponent', 'selector': 'xtra-stage-list'},{'name': 'StageNoteListComponent', 'selector': 'xtra-stage-note-list'},{'name': 'StageNoteUpsertComponent', 'selector': 'xtra-stage-note-upsert'},{'name': 'StageUpsertComponent', 'selector': 'xtra-stage-upsert'},{'name': 'SvgDefinitionsComponent', 'selector': 'xtra-svg-definitions'},{'name': 'SvgIconComponent', 'selector': 'xtra-svg-icon'},{'name': 'TableComponent', 'selector': 'xtra-table'},{'name': 'TableV2Component', 'selector': 'xtra-table-v2'},{'name': 'TaskAssignmentListComponent', 'selector': 'xtra-task-assignment-list'},{'name': 'TaskAssignmentUpsertComponent', 'selector': 'xtra-task-assignment-upsert'},{'name': 'TaskListComponent', 'selector': 'xtra-task-list'},{'name': 'TaskUpsertComponent', 'selector': 'xtra-task-upsert'},{'name': 'TelComponent', 'selector': 'xtra-tel'},{'name': 'TermsOfServiceComponent', 'selector': 'xtra-terms-of-service'},{'name': 'TextareaComponent', 'selector': 'xtra-textarea'},{'name': 'TimeOffMgtComponent', 'selector': 'xtra-time-off-mgt'},{'name': 'TitleComponent', 'selector': 'xtra-title'},{'name': 'TrainingListComponent', 'selector': 'xtra-training-list'},{'name': 'TrainingResourceListComponent', 'selector': 'xtra-training-resource-list'},{'name': 'TrainingResourceUpsertComponent', 'selector': 'xtra-training-resource-upsert'},{'name': 'TrainingScheduleListComponent', 'selector': 'xtra-training-schedule-list'},{'name': 'TrainingScheduleUpsertComponent', 'selector': 'xtra-training-schedule-upsert'},{'name': 'TrainingsComponent', 'selector': 'xtra-trainings'},{'name': 'TrainingUpsertComponent', 'selector': 'xtra-training-upsert'},{'name': 'UamComponent', 'selector': 'xtra-uam'},{'name': 'UiSpacerComponent', 'selector': 'xtra-ui-spacer'},{'name': 'UserAvatarComponent', 'selector': 'xtra-user-avatar'},{'name': 'UserCardComponent', 'selector': 'xtra-user-card'},{'name': 'UserListComponent', 'selector': 'xtra-user-list'},{'name': 'UserListComponent', 'selector': 'xtra-user-list'},{'name': 'UserPageComponent', 'selector': 'xtra-user-page'},{'name': 'UsersComponent', 'selector': 'xtra-users'},{'name': 'VerifyOtpComponent', 'selector': 'xtra-verify-otp'},{'name': 'WindowComponent', 'selector': 'xtra-window'},{'name': 'WorkRecordListComponent', 'selector': 'xtra-work-record-list'},{'name': 'WorkRecordUpsertComponent', 'selector': 'xtra-work-record-upsert'},{'name': 'WorkTypeListComponent', 'selector': 'xtra-work-type-list'},{'name': 'WorkTypeRequestListComponent', 'selector': 'xtra-work-type-request-list'},{'name': 'WorkTypeRequestUpsertComponent', 'selector': 'xtra-work-type-request-upsert'},{'name': 'WorkTypeUpsertComponent', 'selector': 'xtra-work-type-upsert'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[xtraAutofocus]'},{'name': 'ButtonDirective', 'selector': '[xtraButton]'},{'name': 'DynamicFieldDirective', 'selector': '[xtraDynamicField]'},{'name': 'EmailValidatorDirective', 'selector': '[xtraEmailValidator]'},{'name': 'EmployeeNotAvailableDirective', 'selector': 'a[routerLink]'},{'name': 'HasPermissionDirective', 'selector': '[xtraHasPermission]'},{'name': 'LoaderDirective', 'selector': '[loading]'},{'name': 'MinLengthDirective', 'selector': '[xtraMinLength]'},{'name': 'NgMatTableQueryReflectorDirective', 'selector': '[xtraNgMatTableQueryReflector]'},{'name': 'TooltipDirective', 'selector': 'xtraTooltip'},{'name': 'TruncateDirective', 'selector': '[xtraTruncate]'}];
+    var ACTUAL_COMPONENT = {'name': 'OtpInputComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'OtpInputComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

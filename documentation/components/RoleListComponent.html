@@ -1,0 +1,2160 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>xtra-hrms-client documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">xtra-hrms-client documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  RoleListComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/ui/admin/uam/roles/role-list/role-list.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                                <code><a href="../injectables/RolesService.html" target="_self" >RolesService</a></code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>xtra-role-list</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">Standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>MatIconModule</code>
+                            <code>MatButtonModule</code>
+                            <code>MatInputModule</code>
+                            <code>MatSelectModule</code>
+                            <code>FormsModule</code>
+                            <code>MatTableModule</code>
+                            <code>RouterLink</code>
+                            <code>MatProgressSpinnerModule</code>
+                            <code>MatPaginatorModule</code>
+                            <code>MatToolbarModule</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code>
+      table {
+        width: 100%;
+      }
+      mat-form-field {
+        width: 52%;
+      }
+      div.spinner {
+        width: 30%;
+        margin: auto;
+        padding: 0.2em;
+      }
+      .filter-data {
+        padding: 1rem;
+      }
+    </code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;mat-toolbar color&#x3D;&quot;primary&quot;&gt;
+  Roles ({{ roles.length }})
+  &lt;button mat-icon-button routerLink&#x3D;&quot;/uam/roles/add&quot;&gt;
+    &lt;mat-icon&gt;add_circle&lt;/mat-icon&gt;
+  &lt;/button&gt;
+&lt;/mat-toolbar&gt;
+&lt;div class&#x3D;&quot;mat-elevation-z8&quot;&gt;
+  &lt;div class&#x3D;&quot;action-buttons&quot;&gt;
+    &lt;div class&#x3D;&quot;mb-0&quot;&gt;
+      &lt;button (click)&#x3D;&quot;exportData()&quot; mat-stroked-button color&#x3D;&quot;primary&quot; class&#x3D;&quot;p-3 ml-3 mt-3&quot;&gt;
+        &lt;mat-icon&gt;cloud&lt;/mat-icon&gt;
+        Export Data
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;filter-data&quot;&gt;
+    &lt;fieldset class&#x3D;&quot;scheduler-border&quot;&gt;
+      &lt;legend class&#x3D;&quot;scheduler-border&quot;&gt;&lt;small&gt;Filter&lt;/small&gt;&lt;/legend&gt;
+      &lt;form novalidate (ngSubmit)&#x3D;&quot;filterRoles()&quot;&gt;
+        &lt;mat-form-field id&#x3D;&quot;category-filter&quot;&gt;
+          &lt;mat-label&gt;Filter by client&lt;/mat-label&gt;
+          &lt;mat-select [(ngModel)]&#x3D;&quot;searchData.client_id&quot; name&#x3D;&quot;client_id&quot;&gt;
+            &lt;mat-option [value]&#x3D;&quot;null&quot;&gt;None&lt;/mat-option&gt;
+            @for (client of clients; track client) {
+              &lt;mat-option [value]&#x3D;&quot;client.id&quot;&gt;
+                {{ client.name }}
+              &lt;/mat-option&gt;
+            }
+          &lt;/mat-select&gt;
+        &lt;/mat-form-field&gt;
+        &lt;button style&#x3D;&quot;margin-left: 1.5em;&quot; mat-stroked-button color&#x3D;&quot;primary&quot;&gt;Filter&lt;/button&gt;
+        &lt;button
+          type&#x3D;&quot;button&quot;
+          style&#x3D;&quot;margin-left: 1.5em;&quot;
+          (click)&#x3D;&quot;resetData()&quot;
+          mat-stroked-button
+          color&#x3D;&quot;accent&quot;
+        &gt;
+          Reset
+        &lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/fieldset&gt;
+  &lt;/div&gt;
+
+  &lt;table mat-table [dataSource]&#x3D;&quot;roles&quot;&gt;
+    &lt;!--id column--&gt;
+    &lt;ng-container [sticky]&#x3D;&quot;true&quot; matColumnDef&#x3D;&quot;no&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef&gt;No&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let element; let i &#x3D; index&quot;&gt;{{ i + 1 }}&lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;!--role column--&gt;
+    &lt;ng-container matColumnDef&#x3D;&quot;name&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef&gt;Role&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+        {{ element.name }}
+        &lt;!--            ({{
+          element[&#x27;auction_client.name&#x27;] ? element[&#x27;auction_client.name&#x27;] : &#x27;N/A&#x27;
+        }})--&gt;
+      &lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;!--role column--&gt;
+    &lt;ng-container matColumnDef&#x3D;&quot;description&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef&gt;Description&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+        {{ element.description ? element.description : &#x27;----&#x27; }}
+      &lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;!--Status column--&gt;
+    &lt;ng-container matColumnDef&#x3D;&quot;status&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef&gt;Status&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+        {{ element.revoked ? &#x27;Revoked&#x27; : &#x27;Valid&#x27; }}
+      &lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;!--Created by column--&gt;
+    &lt;ng-container matColumnDef&#x3D;&quot;created_by&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef&gt;Created by&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+        &lt;a (click)&#x3D;&quot;viewUser(element.created_by)&quot; routerLink&#x3D;&quot;.&quot; title&#x3D;&quot;view&quot;&gt;
+          &lt;mat-icon&gt;visibility&lt;/mat-icon&gt;
+        &lt;/a&gt;
+      &lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;!-- Updated by Column --&gt;
+    &lt;ng-container matColumnDef&#x3D;&quot;updated_by&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef&gt;Updated By&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+        &lt;a (click)&#x3D;&quot;viewUser(element.updated_by)&quot; routerLink&#x3D;&quot;.&quot; title&#x3D;&quot;view&quot;&gt;
+          &lt;mat-icon&gt;visibility&lt;/mat-icon&gt;
+        &lt;/a&gt;
+      &lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;!--actions column--&gt;
+    &lt;ng-container matColumnDef&#x3D;&quot;actions&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef&gt;Delete&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+        &lt;button (click)&#x3D;&quot;deleteRole(element.id)&quot; mat-stroked-button&gt;
+          &lt;mat-icon&gt;delete&lt;/mat-icon&gt;
+        &lt;/button&gt;
+      &lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;ng-container matColumnDef&#x3D;&quot;assign&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef&gt;Revoke/Restore&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+        @if (!element.revoked) {
+          &lt;button (click)&#x3D;&quot;revokeRole(element.id)&quot; mat-stroked-button&gt;
+            &lt;mat-icon&gt;lock&lt;/mat-icon&gt;
+          &lt;/button&gt;
+        }
+        @if (element.revoked) {
+          &lt;button (click)&#x3D;&quot;restoreRole(element.id)&quot; mat-stroked-button&gt;
+            &lt;mat-icon&gt;refresh&lt;/mat-icon&gt;
+          &lt;/button&gt;
+        }
+      &lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;displayColumns&quot;&gt;&lt;/tr&gt;
+    &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: displayColumns&quot;&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+  @if (simulateTable) {
+    &lt;div class&#x3D;&quot;spinner&quot;&gt;
+      &lt;mat-spinner [strokeWidth]&#x3D;&quot;2&quot; [diameter]&#x3D;&quot;30&quot;&gt;&lt;/mat-spinner&gt;
+    &lt;/div&gt;
+  }
+  &lt;mat-paginator
+    #paginator
+    [pageSize]&#x3D;&quot;10&quot;
+    [length]&#x3D;&quot;tableLength&quot;
+    [pageSizeOptions]&#x3D;&quot;[5, 10, 20]&quot;
+    [showFirstLastButtons]&#x3D;&quot;true&quot;
+  &gt;&lt;/mat-paginator&gt;
+&lt;/div&gt;
+</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#authService" >authService</a>
+                            </li>
+                            <li>
+                                <a href="#clients" >clients</a>
+                            </li>
+                            <li>
+                                <a href="#currentUser" >currentUser</a>
+                            </li>
+                            <li>
+                                <a href="#displayColumns" >displayColumns</a>
+                            </li>
+                            <li>
+                                <a href="#dropdownRoles" >dropdownRoles</a>
+                            </li>
+                            <li>
+                                <a href="#isHost" >isHost</a>
+                            </li>
+                            <li>
+                                <a href="#level" >level</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#paginator" >paginator</a>
+                            </li>
+                            <li>
+                                <a href="#roles" >roles</a>
+                            </li>
+                            <li>
+                                <a href="#roleService" >roleService</a>
+                            </li>
+                            <li>
+                                <a href="#searchData" >searchData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#selection" >selection</a>
+                            </li>
+                            <li>
+                                <a href="#simulateTable" >simulateTable</a>
+                            </li>
+                            <li>
+                                <a href="#snackbar" >snackbar</a>
+                            </li>
+                            <li>
+                                <a href="#tableLength" >tableLength</a>
+                            </li>
+                            <li>
+                                <a href="#toastr" >toastr</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addNew" >addNew</a>
+                            </li>
+                            <li>
+                                <a href="#deleteRole" >deleteRole</a>
+                            </li>
+                            <li>
+                                <a href="#exportData" >exportData</a>
+                            </li>
+                            <li>
+                                <a href="#filterRoles" >filterRoles</a>
+                            </li>
+                            <li>
+                                <a href="#getDropDownRoles" >getDropDownRoles</a>
+                            </li>
+                            <li>
+                                <a href="#getRoles" >getRoles</a>
+                            </li>
+                            <li>
+                                <a href="#getUserIndivualRoles" >getUserIndivualRoles</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#resetData" >resetData</a>
+                            </li>
+                            <li>
+                                <a href="#restoreRole" >restoreRole</a>
+                            </li>
+                            <li>
+                                <a href="#revokeRole" >revokeRole</a>
+                            </li>
+                            <li>
+                                <a href="#viewUser" >viewUser</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addNew"></a>
+                    <span class="name">
+                        <span ><b>addNew</b></span>
+                        <a href="#addNew"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addNew()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="314"
+                                    class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:314</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteRole"></a>
+                    <span class="name">
+                        <span ><b>deleteRole</b></span>
+                        <a href="#deleteRole"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteRole(roleId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="276"
+                                    class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:276</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>roleId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportData"></a>
+                    <span class="name">
+                        <span ><b>exportData</b></span>
+                        <a href="#exportData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>exportData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="316"
+                                    class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:316</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterRoles"></a>
+                    <span class="name">
+                        <span ><b>filterRoles</b></span>
+                        <a href="#filterRoles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>filterRoles()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="280"
+                                    class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:280</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDropDownRoles"></a>
+                    <span class="name">
+                        <span ><b>getDropDownRoles</b></span>
+                        <a href="#getDropDownRoles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDropDownRoles(userRoleCategory: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="360"
+                                    class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:360</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>userRoleCategory</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRoles"></a>
+                    <span class="name">
+                        <span ><b>getRoles</b></span>
+                        <a href="#getRoles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRoles(query?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="241"
+                                    class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:241</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>query</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserIndivualRoles"></a>
+                    <span class="name">
+                        <span ><b>getUserIndivualRoles</b></span>
+                        <a href="#getUserIndivualRoles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getUserIndivualRoles(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="336"
+                                    class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:336</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="232"
+                                    class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:232</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetData"></a>
+                    <span class="name">
+                        <span ><b>resetData</b></span>
+                        <a href="#resetData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resetData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="284"
+                                    class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:284</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="restoreRole"></a>
+                    <span class="name">
+                        <span ><b>restoreRole</b></span>
+                        <a href="#restoreRole"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>restoreRole(roleId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="301"
+                                    class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:301</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>roleId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="revokeRole"></a>
+                    <span class="name">
+                        <span ><b>revokeRole</b></span>
+                        <a href="#revokeRole"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>revokeRole(roleId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="289"
+                                    class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:289</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>roleId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewUser"></a>
+                    <span class="name">
+                        <span ><b>viewUser</b></span>
+                        <a href="#viewUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>viewUser(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="320"
+                                    class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:320</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authService"></a>
+                    <span class="name">
+                        <span ><b>authService</b></span>
+                        <a href="#authService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AuthService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="227" class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:227</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clients"></a>
+                    <span class="name">
+                        <span ><b>clients</b></span>
+                        <a href="#clients"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:222</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUser"></a>
+                    <span class="name">
+                        <span ><b>currentUser</b></span>
+                        <a href="#currentUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IUser.html" target="_self" >IUser</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="219" class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:219</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayColumns"></a>
+                    <span class="name">
+                        <span ><b>displayColumns</b></span>
+                        <a href="#displayColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    &#x27;no&#x27;,
+    &#x27;name&#x27;,
+    &#x27;description&#x27;,
+    &#x27;status&#x27;,
+    &#x27;created_by&#x27;,
+    &#x27;updated_by&#x27;,
+    &#x27;actions&#x27;,
+    &#x27;assign&#x27;,
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:207</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dropdownRoles"></a>
+                    <span class="name">
+                        <span ><b>dropdownRoles</b></span>
+                        <a href="#dropdownRoles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="224" class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:224</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isHost"></a>
+                    <span class="name">
+                        <span ><b>isHost</b></span>
+                        <a href="#isHost"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:221</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="level"></a>
+                    <span class="name">
+                        <span ><b>level</b></span>
+                        <a href="#level"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:223</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="paginator"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>paginator</b></span>
+                        <a href="#paginator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatPaginator</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(MatPaginator, {static: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:201</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="roles"></a>
+                    <span class="name">
+                        <span ><b>roles</b></span>
+                        <a href="#roles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IRole.html" target="_self" >Array&lt;IRole&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:220</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="roleService"></a>
+                    <span class="name">
+                        <span ><b>roleService</b></span>
+                        <a href="#roleService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(RolesService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:226</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchData"></a>
+                    <span class="name">
+                        <span ><b>searchData</b></span>
+                        <a href="#searchData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    client_id: null,
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:204</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selection"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>selection</b></span>
+                        <a href="#selection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatSelect</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;matSelect&#x27;, {static: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:202</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="simulateTable"></a>
+                    <span class="name">
+                        <span ><b>simulateTable</b></span>
+                        <a href="#simulateTable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:218</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="snackbar"></a>
+                    <span class="name">
+                        <span ><b>snackbar</b></span>
+                        <a href="#snackbar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(MatSnackBar)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:228</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tableLength"></a>
+                    <span class="name">
+                        <span ><b>tableLength</b></span>
+                        <a href="#tableLength"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:217</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toastr"></a>
+                    <span class="name">
+                        <span ><b>toastr</b></span>
+                        <a href="#toastr"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ToastrService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="229" class="link-to-prism">src/app/ui/admin/uam/roles/role-list/role-list.component.ts:229</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {ChangeDetectionStrategy, Component, inject, OnInit, ViewChild} from &#x27;@angular/core&#x27;;
+import {RolesService} from &#x27;@data/services/users.service&#x27;;
+import {MatInputModule} from &#x27;@angular/material/input&#x27;;
+import {CommonModule} from &#x27;@angular/common&#x27;;
+import {MatIconModule} from &#x27;@angular/material/icon&#x27;;
+import {MatButtonModule} from &#x27;@angular/material/button&#x27;;
+import {MatSelect, MatSelectModule} from &#x27;@angular/material/select&#x27;;
+import {FormsModule} from &#x27;@angular/forms&#x27;;
+import {MatTableModule} from &#x27;@angular/material/table&#x27;;
+import {RouterLink} from &#x27;@angular/router&#x27;;
+import {MatProgressSpinnerModule} from &#x27;@angular/material/progress-spinner&#x27;;
+import {MatPaginator, MatPaginatorModule} from &#x27;@angular/material/paginator&#x27;;
+import {MatToolbarModule} from &#x27;@angular/material/toolbar&#x27;;
+import {IRole} from &#x27;@models/accounts.model&#x27;;
+import {AuthService} from &#x27;@data/services&#x27;;
+import {MatSnackBar} from &#x27;@angular/material/snack-bar&#x27;;
+import {ToastrService} from &#x27;ngx-toastr&#x27;;
+import {IUser} from &#x27;@data/models&#x27;;
+
+@Component({
+  selector: &#x27;xtra-role-list&#x27;,
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
+    MatSelectModule,
+    FormsModule,
+    MatTableModule,
+    RouterLink,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatToolbarModule,
+  ],
+  template: &#x60;
+    &lt;mat-toolbar color&#x3D;&quot;primary&quot;&gt;
+      Roles ({{ roles.length }})
+      &lt;button mat-icon-button routerLink&#x3D;&quot;/uam/roles/add&quot;&gt;
+        &lt;mat-icon&gt;add_circle&lt;/mat-icon&gt;
+      &lt;/button&gt;
+    &lt;/mat-toolbar&gt;
+    &lt;div class&#x3D;&quot;mat-elevation-z8&quot;&gt;
+      &lt;div class&#x3D;&quot;action-buttons&quot;&gt;
+        &lt;div class&#x3D;&quot;mb-0&quot;&gt;
+          &lt;button (click)&#x3D;&quot;exportData()&quot; mat-stroked-button color&#x3D;&quot;primary&quot; class&#x3D;&quot;p-3 ml-3 mt-3&quot;&gt;
+            &lt;mat-icon&gt;cloud&lt;/mat-icon&gt;
+            Export Data
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;filter-data&quot;&gt;
+        &lt;fieldset class&#x3D;&quot;scheduler-border&quot;&gt;
+          &lt;legend class&#x3D;&quot;scheduler-border&quot;&gt;&lt;small&gt;Filter&lt;/small&gt;&lt;/legend&gt;
+          &lt;form novalidate (ngSubmit)&#x3D;&quot;filterRoles()&quot;&gt;
+            &lt;mat-form-field id&#x3D;&quot;category-filter&quot;&gt;
+              &lt;mat-label&gt;Filter by client&lt;/mat-label&gt;
+              &lt;mat-select [(ngModel)]&#x3D;&quot;searchData.client_id&quot; name&#x3D;&quot;client_id&quot;&gt;
+                &lt;mat-option [value]&#x3D;&quot;null&quot;&gt;None&lt;/mat-option&gt;
+                @for (client of clients; track client) {
+                  &lt;mat-option [value]&#x3D;&quot;client.id&quot;&gt;
+                    {{ client.name }}
+                  &lt;/mat-option&gt;
+                }
+              &lt;/mat-select&gt;
+            &lt;/mat-form-field&gt;
+            &lt;button style&#x3D;&quot;margin-left: 1.5em;&quot; mat-stroked-button color&#x3D;&quot;primary&quot;&gt;Filter&lt;/button&gt;
+            &lt;button
+              type&#x3D;&quot;button&quot;
+              style&#x3D;&quot;margin-left: 1.5em;&quot;
+              (click)&#x3D;&quot;resetData()&quot;
+              mat-stroked-button
+              color&#x3D;&quot;accent&quot;
+            &gt;
+              Reset
+            &lt;/button&gt;
+          &lt;/form&gt;
+        &lt;/fieldset&gt;
+      &lt;/div&gt;
+
+      &lt;table mat-table [dataSource]&#x3D;&quot;roles&quot;&gt;
+        &lt;!--id column--&gt;
+        &lt;ng-container [sticky]&#x3D;&quot;true&quot; matColumnDef&#x3D;&quot;no&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt;No&lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let element; let i &#x3D; index&quot;&gt;{{ i + 1 }}&lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;!--role column--&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;name&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt;Role&lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+            {{ element.name }}
+            &lt;!--            ({{
+              element[&#x27;auction_client.name&#x27;] ? element[&#x27;auction_client.name&#x27;] : &#x27;N/A&#x27;
+            }})--&gt;
+          &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;!--role column--&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;description&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt;Description&lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+            {{ element.description ? element.description : &#x27;----&#x27; }}
+          &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;!--Status column--&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;status&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt;Status&lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+            {{ element.revoked ? &#x27;Revoked&#x27; : &#x27;Valid&#x27; }}
+          &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;!--Created by column--&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;created_by&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt;Created by&lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+            &lt;a (click)&#x3D;&quot;viewUser(element.created_by)&quot; routerLink&#x3D;&quot;.&quot; title&#x3D;&quot;view&quot;&gt;
+              &lt;mat-icon&gt;visibility&lt;/mat-icon&gt;
+            &lt;/a&gt;
+          &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;!-- Updated by Column --&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;updated_by&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt;Updated By&lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+            &lt;a (click)&#x3D;&quot;viewUser(element.updated_by)&quot; routerLink&#x3D;&quot;.&quot; title&#x3D;&quot;view&quot;&gt;
+              &lt;mat-icon&gt;visibility&lt;/mat-icon&gt;
+            &lt;/a&gt;
+          &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;!--actions column--&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;actions&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt;Delete&lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+            &lt;button (click)&#x3D;&quot;deleteRole(element.id)&quot; mat-stroked-button&gt;
+              &lt;mat-icon&gt;delete&lt;/mat-icon&gt;
+            &lt;/button&gt;
+          &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;ng-container matColumnDef&#x3D;&quot;assign&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt;Revoke/Restore&lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+            @if (!element.revoked) {
+              &lt;button (click)&#x3D;&quot;revokeRole(element.id)&quot; mat-stroked-button&gt;
+                &lt;mat-icon&gt;lock&lt;/mat-icon&gt;
+              &lt;/button&gt;
+            }
+            @if (element.revoked) {
+              &lt;button (click)&#x3D;&quot;restoreRole(element.id)&quot; mat-stroked-button&gt;
+                &lt;mat-icon&gt;refresh&lt;/mat-icon&gt;
+              &lt;/button&gt;
+            }
+          &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;displayColumns&quot;&gt;&lt;/tr&gt;
+        &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: displayColumns&quot;&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+      @if (simulateTable) {
+        &lt;div class&#x3D;&quot;spinner&quot;&gt;
+          &lt;mat-spinner [strokeWidth]&#x3D;&quot;2&quot; [diameter]&#x3D;&quot;30&quot;&gt;&lt;/mat-spinner&gt;
+        &lt;/div&gt;
+      }
+      &lt;mat-paginator
+        #paginator
+        [pageSize]&#x3D;&quot;10&quot;
+        [length]&#x3D;&quot;tableLength&quot;
+        [pageSizeOptions]&#x3D;&quot;[5, 10, 20]&quot;
+        [showFirstLastButtons]&#x3D;&quot;true&quot;
+      &gt;&lt;/mat-paginator&gt;
+    &lt;/div&gt;
+  &#x60;,
+  styles: [
+    &#x60;
+      table {
+        width: 100%;
+      }
+      mat-form-field {
+        width: 52%;
+      }
+      div.spinner {
+        width: 30%;
+        margin: auto;
+        padding: 0.2em;
+      }
+      .filter-data {
+        padding: 1rem;
+      }
+    &#x60;,
+  ],
+  providers: [RolesService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class RoleListComponent implements OnInit {
+  @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
+  @ViewChild(&#x27;matSelect&#x27;, {static: true}) selection!: MatSelect;
+
+  searchData &#x3D; {
+    client_id: null,
+  };
+  displayColumns: string[] &#x3D; [
+    &#x27;no&#x27;,
+    &#x27;name&#x27;,
+    &#x27;description&#x27;,
+    &#x27;status&#x27;,
+    &#x27;created_by&#x27;,
+    &#x27;updated_by&#x27;,
+    &#x27;actions&#x27;,
+    &#x27;assign&#x27;,
+  ];
+  tableLength: number &#x3D; 0;
+  simulateTable: boolean &#x3D; true;
+  currentUser!: IUser;
+  roles!: Array&lt;IRole&gt;;
+  isHost: boolean &#x3D; false;
+  clients: any[] &#x3D; [];
+  level: boolean &#x3D; false;
+  dropdownRoles: any[] &#x3D; [];
+
+  roleService &#x3D; inject(RolesService);
+  authService &#x3D; inject(AuthService);
+  snackbar &#x3D; inject(MatSnackBar);
+  toastr &#x3D; inject(ToastrService);
+  // userService &#x3D; inject(UsersService);
+
+  ngOnInit(): void {
+    // this.currentUser &#x3D; this.authService.user(); // current authenticated user
+    // this.isHost &#x3D; this.uamCommon.isHost(this.currentUser);
+    this.getRoles();
+    // be minimalistic call clients only if user is not a client
+    // this.isHost ? this.getClients() : null;
+    this.getUserIndivualRoles(Number(this.currentUser.id));
+  }
+
+  getRoles(query?: any): void {
+    this.roleService.getPaginated().subscribe((_) &#x3D;&gt; {
+      this.roles &#x3D; _.results;
+    });
+    /*merge(this.paginator.page)
+      .pipe(
+        takeUntilDestroyed(),
+        startWith({}),
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        switchMap(_ &#x3D;&gt; {
+          this.simulateTable &#x3D; true;
+          const _query &#x3D; { pageIndex: this.paginator.pageIndex, query };
+          return this.roleService
+            .getAllPaginated
+            //_query
+            ();
+        })*/
+    /*map((response: Paginated&lt;any&gt;) &#x3D;&gt; {
+          this.tableLength &#x3D; response.total;
+          this.simulateTable &#x3D; false;
+          return &lt;IRole[]&gt;response.results;
+        })*/
+    // catchError(_&#x3D;&gt;)
+    /*)
+      .subscribe({
+        next: response &#x3D;&gt; {
+          // this.roles &#x3D; response;
+        },
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        error: error &#x3D;&gt; {
+          this.simulateTable &#x3D; false;
+        }
+      });*/
+  }
+
+  deleteRole(roleId: number): void {
+    this.roleService.delete(roleId);
+  }
+
+  filterRoles(): void {
+    this.getRoles(this.searchData);
+  }
+
+  resetData(): void {
+    this.searchData.client_id &#x3D; null; //
+    this.getRoles();
+  }
+
+  revokeRole(roleId: number): void {
+    const isOk &#x3D; confirm(&#x27;Are you sure?&#x27;);
+    if (!isOk) return;
+    const revokeData: Partial&lt;IRole&gt; &#x3D; {
+      revoked: true,
+    };
+    if (!roleId) {
+      return;
+    }
+    this.roleService.update(revokeData as any);
+  }
+
+  restoreRole(roleId: number): void {
+    const isOk &#x3D; confirm(&#x27;Are you sure?&#x27;);
+    if (!isOk) return;
+    const revokeData &#x3D; {
+      revoked: false,
+    };
+    if (!roleId) {
+      return;
+    }
+    this.roleService.update(revokeData as any);
+  }
+
+  //navigates to add role
+  addNew(): void {}
+
+  exportData(): void {
+    this.toastr.info(&#x27;Not implemented!!&#x27;);
+  }
+
+  viewUser(userId: number): void {
+    if (!userId) {
+      return;
+    }
+    /*this.userService.getById(userId).subscribe(response &#x3D;&gt; {
+      if (response) {
+        const { username, email, phone_no } &#x3D; response;
+        const user &#x3D; &#x60;${username}(${email})&#x60;;
+        this.snackbar.open(user, phone_no, {
+          duration: 10000
+        });
+      }
+    });*/
+  }
+
+  //get auth user roles
+  getUserIndivualRoles(userId: number): void {
+    if (!userId) {
+      return;
+    }
+    /*this.roleService
+      .getAllPaginated({
+        // user_id: userId
+      })
+      .subscribe(response &#x3D;&gt; {
+        const userRole &#x3D; response.results.reduce((prev, acc) &#x3D;&gt; {
+          prev &#x3D; acc[&#x27;role.user_category&#x27;];
+          if (acc[&#x27;role.user_category&#x27;] &lt; prev) {
+            prev &#x3D; acc[&#x27;role.user_category&#x27;];
+          }
+          return prev;
+        }, null);
+        if (typeof userRole !&#x3D;&#x3D; &#x27;number&#x27;) {
+          return;
+        }
+        this.getDropDownRoles(userRole);
+      });*/
+  }
+
+  // get user roles used for drop down data
+  getDropDownRoles(userRoleCategory: number): void {
+    if (userRoleCategory) {
+      return;
+    }
+    let clientQuery: any;
+    if (!this.isHost) {
+      clientQuery.client_id &#x3D; this.currentUser.client_id;
+    }
+    /*this.roleService
+      .getAllPaginated({
+        user_category: { $gt: userRoleCategory },
+        ...clientQuery
+      })
+      .subscribe(response &#x3D;&gt; {
+        this.dropdownRoles &#x3D; response.results;
+      });*/
+  }
+}
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="styleData">
+            <pre class="line-numbers"><code class="language-scss">
+      table {
+        width: 100%;
+      }
+      mat-form-field {
+        width: 52%;
+      }
+      div.spinner {
+        width: 30%;
+        margin: auto;
+        padding: 0.2em;
+      }
+      .filter-data {
+        padding: 1rem;
+      }
+    
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><mat-toolbar color="primary">  Roles ({{ roles.length }})  <button mat-icon-button routerLink="/uam/roles/add">    <mat-icon>add_circle</mat-icon>  </button></mat-toolbar><div class="mat-elevation-z8">  <div class="action-buttons">    <div class="mb-0">      <button (click)="exportData()" mat-stroked-button color="primary" class="p-3 ml-3 mt-3">        <mat-icon>cloud</mat-icon>        Export Data      </button>    </div>  </div>  <div class="filter-data">    <fieldset class="scheduler-border">      <legend class="scheduler-border"><small>Filter</small></legend>      <form novalidate (ngSubmit)="filterRoles()">        <mat-form-field id="category-filter">          <mat-label>Filter by client</mat-label>          <mat-select [(ngModel)]="searchData.client_id" name="client_id">            <mat-option [value]="null">None</mat-option>            @for (client of clients; track client) {              <mat-option [value]="client.id">                {{ client.name }}              </mat-option>            }          </mat-select>        </mat-form-field>        <button style="margin-left: 1.5em;" mat-stroked-button color="primary">Filter</button>        <button          type="button"          style="margin-left: 1.5em;"          (click)="resetData()"          mat-stroked-button          color="accent"        >          Reset        </button>      </form>    </fieldset>  </div>  <table mat-table [dataSource]="roles">    <!--id column-->    <ng-container [sticky]="true" matColumnDef="no">      <th mat-header-cell *matHeaderCellDef>No</th>      <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>    </ng-container>    <!--role column-->    <ng-container matColumnDef="name">      <th mat-header-cell *matHeaderCellDef>Role</th>      <td mat-cell *matCellDef="let element">        {{ element.name }}        <!--            ({{          element[\'auction_client.name\'] ? element[\'auction_client.name\'] : \'N/A\'        }})-->      </td>    </ng-container>    <!--role column-->    <ng-container matColumnDef="description">      <th mat-header-cell *matHeaderCellDef>Description</th>      <td mat-cell *matCellDef="let element">        {{ element.description ? element.description : \'----\' }}      </td>    </ng-container>    <!--Status column-->    <ng-container matColumnDef="status">      <th mat-header-cell *matHeaderCellDef>Status</th>      <td mat-cell *matCellDef="let element">        {{ element.revoked ? \'Revoked\' : \'Valid\' }}      </td>    </ng-container>    <!--Created by column-->    <ng-container matColumnDef="created_by">      <th mat-header-cell *matHeaderCellDef>Created by</th>      <td mat-cell *matCellDef="let element">        <a (click)="viewUser(element.created_by)" routerLink="." title="view">          <mat-icon>visibility</mat-icon>        </a>      </td>    </ng-container>    <!-- Updated by Column -->    <ng-container matColumnDef="updated_by">      <th mat-header-cell *matHeaderCellDef>Updated By</th>      <td mat-cell *matCellDef="let element">        <a (click)="viewUser(element.updated_by)" routerLink="." title="view">          <mat-icon>visibility</mat-icon>        </a>      </td>    </ng-container>    <!--actions column-->    <ng-container matColumnDef="actions">      <th mat-header-cell *matHeaderCellDef>Delete</th>      <td mat-cell *matCellDef="let element">        <button (click)="deleteRole(element.id)" mat-stroked-button>          <mat-icon>delete</mat-icon>        </button>      </td>    </ng-container>    <ng-container matColumnDef="assign">      <th mat-header-cell *matHeaderCellDef>Revoke/Restore</th>      <td mat-cell *matCellDef="let element">        @if (!element.revoked) {          <button (click)="revokeRole(element.id)" mat-stroked-button>            <mat-icon>lock</mat-icon>          </button>        }        @if (element.revoked) {          <button (click)="restoreRole(element.id)" mat-stroked-button>            <mat-icon>refresh</mat-icon>          </button>        }      </td>    </ng-container>    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>    <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>  </table>  @if (simulateTable) {    <div class="spinner">      <mat-spinner [strokeWidth]="2" [diameter]="30"></mat-spinner>    </div>  }  <mat-paginator    #paginator    [pageSize]="10"    [length]="tableLength"    [pageSizeOptions]="[5, 10, 20]"    [showFirstLastButtons]="true"  ></mat-paginator></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'xtra-about'},{'name': 'AccountComponent', 'selector': 'xtra-user-account'},{'name': 'AddressComponent', 'selector': 'xtra-address'},{'name': 'AdminComponent', 'selector': 'xtra-admin'},{'name': 'AllowanceListComponent', 'selector': 'xtra-allowance-list'},{'name': 'AllowanceUpsertComponent', 'selector': 'xtra-allowance-upsert'},{'name': 'AmsComponent', 'selector': 'xtra-ams'},{'name': 'AnswerListComponent', 'selector': 'xtra-answer-list'},{'name': 'AnswerUpsertComponent', 'selector': 'xtra-answer-upsert'},{'name': 'AppComponent', 'selector': 'xtra-root'},{'name': 'ArticleListComponent', 'selector': 'xtra-article-list'},{'name': 'ArticlePageComponent', 'selector': 'xtra-article-page'},{'name': 'ArticlesComponent', 'selector': 'xtra-articles'},{'name': 'AssetAssignComponent', 'selector': 'xtra-asset-assign'},{'name': 'AssetCategoryListComponent', 'selector': 'xtra-asset-category-list'},{'name': 'AssetCategoryPageComponent', 'selector': 'xtra-asset-category-page'},{'name': 'AssetListComponent', 'selector': 'xtra-asset-list'},{'name': 'AssetLotListComponent', 'selector': 'xtra-asset-lot-list'},{'name': 'AssetLotPageComponent', 'selector': 'xtra-asset-lot-page'},{'name': 'AssetPageComponent', 'selector': 'xtra-asset-page'},{'name': 'AssetRequestListComponent', 'selector': 'xtra-asset-request-list'},{'name': 'AssetRequestPageComponent', 'selector': 'xtra-asset-request-page'},{'name': 'AttendanceActivityListComponent', 'selector': 'xtra-attendance-activity-list'},{'name': 'AttendanceActivityUpsertComponent', 'selector': 'xtra-attendance-activity-upsert'},{'name': 'AttendanceLateComeEarlyOutListComponent', 'selector': 'xtra-attendance-late-come-early-out-list'},{'name': 'AttendanceLateComeEarlyOutUpsertComponent', 'selector': 'xtra-attendance-late-come-early-out-upsert'},{'name': 'AttendanceListComponent', 'selector': 'xtra-attendance-list'},{'name': 'AttendanceOvertimeListComponent', 'selector': 'xtra-attendance-overtime-list'},{'name': 'AttendanceOvertimeUpsertComponent', 'selector': 'xtra-attendance-overtime-upsert'},{'name': 'AttendanceUpsertComponent', 'selector': 'xtra-attendance-upsert'},{'name': 'AttendanceValidationConditionListComponent', 'selector': 'xtra-attendance-validation-condition-list'},{'name': 'AttendanceValidationConditionUpsertComponent', 'selector': 'xtra-attendance-validation-condition-upsert'},{'name': 'AuthComponent', 'selector': 'xtra-auth'},{'name': 'AvailableLeaveListComponent', 'selector': 'xtra-available-leave-list'},{'name': 'AvailableLeaveUpsertComponent', 'selector': 'xtra-available-leave-upsert'},{'name': 'AvatarComponent', 'selector': 'xtra-avatar'},{'name': 'BankListComponent', 'selector': 'xtra-bank-list'},{'name': 'BankUpsertComponent', 'selector': 'xtra-bank-upsert'},{'name': 'BasePageComponent', 'selector': 'xtra-base-page'},{'name': 'BranchListComponent', 'selector': 'xtra-branch-list'},{'name': 'BranchPageComponent', 'selector': 'xtra-branch-page'},{'name': 'BreadcrumbsComponent', 'selector': 'xtra-breadcrumbs'},{'name': 'ButtonComponent', 'selector': 'xtra-button'},{'name': 'CandidateFinalizationComponent', 'selector': 'xtra-candidate-finalization'},{'name': 'CandidateListComponent', 'selector': 'xtra-candidate-list'},{'name': 'CandidatePageComponent', 'selector': 'xtra-candidate-page'},{'name': 'CandidateStageListComponent', 'selector': 'xtra-candidate-stage-list'},{'name': 'CandidateStageUpsertComponent', 'selector': 'xtra-candidate-stage-upsert'},{'name': 'CandidateTaskListComponent', 'selector': 'xtra-candidate-task-list'},{'name': 'CandidateTaskUpsertComponent', 'selector': 'xtra-candidate-task-upsert'},{'name': 'CareersPortalComponent', 'selector': 'xtra-careers-portal'},{'name': 'ChatBotComponent', 'selector': 'xtra-chat-bot'},{'name': 'ChatComponent', 'selector': 'xtra-chat'},{'name': 'ChatListComponent', 'selector': 'xtra-chat-list'},{'name': 'CmsComponent', 'selector': 'xtra-cms'},{'name': 'CommentListComponent', 'selector': 'xtra-comment-list'},{'name': 'CommentUpsertComponent', 'selector': 'xtra-comment-upsert'},{'name': 'CommsComponent', 'selector': 'xtra-comms'},{'name': 'ComposeMailComponent', 'selector': 'xtra-compose-mail'},{'name': 'ConfirmationDialogComponent', 'selector': 'xtra-confirmation-dialog'},{'name': 'ConfirmDialogComponent', 'selector': 'xtra-confirm-dialog'},{'name': 'ContactComponent', 'selector': 'xtra-contact'},{'name': 'ContactDetailsComponent', 'selector': 'xtra-user-contact-details'},{'name': 'ContractListComponent', 'selector': 'xtra-contract-list'},{'name': 'ContractUpsertComponent', 'selector': 'xtra-contract-upsert'},{'name': 'CurrencyListComponent', 'selector': 'xtra-currency-list'},{'name': 'CvEvaluationComponent', 'selector': 'xtra-cv-evaluation'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DashboardComponent', 'selector': 'xtra-dashboard'},{'name': 'DeductionListComponent', 'selector': 'xtra-deduction-list'},{'name': 'DeductionUpsertComponent', 'selector': 'xtra-deduction-upsert'},{'name': 'DeptListComponent', 'selector': 'xtra-dept-list'},{'name': 'DeptPageComponent', 'selector': 'xtra-dept-page'},{'name': 'DynamicFormComponent', 'selector': 'xtra-dynamic-form'},{'name': 'EmailDetailComponent', 'selector': 'xtra-email-detail'},{'name': 'EmailListComponent', 'selector': 'xtra-email-list'},{'name': 'EmailPageComponent', 'selector': 'xtra-email-page'},{'name': 'EmailsComponent', 'selector': 'xtra-emails'},{'name': 'EmailSettingsComponent', 'selector': 'xtra-email-settings'},{'name': 'EmailSettingsV2Component', 'selector': 'xtra-email-settings'},{'name': 'EmployeeKeyResultListComponent', 'selector': 'xtra-employee-key-result-list'},{'name': 'EmployeeKeyResultUpsertComponent', 'selector': 'xtra-employee-key-result-upsert'},{'name': 'EmployeeListComponent', 'selector': 'xtra-employee-list'},{'name': 'EmployeeListItemComponent', 'selector': 'xtra-employee-list-item'},{'name': 'EmployeeObjectiveListComponent', 'selector': 'xtra-employee-objective-list'},{'name': 'EmployeeObjectiveUpsertComponent', 'selector': 'xtra-employee-objective-upsert'},{'name': 'EmployeePageComponent', 'selector': 'xtra-employee-page'},{'name': 'EmployeePortalComponent', 'selector': 'xtra-employee-portal'},{'name': 'EmployeesComponent', 'selector': 'xtra-employees'},{'name': 'EmployeeShiftListComponent', 'selector': 'xtra-employee-shift-list'},{'name': 'EmployeeShiftScheduleListComponent', 'selector': 'xtra-employee-shift-schedule-list'},{'name': 'EmployeeShiftScheduleUpsertComponent', 'selector': 'xtra-employee-shift-schedule-upsert'},{'name': 'EmployeeShiftUpsertComponent', 'selector': 'xtra-employee-shift-upsert'},{'name': 'ErrorComponent', 'selector': 'xtra-error'},{'name': 'ErrorMessageComponent', 'selector': '[xtra-error-message]'},{'name': 'EventDetailComponent', 'selector': 'xtra-event-detail'},{'name': 'EventListComponent', 'selector': 'xtra-event-list'},{'name': 'EventsComponent', 'selector': 'xtra-events'},{'name': 'EventUpsertComponent', 'selector': 'xtra-upsert-event'},{'name': 'FederalTaxListComponent', 'selector': 'xtra-federal-tax-list'},{'name': 'FederalTaxUpsertComponent', 'selector': 'xtra-federal-tax-upsert'},{'name': 'FeedbackListComponent', 'selector': 'xtra-feedback-list'},{'name': 'FeedbackUpsertComponent', 'selector': 'xtra-feedback-upsert'},{'name': 'FileInputComponent', 'selector': 'xtra-mat-file-input'},{'name': 'FileUploadComponent', 'selector': 'xtra-file-upload'},{'name': 'FilingStatusListComponent', 'selector': 'xtra-filing-status-list'},{'name': 'FilingStatusUpsertComponent', 'selector': 'xtra-filing-status-upsert'},{'name': 'FinanceComponent', 'selector': 'xtra-finance'},{'name': 'FinancePortalComponent', 'selector': 'xtra-finance-portal'},{'name': 'FooterComponent', 'selector': 'xtra-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'xtra-forgot-password'},{'name': 'FormLayoutComponent', 'selector': 'xtra-form-layout'},{'name': 'HolidayItemComponent', 'selector': 'xtra-holiday-item'},{'name': 'HolidayListComponent', 'selector': 'xtra-holiday-list'},{'name': 'HolidayUpsertComponent', 'selector': 'xtra-holiday-upsert'},{'name': 'HrDetailListComponent', 'selector': 'xtra-hr-detail-list'},{'name': 'HrDetailPageComponent', 'selector': 'xtra-hr-detail-page'},{'name': 'InputComponent', 'selector': 'xtra-input'},{'name': 'InputComponent', 'selector': 'xtra-input'},{'name': 'InterviewFeedbackComponent', 'selector': 'xtra-interview-feedback'},{'name': 'InterviewPreparationComponent', 'selector': 'xtra-interview-preparation'},{'name': 'JobRoleListComponent', 'selector': 'xtra-job-role-list'},{'name': 'JobRoleUpsertComponent', 'selector': 'xtra-job-role-upsert'},{'name': 'KeyResultFeedbackListComponent', 'selector': 'xtra-key-result-feedback-list'},{'name': 'KeyResultFeedbackUpsertComponent', 'selector': 'xtra-key-result-feedback-upsert'},{'name': 'LangComponent', 'selector': 'xtra-lang'},{'name': 'LeaveDetailComponent', 'selector': 'xtra-leave-detail'},{'name': 'LeaveListComponent', 'selector': 'xtra-leave-list'},{'name': 'LeaveListComponent', 'selector': 'xtra-leave-list'},{'name': 'LeaveRequestItemComponent', 'selector': 'xtra-leave-request-item'},{'name': 'LeaveRequestListComponent', 'selector': 'xtra-leave-request-list'},{'name': 'LeaveRequestUpsertComponent', 'selector': 'xtra-leave-request-upsert'},{'name': 'LeavesComponent', 'selector': 'xtra-leaves'},{'name': 'LeaveTypeListComponent', 'selector': 'xtra-leave-type-list'},{'name': 'LeaveTypeUpsertComponent', 'selector': 'xtra-leave-type-upsert'},{'name': 'LeaveUpsertComponent', 'selector': 'xtra-leave-upsert'},{'name': 'ListComponent', 'selector': 'xtra-email-settings-list'},{'name': 'ListErrorsComponent', 'selector': 'xtra-list-errors'},{'name': 'LmsComponent', 'selector': 'xtra-lms'},{'name': 'LoaderComponent', 'selector': 'xtra-loader'},{'name': 'MsgIconBtnComponent', 'selector': 'xtra-msg-icon-btn'},{'name': 'NavbarComponent', 'selector': 'xtra-navbar'},{'name': 'OfflineComponent', 'selector': 'xtra-offline'},{'name': 'OnboardingComponent', 'selector': 'xtra-onboarding'},{'name': 'OnboardingPortalListComponent', 'selector': 'xtra-onboarding-portal-list'},{'name': 'OnboardingPortalUpsertComponent', 'selector': 'xtra-onboarding-portal-upsert'},{'name': 'OnboardingPreparationComponent', 'selector': 'xtra-onboarding-preparation'},{'name': 'OnboardingStageListComponent', 'selector': 'xtra-onboarding-stage-list'},{'name': 'OnboardingStageUpsertComponent', 'selector': 'xtra-onboarding-stage-upsert'},{'name': 'OnboardingTaskListComponent', 'selector': 'xtra-onboarding-task-list'},{'name': 'OnboardingTaskUpsertComponent', 'selector': 'xtra-onboarding-task-upsert'},{'name': 'OrganizationLeaveListComponent', 'selector': 'xtra-organization-leave-list'},{'name': 'OrganizationLeaveUpsertComponent', 'selector': 'xtra-organization-leave-upsert'},{'name': 'OrgChartComponent', 'selector': 'xtra-org-chart'},{'name': 'OrgDetailComponent', 'selector': 'xtra-org-detail'},{'name': 'OrgPageComponent', 'selector': 'xtra-org-page'},{'name': 'OrgsComponent', 'selector': 'xtra-orgs'},{'name': 'OtpInputComponent', 'selector': 'xtra-otp-input'},{'name': 'PageComponent', 'selector': 'xtra-page'},{'name': 'PageNotFoundComponent', 'selector': 'xtra-page-not-found'},{'name': 'PagerComponent', 'selector': 'xtra-pager'},{'name': 'PaginationComponent', 'selector': 'xtra-pagination'},{'name': 'PasswordComponent', 'selector': 'xtra-password'},{'name': 'PayrollListComponent', 'selector': 'xtra-payroll-list'},{'name': 'PayrollSettingListComponent', 'selector': 'xtra-payroll-setting-list'},{'name': 'PayrollSettingUpsertComponent', 'selector': 'xtra-payroll-setting-upsert'},{'name': 'PayrollUpsertComponent', 'selector': 'xtra-payroll-upsert'},{'name': 'PayslipListComponent', 'selector': 'xtra-payslip-list'},{'name': 'PayslipUpsertComponent', 'selector': 'xtra-payslip-upsert'},{'name': 'PerformanceListComponent', 'selector': 'xtra-performance-list'},{'name': 'PerformanceUpsertComponent', 'selector': 'xtra-performance-upsert'},{'name': 'PeriodListComponent', 'selector': 'xtra-period-list'},{'name': 'PeriodUpsertComponent', 'selector': 'xtra-period-upsert'},{'name': 'PermissionAssignComponent', 'selector': 'xtra-permission-assign'},{'name': 'PermissionListComponent', 'selector': 'xtra-permission-list'},{'name': 'PermissionPageComponent', 'selector': 'xtra-permission-page'},{'name': 'PmComponent', 'selector': 'xtra-pm'},{'name': 'PmsComponent', 'selector': 'xtra-pms'},{'name': 'PositionListComponent', 'selector': 'xtra-position-list'},{'name': 'PositionsComponent', 'selector': 'xtra-positions'},{'name': 'PositionUpsertComponent', 'selector': 'xtra-position-upsert'},{'name': 'PrivacyPolicyComponent', 'selector': 'xtra-privacy-policy'},{'name': 'ProfileComponent', 'selector': 'xtra-profile'},{'name': 'ProfileComponent', 'selector': 'xtra-profile'},{'name': 'ProjectCardComponent', 'selector': 'xtra-project-card'},{'name': 'ProjectGanttComponent', 'selector': 'xtra-project-gantt'},{'name': 'ProjectListComponent', 'selector': 'xtra-project-list'},{'name': 'ProjectPageComponent', 'selector': 'xtra-project-page'},{'name': 'QuestionListComponent', 'selector': 'xtra-question-list'},{'name': 'QuestionOptionListComponent', 'selector': 'xtra-question-option-list'},{'name': 'QuestionOptionUpsertComponent', 'selector': 'xtra-question-option-upsert'},{'name': 'QuestionTemplateListComponent', 'selector': 'xtra-question-template-list'},{'name': 'QuestionTemplateUpsertComponent', 'selector': 'xtra-question-template-upsert'},{'name': 'QuestionUpsertComponent', 'selector': 'xtra-question-upsert'},{'name': 'RecruitmentListComponent', 'selector': 'xtra-recruitment-list'},{'name': 'RecruitmentPageComponent', 'selector': 'xtra-recruitment-page'},{'name': 'RecruitmentsComponent', 'selector': 'xtra-recruitments'},{'name': 'RecruitmentSurveyAnswerListComponent', 'selector': 'xtra-recruitment-survey-answer-list'},{'name': 'RecruitmentSurveyAnswerUpsertComponent', 'selector': 'xtra-recruitment-survey-answer-upsert'},{'name': 'RecruitmentSurveyListComponent', 'selector': 'xtra-recruitment-survey-list'},{'name': 'RecruitmentSurveyUpsertComponent', 'selector': 'xtra-recruitment-survey-upsert'},{'name': 'RejectionLetterComponent', 'selector': 'xtra-rejection-letter'},{'name': 'ResetPasswordComponent', 'selector': 'xtra-reset-password'},{'name': 'RichTextEditorComponent', 'selector': 'xtra-rich-text-editor'},{'name': 'RoleListComponent', 'selector': 'xtra-role-list'},{'name': 'RolePageComponent', 'selector': 'xtra-role-page'},{'name': 'RotatingShiftAssignListComponent', 'selector': 'xtra-rotating-shift-assign-list'},{'name': 'RotatingShiftAssignUpsertComponent', 'selector': 'xtra-rotating-shift-assign-upsert'},{'name': 'RotatingShiftListComponent', 'selector': 'xtra-rotating-shift-list'},{'name': 'RotatingShiftUpsertComponent', 'selector': 'xtra-rotating-shift-upsert'},{'name': 'RotatingWorkTypeAssignListComponent', 'selector': 'xtra-rotating-work-type-assign-list'},{'name': 'RotatingWorkTypeAssignUpsertComponent', 'selector': 'xtra-rotating-work-type-assign-upsert'},{'name': 'RotatingWorkTypeListComponent', 'selector': 'xtra-rotating-work-type-list'},{'name': 'RotatingWorkTypeUpsertComponent', 'selector': 'xtra-rotating-work-type-upsert'},{'name': 'SettingsComponent', 'selector': 'xtra-settings'},{'name': 'ShiftRequestListComponent', 'selector': 'xtra-shift-request-list'},{'name': 'ShiftRequestUpsertComponent', 'selector': 'xtra-shift-request-upsert'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavComponent', 'selector': 'xtra-sidenav'},{'name': 'SidenavLinkComponent', 'selector': 'xtra-sidenav-link'},{'name': 'SidenavListItemComponent', 'selector': 'xtra-sidenav-list-item'},{'name': 'SignInComponent', 'selector': 'xtra-sign-in'},{'name': 'SignInComponent', 'selector': 'xtra-sign-in'},{'name': 'SignUpComponent', 'selector': 'xtra-sign-up'},{'name': 'SimpleDialogComponent', 'selector': 'xtra-simple-dialog'},{'name': 'SimplePageComponent', 'selector': 'xtra-simple-page'},{'name': 'SmsComponent', 'selector': 'xtra-sms'},{'name': 'SmsListComponent', 'selector': 'xtra-sms-list'},{'name': 'SmsListComponent', 'selector': 'xtra-sms-list'},{'name': 'SmsPageComponent', 'selector': 'xtra-sms-page'},{'name': 'StageListComponent', 'selector': 'xtra-stage-list'},{'name': 'StageNoteListComponent', 'selector': 'xtra-stage-note-list'},{'name': 'StageNoteUpsertComponent', 'selector': 'xtra-stage-note-upsert'},{'name': 'StageUpsertComponent', 'selector': 'xtra-stage-upsert'},{'name': 'SvgDefinitionsComponent', 'selector': 'xtra-svg-definitions'},{'name': 'SvgIconComponent', 'selector': 'xtra-svg-icon'},{'name': 'TableComponent', 'selector': 'xtra-table'},{'name': 'TableV2Component', 'selector': 'xtra-table-v2'},{'name': 'TaskAssignmentListComponent', 'selector': 'xtra-task-assignment-list'},{'name': 'TaskAssignmentUpsertComponent', 'selector': 'xtra-task-assignment-upsert'},{'name': 'TaskListComponent', 'selector': 'xtra-task-list'},{'name': 'TaskUpsertComponent', 'selector': 'xtra-task-upsert'},{'name': 'TelComponent', 'selector': 'xtra-tel'},{'name': 'TermsOfServiceComponent', 'selector': 'xtra-terms-of-service'},{'name': 'TextareaComponent', 'selector': 'xtra-textarea'},{'name': 'TimeOffMgtComponent', 'selector': 'xtra-time-off-mgt'},{'name': 'TitleComponent', 'selector': 'xtra-title'},{'name': 'TrainingListComponent', 'selector': 'xtra-training-list'},{'name': 'TrainingResourceListComponent', 'selector': 'xtra-training-resource-list'},{'name': 'TrainingResourceUpsertComponent', 'selector': 'xtra-training-resource-upsert'},{'name': 'TrainingScheduleListComponent', 'selector': 'xtra-training-schedule-list'},{'name': 'TrainingScheduleUpsertComponent', 'selector': 'xtra-training-schedule-upsert'},{'name': 'TrainingsComponent', 'selector': 'xtra-trainings'},{'name': 'TrainingUpsertComponent', 'selector': 'xtra-training-upsert'},{'name': 'UamComponent', 'selector': 'xtra-uam'},{'name': 'UiSpacerComponent', 'selector': 'xtra-ui-spacer'},{'name': 'UserAvatarComponent', 'selector': 'xtra-user-avatar'},{'name': 'UserCardComponent', 'selector': 'xtra-user-card'},{'name': 'UserListComponent', 'selector': 'xtra-user-list'},{'name': 'UserListComponent', 'selector': 'xtra-user-list'},{'name': 'UserPageComponent', 'selector': 'xtra-user-page'},{'name': 'UsersComponent', 'selector': 'xtra-users'},{'name': 'VerifyOtpComponent', 'selector': 'xtra-verify-otp'},{'name': 'WindowComponent', 'selector': 'xtra-window'},{'name': 'WorkRecordListComponent', 'selector': 'xtra-work-record-list'},{'name': 'WorkRecordUpsertComponent', 'selector': 'xtra-work-record-upsert'},{'name': 'WorkTypeListComponent', 'selector': 'xtra-work-type-list'},{'name': 'WorkTypeRequestListComponent', 'selector': 'xtra-work-type-request-list'},{'name': 'WorkTypeRequestUpsertComponent', 'selector': 'xtra-work-type-request-upsert'},{'name': 'WorkTypeUpsertComponent', 'selector': 'xtra-work-type-upsert'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[xtraAutofocus]'},{'name': 'ButtonDirective', 'selector': '[xtraButton]'},{'name': 'DynamicFieldDirective', 'selector': '[xtraDynamicField]'},{'name': 'EmailValidatorDirective', 'selector': '[xtraEmailValidator]'},{'name': 'EmployeeNotAvailableDirective', 'selector': 'a[routerLink]'},{'name': 'HasPermissionDirective', 'selector': '[xtraHasPermission]'},{'name': 'LoaderDirective', 'selector': '[loading]'},{'name': 'MinLengthDirective', 'selector': '[xtraMinLength]'},{'name': 'NgMatTableQueryReflectorDirective', 'selector': '[xtraNgMatTableQueryReflector]'},{'name': 'TooltipDirective', 'selector': 'xtraTooltip'},{'name': 'TruncateDirective', 'selector': '[xtraTruncate]'}];
+    var ACTUAL_COMPONENT = {'name': 'RoleListComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'RoleListComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
