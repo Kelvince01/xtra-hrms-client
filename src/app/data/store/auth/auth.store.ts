@@ -10,6 +10,8 @@ import {AuthService} from '@data/services';
 import {LocalStorageJwtService} from '@shared/services';
 import {ngrxFormsQuery} from '@stores/forms';
 import {formsActions} from '@stores/forms';
+import Swal from 'sweetalert2';
+import {ILoginResponse} from '@data/models/accounts.model';
 
 export const AuthStore = signalStore(
   {providedIn: 'root'},
@@ -25,7 +27,7 @@ export const AuthStore = signalStore(
       getUser: rxMethod<void>(
         pipe(
           switchMap(() => authService.user()),
-          tap(({user}) => patchState(store, {user, isAuthenticated: true})),
+          tap((user) => patchState(store, {user, isAuthenticated: true})),
         ),
       ),
       login: rxMethod<void>(
@@ -34,10 +36,22 @@ export const AuthStore = signalStore(
           exhaustMap(([, data]) =>
             authService.login(data).pipe(
               tapResponse({
-                next: (user: any) => {
-                  // let loggedInUser = authService.user();
-                  patchState(store, {user, isAuthenticated: true});
-                  localStorageService.setItem(user);
+                next: (token: ILoginResponse) => {
+                  localStorageService.setItem(token);
+
+                  pipe(
+                    switchMap(() => authService.getCurrentUser()),
+                    tap((user) => patchState(store, {user, isAuthenticated: true})),
+                  );
+
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Login Successful',
+                    text: `Welcome back!`,
+                    customClass: {
+                      confirmButton: 'sweetAlertButton',
+                    },
+                  });
                   router.navigateByUrl('/');
                 },
                 error: ({error}) =>
@@ -56,6 +70,14 @@ export const AuthStore = signalStore(
                 next: (user) => {
                   patchState(store, {user, isAuthenticated: true});
                   localStorageService.setItem(user!);
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Registration Successful',
+                    text: `Welcome to Xtra HRMS!`,
+                    customClass: {
+                      confirmButton: 'sweetAlertButton',
+                    },
+                  });
                   router.navigateByUrl('/');
                 },
                 error: ({error}) =>

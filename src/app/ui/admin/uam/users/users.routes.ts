@@ -4,7 +4,8 @@ import {Routes} from '@angular/router';
 export const usersRoutes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./user-list/user-list.component').then((c) => c.UserListComponent),
+    loadComponent: () =>
+      import('./user-list/user-list-v2.component').then((c) => c.UserListComponent),
     // canActivate: [hasPermissionGuard("ViewUsers")],
   },
   {

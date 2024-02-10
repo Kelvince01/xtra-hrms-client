@@ -1,23 +1,19 @@
 import {computed, inject, Injectable, signal} from '@angular/core';
 import {UsersService} from './users.service';
 import {HttpClient} from '@angular/common/http';
-import {
-  EmailVerifyOtp,
-  ForgotPassword,
-  IUser,
-  Login,
-  PhoneVerifyOtp,
-  Register,
-  ResetPassword,
-  UserModel,
-  UserResponse,
-} from '@data/models';
+import {EmailVerifyOtp, IUser, PhoneVerifyOtp, UserResponse} from '@data/models';
 import {Observable, of} from 'rxjs';
 import {environment} from '../../../environments/environment.development';
 import {JwtHelperService} from '@auth0/angular-jwt';
-import {WindowService} from '@shared/services';
+import {LocalStorageJwtService, WindowService} from '@shared/services';
 import {ApiStatus} from '@data/types/api-status.type';
-import {ILoginResponse} from '@models/accounts.model';
+import {
+  IForgotPassword,
+  ILogin,
+  ILoginResponse,
+  IRegister,
+  IResetPassword,
+} from '@models/accounts.model';
 
 export type AuthStatus = 'idle' | 'authenticated' | 'unauthenticated';
 
@@ -29,6 +25,7 @@ export class AuthService {
   #http = inject(HttpClient);
   readonly #jwtHelper = inject(JwtHelperService);
   readonly #windowService = inject(WindowService);
+  readonly #localService = inject(LocalStorageJwtService);
 
   readonly #user = signal<IUser | null>(null);
   // readonly user = this.#user.asReadonly();
@@ -41,27 +38,29 @@ export class AuthService {
 
   constructor() {}
 
-  user(): Observable<UserResponse> {
-    this.getCurrentUser();
-    return of(<UserResponse>{user: this.#user()});
+  user(): Observable<IUser> {
+    if (this.checkTokenExpiry()) {
+      this.logOut();
+    }
+    return this.getCurrentUser();
   }
 
-  login(data: Login): Observable<ILoginResponse> {
+  login(credentials: ILogin): Observable<ILoginResponse> {
     const url = `${environment.BASE_API_URL}auth/login/`;
-    return this.#http.post<ILoginResponse>(url, data);
+    return this.#http.post<ILoginResponse>(url, credentials);
   }
 
-  register(data: Register): Observable<IUser> {
+  register(data: IRegister): Observable<IUser> {
     const url = `${environment.BASE_API_URL}users/`;
     return this.#http.post<IUser>(url, data);
   }
 
-  forgotPassword(data: ForgotPassword): Observable<any> {
+  forgotPassword(data: IForgotPassword): Observable<any> {
     const url = `${environment.BASE_API_URL}auth/forgot-password/`;
     return this.#http.post<any>(url, data);
   }
 
-  resetPassword(data: ResetPassword): Observable<any> {
+  resetPassword(data: IResetPassword): Observable<any> {
     const url = `${environment.BASE_API_URL}auth/reset-passwor/`;
     return this.#http.post<any>(url, data);
   }
@@ -75,16 +74,30 @@ export class AuthService {
     if (!this.#windowService.isServer) {
       this.#windowService.removeLocalStorage('xtra-hrms-token');
       this.#windowService.removeLocalStorage('xtra-hrms-user');
-      window.sessionStorage.removeItem('xtra-hrms-token');
     }
+  }
+
+  getCurrentUser(): Observable<IUser> {
+    const url = `${environment.BASE_API_URL}users/current`;
+    return this.#http.get<IUser>(url);
   }
 
   isTokenExpired(token: string) {
     return this.#jwtHelper.isTokenExpired(token);
   }
 
+  checkTokenExpiry() {
+    const token = this.#windowService.getLocalStorageObject('xtra-hrms-token');
+
+    if (!token) {
+      return true;
+    }
+
+    return this.isTokenExpired(token.access);
+  }
+
   getToken() {
-    if (this.#windowService.isServer) return of();
+    if (this.#windowService.isServer) return;
 
     const token = this.#windowService.getLocalStorageObject('xtra-hrms-token');
 
@@ -94,19 +107,19 @@ export class AuthService {
       return;
     }
 
-    if (this.#jwtHelper.isTokenExpired(token.access)) {
+    if (this.isTokenExpired(token.access)) {
       this.logOut();
       return;
     }
 
-    if (this.#jwtHelper.isTokenExpired(token.refresh)) {
+    if (this.isTokenExpired(token.refresh)) {
       return;
     }
 
     return token;
   }
 
-  getCurrentUser(): Observable<IUser> {
+  getCurrentUserV1(): Observable<IUser> {
     const token = this.getToken();
 
     const res = this.#jwtHelper.decodeToken(token.refresh!);

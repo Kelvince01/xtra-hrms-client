@@ -1,6 +1,6 @@
-import {BaseModel} from '@models/base.model';
+import {IBaseModel} from '@models/base.model';
 
-export interface IOrganization extends BaseModel {
+export interface IOrganization extends IBaseModel {
   name: string;
   license_no?: string;
   contact?: number;
@@ -21,18 +21,18 @@ export interface IOrganization extends BaseModel {
   organization_type?: string;
 }
 
-export interface IOrganizationInfo extends BaseModel {
+export interface IOrganizationInfo extends IBaseModel {
   name: string;
 }
 
-export interface ITitle extends BaseModel {
+export interface ITitle extends IBaseModel {
   emp_no?: number;
   title: string;
   from_date: Date;
   to_date: Date;
 }
 
-export interface IBranch extends BaseModel {
+export interface IBranch extends IBaseModel {
   name: string;
   branch_code: string;
   location: string;
@@ -41,7 +41,7 @@ export interface IBranch extends BaseModel {
   created: Date;
 }
 
-export interface IDepartment extends BaseModel {
+export interface IDepartment extends IBaseModel {
   name?: string;
   code?: string;
   description?: string;
@@ -65,17 +65,17 @@ export interface UpdateDepartment {
   description: string;
 }
 
-export interface IGroup extends BaseModel {
+export interface IGroup extends IBaseModel {
   name?: string;
 }
 
-export interface ISection extends BaseModel {
+export interface ISection extends IBaseModel {
   name?: string;
   description?: string;
   department?: number;
 }
 
-export interface IDepartmentSection extends BaseModel {
+export interface IDepartmentSection extends IBaseModel {
   name?: string;
   department?: number;
   description?: string;
@@ -101,22 +101,22 @@ export interface NewPosition extends IPosition {}
 
 export interface UpdatePosition extends IPosition {}
 
-export interface IJobPosition extends BaseModel {
+export interface IJobPosition extends IBaseModel {
   job_position: string;
   department: number;
 }
 
-export interface IJobRole extends BaseModel {
+export interface IJobRole extends IBaseModel {
   job_position: number;
   job_role: string;
 }
 
-export interface IJobPosition extends BaseModel {
+export interface IJobPosition extends IBaseModel {
   job_position: string;
   department: number;
 }
 
-export interface IWorkType extends BaseModel {
+export interface IWorkType extends IBaseModel {
   work_type: string;
 }
 
@@ -127,17 +127,17 @@ export interface ITeam {
   status: string;
 }
 
-export interface IAssetLot extends BaseModel {
+export interface IAssetLot extends IBaseModel {
   lot_number: string;
   lot_description: string;
 }
 
-export interface IAssetCategory extends BaseModel {
+export interface IAssetCategory extends IBaseModel {
   name: string;
   description: string;
 }
 
-export interface IAsset extends BaseModel {
+export interface IAsset extends IBaseModel {
   name: string;
   description: string;
   tracking_id: string;
@@ -148,7 +148,7 @@ export interface IAsset extends BaseModel {
   lot_number: number;
 }
 
-export interface IAssetAssignment extends BaseModel {
+export interface IAssetAssignment extends IBaseModel {
   assigned_date: Date;
   return_date?: Date;
   return_condition?: string;
@@ -158,7 +158,7 @@ export interface IAssetAssignment extends BaseModel {
   assigned_by_employee_id?: number;
 }
 
-export interface IRequestAsset extends BaseModel {
+export interface IRequestAsset extends IBaseModel {
   requested_employee: number;
   asset_category: string;
   asset_request_date: Date;

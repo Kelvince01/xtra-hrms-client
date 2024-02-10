@@ -47,6 +47,11 @@ export const routes: Routes = [
     title: 'Careers Portal',
   },
   {
+    path: 'blog',
+    loadComponent: () => import('./ui/blog/blog.component').then((c) => c.BlogComponent),
+    loadChildren: () => import('./ui/blog/blog.routes').then((r) => r.blogRoutes),
+  },
+  {
     path: '',
     redirectTo: '',
     pathMatch: 'full',

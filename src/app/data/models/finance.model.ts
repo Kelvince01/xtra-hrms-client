@@ -1,6 +1,6 @@
-import {BaseModel} from '@models/base.model';
+import {IBaseModel} from '@models/base.model';
 
-export interface IPayroll extends BaseModel {
+export interface IPayroll extends IBaseModel {
   employee?: number;
   job_department?: number;
   salary_payroll?: number;
@@ -11,7 +11,7 @@ export interface IPayroll extends BaseModel {
   payment_method?: string;
 }
 
-export interface IPayslip extends BaseModel {
+export interface IPayslip extends IBaseModel {
   group_name?: string;
   reference?: string;
   employee?: number;
@@ -37,7 +37,7 @@ export interface IPayslip extends BaseModel {
   status?: string;
 }
 
-export interface IWorkRecord extends BaseModel {
+export interface IWorkRecord extends IBaseModel {
   record_name?: string;
   work_record_type?: string;
   employee?: number;
@@ -54,7 +54,7 @@ export interface IWorkRecord extends BaseModel {
   day_percentage?: number;
 }
 
-export interface IContract extends BaseModel {
+export interface IContract extends IBaseModel {
   name?: string;
   employee?: number;
   start_date?: Date;
@@ -78,7 +78,7 @@ export interface IContract extends BaseModel {
   risk?: string;
 }
 
-export interface IAllowance extends BaseModel {
+export interface IAllowance extends IBaseModel {
   title?: string;
   one_time_date?: Date;
   include_active_employees?: boolean;
@@ -111,7 +111,7 @@ export interface IAllowance extends BaseModel {
   employer_rate?: number;
 }
 
-export interface IDeduction extends BaseModel {
+export interface IDeduction extends IBaseModel {
   title?: string;
   one_time_date?: Date;
   include_active_employees?: boolean;
@@ -133,29 +133,29 @@ export interface IDeduction extends BaseModel {
   if_amount?: number;
 }
 
-export interface IFilingStatus extends BaseModel {
+export interface IFilingStatus extends IBaseModel {
   filing_status?: string;
   based_on?: string;
   description?: string;
 }
 
-export interface IPayrollSetting extends BaseModel {
+export interface IPayrollSetting extends IBaseModel {
   currency_symbol?: string;
 }
 
-export interface ITaxBracket extends BaseModel {
+export interface ITaxBracket extends IBaseModel {
   filing_status?: number;
   min_income?: number;
   max_income?: number;
   tax_rate?: number;
 }
 
-export interface IFederalTax extends BaseModel {
+export interface IFederalTax extends IBaseModel {
   filing_status?: number;
   taxable_gross?: number;
 }
 
-export interface IBank extends BaseModel {
+export interface IBank extends IBaseModel {
   name?: string;
   short_name?: string;
   branch?: string;
@@ -168,7 +168,7 @@ export interface IBank extends BaseModel {
   added_on?: Date;
 }
 
-export interface IBankBranch extends BaseModel {
+export interface IBankBranch extends IBaseModel {
   name?: string;
   bank?: number;
   branch_no?: string;
@@ -177,12 +177,12 @@ export interface IBankBranch extends BaseModel {
   email?: string;
 }
 
-export interface IEmployeeBankAccount extends BaseModel {
+export interface IEmployeeBankAccount extends IBaseModel {
   bank_name?: string;
   reserved?: boolean;
 }
 
-export interface IEmployeeBank extends BaseModel {
+export interface IEmployeeBank extends IBaseModel {
   employee?: number;
   bank?: number;
   account_no?: string;
@@ -200,12 +200,12 @@ export interface IEmployeeBank extends BaseModel {
   added_on?: Date;
 }
 
-export interface IAccountType extends BaseModel {
+export interface IAccountType extends IBaseModel {
   type?: string;
   description?: string;
 }
 
-export interface IAccount extends BaseModel {
+export interface IAccount extends IBaseModel {
   account_no?: string;
   name?: string;
   description?: string;
@@ -231,7 +231,7 @@ export interface IAccount extends BaseModel {
   amount?: number;
 }
 
-export interface ITransaction extends BaseModel {
+export interface ITransaction extends IBaseModel {
   /*
   type;
   account_id;
@@ -248,7 +248,7 @@ export interface ITransaction extends BaseModel {
    */
 }
 
-export interface IPaymentMethod extends BaseModel {
+export interface IPaymentMethod extends IBaseModel {
   paymentSourceType?: string;
   name?: string;
   priceAmountCents?: number;
@@ -257,7 +257,7 @@ export interface IPaymentMethod extends BaseModel {
   orderId?: string;
 }
 
-export interface PaymentSourceModel extends BaseModel {
+export interface PaymentSourceModel extends IBaseModel {
   approvalUrl?: string;
   cancelUrl?: string;
   name?: string;
@@ -266,7 +266,7 @@ export interface PaymentSourceModel extends BaseModel {
   status?: string;
 }
 
-export interface IPaypalPayment extends PaymentSourceModel, BaseModel {
+export interface IPaypalPayment extends PaymentSourceModel, IBaseModel {
   orderId?: string;
   paypalId?: string;
   paypalPayerId?: string;

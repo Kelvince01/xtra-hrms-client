@@ -1,7 +1,7 @@
-import {BaseModel} from '@models/base.model';
+import {IBaseModel} from '@models/base.model';
 import {Time} from '@angular/common';
 
-export interface IAttendance extends BaseModel {
+export interface IAttendance extends IBaseModel {
   employee?: number;
   attendance_date?: Date;
   shift?: number;
@@ -32,7 +32,7 @@ export interface IEmployeeShiftDay {
   disabled?: boolean;
 }
 
-export interface IAttendanceActivity extends BaseModel {
+export interface IAttendanceActivity extends IBaseModel {
   employee?: number;
   attendance_date?: Date;
   clock_in_date?: Date;
@@ -48,7 +48,7 @@ export interface IAttendanceActivity extends BaseModel {
   organization?: number;
 }
 
-export interface IAttendanceOvertime extends BaseModel {
+export interface IAttendanceOvertime extends IBaseModel {
   employee?: number;
   month?: string;
   month_sequence?: number;
@@ -59,26 +59,26 @@ export interface IAttendanceOvertime extends BaseModel {
   overtime_second?: number;
 }
 
-export interface IAttendanceLateComeEarlyOut extends BaseModel {
+export interface IAttendanceLateComeEarlyOut extends IBaseModel {
   attendance?: number;
   employee?: number;
   type?: string;
 }
 
-export interface IAttendanceValidationCondition extends BaseModel {
+export interface IAttendanceValidationCondition extends IBaseModel {
   validation_at_work?: string;
   minimum_overtime_to_approve?: string;
   overtime_cutoff?: string;
 }
 
-export interface IEmployeeShift extends BaseModel {
+export interface IEmployeeShift extends IBaseModel {
   employee_shift?: string;
   days?: number[];
   weekly_full_time?: string;
   full_time?: string;
 }
 
-export interface IEmployeeShiftSchedule extends BaseModel {
+export interface IEmployeeShiftSchedule extends IBaseModel {
   day?: number;
   shift?: number;
   minimum_working_hour?: string;

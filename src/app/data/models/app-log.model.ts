@@ -2,10 +2,10 @@
  * Copyright (c) 2023.  Kelvince Phillips
  */
 
-import {BaseModel} from '@models/base.model';
+import {IBaseModel} from '@models/base.model';
 import {LogLevel} from '@data/types/logger.type';
 
-export interface IAppLog extends BaseModel {
+export interface IAppLog extends IBaseModel {
   message: string;
   source: string;
   action?: string;

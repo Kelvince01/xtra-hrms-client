@@ -2,15 +2,15 @@
  * Copyright (c) 2023. Kelvince Phillips
  */
 
-import {BaseModel} from '@models/base.model';
+import {IBaseModel} from '@models/base.model';
 
 export type TrainingInterval = 'ONE_TIME' | 'MONTHLY' | 'YEARLY';
 
-export interface ITraining extends BaseModel {
-  amount: number;
-  type: string;
-  interval: TrainingInterval;
-  categoryId: number;
+export interface ITraining extends IBaseModel {
+  amount?: number;
+  type?: string;
+  interval?: TrainingInterval;
+  categoryId?: number;
   employee?: number;
   training_name?: string;
   description?: string;
@@ -19,7 +19,7 @@ export interface ITraining extends BaseModel {
   end?: Date;
 }
 
-export interface ITrainingSchedule extends BaseModel {
+export interface ITrainingSchedule extends IBaseModel {
   programme?: string;
   duration?: number;
   venue?: string;
@@ -27,7 +27,7 @@ export interface ITrainingSchedule extends BaseModel {
   date?: Date;
 }
 
-export interface ITrainingResource extends BaseModel {
+export interface ITrainingResource extends IBaseModel {
   name?: string;
   producer?: string;
   file_format?: string;

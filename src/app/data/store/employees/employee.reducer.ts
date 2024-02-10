@@ -1,15 +1,15 @@
 import {createFeature, createReducer, on} from '@ngrx/store';
 import {EmployeeModel} from '@data/models';
-import {articleListActions, articlesActions} from './employee.action';
+import {employeeListActions, employeesActions} from './employee.action';
 
-export const articleListFeatureKey = 'articles-list';
+export const employeeListFeatureKey = 'employees-list';
 
-export interface ArticleListState {
-  listConfig: ArticleListConfig;
-  articles: Articles;
+export interface EmployeeListState {
+  listConfig: EmployeeListConfig;
+  employees: Employees;
 }
 
-export interface ArticleListConfig {
+export interface EmployeeListConfig {
   type: ListType;
   currentPage: number;
   filters: Filters;
@@ -25,14 +25,14 @@ export interface Filters {
 
 export type ListType = 'ALL' | 'FEED';
 
-export interface Articles {
+export interface Employees {
   entities: EmployeeModel[];
-  articlesCount: number;
+  employeesCount: number;
   loaded: boolean;
   loading: boolean;
 }
 
-export const articleListInitialState: ArticleListState = {
+export const employeeListInitialState: EmployeeListState = {
   listConfig: {
     type: 'ALL',
     currentPage: 1,
@@ -40,19 +40,19 @@ export const articleListInitialState: ArticleListState = {
       limit: 10,
     },
   },
-  articles: {
+  employees: {
     entities: [],
-    articlesCount: 0,
+    employeesCount: 0,
     loaded: false,
     loading: false,
   },
 };
 
-export const articleListFeature = createFeature({
-  name: 'articlesList',
+export const employeeListFeature = createFeature({
+  name: 'employeesList',
   reducer: createReducer(
-    articleListInitialState,
-    on(articleListActions.setListPage, (state, {page}) => {
+    employeeListInitialState,
+    on(employeeListActions.setListPage, (state, {page}) => {
       const filters = {
         ...state.listConfig.filters,
         offset: (state?.listConfig?.filters?.limit ?? 10) * (page - 1),
@@ -64,47 +64,51 @@ export const articleListFeature = createFeature({
       };
       return {...state, listConfig};
     }),
-    on(articleListActions.setListConfig, (state, {config}) => ({
+    on(employeeListActions.setListConfig, (state, {config}) => ({
       ...state,
       listConfig: config,
     })),
-    on(articleListActions.loadArticles, (state) => {
-      const articles = {...state.articles, loading: true};
-      return {...state, articles};
+    on(employeeListActions.loadEmployees, (state) => {
+      const employees = {...state.employees, loading: true};
+      return {...state, employees};
     }),
-    on(articleListActions.loadArticlesSuccess, (state, action) => {
-      const articles = {
-        ...state.articles,
-        entities: action.articles,
-        articlesCount: action.articlesCount,
+    on(employeeListActions.loadEmployeesSuccess, (state, action) => {
+      const employees = {
+        ...state.employees,
+        entities: action.employees,
+        employeesCount: action.employeesCount,
         loading: false,
         loaded: true,
       };
-      return {...state, articles};
+      return {...state, employees};
     }),
-    on(articleListActions.loadArticlesFailure, (state, _) => {
-      const articles = {
-        ...state.articles,
+    on(employeeListActions.loadEmployeesFailure, (state, _) => {
+      const employees = {
+        ...state.employees,
         entities: [],
-        articlesCount: 0,
+        employeesCount: 0,
         loading: false,
         loaded: true,
       };
-      return {...state, articles};
+      return {...state, employees};
     }),
-    on(articlesActions.unfavoriteSuccess, articlesActions.favoriteSuccess, (state, {article}) => ({
-      ...state,
-      articles: replaceArticle(state.articles, article),
-    })),
+    on(
+      employeesActions.unfavoriteSuccess,
+      employeesActions.favoriteSuccess,
+      (state, {employee}) => ({
+        ...state,
+        employees: replaceEmployee(state.employees, employee),
+      }),
+    ),
   ),
 });
 
-function replaceArticle(articles: Articles, payload: EmployeeModel): Articles {
-  const articleIndex = articles.entities.findIndex((a) => a.id === payload.id);
+function replaceEmployee(employees: Employees, payload: EmployeeModel): Employees {
+  const employeeIndex = employees.entities.findIndex((a) => a.id === payload.id);
   const entities = [
-    ...articles.entities.slice(0, articleIndex),
-    Object.assign({}, articles.entities[articleIndex], payload),
-    ...articles.entities.slice(articleIndex + 1),
+    ...employees.entities.slice(0, employeeIndex),
+    Object.assign({}, employees.entities[employeeIndex], payload),
+    ...employees.entities.slice(employeeIndex + 1),
   ];
-  return {...articles, entities, loading: false, loaded: true};
+  return {...employees, entities, loading: false, loaded: true};
 }

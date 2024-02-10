@@ -1,16 +1,5 @@
-import {
-  APP_INITIALIZER,
-  ApplicationConfig,
-  ErrorHandler,
-  importProvidersFrom,
-  isDevMode,
-} from '@angular/core';
-import {
-  provideRouter,
-  Router,
-  withComponentInputBinding,
-  withViewTransitions,
-} from '@angular/router';
+import {ApplicationConfig, importProvidersFrom, isDevMode} from '@angular/core';
+import {provideRouter, withComponentInputBinding, withViewTransitions} from '@angular/router';
 
 import {routes} from './app.routes';
 import {provideClientHydration} from '@angular/platform-browser';
@@ -21,7 +10,12 @@ import {provideEffects} from '@ngrx/effects';
 import {provideStoreDevtools} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment.development';
 import {provideFirebaseApp, initializeApp} from '@angular/fire/app';
-import {provideBaseProviders, provideRecaptcha} from '@core/providers';
+import {
+  provideApiConfig,
+  provideAppConfig,
+  provideBaseProviders,
+  provideRecaptcha,
+} from '@core/providers';
 import {
   HttpClient,
   provideHttpClient,
@@ -29,15 +23,13 @@ import {
   withInterceptors,
   withJsonpSupport,
 } from '@angular/common/http';
-import {authInterceptor, spinnerInterceptor} from '@core/interceptors';
+import {tokenInterceptor, errorInterceptor, spinnerInterceptor} from '@core/interceptors';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {getAnalytics, provideAnalytics, ScreenTrackingService} from '@angular/fire/analytics';
 import {provideToastr} from 'ngx-toastr';
 import {getPerformance, providePerformance} from '@angular/fire/performance';
 import {provideRouterStore} from '@ngrx/router-store';
-import {AppEffects, AppReducers} from '@data/store';
-import {errorHandlingInterceptor} from '@core/interceptors';
-import {API_URL} from '@data/services';
+import {AppEffects, AppReducers} from '@stores/app.state';
 import {HttpLoaderFactory, provideTranslation} from '@core/services';
 import {provideErrorTailorConfig} from '@ngneat/error-tailor';
 import {mismatchErrorKey} from '@shared/utils';
@@ -45,22 +37,26 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {provideEcharts} from 'ngx-echarts';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatNativeDateModule} from '@angular/material/core';
-import * as Sentry from '@sentry/angular-ivy';
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
 import {provideQuillConfig} from 'ngx-quill';
-
-// export function tokenGetter(): string {
-//   return localStorage.getItem('xtra-hrms-token')!;
-// }
+import {provideLogger} from '@core/log/log.provider';
+import {LogLevel} from '@data/types/logger.type';
+import {withWriter} from '@core/log/logger-writer.feature';
+import {LabLogWriter} from './lab.log-writer';
+import {provideErrorHandler} from '@core/services';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAppConfig(),
+    provideApiConfig(),
     provideRouter(routes, withViewTransitions(), withComponentInputBinding()),
     provideHttpClient(
-      withInterceptors([authInterceptor, spinnerInterceptor(), errorHandlingInterceptor]),
+      withInterceptors([tokenInterceptor, spinnerInterceptor(), errorInterceptor]),
       withFetch(),
       withJsonpSupport(),
     ),
+    ...provideErrorHandler(),
+    provideLogger({minLevel: LogLevel.debug}, withWriter(new LabLogWriter())),
     ...provideBaseProviders(),
     provideClientHydration(),
     provideServiceWorker('ngsw-worker.js', {
@@ -123,22 +119,5 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
-    {
-      provide: ErrorHandler,
-      useValue: Sentry.createErrorHandler({
-        showDialog: false,
-      }),
-    },
-    {
-      provide: Sentry.TraceService,
-      deps: [Router],
-    },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: () => () => {},
-      deps: [Sentry.TraceService],
-      multi: true,
-    },
-    {provide: API_URL, useValue: environment.BASE_API_URL},
   ],
 };

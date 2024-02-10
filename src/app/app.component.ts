@@ -25,7 +25,7 @@ import {filter, map, mergeMap} from 'rxjs';
   styles: [``],
 })
 export class AppComponent implements OnInit {
-  title = 'Xtra HRMS (Client)';
+  title = 'Xtra HRMS';
 
   constructor(
     private router: Router,

@@ -4,7 +4,7 @@ import {environment} from '../../../environments/environment.development';
 export const authRoutes: Routes = [
   {
     path: 'sign-in',
-    loadComponent: () => import('./sign-in/sign-in-v2.component').then((c) => c.SignInComponent),
+    loadComponent: () => import('./sign-in/sign-in.component').then((c) => c.SignInComponent),
     data: {
       seo: {
         title: 'Xtra HRMS | Sign In',

@@ -49,7 +49,7 @@ import {SidenavLinkComponent} from './sidenav-link.component';
       (click)="this.sidenavService.toggleSidenav()"
       [class.is-flipped]="sidenavService.isExpanded"
     >
-      <mat-icon icon>chevron_right</mat-icon>
+      <mat-icon>chevron_right</mat-icon>
     </button>
   `,
   styles: [

@@ -4,7 +4,7 @@ import {Observable, tap} from 'rxjs';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {ITraining} from '@data/models/training.model';
-import {TrainingsService} from '@data/services/training.model';
+import {TrainingsService} from '@services/training.service';
 import {ButtonComponent} from '@shared/components/forms/button/button.component';
 import {DateUtil} from '@core/utils/date.util';
 import {NoWhitespaceValidator} from '@shared/components/forms/validators/no-whitespace.validator';
@@ -86,11 +86,14 @@ import {quillConfiguration} from '@shared/config/editor';
       </form>
     </div>
   `,
-  styles: `
-  .form-action {
-    text-align: right;
-  }
-  `,
+  styles: [
+    `
+      .form-action {
+        text-align: right;
+      }
+    `,
+  ],
+  providers: [TrainingsService],
 })
 export class TrainingUpsertComponent implements OnInit {
   reporterUsers$!: Observable<ITraining[]>;

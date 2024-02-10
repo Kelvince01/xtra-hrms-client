@@ -1,6 +1,6 @@
-import {BaseModel} from '@models/base.model';
+import {IBaseModel} from '@models/base.model';
 
-export interface IProject extends BaseModel {
+export interface IProject extends IBaseModel {
   subProjectIds?: any;
   image?: string;
   name?: string;
@@ -45,7 +45,7 @@ export interface IProject extends BaseModel {
   token?: string;
 }
 
-export interface ITask extends BaseModel {
+export interface ITask extends IBaseModel {
   title?: string;
   description?: string;
   status?: string;
@@ -59,7 +59,7 @@ export interface ITask extends BaseModel {
   done?: boolean;
 }
 
-export interface ITaskAssigment extends BaseModel {
+export interface ITaskAssigment extends IBaseModel {
   employee?: number;
   task?: number;
   description?: string;

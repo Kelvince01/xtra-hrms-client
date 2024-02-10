@@ -1,7 +1,4 @@
 import {Routes} from '@angular/router';
-import {importProvidersFrom} from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
-import {TranslateModule} from '@ngx-translate/core';
 import {PmsComponent} from '@admin-ui/pms/pms.component';
 import {PMS_ROUTES} from '@admin-ui/pms/pms.routes';
 
@@ -40,7 +37,6 @@ export const adminRoutes: Routes = [
   {
     path: 'comms',
     loadComponent: () => import('./comms/comms.component').then((c) => c.CommsComponent),
-    providers: [importProvidersFrom(ReactiveFormsModule, TranslateModule)],
     loadChildren: () => import('./comms/comms.routes').then((c) => c.COMMUNICATION_ROUTES),
   },
   {
@@ -65,7 +61,7 @@ export const adminRoutes: Routes = [
     path: 'training',
     loadComponent: () =>
       import('./trainings/trainings.component').then((c) => c.TrainingsComponent),
-    loadChildren: () => import('./trainings/trainings.routes').then((r) => r.TRAINING_ROUTES),
+    loadChildren: () => import('./trainings/trainings.routes').then((r) => r.trainingRoutes),
   },
   {
     path: 'pms',
@@ -83,7 +79,7 @@ export const adminRoutes: Routes = [
     loadChildren: () => import('./cms/cms.routes').then((r) => r.cmsRoutes),
   },
   {
-    path: 'profile',
+    path: 'profile/:username',
     loadComponent: () =>
       import('./../auth/profile/profile.component').then((c) => c.ProfileComponent),
   },

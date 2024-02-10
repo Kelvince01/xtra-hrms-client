@@ -1,7 +1,12 @@
-import {Component, ChangeDetectionStrategy} from '@angular/core';
+import {Component, ChangeDetectionStrategy, inject} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormsModule, NgForm} from '@angular/forms';
+import {FormBuilder, FormsModule, NgForm, Validators} from '@angular/forms';
 import {EmailValidatorDirective} from '@shared/components/forms/validators/email-validator.directive';
+import {Store} from '@ngrx/store';
+import {CameraService} from '@data/services/common/camera.service';
+import {PlatformInformationService} from '@data/services/common/platform-information.service';
+import {getLoading} from '@stores/lms/leave.selector';
+import {LeavesActions} from '@stores/lms/leave.action';
 
 interface IUser {
   name: string;
@@ -17,8 +22,8 @@ interface IUser {
   standalone: true,
   imports: [CommonModule, FormsModule, EmailValidatorDirective],
   template: `
-    <div class="container-fluid py-3">
-      <h1>Angular Template-Driven Form Validation</h1>
+    <div class="container py-3">
+      <h1>Add Leave</h1>
 
       <div class="row justify-content-center my-5">
         <div class="col-4">
@@ -158,10 +163,53 @@ interface IUser {
                 </div>
               </div>
             </div>
+
+            <input
+              hidden
+              #fileInput
+              type="file"
+              id="file"
+              accept="image/*"
+              (change)="setFormData(fileInput.files)"
+            />
+
+            <div>
+              <img [src]="base64" />
+            </div>
+
+            <label>{{ filename }}</label>
+
+            <div class="d-flex justify-content-between mt-3">
+              <div class="mb-10">
+                <button type="button" class="btn btn-primary me-2" (click)="takePhoto()">
+                  <i class="fa-solid fa-camera"></i>
+                  Take picture
+                </button>
+                <button class="btn btn-primary" type="button" (click)="fileInput.click()">
+                  <i class="fa-regular fa-file"></i>
+                  Choose File
+                </button>
+              </div>
+            </div>
+
             <div class="row">
               <div class="col mb-2 d-grid">
                 <button type="button" class="btn btn-sm btn-primary" (click)="validate(form)">
                   Validate
+                </button>
+
+                <button
+                  type="submit"
+                  class="btn btn-primary mt-6"
+                  [disabled]="!formGroup.valid || loading()"
+                >
+                  @if (loading()) {
+                    <div class="spinner-border spinner-border-sm" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  }
+                  <i class="fa-solid fa-plus"></i>
+                  Add Leave
                 </button>
               </div>
             </div>
@@ -191,5 +239,65 @@ export class LeaveUpsertComponent {
     console.info('Nickname:', this.user.nickname);
     console.info('Email:', this.user.email);
     console.info('Password:', this.user.password);
+  }
+
+  private readonly fb = inject(FormBuilder);
+
+  private readonly store = inject(Store);
+
+  private readonly cameraService = inject(CameraService);
+
+  private readonly platformInformationService = inject(PlatformInformationService);
+
+  formGroup = this.fb.group({
+    name: ['', Validators.required],
+    breed: ['', Validators.required],
+    comment: ['', Validators.required],
+  });
+
+  loading = this.store.selectSignal(getLoading);
+
+  filename = '';
+
+  base64 = '';
+
+  get isMobile(): boolean {
+    return this.platformInformationService.isMobile;
+  }
+
+  private formData!: FormData;
+
+  setFormData(files: any): void {
+    if (files[0]) {
+      const formData = new FormData();
+      console.log(files[0]);
+      formData.append(files[0].name, files[0]);
+      this.filename = files[0].name;
+      this.formData = formData;
+    }
+  }
+
+  takePhoto(): void {
+    this.cameraService.getPhoto().subscribe(({formData, fileName, base64}) => {
+      this.formData = formData;
+      this.filename = fileName;
+      this.base64 = base64;
+    });
+  }
+
+  addDoggo(): void {
+    if (this.formGroup.valid) {
+      // const { name, comment, breed } = this.formGroup.value;
+
+      this.store.dispatch(
+        LeavesActions.addLeaveWithPicture({
+          // name,
+          // comment,
+          // breed,
+          // formData: this.formData,
+          leave: this.formGroup.value as any,
+        }),
+      );
+    }
   }
 }

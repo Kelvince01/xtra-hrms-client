@@ -294,6 +294,7 @@ export class PermissionListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       // eslint-disable-next-line no-console
       console.log(result);
+      dialogRef.close();
     });
   }
 }

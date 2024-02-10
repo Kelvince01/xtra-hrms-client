@@ -1,19 +1,25 @@
-import {UserState} from './users';
-import {authReducer} from '@stores/auth';
-import {AuthEffects} from '@stores/auth';
-import {errorHandlerFeature} from '@stores/error-handler';
-import {ngrxFormsFeature} from '@stores/forms';
-import {errorHandlerEffects} from './error-handler';
-import {ngrxFormsEffects} from './forms';
+/*
+ * Copyright (c) 2024. Kelvince Phillips.
+ *  Terms and Conditions Apply.
+ */
 
-export interface AppState {
-  users?: UserState;
-}
+import {environment} from '../../../environments/environment.development';
 
-export const AppReducers = {
-  auth: authReducer,
-  errorHandler: errorHandlerFeature.reducer,
-  ngrxForms: ngrxFormsFeature.reducer,
-};
+export const logger =
+  (reducer: any) =>
+  (state: any, action: any): any => {
+    const currentState = reducer(state, action);
+    console.groupCollapsed(`%c ${action.type}`, 'text-transform: uppercase');
+    console.log('previous state: ', state);
+    console.log('action: ', action);
+    console.log('current state: ', currentState);
+    console.groupEnd();
 
-export const AppEffects = [AuthEffects, errorHandlerEffects, ngrxFormsEffects];
+    return currentState;
+  };
+
+export * from './app.state';
+export * from './users';
+export * from './users/roles';
+
+export const metaReducers = environment.production ? [] : [logger];

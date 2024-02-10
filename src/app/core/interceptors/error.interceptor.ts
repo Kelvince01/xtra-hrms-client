@@ -5,10 +5,13 @@ import {LogLevel} from '@data/types/logger.type';
 import {inject} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {LoggerService} from '@core/log/logger.service';
+import {Store} from '@ngrx/store';
+import {errorHandlerActions} from '@stores/error-handler';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const loggerService = inject(LoggerService);
   const snackBar = inject(MatSnackBar);
+  const store = inject(Store);
 
   return next(req).pipe(
     retry(1),
@@ -20,6 +23,18 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       } else {
         // server-side error
         errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      }
+
+      switch (error.status) {
+        case 401:
+          store.dispatch(errorHandlerActions.throw401Error({error}));
+          break;
+        case 404:
+          store.dispatch(errorHandlerActions.throw404Error({error}));
+          break;
+        default:
+          throwError(error);
+          break;
       }
 
       const errorData: IAppLog = {

@@ -22,4 +22,9 @@ export const COMMUNICATION_ROUTES: Routes = [
     loadComponent: () => import('./chat/chat.component'),
     loadChildren: () => import('./chat/chat.routes').then((r) => r.CHAT_ROUTES),
   },
+  {
+    path: '',
+    redirectTo: 'emails',
+    pathMatch: 'full',
+  },
 ];

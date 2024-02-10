@@ -3,4 +3,4 @@ export * from './user.reducer';
 export * from './user.state';
 export * from './user.selector';
 export * from './user.facade';
-export * as userEffect from './user.effect';
+export * as userEffects from './user.effect';

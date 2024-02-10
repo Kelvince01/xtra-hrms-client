@@ -1,6 +1,6 @@
-import {BaseModel} from './base.model';
+import {IBaseModel} from './base.model';
 
-export interface EmployeeModel extends BaseModel {
+export interface EmployeeModel extends IBaseModel {
   is_available?: boolean;
   email: string;
   firstname: string;
@@ -19,7 +19,7 @@ export interface NewEmployeeModel {
   marital_status: string;
 }
 
-export interface UpdateEmployeeModel extends BaseModel {
+export interface UpdateEmployeeModel extends IBaseModel {
   firstname: string;
   surname: string;
   date_of_birth: Date;
@@ -27,7 +27,7 @@ export interface UpdateEmployeeModel extends BaseModel {
   marital_status: string;
 }
 
-export interface IEmployee extends BaseModel {
+export interface IEmployee extends IBaseModel {
   firstname: string;
   middlename?: string;
   lastname: string;
@@ -76,7 +76,7 @@ export interface NewEmployee {
 
 export interface UpdateEmployee extends IEmployee {}
 
-export interface IEmployeeInfo extends BaseModel {
+export interface IEmployeeInfo extends IBaseModel {
   firstname: string;
   lastname: string;
   date_of_birth?: Date;
@@ -84,7 +84,7 @@ export interface IEmployeeInfo extends BaseModel {
   email?: string;
 }
 
-export interface IEmployeeV2 extends BaseModel {
+export interface IEmployeeV2 extends IBaseModel {
   vacancy_id?: number;
   branch_id?: number;
   pay_grade_id?: number;
@@ -170,7 +170,7 @@ export interface IEmployeeV2 extends BaseModel {
   bank_id?: number;
 }
 
-export interface IHrDetail extends BaseModel {
+export interface IHrDetail extends IBaseModel {
   employee?: number;
   job_number?: string;
   employment_type?: string;
@@ -190,7 +190,7 @@ export interface IHrDetail extends BaseModel {
   project?: number;
 }
 
-export interface IWorkSheet extends BaseModel {
+export interface IWorkSheet extends IBaseModel {
   employee?: number;
   work_mode_id?: number;
   start_time?: Date;
@@ -200,14 +200,14 @@ export interface IWorkSheet extends BaseModel {
   approved?: boolean;
 }
 
-export interface IWorkTypeRequest extends BaseModel {}
+export interface IWorkTypeRequest extends IBaseModel {}
 
-export interface IRotatingShift extends BaseModel {}
+export interface IRotatingShift extends IBaseModel {}
 
-export interface IShiftRequest extends BaseModel {}
+export interface IShiftRequest extends IBaseModel {}
 
-export interface IRotatingShiftAssign extends BaseModel {}
+export interface IRotatingShiftAssign extends IBaseModel {}
 
-export interface IRotatingWorkType extends BaseModel {}
+export interface IRotatingWorkType extends IBaseModel {}
 
-export interface IRotatingWorkTypeAssign extends BaseModel {}
+export interface IRotatingWorkTypeAssign extends IBaseModel {}

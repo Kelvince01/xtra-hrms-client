@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 2023.  Kelvince Phillips
+ * Copyright (c) 2024.  Kelvince Phillips
  */
 
 import {LogLevel} from '@data/types/logger.type';
-import { IAppLog } from '@models/app-log.model';
+import {IAppLog} from '@models/app-log.model';
 
 export class LabLogWriter {
   write(entry: IAppLog): void {

@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit, TrackByFunction, inject} fro
 import {UserFacade} from '@stores/users';
 import {Observable, of} from 'rxjs';
 import {UserCardComponent} from './user-card/user-card.component';
-import {AsyncPipe, NgIf} from '@angular/common';
+import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {HasPermissionDirective} from '@shared/directives/has-permission.directive';
 import {IUser} from '@data/models';
@@ -10,7 +10,7 @@ import {IUser} from '@data/models';
 @Component({
   selector: 'xtra-user-list',
   standalone: true,
-  imports: [UserCardComponent, AsyncPipe, RouterLink, HasPermissionDirective, NgIf],
+  imports: [UserCardComponent, AsyncPipe, RouterLink, HasPermissionDirective, NgIf, NgForOf],
   template: `
     <a *xtraHasPermission="'CreateUser'" routerLink="/uam/users/add">Create User</a>
 

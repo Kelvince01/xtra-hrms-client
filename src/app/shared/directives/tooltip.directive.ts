@@ -1,10 +1,45 @@
-import {Directive, HostBinding, Input} from '@angular/core';
+import {Directive, Input, inject, ElementRef, Renderer2, HostListener} from '@angular/core';
 
 @Directive({
-  // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: 'xtraTooltip',
+  selector: '[xtraTooltip]',
   standalone: true,
 })
 export class TooltipDirective {
-  @HostBinding('title') @Input() tooltip!: string;
+  // @HostBinding('title') @Input() tooltip!: string;
+
+  @Input({required: true}) message!: string;
+  private tooltip: HTMLElement | null = null;
+
+  private readonly el = inject(ElementRef);
+  private readonly renderer = inject(Renderer2);
+
+  @HostListener('mouseenter')
+  onMouseEnter() {
+    this.createTooltip();
+  }
+
+  @HostListener('mouseleave')
+  onMouseLeave() {
+    this.removeTooltip();
+  }
+
+  private createTooltip() {
+    if (!this.tooltip) {
+      this.tooltip = this.renderer.createElement('div');
+      this.tooltip?.classList.add('tooltip');
+      this.tooltip!.textContent = this.message;
+      this.renderer.appendChild(document.body, this.tooltip);
+
+      const {top, left} = this.el.nativeElement.getBoundingClientRect();
+      this.renderer.setStyle(this.tooltip, 'top', `${top + 10}px`);
+      this.renderer.setStyle(this.tooltip, 'left', `${left + 140}px`);
+    }
+  }
+
+  private removeTooltip() {
+    if (this.tooltip) {
+      this.renderer.removeChild(document.body, this.tooltip);
+      this.tooltip = null;
+    }
+  }
 }

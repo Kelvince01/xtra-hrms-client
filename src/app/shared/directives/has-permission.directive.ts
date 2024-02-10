@@ -1,7 +1,7 @@
 import {Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
 import {Subject, takeUntil} from 'rxjs';
 import {Store} from '@ngrx/store';
-import {selectHasPermission} from '@stores/permissions';
+import {selectHasPermission} from 'src/app/data/store/users/permissions';
 
 @Directive({
   selector: '[xtraHasPermission]',

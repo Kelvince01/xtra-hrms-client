@@ -4,7 +4,7 @@ import {rxMethod} from '@ngrx/signals/rxjs-interop';
 import {exhaustMap, pipe, switchMap, tap} from 'rxjs';
 import {Router} from '@angular/router';
 import {ITraining} from '@models/training.model';
-import {TrainingsService} from '@services/training.model';
+import {TrainingsService} from '@services/training.service';
 import {Filter, filterTrainings} from '@data/filters/training.filter';
 import {defaultFilter} from '@data/filters/default-filter';
 

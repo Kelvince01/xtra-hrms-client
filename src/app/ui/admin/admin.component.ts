@@ -5,18 +5,21 @@ import {AuthStore} from '@stores/auth';
 import {filter, take} from 'rxjs';
 import {FooterComponent} from './partials/footer/footer.component';
 import {SidenavComponent} from '@admin-ui/partials/sidenav/sidenav.component';
+import {SvgDefinitionsComponent} from '@shared/components/svgs/svg-definitions/svg-definitions.component';
+import {INotification} from '@models/notification.model';
 
 @Component({
   selector: 'xtra-admin',
   standalone: true,
-  imports: [RouterOutlet, FooterComponent, SidenavComponent],
+  imports: [RouterOutlet, FooterComponent, SidenavComponent, SvgDefinitionsComponent],
   template: `
-    <xtra-sidenav [isLoggedIn]="$isLoggedIn()" [user]="$user()">
+    <xtra-sidenav [isLoggedIn]="$isLoggedIn()" [user]="$user()" [notifications]="notifications">
       <div class="content">
         <router-outlet></router-outlet>
 
         @defer (on idle) {
           <xtra-footer></xtra-footer>
+          <xtra-svg-definitions></xtra-svg-definitions>
         }
       </div>
     </xtra-sidenav>
@@ -24,8 +27,6 @@ import {SidenavComponent} from '@admin-ui/partials/sidenav/sidenav.component';
   styles: [
     `
       :host {
-        //min-height: 100vh;
-
         //display: flex;
         //flex-direction: row;
       }
@@ -43,13 +44,14 @@ export class AdminComponent implements OnInit {
 
   $user = this.authStore.user;
   $isLoggedIn = this.authStore.isAuthenticated;
+  notifications: INotification[] = [];
 
   ngOnInit(): void {
     this.localStorageJwtService
       .getItem()
       .pipe(
         take(1),
-        filter((token) => !!token),
+        filter((token) => !!token?.access),
       )
       .subscribe(() => this.authStore.getUser());
   }

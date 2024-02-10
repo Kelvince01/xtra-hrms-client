@@ -1,13 +1,13 @@
 import {Injectable, inject} from '@angular/core';
 import {Observable} from 'rxjs';
-import {ApiService} from '@data/services';
-import {IUser, UserResponse} from '@data/models';
+import {IUser} from '@data/models';
+import {UsersService} from '@data/services';
 
 @Injectable({providedIn: 'root'})
 export class ProfileService {
-  private readonly apiService = inject(ApiService);
+  private readonly userService = inject(UsersService);
 
-  update(user: IUser): Observable<UserResponse> {
-    return this.apiService.put<UserResponse, UserResponse>('/user', {user});
+  update(user: IUser): Observable<IUser> {
+    return this.userService.update(user);
   }
 }

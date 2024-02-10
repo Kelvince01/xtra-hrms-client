@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  inject,
   Input,
   OnInit,
   Output,
@@ -27,6 +28,11 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {NgMatTableQueryReflectorDirective} from '@shared/directives/ng-mat-table-query-reflector.directive';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {DataPropertyGetterPipe} from '@shared/pipes/data-property-getter.pipe';
+import {BaseService} from '@data/services';
+import {IBaseModel} from '@data/models';
+import {FilesService} from '@services/common';
+import {MatDialog} from '@angular/material/dialog';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'xtra-table',
@@ -39,22 +45,15 @@ import {DataPropertyGetterPipe} from '@shared/pipes/data-property-getter.pipe';
           <!--button
             class="right-2"
             *ngIf="!newButtonHidden"
-            mat-raised-button
-            color="primary"
-            (click)="emitAddNewAction()">
-            {{ 'common.new-button' | translate }}
-          </button-->
-
-          <!--button
-            *ngIf="displayCreateAction"
-            (click)="performAction(userActions.Add, {})"
             matTooltipClass="tooltip"
             matTooltipPosition="left"
             [matTooltip]="addRowText"
-            mat-flat-button
+            mat-raised-button
             color="primary"
-            style="float:right">
+            style="float:right"
+            (click)="emitAddNewAction()">
             <mat-icon>add</mat-icon>
+            {{ 'common.new-button' | translate }}
           </button-->
         </mat-toolbar-row>
       </mat-toolbar>
@@ -285,7 +284,7 @@ import {DataPropertyGetterPipe} from '@shared/pipes/data-property-getter.pipe';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TableComponent<T, C> implements OnInit, AfterViewInit {
+export class TableComponent implements OnInit, AfterViewInit {
   public tableDataSource = new MatTableDataSource<any>([]);
   public displayedColumns: WritableSignal<string[]> = signal<string[]>([]);
   @ViewChild(MatPaginator, {static: false}) matPaginator!: MatPaginator;
@@ -345,7 +344,7 @@ export class TableComponent<T, C> implements OnInit, AfterViewInit {
   // we need this, in order to make pagination work with *ngIf
   ngAfterViewInit(): void {
     this.tableDataSource.paginator = this.matPaginator;
-    // this.tableDataSource.sort = this.matSort;
+    this.tableDataSource.sort = this.matSort;
     // this.paginator.pageIndex = this.currentPage;
     // this.paginator.length = res.results.count;
   }
@@ -372,8 +371,6 @@ export class TableComponent<T, C> implements OnInit, AfterViewInit {
 
   setTableDataSource(data: any): void {
     this.tableDataSource = new MatTableDataSource<any>(data);
-    this.tableDataSource.paginator = this.matPaginator;
-    this.tableDataSource.sort = this.matSort;
   }
 
   applyFilter(event: Event): void {

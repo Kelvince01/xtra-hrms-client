@@ -1,13 +1,13 @@
-import {BaseModel} from '@models/base.model';
+import {IBaseModel} from '@models/base.model';
 
-export interface ISms extends BaseModel {
+export interface ISms extends IBaseModel {
   mobile_no?: string;
   message?: string;
   sent_date?: Date;
   delivered?: boolean;
 }
 
-export interface IEmailSetting extends BaseModel {
+export interface IEmailSetting extends IBaseModel {
   name?: string;
   group?: string;
   subject?: string;
@@ -18,7 +18,7 @@ export interface IEmailSetting extends BaseModel {
   max_per_hour?: number;
 }
 
-export interface IEmail extends BaseModel {
+export interface IEmail extends IBaseModel {
   to?: string;
   email_id?: number;
   client?: number;

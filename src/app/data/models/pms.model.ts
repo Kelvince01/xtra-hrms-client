@@ -2,28 +2,28 @@
  * Copyright (c) 2023.  Kelvince Phillips
  */
 
-import {BaseModel} from '@models/base.model';
+import {IBaseModel} from '@models/base.model';
 
-export interface IPerformance extends BaseModel {
+export interface IPerformance extends IBaseModel {
   employee?: number;
   performance_rating?: number;
   evaluation_date?: Date;
   comments?: string;
 }
 
-export interface IWorkProductivityDataset extends BaseModel {
+export interface IWorkProductivityDataset extends IBaseModel {
   w_pds?: string;
   w_type?: string;
   o_id?: number;
 }
 
-export interface IPeriod extends BaseModel {
+export interface IPeriod extends IBaseModel {
   period_name?: string;
   start_date?: Date;
   end_date?: Date;
 }
 
-export interface IEmployeeObjective extends BaseModel {
+export interface IEmployeeObjective extends IBaseModel {
   objective?: string;
   objective_description?: string;
   employee?: number;
@@ -33,13 +33,13 @@ export interface IEmployeeObjective extends BaseModel {
   archive?: boolean;
 }
 
-export interface IComment extends BaseModel {
+export interface IComment extends IBaseModel {
   comment?: string;
   employee?: number;
   employee_objective?: number;
 }
 
-export interface IEmployeeKeyResult extends BaseModel {
+export interface IEmployeeKeyResult extends IBaseModel {
   key_result?: string;
   key_result_description?: string;
   employee_objective?: number;
@@ -53,17 +53,17 @@ export interface IEmployeeKeyResult extends BaseModel {
   end_date?: Date;
 }
 
-export interface IQuestionTemplate extends BaseModel {
+export interface IQuestionTemplate extends IBaseModel {
   question_template?: string;
 }
 
-export interface IQuestion extends BaseModel {
+export interface IQuestion extends IBaseModel {
   question?: string;
   question_type?: string;
   template?: number;
 }
 
-export interface IQuestionOption extends BaseModel {
+export interface IQuestionOption extends IBaseModel {
   question?: number;
   option_a?: string;
   option_b?: string;
@@ -71,7 +71,7 @@ export interface IQuestionOption extends BaseModel {
   option_d?: string;
 }
 
-export interface IFeedback extends BaseModel {
+export interface IFeedback extends IBaseModel {
   review_cycle?: string;
   manager?: number;
   employee?: number;
@@ -85,14 +85,14 @@ export interface IFeedback extends BaseModel {
   employee_key_results_id?: number[];
 }
 
-export interface IAnswer extends BaseModel {
+export interface IAnswer extends IBaseModel {
   answer?: string;
   question?: number;
   employee?: number;
   feedback?: number;
 }
 
-export interface IKeyResultFeedback extends BaseModel {
+export interface IKeyResultFeedback extends IBaseModel {
   feedback?: number;
   employee?: number;
   answer?: string;

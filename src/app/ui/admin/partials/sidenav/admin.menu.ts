@@ -23,6 +23,7 @@ export type DrawerNavItem = {
   divider?: boolean;
   items?: Array<Omit<DrawerNavItem, 'icon'>>;
   onSelect?: any;
+  path?: string;
   icon?: string;
   hasChildren?: boolean;
   ripple?: boolean;
@@ -31,7 +32,42 @@ export type DrawerNavItem = {
   hidden?: boolean;
 };
 
+export type DrawerNavGroup = {
+  divider?: boolean;
+  title?: string;
+  items: DrawerNavItem[];
+};
+
 export type ActiveItemBackgroundShape = 'round' | 'square';
+
+export const NAV_ITEMS: Array<DrawerNavItem> = [
+  {title: 'common.menu.dashboard', path: '', icon: 'dashboard'},
+  {
+    title: 'common.menu.uam',
+    path: 'uam',
+    icon: 'account',
+    items: [
+      {
+        title: 'common.menu.users',
+        path: 'uam/users',
+      },
+    ],
+  },
+  {title: 'common.menu.employees', path: 'employees', icon: 'supervisor_account'},
+  {title: 'common.menu.organizations', path: 'org', icon: 'business'},
+  {title: 'common.menu.finance', path: 'finance', icon: 'account_balance'}, // account_balance_wallet
+  {title: 'common.menu.communications', path: 'comms', icon: 'mail_outline'},
+  {title: 'common.menu.lms', path: 'lms', icon: 'cancel'},
+  {title: 'common.menu.attendance', path: 'ams', icon: 'check_circle_outline'},
+  {title: 'common.menu.recruitments', path: 'recruitments', icon: 'phonelink'},
+  {title: 'common.menu.onboarding', path: 'onboarding', icon: 'flight'},
+  {title: 'common.menu.training', path: 'training', icon: 'layers'},
+  {title: 'common.menu.pm', path: 'pm', icon: 'group_work'},
+  {title: 'common.menu.pms', path: 'pms', icon: 'show_chart'},
+  {title: 'common.menu.cms', path: 'cms', icon: 'assignment_ind'},
+  {title: 'common.menu.profile', path: 'profile', icon: 'settings_applications'},
+  {title: 'common.menu.settings', path: 'settings', icon: 'settings'},
+];
 
 export const MENU_ITEMS: MenuItem[] = [
   {

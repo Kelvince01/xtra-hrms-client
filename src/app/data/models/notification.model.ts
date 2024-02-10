@@ -2,9 +2,9 @@
  * Copyright (c) 2023.  Kelvince Phillips
  */
 
-import {BaseModel} from '@models/base.model';
+import {IBaseModel} from '@models/base.model';
 
-export interface INotification extends BaseModel {
+export interface INotification extends IBaseModel {
   type: 'success' | 'error' | 'info' | 'warning';
   message: string;
   title: string;
@@ -14,7 +14,7 @@ export interface INotification extends BaseModel {
   date_read: Date;
 }
 
-export interface INotificationV2 extends BaseModel {
+export interface INotificationV2 extends IBaseModel {
   level?: string;
   recipient?: number;
   unread?: boolean;

@@ -2,11 +2,16 @@ import {Observable, of} from 'rxjs';
 import {inject, Injectable} from '@angular/core';
 import {WindowService} from '@shared/services/window.service';
 
+export interface TokenObject {
+  access: string;
+  refresh: string;
+}
+
 @Injectable({providedIn: 'root'})
 export class LocalStorageJwtService {
   #windowService = inject(WindowService);
 
-  getItem(): Observable<object | null> {
+  getItem(): Observable<TokenObject | null> {
     const data = this.#windowService.getLocalStorageObject('xtra-hrms-token');
     if (data) {
       return of(data);

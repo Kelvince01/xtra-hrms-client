@@ -11,7 +11,7 @@ import {EmployeeState} from './employee.state';
 import {setLoaded, setLoading, withCallState} from '../call-state.feature';
 import {ngrxFormsQuery} from '@stores/forms';
 import {formsActions} from '@stores/forms';
-import {EmployeeModel, IEmployee} from '@data/models';
+import {IEmployee} from '@data/models';
 
 export const employeeInitialState: EmployeeState = {
   employee: {
@@ -24,22 +24,22 @@ export const employeeInitialState: EmployeeState = {
   },
 };
 
-export const ArticleStore = signalStore(
+export const EmployeeStore = signalStore(
   {providedIn: 'root'},
   withState<EmployeeState>(employeeInitialState),
   withMethods(
     (
       store,
-      articlesService = inject(EmployeesService),
+      employeesService = inject(EmployeesService),
       // actionsService = inject(ActionsService),
       router = inject(Router),
       reduxStore = inject(Store),
     ) => ({
-      getArticle: rxMethod<number>(
+      getEmployee: rxMethod<number>(
         pipe(
           tap(() => setLoading('getEmployee')),
           switchMap((id) =>
-            articlesService.getById(id).pipe(
+            employeesService.getById(id).pipe(
               tapResponse({
                 next: (employee) => {
                   patchState(store, {employee: employee, ...setLoaded('getEmployee')});
@@ -55,11 +55,11 @@ export const ArticleStore = signalStore(
           ),
         ),
       ),
-      getEmployees: rxMethod<IEmployee[]>(
+      getEmployees: rxMethod<void>(
         pipe(
           tap(() => setLoading('getEmployees')),
           switchMap(() =>
-            articlesService.get().pipe(
+            employeesService.get().pipe(
               tapResponse({
                 next: (employees) => {
                   patchState(store, {employees: employees});
@@ -74,10 +74,10 @@ export const ArticleStore = signalStore(
           ),
         ),
       ),
-      deleteArticle: rxMethod<number>(
+      deleteEmployee: rxMethod<number>(
         pipe(
           switchMap((id) =>
-            articlesService.delete(id).pipe(
+            employeesService.delete(id).pipe(
               tapResponse({
                 next: () => router.navigate(['/']),
                 error: () => patchState(store, employeeInitialState),
@@ -90,7 +90,7 @@ export const ArticleStore = signalStore(
         pipe(
           concatLatestFrom(() => reduxStore.select(ngrxFormsQuery.selectData)),
           switchMap(([employee]) =>
-            articlesService.create(employee).pipe(
+            employeesService.create(employee).pipe(
               tapResponse({
                 // next: () => patchState(store, { data: [data.comment, ...store.comments()] }),
                 next: () => patchState(store, {employee}),
@@ -101,7 +101,7 @@ export const ArticleStore = signalStore(
           ),
         ),
       ),
-      initializeArticle: () => {
+      initializeEmployee: () => {
         patchState(store, employeeInitialState);
       },
     }),

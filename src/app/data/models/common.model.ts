@@ -1,6 +1,6 @@
-import {BaseModel} from '@models/base.model';
+import {IBaseModel} from '@models/base.model';
 
-export interface ICurrency extends BaseModel {
+export interface ICurrency extends IBaseModel {
   name?: string;
   code: string;
   cost: string;
@@ -23,12 +23,12 @@ export interface IStatus {
   name: string;
 }
 
-export interface ICountry extends BaseModel {
+export interface ICountry extends IBaseModel {
   name: string;
   code: string;
 }
 
-export interface ICounty extends BaseModel {
+export interface ICounty extends IBaseModel {
   country_id: number;
   name: string;
   code: string;
@@ -40,13 +40,13 @@ export interface ICity {
   code: string;
 }
 
-export interface ICounty extends BaseModel {
+export interface ICounty extends IBaseModel {
   title: string;
   description: string;
   status: string;
 }
 
-export interface IAddress extends BaseModel {
+export interface IAddress extends IBaseModel {
   address_line: number;
   address_line_2?: number;
   building_details?: string;
@@ -66,7 +66,7 @@ export interface IAddress extends BaseModel {
   telephone?: string;
 }
 
-export interface I_Address extends BaseModel {
+export interface I_Address extends IBaseModel {
   street: string | null;
   street2: string | null;
   city: string | null;
@@ -75,7 +75,7 @@ export interface I_Address extends BaseModel {
   verified?: boolean;
 }
 
-export interface ILocation extends BaseModel {
+export interface ILocation extends IBaseModel {
   address_line_1?: string;
   address_line_2?: string;
   postal_code?: number;
@@ -92,12 +92,12 @@ export interface ILocation extends BaseModel {
   country?: number;
 }
 
-export interface IMessage extends BaseModel {
+export interface IMessage extends IBaseModel {
   text?: string;
   user?: number;
 }
 
-export interface IContact extends BaseModel {
+export interface IContact extends IBaseModel {
   phone_no: string;
   email: string;
   official_email: string;

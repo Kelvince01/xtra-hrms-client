@@ -1,15 +1,15 @@
-import { Routes } from "@angular/router";
-import {provideEffects} from "@ngrx/effects";
-import {EmployeePageComponent} from "./employee-page.component";
-import {authGuard} from "../../../../core/guards/auth.guard";
-import {articleEditResolver} from "./employee-edit.resolver";
-import { articleEffects } from "../../../../data/store/employees";
+import {Routes} from '@angular/router';
+import {provideEffects} from '@ngrx/effects';
+import {EmployeePageComponent} from './employee-page.component';
+import {authGuard} from '@core/guards';
+import {employeeEditResolver} from './employee-edit.resolver';
+import {employeeEffects} from '../../../../data/store/employees';
 
 export const employeePageRoutes: Routes = [
   {
     path: '',
     component: EmployeePageComponent,
-    providers: [provideEffects(articleEffects)],
+    providers: [provideEffects(employeeEffects)],
     children: [
       {
         path: '',
@@ -20,7 +20,7 @@ export const employeePageRoutes: Routes = [
       {
         path: ':slug',
         component: EmployeePageComponent,
-        resolve: { articleEditResolver },
+        resolve: {employeeEditResolver},
       },
     ],
   },

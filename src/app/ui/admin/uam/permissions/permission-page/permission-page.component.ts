@@ -12,6 +12,7 @@ import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {PermissionsService} from '@services/users.service';
 import {IPermission} from '@models/accounts.model';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'xtra-permission-page',
@@ -67,7 +68,6 @@ import {IPermission} from '@models/accounts.model';
     </div>
     <div mat-dialog-actions [align]="'end'">
       <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
-      <!--      <button mat-raised-button color="primary" [mat-dialog-close]="true">Save</button>-->
       <button
         id="save"
         type="submit"
@@ -76,7 +76,7 @@ import {IPermission} from '@models/accounts.model';
         class="pull-xs-right flex-auto w-64"
         [disabled]="!form.valid || isLoading()"
         [class.spinner]="isLoading()"
-        (click)="service.create(permission)"
+        (click)="onSubmit()"
       >
         SAVE
       </button>
@@ -106,5 +106,21 @@ import {IPermission} from '@models/accounts.model';
 export class PermissionPageComponent {
   permission: IPermission = {name: '', namespace: ''};
   service = inject(PermissionsService);
+  toastr = inject(ToastrService);
   isLoading = signal(false);
+
+  onSubmit() {
+    this.isLoading.set(true);
+
+    this.service.create(this.permission).subscribe(
+      () => {
+        this.isLoading.set(false);
+        this.toastr.success(`Permission Created Successfully`);
+      },
+      (err) => {
+        this.isLoading.set(false);
+        this.toastr.error(`Error creating permission: ${err}`);
+      },
+    );
+  }
 }

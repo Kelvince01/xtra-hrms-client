@@ -1,17 +1,93 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+  WritableSignal,
+} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {BreadcrumbsComponent} from '@shared/components/breadcrumbs/breadcrumbs.component';
+import {ITableColumn} from '@shared/components/table/table-column.model';
+import {TrainingsService} from '@data/services';
+import {MatDialog} from '@angular/material/dialog';
+import {ToastrService} from 'ngx-toastr';
+import {ITraining} from '@models/training.model';
+import {TableComponent} from '@shared/components/table/table.component';
+import {FilesService} from '@services/common';
 
 @Component({
   selector: 'xtra-training-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BreadcrumbsComponent, TableComponent],
   template: `
-    <p>
-      training-list works!
-    </p>
+    <xtra-breadcrumbs [items]="breadcrumbs"></xtra-breadcrumbs>
+    <xtra-table
+      [tableData]="trainings"
+      [tableColumns]="tableColumns"
+      [title]="title"
+      [hasMenu]="true"
+      [isFilterable]="true"
+      [isPageable]="true"
+      [isLoading]="isLoading"
+    ></xtra-table>
   `,
-  styles: ``
+  providers: [TrainingsService],
+  styles: ``,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TrainingListComponent {
+export class TrainingListComponent implements OnInit {
+  trainings: ITraining[] = [];
+  tableColumns: WritableSignal<ITableColumn[]> = signal<ITableColumn[]>([
+    {
+      name: 'Name',
+      dataKey: 'training_name',
+      position: 'left',
+      isSortable: true,
+    },
+    {
+      name: 'Description',
+      dataKey: 'description',
+      position: 'left',
+      isSortable: true,
+    },
+    {
+      name: 'Date',
+      dataKey: 'date',
+      position: 'right',
+      isSortable: true,
+    },
+    {
+      name: 'Employee',
+      dataKey: 'employee',
+      position: 'right',
+      isSortable: false,
+    },
+  ]);
+  title = 'Trainings';
+  dialog = inject(MatDialog);
+  toastr = inject(ToastrService);
+  breadcrumbs: string[] = ['Admin', 'Trainings', 'Trainings'];
+  isLoading = false;
 
+  filesService = inject(FilesService);
+
+  constructor(private service: TrainingsService) {}
+
+  ngOnInit(): void {
+    this.getTrainings();
+  }
+
+  getTrainings() {
+    this.service?.get().subscribe(
+      (res) => {
+        this.isLoading = false;
+        this.trainings = res;
+      },
+      (error) => {
+        this.isLoading = false;
+        this.toastr.error(error);
+      },
+    );
+  }
 }

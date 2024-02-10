@@ -1,6 +1,6 @@
-import {BaseModel} from '@models/base.model';
+import {IBaseModel} from '@models/base.model';
 
-export interface Leave extends BaseModel {
+export interface Leave extends IBaseModel {
   type: number;
   employee: number;
   leave_type: number;
@@ -29,7 +29,7 @@ export interface Leave extends BaseModel {
   period?: string;
 }
 
-export interface ILeave extends BaseModel {
+export interface ILeave extends IBaseModel {
   employee: number;
   leave_type: number;
   apply_date: Date;
@@ -55,12 +55,12 @@ export interface ILeave extends BaseModel {
   comment: string;
 }
 
-export interface LeaveType extends BaseModel {
+export interface LeaveType extends IBaseModel {
   name: string;
   description: string;
 }
 
-export interface ILeaveType extends BaseModel {
+export interface ILeaveType extends IBaseModel {
   name: string;
   description: string;
   icon: any;
@@ -84,7 +84,7 @@ export interface ILeaveType extends BaseModel {
   exclude_holiday: string;
 }
 
-export interface IAvailableLeave extends BaseModel {
+export interface IAvailableLeave extends IBaseModel {
   leave_type: number;
   employee: number;
   available_days: number;
@@ -95,19 +95,19 @@ export interface IAvailableLeave extends BaseModel {
   expired_date: Date;
 }
 
-export interface IOrganizationLeave extends BaseModel {
+export interface IOrganizationLeave extends IBaseModel {
   based_on_week: string;
   based_on_week_day: string;
 }
 
-export interface IHoliday extends BaseModel {
+export interface IHoliday extends IBaseModel {
   name: string;
   start_date: Date;
   end_date: Date;
   recurring: boolean;
 }
 
-export interface ILeaveRequest extends BaseModel {
+export interface ILeaveRequest extends IBaseModel {
   leave_type: number;
   employee: number;
   start_date: Date;

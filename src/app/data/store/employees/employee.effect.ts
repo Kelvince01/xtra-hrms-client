@@ -1,28 +1,28 @@
-import { inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
-import { catchError, concatMap, map, of, tap } from 'rxjs';
-import {ngrxFormsQuery} from "../forms/forms.selectors";
-import {formsActions} from "../forms/forms.actions";
-import {articleEditActions, articleListActions, articlesActions} from "./employee.action";
-import {articleListQuery} from "./employee.selector";
-import { EmployeesService } from '../../services/employees.service';
+import {inject} from '@angular/core';
+import {Router} from '@angular/router';
+import {Actions, concatLatestFrom, createEffect, ofType} from '@ngrx/effects';
+import {Store} from '@ngrx/store';
+import {catchError, concatMap, map, of, tap} from 'rxjs';
+import {ngrxFormsQuery} from '../forms/forms.selectors';
+import {formsActions} from '../forms/forms.actions';
+import {employeeEditActions, employeeListActions, employeesActions} from './employee.action';
+import {employeeListQuery} from './employee.selector';
+import {EmployeesService} from '../../services/employees.service';
 
-/*export const publishArticle$ = createEffect(
+/*export const publishEmployee$ = createEffect(
   (
     actions$ = inject(Actions),
-    articlesService = inject(EmployeesService),
+    employeesService = inject(EmployeesService),
     store = inject(Store),
     router = inject(Router),
   ) => {
     return actions$.pipe(
-      ofType(articleEditActions.publishArticle),
+      ofType(employeeEditActions.publishEmployee),
       concatLatestFrom(() => store.select(ngrxFormsQuery.selectData)),
       concatMap(([_, data]) =>
-        articlesService.publishArticle(data).pipe(
-          tap((result) => router.navigate(['article', result.article.slug])),
-          map(() => articleEditActions.publishArticleSuccess()),
+        employeesService.publishEmployee(data).pipe(
+          tap((result) => router.navigate(['employee', result.employee.slug])),
+          map(() => employeeEditActions.publishEmployeeSuccess()),
           catchError((result) => of(formsActions.setErrors({ errors: result.error.errors }))),
         ),
       ),
@@ -34,37 +34,37 @@ import { EmployeesService } from '../../services/employees.service';
 export const setListPage$ = createEffect(
   (actions$ = inject(Actions)) => {
     return actions$.pipe(
-      ofType(articleListActions.setListPage),
-      map(() => articleListActions.loadArticles()),
+      ofType(employeeListActions.setListPage),
+      map(() => employeeListActions.loadEmployees()),
     );
   },
-  { functional: true },
+  {functional: true},
 );
 
 export const setListTag$ = createEffect(
   (actions$ = inject(Actions)) => {
     return actions$.pipe(
-      ofType(articleListActions.setListConfig),
-      map(() => articleListActions.loadArticles()),
+      ofType(employeeListActions.setListConfig),
+      map(() => employeeListActions.loadEmployees()),
     );
   },
-  { functional: true },
+  {functional: true},
 );
 
-/*export const loadArticles$ = createEffect(
-  (actions$ = inject(Actions), store = inject(Store), articlesService = inject(ArticlesService)) => {
+/*export const loadEmployees$ = createEffect(
+  (actions$ = inject(Actions), store = inject(Store), employeesService = inject(EmployeesService)) => {
     return actions$.pipe(
-      ofType(articleListActions.loadArticles),
-      concatLatestFrom(() => store.select(articleListQuery.selectListConfig)),
+      ofType(employeeListActions.loadEmployees),
+      concatLatestFrom(() => store.select(employeeListQuery.selectListConfig)),
       concatMap(([_, config]) =>
-        articlesService.query(config).pipe(
+        employeesService.query(config).pipe(
           map((results) =>
-            articleListActions.loadArticlesSuccess({
-              articles: results.articles,
-              articlesCount: results.articlesCount,
+            employeeListActions.loadEmployeesSuccess({
+              employees: results.employees,
+              employeesCount: results.employeesCount,
             }),
           ),
-          catchError((error) => of(articleListActions.loadArticlesFailure({ error }))),
+          catchError((error) => of(employeeListActions.loadEmployeesFailure({ error }))),
         ),
       ),
     );
@@ -75,11 +75,11 @@ export const setListTag$ = createEffect(
 export const favorite$ = createEffect(
   (actions$ = inject(Actions), actionsService = inject(ActionsService)) => {
     return actions$.pipe(
-      ofType(articlesActions.favorite),
+      ofType(employeesActions.favorite),
       concatMap(({ slug }) =>
         actionsService.favorite(slug).pipe(
-          map((response) => articlesActions.favoriteSuccess({ article: response.article })),
-          catchError((error) => of(articlesActions.favoriteFailure(error))),
+          map((response) => employeesActions.favoriteSuccess({ employee: response.employee })),
+          catchError((error) => of(employeesActions.favoriteFailure(error))),
         ),
       ),
     );
@@ -90,15 +90,14 @@ export const favorite$ = createEffect(
 export const unFavorite$ = createEffect(
   (actions$ = inject(Actions), actionsService = inject(ActionsService)) => {
     return actions$.pipe(
-      ofType(articlesActions.unfavorite),
+      ofType(employeesActions.unfavorite),
       concatMap(({ slug }) =>
         actionsService.unfavorite(slug).pipe(
-          map((response) => articlesActions.unfavoriteSuccess({ article: response.article })),
-          catchError((error) => of(articlesActions.unfavoriteFailure(error))),
+          map((response) => employeesActions.unfavoriteSuccess({ employee: response.employee })),
+          catchError((error) => of(employeesActions.unfavoriteFailure(error))),
         ),
       ),
     );
   },
   { functional: true },
 );*/
-

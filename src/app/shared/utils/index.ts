@@ -1,4 +1,5 @@
 import {FormArray, FormControl, FormGroup, ValidatorFn} from '@angular/forms';
+import {BehaviorSubject, Observable, ReplaySubject} from 'rxjs';
 
 export const StrongPasswordRegx: RegExp = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
 
@@ -36,3 +37,13 @@ const form: FormBy<Car> = this.fb.group({
     bodies: new FormControl<string[]>([])
   });
  */
+
+export function observableToSubject<T>(
+  observable: Observable<T>,
+  initValue: T,
+  destroyed$: ReplaySubject<T>,
+): BehaviorSubject<T> {
+  const subject = new BehaviorSubject(initValue);
+  observable.subscribe(subject).add(destroyed$);
+  return subject;
+}

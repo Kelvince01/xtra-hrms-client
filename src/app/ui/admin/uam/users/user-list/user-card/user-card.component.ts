@@ -35,7 +35,7 @@ export class UserCardComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.['user']) {
       const {currentValue} = changes['user'];
-      this.isEmpty = !currentValue.content.length;
+      this.isEmpty = !currentValue.email.length;
     }
   }
 

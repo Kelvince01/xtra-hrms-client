@@ -1,6 +1,6 @@
-import {BaseModel} from '@models/base.model';
+import {IBaseModel} from '@models/base.model';
 
-export interface IUser extends BaseModel {
+export interface IUser extends IBaseModel {
   permissions?: string[];
   client_id?: number;
   photoURL: any;
@@ -41,7 +41,7 @@ export interface IUser extends BaseModel {
   employee?: number;
 }
 
-export interface User extends BaseModel {
+export interface User extends IBaseModel {
   id: number;
   name: string;
   email: string;
@@ -55,17 +55,12 @@ export interface User extends BaseModel {
   };
 }
 
-export interface IPermission extends BaseModel {
+export interface IPermission extends IBaseModel {
   namespace?: string;
   name: string;
 }
 
-export interface PermissionModel extends BaseModel {
-  name: string;
-  namespace: string;
-}
-
-export interface IRole extends BaseModel {
+export interface IRole extends IBaseModel {
   description?: string; // Optional
   name: string;
   permissions: number[];
@@ -76,7 +71,7 @@ export interface IRole extends BaseModel {
   revoked?: boolean;
 }
 
-export interface IProfile extends BaseModel {
+export interface IProfile extends IBaseModel {
   user?: number;
   org?: number;
   phone_no?: string;
@@ -94,9 +89,16 @@ export interface IProfile extends BaseModel {
   image?: string;
   email?: string;
   following?: boolean;
+
+  name?: string;
+  loading?: boolean;
 }
 
-export interface IGoogle extends BaseModel {
+export interface ProfileResponse {
+  profile: IProfile;
+}
+
+export interface IGoogle extends IBaseModel {
   user?: number;
   google_id?: string;
   google_url?: string;
@@ -128,6 +130,16 @@ export interface ILoginResponse {
   token_type?: string;
 }
 
+export interface LoginUserRequest {
+  user: ILogin;
+}
+
+export interface LoggedInUser {
+  id: number;
+  token: string;
+  username: string;
+}
+
 /*
 Interface for the Refresh Token (can look different, based on your backend api)
 */
@@ -151,26 +163,16 @@ export interface IRegister {
   lastname?: string;
 }
 
-/*
-Interface for the Register Response (can look different, based on your backend api)
-*/
-export interface RegisterResponse {
-  status: number;
-  message: string;
-}
-
-export interface LoggedInUser {
-  id: number;
-  token: string;
-  username: string;
-}
-
 export interface NewUser {
   username: string;
   phone_no: string;
   email: string;
   password: string;
   roles: string[];
+}
+
+export interface NewUserRequest {
+  user: NewUser;
 }
 
 export interface UpdateUser {
@@ -199,8 +201,10 @@ export interface IResetPasswordResponse {
 }
 
 export interface IResetPassword {
+  email?: string;
   old_password: string;
   new_password: string;
+  confirm_password: string;
 }
 
 export interface UserInterface {
@@ -227,71 +231,13 @@ export interface UserInterface {
   };
 }
 
-export interface NewUserRequest {
-  user: NewUser;
-}
-
-export interface NewUser {
-  username: string;
-  email: string;
-  password: string;
-}
-
-export interface LoginUserRequest {
-  user: LoginUser;
-}
-
-export interface LoginUser {
-  email: string;
-  password: string;
-}
-
-export interface UserModel extends BaseModel {
-  username?: string;
-  email: string;
-  phone: string;
-  password: string;
-  permissions: string[];
-  avatar?: string | null;
-  bio?: string;
-  token?: string;
-}
-
 export interface UserResponse {
   user: IUser;
-}
-
-export interface Login {
-  email: string;
-  password: string;
 }
 
 export interface PhoneLogin {
   phone: string;
   password: string;
-}
-
-export interface Register {
-  email: string;
-  phone: string;
-  password: string;
-}
-
-export interface ForgotPassword {
-  email: string;
-}
-
-export interface ResetPassword {
-  email?: string;
-  old_password: string;
-  new_password: string;
-  confirm_password: string;
-}
-
-export interface ChangePassword {
-  currentPassword: string;
-  newPassword: string;
-  confirmPassword: string;
 }
 
 export interface PhoneVerifyOtp {
@@ -300,17 +246,4 @@ export interface PhoneVerifyOtp {
 
 export interface EmailVerifyOtp {
   email: string;
-}
-
-export interface Profile {
-  email: string;
-  name: string;
-  username: string;
-  bio: string;
-  image: string;
-  loading: boolean;
-}
-
-export interface ProfileResponse {
-  profile: Profile;
 }

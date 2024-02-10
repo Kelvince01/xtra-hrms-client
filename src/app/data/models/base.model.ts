@@ -1,4 +1,4 @@
-export interface BaseModel {
+export interface IBaseModel {
   id?: number;
   is_active?: boolean;
   is_deleted?: boolean;

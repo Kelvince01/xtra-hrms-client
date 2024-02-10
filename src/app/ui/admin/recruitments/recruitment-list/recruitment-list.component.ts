@@ -1,16 +1,12 @@
 import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
-import {TableV2Component} from '@shared/components/table/table-v2.component';
+import {TableComponent} from '@shared/components/table/table.component';
 
 @Component({
   selector: 'xtra-recruitment-list',
   standalone: true,
-  imports: [TableV2Component],
+  imports: [TableComponent],
   template: `
-    <xtra-table-v2
-      [tableColumns]="tableColumns"
-      [title]="title"
-      [tableData]="tableData"
-    ></xtra-table-v2>
+    <xtra-table [tableColumns]="tableColumns" [title]="title" [tableData]="tableData"></xtra-table>
   `,
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,

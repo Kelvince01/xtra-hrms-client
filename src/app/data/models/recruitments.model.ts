@@ -2,11 +2,11 @@
  * Copyright (c) 2023.  Kelvince Phillips
  */
 
-import {BaseModel} from '@models/base.model';
+import {IBaseModel} from '@models/base.model';
 import {IJobPosition, IOrganizationInfo} from '@models/organizations.model';
 import {IEmployeeInfo} from '@models/employee.model';
 
-export interface IRecruitment extends BaseModel {
+export interface IRecruitment extends IBaseModel {
   title: string;
   description: string;
   is_event_based: boolean;
@@ -21,7 +21,7 @@ export interface IRecruitment extends BaseModel {
   end_date?: Date;
 }
 
-export interface IRecruitmentList extends BaseModel {
+export interface IRecruitmentList extends IBaseModel {
   title: string;
   description: string;
   is_event_based: boolean;
@@ -36,7 +36,7 @@ export interface IRecruitmentList extends BaseModel {
   end_date?: Date;
 }
 
-export interface IStage extends BaseModel {
+export interface IStage extends IBaseModel {
   recruitment: number;
   stage_managers: number[];
   stage: string;
@@ -45,7 +45,7 @@ export interface IStage extends BaseModel {
   is_active: boolean;
 }
 
-export interface ICandidate extends BaseModel {
+export interface ICandidate extends IBaseModel {
   offerAccepted: boolean;
   status: string;
   lastName: string;
@@ -80,14 +80,14 @@ export interface ICandidate extends BaseModel {
   sequence?: number;
 }
 
-export interface IStageNote extends BaseModel {
+export interface IStageNote extends IBaseModel {
   candidate_id?: number;
   title?: string;
   description?: string;
   stage_id?: number;
 }
 
-export interface IRecruitmentSurvey extends BaseModel {
+export interface IRecruitmentSurvey extends IBaseModel {
   question?: string;
   recruitments?: number[];
   job_positions?: number[];
@@ -96,7 +96,7 @@ export interface IRecruitmentSurvey extends BaseModel {
   is_mandatory?: boolean;
 }
 
-export interface IRecruitmentSurveyAnswer extends BaseModel {
+export interface IRecruitmentSurveyAnswer extends IBaseModel {
   candidate?: number;
   recruitment?: number;
   job_position?: number;

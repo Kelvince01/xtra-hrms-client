@@ -54,7 +54,7 @@ import {LeaveUpsertComponent} from '@admin-ui/lms/leaves/leave-upsert/leave-upse
         <mat-toolbar-row class="flex-row">
           <span class="title basis-[100px]">{{ title }}</span>
           @if (!newButtonHidden) {
-            <button class="right-2" mat-raised-button color="primary" routerLink="/leaves/add">
+            <button class="right-2" mat-raised-button color="primary" routerLink="/lms/add">
               {{ 'common.new-button' | translate }}
             </button>
           }
@@ -263,7 +263,6 @@ export class LeaveListComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort!: MatSort;
-  // @ViewContainerRef
 
   hasMenu = true;
   isPageable = true;
@@ -325,7 +324,7 @@ export class LeaveListComponent implements OnInit, AfterViewInit {
 
   private upsert!: LeaveUpsertComponent;
 
-  constructor() {} // private upsert: BaseFormComponent<PeriodicElement> // private service: BaseApiService<PeriodicElement>
+  constructor() {}
 
   get displayTableColumns(): ITableColumn[] {
     // tslint:disable-next-line:no-non-null-assertion

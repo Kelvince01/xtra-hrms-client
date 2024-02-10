@@ -1,13 +1,10 @@
-import {ChangeDetectorRef, Component, inject, Input, OnDestroy, ViewChild} from '@angular/core';
-import {BreakpointObserver, Breakpoints, MediaMatcher} from '@angular/cdk/layout';
-import {AsyncPipe, NgForOf, NgOptimizedImage} from '@angular/common';
+import {Component, HostBinding, inject, Input, ViewChild} from '@angular/core';
+import {AsyncPipe, NgClass, NgForOf, NgOptimizedImage, SlicePipe} from '@angular/common';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenav, MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
-import {Observable} from 'rxjs';
-import {map, shareReplay} from 'rxjs/operators';
 import {IUser} from '@data/models';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
@@ -17,24 +14,36 @@ import {LangComponent} from '@shared/components/lang/lang.component';
 import {AuthService} from '@data/services';
 import {UiSpacerComponent} from '@ui-components/ui-spacer/ui-spacer.component';
 import {MsgIconBtnComponent} from '@shared/components/msg-icon-btn/msg-icon-btn.component';
-import {SidenavService} from './sidenav.service';
-import {NavItem} from '@admin-ui/partials/sidenav/admin.menu';
-import {SidenavListItemComponent} from '@admin-ui/partials/sidenav/sidenav-list-item.component';
+import {DrawerNavItem, NAV_ITEMS} from '@admin-ui/partials/sidenav/admin.menu';
+import {SidenavListItemComponent} from '@admin-ui/partials/sidenav/sidenav-list-item/sidenav-list-item.component';
 import {MatTooltip} from '@angular/material/tooltip';
 import {MatExpansionPanel, MatExpansionPanelHeader} from '@angular/material/expansion';
 import {ThemeService} from '@shared/services/theme.service';
+import {StateService} from '@shared/services/state.service';
+import {ViewportService} from '@shared/services/viewport.service';
+import {NotificationItemComponent} from '@admin-ui/partials/sidenav/notification-item/notification-item.component';
+import {INotification} from '@models/notification.model';
+import {CdkOverlayOrigin} from '@angular/cdk/overlay';
+import {FlexModule} from '@ngbracket/ngx-layout';
+import {CapitalizePipe} from '@shared/pipes/capitalize.pipe';
 
 @Component({
   selector: 'xtra-sidenav',
   template: `
-    <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav-container
+      class="sidenav-container"
+      (backdropClick)="closeDrawer()"
+      [autosize]="false"
+      [ngClass]="{'container-closed': !isShowing}"
+    >
       <mat-sidenav
         #drawer
         class="sidenav"
         fixedInViewport
-        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="(isHandset$ | async) === false"
+        [attr.role]="isMobile() ? 'dialog' : 'navigation'"
+        [mode]="isMobile() ? 'over' : 'side'"
+        [opened]="true && !isMobile()"
+        [disableClose]="true"
       >
         <mat-toolbar class="sidenav-header">
           <img
@@ -46,26 +55,30 @@ import {ThemeService} from '@shared/services/theme.service';
           <span class="sidenav-header-title">Xtra HRMS (Admin)</span>
         </mat-toolbar>
 
-        <mat-nav-list>
+        <mat-nav-list (mouseenter)="toggleSidenav()" (mouseleave)="(!isShowing)">
           @for (nav of fillerNav; track nav.title) {
-            <xtra-sidenav-list-item [nav]="nav" (navLinkClick)="navLinkClick()">
-              <mat-icon icon>{{ nav.icon }}</mat-icon>
+            @if (!nav.items) {
+              <xtra-sidenav-list-item [nav]="nav" (navLinkClick)="navLinkClick()">
+                <mat-icon icon class="mr-2 flex items-center">{{ nav.icon }}</mat-icon>
 
-              {{ nav.title | translate }}
-            </xtra-sidenav-list-item>
-
-            @if (nav.children) {
-              @for (navChild of nav.children; track navChild.title) {
-                <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
-                  <mat-expansion-panel-header>Preference</mat-expansion-panel-header>
-                  <mat-nav-list dense>
-                    <a mat-list-item routerLink="#">
-                      <mat-icon>attach_money</mat-icon>
-                      Billing
-                    </a>
-                    <a mat-list-item routerLink="#">
-                      <mat-icon>notification_important</mat-icon>
-                      Notification
+                {{ nav.title | translate }}
+              </xtra-sidenav-list-item>
+            }
+            @if (nav.items) {
+              @for (navChild of nav.items; track navChild.title) {
+                <mat-expansion-panel [class.mat-elevation-z0]="true">
+                  <mat-expansion-panel-header>
+                    @if (nav.icon) {
+                      <!-- Wrapping icon and text with spans to make text truncation work -->
+                      <span>
+                        <mat-icon class="mr-2 flex items-center">{{ nav.icon }}</mat-icon>
+                      </span>
+                    }
+                    {{ nav.title | translate }}
+                  </mat-expansion-panel-header>
+                  <mat-nav-list>
+                    <a mat-list-item routerLink="{{ navChild.path }}">
+                      {{ navChild.title | translate }}
                     </a>
                   </mat-nav-list>
                 </mat-expansion-panel>
@@ -81,18 +94,13 @@ import {ThemeService} from '@shared/services/theme.service';
 
       <mat-sidenav-content>
         <mat-toolbar color="primary" class="toolbar">
-          @if ((isHandset$ | async) === false) {
-            <button
-              class="toggle-button"
-              (click)="drawer.toggle()"
-              [class.is-flipped]="sidenavService.isExpanded"
-            >
-              <!--              this.sidenavService.toggleSidenav()-->
-              <mat-icon icon>chevron_right</mat-icon>
+          @if (!isMobile()) {
+            <button class="toggle-button" (click)="toggleSidenav()" [class.is-flipped]="isShowing">
+              <mat-icon>chevron_right</mat-icon>
             </button>
           }
 
-          @if (isHandset$ | async) {
+          @if (isMobile()) {
             <button
               type="button"
               aria-label="Toggle sidenav"
@@ -119,11 +127,12 @@ import {ThemeService} from '@shared/services/theme.service';
               class="toggle-theme"
               mat-icon-button
               style="margin: 0 4px"
+              matTooltip="Toggle Theme"
             >
               <mat-icon>invert_colors</mat-icon>
             </button>
 
-            <xtra-lang class="flex flex-auto"></xtra-lang>
+            <xtra-lang class="flex flex-auto" matTooltip="Select Language"></xtra-lang>
 
             <!--notification_important-->
             <xtra-msg-icon-btn
@@ -139,49 +148,27 @@ import {ThemeService} from '@shared/services/theme.service';
                 Notifications
               </h6>
               <mat-list>
-                <mat-list-item>
-                  <div class="item-thumbnail item-thumbnail-icon">
-                    <i class="mdi mdi-email-outline"></i>
-                  </div>
-                  <div
-                    class="item-content d-flex align-items-start flex-column justify-content-center"
-                  >
-                    <h6 class="item-subject font-weight-normal">You received a new message</h6>
-                    <p class="text-muted tx-12 mb-0">6 min ago</p>
-                  </div>
-                </mat-list-item>
-                <mat-list-item>
-                  <div class="item-thumbnail item-thumbnail-icon">
-                    <i class="mdi mdi-account-outline"></i>
-                  </div>
-                  <div
-                    class="item-content d-flex align-items-start flex-column justify-content-center"
-                  >
-                    <h6 class="item-subject font-weight-normal">New user registered</h6>
-                    <p class="text-muted tx-12 mb-0">15 min ago</p>
-                  </div>
-                </mat-list-item>
-                <mat-list-item>
-                  <div class="item-thumbnail item-thumbnail-icon">
-                    <i class="mdi mdi-alert-circle-outline"></i>
-                  </div>
-                  <div
-                    class="item-content d-flex align-items-start flex-column justify-content-center"
-                  >
-                    <h6 class="item-subject font-weight-normal">System Alert</h6>
-                    <p class="text-muted tx-12 mb-0">2 days ago</p>
-                  </div>
-                </mat-list-item>
+                @for (notification of notifications; track notification.title) {
+                  <xtra-notification-item [notification]="notification"></xtra-notification-item>
+                }
               </mat-list>
             </mat-menu>
 
-            <!--button mat-icon-button matTooltip="Notifications">
-              <mat-icon>notifications</mat-icon>
-            </button-->
-
-            <button mat-icon-button matTooltip="My Account" [matMenuTriggerFor]="accountMenu">
-              <mat-icon>account_circle</mat-icon>
+            <button
+              mat-icon-button
+              matTooltip="My Account"
+              [matMenuTriggerFor]="accountMenu"
+              fxFlex
+              class="avatar-col"
+            >
+              <!--<mat-icon>account_circle</mat-icon>-->
+              <span class="flex items-center avatar accent-1 large">
+                {{ user.username! | slice: 0 : 2 | capitalize }}
+              </span>
             </button>
+
+            <div></div>
+
             <mat-menu #accountMenu [overlapTrigger]="false" yPosition="below">
               <button
                 mat-menu-item
@@ -192,14 +179,14 @@ import {ThemeService} from '@shared/services/theme.service';
               >
                 <mat-icon>person</mat-icon>
                 <span>My Account</span>
-                <span>{{ user.username }}</span>
+                <span class="ml-2">({{ user.username }})</span>
               </button>
               <button mat-menu-item>
                 <mat-icon>help</mat-icon>
                 <span>Help</span>
               </button>
               <mat-divider></mat-divider>
-              <button mat-menu-item>
+              <button mat-menu-item (click)="logout()">
                 <mat-icon>exit_to_app</mat-icon>
                 Logout
               </button>
@@ -238,66 +225,96 @@ import {ThemeService} from '@shared/services/theme.service';
     MatTooltip,
     MatExpansionPanel,
     MatExpansionPanelHeader,
+    NotificationItemComponent,
+    CdkOverlayOrigin,
+    SlicePipe,
+    NgClass,
+    FlexModule,
+    CapitalizePipe,
   ],
 })
-export class SidenavComponent implements OnDestroy {
-  @ViewChild('snav', {static: true}) snavRef!: MatSidenav;
+export class SidenavComponent {
+  @ViewChild('drawer', {static: true}) snavRef!: MatSidenav;
+
+  @HostBinding('class.is-expanded')
+  get isExpanded() {
+    return this.isShowing;
+  }
 
   @Input() user!: IUser;
   @Input() isLoggedIn!: boolean;
-  private breakpointObserver = inject(BreakpointObserver);
-  mobileQuery!: MediaQueryList;
+  @Input() notifications!: INotification[];
+
+  /** If true, NavItems will not have a bold title when a child NavItem is selected
+   *
+   * @default false
+   * */
+  disableActiveItemParentStyles = false;
+  /** State for the drawer */
+  open = true;
+  isShowing!: boolean;
+
+  /** Automatically open the drawer on hover when closed (persistent variant only) */
+  openOnHover = true;
+  /** Delay in milliseconds before a hover event opens the drawer (persistent variant only)
+   *
+   * @default 500
+   * */
+  openOnHoverDelay = 500;
+  /** Toggle a side border instead of shadow
+   *
+   * @default false
+   * */
+  sideBorder = false;
+  /** Drawer pixel width
+   *
+   * @default 350
+   * */
+  width = 350;
+  /** This is true whenever the drawer is in a collapsed state & its variant has been transitioned to temporary. */
+  hasCollapsedTransitionToTemporary = false;
+
+  hoverDelayTimeout: any;
+
   authService = inject(AuthService);
-  sidenavService = inject(SidenavService);
   private readonly _themeService = inject(ThemeService);
+  protected readonly _stateService = inject(StateService);
+  private readonly _viewportService = inject(ViewportService);
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map((result) => result.matches),
-    shareReplay(),
-  );
+  fillerNav: Array<DrawerNavItem> = NAV_ITEMS;
 
-  fillerNav: Array<NavItem> = [
-    {title: 'common.menu.dashboard', path: '', icon: 'dashboard'},
-    {
-      title: 'common.menu.uam',
-      path: 'uam',
-      icon: 'account',
-      children: [
-        {
-          title: 'common.menu.users',
-          path: 'uam/users',
-        },
-      ],
-    },
-    {title: 'common.menu.employees', path: 'employees', icon: 'supervisor_account'},
-    {title: 'common.menu.organizations', path: 'org', icon: 'business'},
-    {title: 'common.menu.finance', path: 'finance', icon: 'account_balance'}, // account_balance_wallet
-    {title: 'common.menu.communications', path: 'comms', icon: 'mail_outline'},
-    {title: 'common.menu.lms', path: 'lms', icon: 'cancel'},
-    {title: 'common.menu.attendance', path: 'ams', icon: 'check_circle_outline'},
-    {title: 'common.menu.recruitments', path: 'recruitments', icon: 'phonelink'},
-    {title: 'common.menu.onboarding', path: 'onboarding', icon: 'flight'},
-    {title: 'common.menu.training', path: 'training', icon: 'layers'},
-    {title: 'common.menu.pm', path: 'pm', icon: 'group_work'},
-    {title: 'common.menu.pms', path: 'pms', icon: 'show_chart'},
-    {title: 'common.menu.cms', path: 'cms', icon: 'assignment_ind'},
-    {title: 'common.menu.profile', path: 'profile', icon: 'settings_applications'},
-    {title: 'common.menu.settings', path: 'settings', icon: 'settings'},
-  ];
+  constructor() {
+    this.isShowing = !this._viewportService.isSmall();
+  }
 
-  private mobileQueryListener!: (ev: MediaQueryListEvent) => void;
-
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    this.mobileQueryListener = (_) => changeDetectorRef.detectChanges();
-    this.mobileQuery.addEventListener('change', this.mobileQueryListener);
+  toggleSidenav() {
+    this.isShowing = !this.isShowing;
   }
 
   navLinkClick() {
-    if (this.mobileQuery.matches) {
+    /*if (this.mobileQuery.matches) {
       this.snavRef.close();
-    }
+    }*/
+  }
+
+  isMobile(): boolean {
+    return this._viewportService.isSmall();
+  }
+
+  closeDrawer(): void {
+    this._stateService.setDrawerOpen(false);
+  }
+
+  openDrawer(): void {
+    this._stateService.setDrawerOpen(true);
+  }
+
+  isOpened(): boolean {
+    return this._stateService.getDrawerOpen();
+  }
+
+  clickMenuButton(): void {
+    this._stateService.setDrawerOpen(!this._stateService.getDrawerOpen());
   }
 
   toggleTheme(): void {
@@ -319,9 +336,5 @@ export class SidenavComponent implements OnDestroy {
 
   logout() {
     this.authService.logOut();
-  }
-
-  ngOnDestroy(): void {
-    this.mobileQuery.removeEventListener('change', this.mobileQueryListener);
   }
 }

@@ -39,34 +39,38 @@ const structure: Field[] = [
   standalone: true,
   imports: [RouterLink, ListErrorsComponent, DynamicFormComponent],
   template: `
-    <div class="auth-page">
-      <div class="container page">
-        <div class="row">
-          <div class="col-md-6 offset-md-3 col-xs-12">
-            <h1 class="text-xs-center">Sign in</h1>
-            <p class="text-xs-center">
-              <a [routerLink]="['/accounts/sign-in']">Have an account?</a>
-            </p>
+    <section class="flex flex-col lg:flex-row p-2 w-full">
+      <div
+        class="w-full mt-4 md:mt-0 lg:w-1/2 flex flex-col items-center justify-center content-center"
+      >
+        <span class="text-2xl font-black">SIGN UP</span>
 
-            <xtra-list-errors></xtra-list-errors>
+        <p class="text-xs-center">
+          <a [routerLink]="['/accounts/sign-in']">Have an account?</a>
+        </p>
 
-            <xtra-dynamic-form
-              (updateForm)="updateForm($event)"
-              [data$]="data$"
-              [structure$]="structure$"
-            ></xtra-dynamic-form>
-            <button
-              data-e2e-id="sign-up"
-              (click)="submit()"
-              class="btn btn-lg btn-primary pull-xs-right"
-              type="submit"
-            >
-              Sign up
-            </button>
-          </div>
-        </div>
+        <xtra-list-errors></xtra-list-errors>
+
+        <xtra-dynamic-form
+          class="flex flex-col md:w-2/4"
+          (updateForm)="updateForm($event)"
+          [data$]="data$"
+          [structure$]="structure$"
+        ></xtra-dynamic-form>
+        <button
+          data-e2e-id="sign-up"
+          (click)="submit()"
+          class="btn btn-lg btn-primary pull-xs-right"
+          type="submit"
+        >
+          Sign up
+        </button>
       </div>
-    </div>
+
+      <div class="hidden lg:flex w-full lg:w-1/2 flex items-center content-center justify-center">
+        <img src="assets/svgs/signup.svg" alt="Signup illustration" class="w-11/12" />
+      </div>
+    </section>
   `,
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -94,3 +98,15 @@ export class SignUpComponent implements OnInit, OnDestroy {
     this.store.dispatch(formsActions.initializeForm());
   }
 }
+
+/*
+const { value: phone_number } = await Swal.fire({
+      title: 'Kindly provide your phone number',
+      input: 'number',
+      inputLabel: 'Your phone number',
+      inputPlaceholder: '0700000000',
+      customClass: {
+        confirmButton: 'sweetAlertButton'
+      }
+    });
+ */

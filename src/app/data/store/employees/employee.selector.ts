@@ -1,20 +1,33 @@
-import {createSelector} from "@ngrx/store";
-import {articleListFeature} from "./employee.reducer";
+import {createSelector} from '@ngrx/store';
+import {employeeListFeature} from './employee.reducer';
 
-const { selectArticlesListState, selectArticles, selectListConfig } = articleListFeature;
-export const selectArticleEntities = createSelector(selectArticles, (articles) => articles.entities);
-export const selectArticlesCount = createSelector(selectArticles, (articles) => articles.articlesCount);
-export const isLoading = createSelector(selectArticles, (articles) => articles.loading);
-export const selectTotalPages = createSelector(selectArticlesCount, selectListConfig, (articlesCount, config) => {
-  return Array.from(new Array(Math.ceil(articlesCount / (config?.filters?.limit ?? 1))), (val, index) => index + 1);
-});
-
-export const articleListQuery = {
-  selectArticlesListState,
-  selectArticles,
-  selectArticleEntities,
+const {selectEmployeesListState, selectEmployees, selectListConfig} = employeeListFeature;
+export const selectEmployeeEntities = createSelector(
+  selectEmployees,
+  (employees) => employees.entities,
+);
+export const selectEmployeesCount = createSelector(
+  selectEmployees,
+  (employees) => employees.employeesCount,
+);
+export const isLoading = createSelector(selectEmployees, (employees) => employees.loading);
+export const selectTotalPages = createSelector(
+  selectEmployeesCount,
   selectListConfig,
-  selectArticlesCount,
+  (employeesCount, config) => {
+    return Array.from(
+      new Array(Math.ceil(employeesCount / (config?.filters?.limit ?? 1))),
+      (val, index) => index + 1,
+    );
+  },
+);
+
+export const employeeListQuery = {
+  selectEmployeesListState,
+  selectEmployees,
+  selectEmployeeEntities,
+  selectListConfig,
+  selectEmployeesCount,
   isLoading,
   selectTotalPages,
 };

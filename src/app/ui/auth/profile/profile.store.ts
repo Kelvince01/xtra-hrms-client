@@ -25,8 +25,8 @@ export class SettingsStoreService extends ComponentStore<Record<string, unknown>
       concatLatestFrom(() => [this.store.select(ngrxFormsQuery.selectData)]),
       concatMap(([, data]) =>
         this.settingsService.update(data).pipe(
-          tap((result) => this.router.navigate(['profile', result.user.username])),
-          tap((result) => this.localStorageJwtService.setItem(result.user!)),
+          tap((result) => this.router.navigate(['profile', result.username])),
+          tap((result) => this.localStorageJwtService.setItem(result)),
           map(() => this.authStore.getUser()),
         ),
       ),

@@ -16,4 +16,5 @@ export const uamRoutes: Routes = [
     path: 'permissions',
     children: permissionsRoutes,
   },
+  {path: '**', redirectTo: '/uam/users'},
 ];

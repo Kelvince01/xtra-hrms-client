@@ -13,28 +13,28 @@ import {Validators} from '@angular/forms';
 import {ListErrorsComponent} from '@shared/components/forms/list-errors';
 import {DynamicFormComponent} from '@shared/components/forms/dynamic-form';
 import {Store} from '@ngrx/store';
-import {ArticleStore} from '@stores/employees';
+import {EmployeeStore} from '@stores/employees';
 import {ngrxFormsQuery} from '@stores/forms';
 import {formsActions} from '@stores/forms';
-import {articleEditActions} from '@stores/employees';
+import {employeeEditActions} from '@stores/employees';
 
 const structure: Field[] = [
   {
     type: 'INPUT',
     name: 'title',
-    placeholder: 'Article Title',
+    placeholder: 'Employee Title',
     validator: [Validators.required],
   },
   {
     type: 'INPUT',
     name: 'description',
-    placeholder: "What's this article about?",
+    placeholder: "What's this employee about?",
     validator: [Validators.required],
   },
   {
     type: 'TEXTAREA',
     name: 'body',
-    placeholder: 'Write your article (in markdown)',
+    placeholder: 'Write your employee (in markdown)',
     validator: [Validators.required],
   },
   {
@@ -63,7 +63,7 @@ const structure: Field[] = [
             ></xtra-dynamic-form>
 
             <button class="btn btn-lg pull-xs-right btn-primary" type="button" (click)="submit()">
-              Publish Article
+              Publish Employee
             </button>
           </div>
         </div>
@@ -75,18 +75,18 @@ const structure: Field[] = [
 })
 export class EmployeePageComponent implements OnInit, OnDestroy {
   private readonly store = inject(Store);
-  private readonly articleStore = inject(ArticleStore);
+  private readonly employeeStore = inject(EmployeeStore);
   private readonly destroyRef = inject(DestroyRef);
 
   structure$ = this.store.select(ngrxFormsQuery.selectStructure);
   data$ = this.store.select(ngrxFormsQuery.selectData);
 
-  readonly setArticleDataToForm = effect(() => {
-    // const articleLoaded = this.articleStore.getArticleLoaded();
-    const articleLoaded = this.articleStore.getEmployeeLoaded();
-    if (articleLoaded) {
+  readonly setEmployeeDataToForm = effect(() => {
+    // const employeeLoaded = this.employeeStore.getEmployeeLoaded();
+    const employeeLoaded = this.employeeStore.getEmployeeLoaded();
+    if (employeeLoaded) {
       untracked(() =>
-        this.store.dispatch(formsActions.setData({data: this.articleStore.employee()})),
+        this.store.dispatch(formsActions.setData({data: this.employeeStore.employee()})),
       );
     }
   });
@@ -100,7 +100,7 @@ export class EmployeePageComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    this.store.dispatch(articleEditActions.publishArticle());
+    this.store.dispatch(employeeEditActions.editEmployee());
   }
 
   ngOnDestroy() {
