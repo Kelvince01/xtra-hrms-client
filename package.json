@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build && npm run sentry:sourcemaps",
+    "build": "ng build",
+    "build:sentry": "ng build && npm run sentry:sourcemaps",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:xtra-hrms-client": "node dist/xtra-hrms-client/server/server.mjs",
