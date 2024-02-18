@@ -59,7 +59,7 @@
         "src/theme/*"
       ],
       "@env": [
-        "src/environments/emvironment*"
+        "src/environments/environment*"
       ]
     },
     "typeRoots": [
