@@ -26,10 +26,10 @@ import { finalize, first } from 'rxjs';
               [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
             @if (submitted && f['email'].errors) {
               <div class="invalid-feedback">
-                @if (f['email'].errors?.['required']) {
+                @if (f['email']['errors']['required']) {
                   <div>Email is required</div>
                 }
-                @if (f['email'].errors?.['email']) {
+                @if (f['email']['errors']['email']) {
                   <div>Enter Valid Email</div>
                 }
               </div>

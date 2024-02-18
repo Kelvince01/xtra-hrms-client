@@ -1,4 +1,5 @@
 import { ENTER } from '@angular/cdk/keycodes';
+import { AsyncPipe } from '@angular/common';
 
 import {
   ChangeDetectionStrategy,
@@ -35,6 +36,7 @@ const COMMA = 188;
     ReactiveFormsModule,
     MatAutocompleteModule,
     RichTextEditorComponent,
+    AsyncPipe,
   ],
   encapsulation: ViewEncapsulation.None,
   template: `

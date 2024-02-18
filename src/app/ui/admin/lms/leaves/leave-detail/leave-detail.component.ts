@@ -1,3 +1,4 @@
+import { KeyValuePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
@@ -7,7 +8,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'xtra-leave-detail',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, KeyValuePipe],
   template: `
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       @for (input of formInputs | keyvalue: noSort; track input) {
