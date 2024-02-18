@@ -20,7 +20,7 @@
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "docs:html": "npx compodoc -p tsconfig.json src  && npx serve documentation",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org timiza-technologies --project xtra-hrms-client ./dist && sentry-cli sourcemaps upload --org timiza-technologies --project xtra-hrms-client ./dist",
-    "prepare": "husky install",
+    "prepare": "husky",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install",
     "clean": "rm -rf dist .angular/cache",
     "security:check": "npm audit --production --audit-level high"
