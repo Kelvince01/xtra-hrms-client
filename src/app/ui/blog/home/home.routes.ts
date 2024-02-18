@@ -6,8 +6,8 @@
 import { Routes } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
+import { articleEffects, articleListFeature } from '@stores/cms/articles';
 import { HomeComponent } from './home.component';
-import {articleEffects, articleListFeature} from '@stores/cms/articles';
 
 export const HOME_ROUTES: Routes = [
   {
