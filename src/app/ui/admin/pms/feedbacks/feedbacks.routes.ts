@@ -10,16 +10,16 @@ export const FEEDBACK_ROUTES: Routes = [
   {
     path: '',
     component: FeedbackListComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'add',
     component: FeedbackUpsertComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'edit/:id',
     component: FeedbackUpsertComponent,
-    data: { revalidate: 60 }
-  }
+    data: { revalidate: 60 },
+  },
 ];

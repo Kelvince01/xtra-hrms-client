@@ -1,5 +1,5 @@
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { Errors } from './forms.interfaces';
-import { props, createActionGroup, emptyProps } from '@ngrx/store';
 
 export const formsActions = createActionGroup({
   source: 'Forms',

@@ -1,14 +1,12 @@
-import { Component, Input } from '@angular/core';
 import { NgIf } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'xtra-loader',
   template: `
-    <div class='loading-container'>
+    <div class="loading-container">
       <ng-content />
-      <div *ngIf="loading" class="blocker">
-        spinner
-      </div>
+      <div *ngIf="loading" class="blocker">spinner</div>
     </div>
   `,
   standalone: true,

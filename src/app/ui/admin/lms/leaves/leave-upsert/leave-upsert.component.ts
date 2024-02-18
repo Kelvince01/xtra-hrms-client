@@ -1,12 +1,12 @@
-import {Component, ChangeDetectionStrategy, inject} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormBuilder, FormsModule, NgForm, Validators} from '@angular/forms';
-import {EmailValidatorDirective} from '@shared/components/forms/validators/email-validator.directive';
-import {Store} from '@ngrx/store';
-import {CameraService} from '@data/services/common/camera.service';
-import {PlatformInformationService} from '@data/services/common/platform-information.service';
-import {getLoading} from '@stores/lms/leave.selector';
-import {LeavesActions} from '@stores/lms/leave.action';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { FormBuilder, FormsModule, NgForm, Validators } from '@angular/forms';
+import { CameraService } from '@data/services/common/camera.service';
+import { PlatformInformationService } from '@data/services/common/platform-information.service';
+import { Store } from '@ngrx/store';
+import { EmailValidatorDirective } from '@shared/components/forms/validators/email-validator.directive';
+import { LeavesActions } from '@stores/lms/leave.action';
+import { getLoading } from '@stores/lms/leave.selector';
 
 interface IUser {
   name: string;
@@ -42,8 +42,7 @@ interface IUser {
                   minlength="1"
                   maxlength="250"
                   class="form-control form-control-sm"
-                  [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
-                />
+                  [class.is-invalid]="name.invalid && (name.dirty || name.touched)" />
                 @if (name.invalid && (name.dirty || name.touched)) {
                   <div class="invalid-feedback">
                     @if (name.errors?.['required']) {
@@ -71,8 +70,7 @@ interface IUser {
                   placeholder="Your nickname"
                   maxlength="10"
                   class="form-control form-control-sm"
-                  [class.is-invalid]="nickname.invalid && (nickname.dirty || nickname.touched)"
-                />
+                  [class.is-invalid]="nickname.invalid && (nickname.dirty || nickname.touched)" />
                 @if (nickname.invalid && (nickname.dirty || nickname.touched)) {
                   <div class="invalid-feedback">
                     @if (nickname.errors?.['maxlength']) {
@@ -97,8 +95,7 @@ interface IUser {
                   maxlength="250"
                   xtraEmailValidator
                   class="form-control form-control-sm"
-                  [class.is-invalid]="email.invalid && (email.dirty || email.touched)"
-                />
+                  [class.is-invalid]="email.invalid && (email.dirty || email.touched)" />
                 @if (email.invalid && (email.dirty || email.touched)) {
                   <div class="invalid-feedback">
                     @if (email.errors?.['required']) {
@@ -135,20 +132,17 @@ interface IUser {
                     required
                     minlength="15"
                     class="form-control form-control-sm"
-                    [class.is-invalid]="password.invalid && (password.dirty || password.touched)"
-                  />
+                    [class.is-invalid]="password.invalid && (password.dirty || password.touched)" />
                   <button
                     type="button"
                     class="btn btn-outline-secondary"
-                    (click)="user.showPassword = !user.showPassword"
-                  >
+                    (click)="user.showPassword = !user.showPassword">
                     <i
                       class="bi"
                       [ngClass]="{
                         'bi-eye-fill': !user.showPassword,
                         'bi-eye-slash-fill': user.showPassword
-                      }"
-                    ></i>
+                      }"></i>
                   </button>
                   @if (password.invalid && (password.dirty || password.touched)) {
                     <div class="invalid-feedback">
@@ -170,8 +164,7 @@ interface IUser {
               type="file"
               id="file"
               accept="image/*"
-              (change)="setFormData(fileInput.files)"
-            />
+              (change)="setFormData(fileInput.files)" />
 
             <div>
               <img [src]="base64" />
@@ -201,8 +194,7 @@ interface IUser {
                 <button
                   type="submit"
                   class="btn btn-primary mt-6"
-                  [disabled]="!formGroup.valid || loading()"
-                >
+                  [disabled]="!formGroup.valid || loading()">
                   @if (loading()) {
                     <div class="spinner-border spinner-border-sm" role="status">
                       <span class="visually-hidden">Loading...</span>
@@ -278,14 +270,14 @@ export class LeaveUpsertComponent {
   }
 
   takePhoto(): void {
-    this.cameraService.getPhoto().subscribe(({formData, fileName, base64}) => {
+    this.cameraService.getPhoto().subscribe(({ formData, fileName, base64 }) => {
       this.formData = formData;
       this.filename = fileName;
       this.base64 = base64;
     });
   }
 
-  addDoggo(): void {
+  addLeave(): void {
     if (this.formGroup.valid) {
       // const { name, comment, breed } = this.formGroup.value;
 

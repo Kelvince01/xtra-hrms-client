@@ -6,62 +6,62 @@
 api/v1/work-productivity-datasets/
 */
 
-import { Routes } from '@angular/router';
-import { PERFORMANCE_ROUTES } from '@admin-ui/pms/performances/performances.routes';
-import { QUESTION_ROUTES } from '@admin-ui/pms/questions/questions.routes';
-import { QUESTION_TEMPLATE_ROUTES } from '@admin-ui/pms/question-templates/question-templates.routes';
-import { QUESTION_OPTION_ROUTES } from '@admin-ui/pms/question-options/question-options.routes';
-import { PERIOD_ROUTES } from '@admin-ui/pms/periods/periods.routes';
-import { KEY_RESULT_FEEDBACK_ROUTES } from '@admin-ui/pms/key-result-feedbacks/key-result-feedbacks.routes';
-import { FEEDBACK_ROUTES } from '@admin-ui/pms/feedbacks/feedbacks.routes';
-import { EMPLOYEE_OBJECTIVE_ROUTES } from '@admin-ui/pms/employee-objectives/employee-objectives.routes';
-import { EMPLOYEE_KEY_RESULT_ROUTES } from '@admin-ui/pms/employee-key-results/employee-key-results.routes';
-import { COMMENT_ROUTES } from '@admin-ui/pms/comments/comments.routes';
 import { ANSWER_ROUTES } from '@admin-ui/pms/answers/answers.routes';
+import { COMMENT_ROUTES } from '@admin-ui/pms/comments/comments.routes';
+import { EMPLOYEE_KEY_RESULT_ROUTES } from '@admin-ui/pms/employee-key-results/employee-key-results.routes';
+import { EMPLOYEE_OBJECTIVE_ROUTES } from '@admin-ui/pms/employee-objectives/employee-objectives.routes';
+import { FEEDBACK_ROUTES } from '@admin-ui/pms/feedbacks/feedbacks.routes';
+import { KEY_RESULT_FEEDBACK_ROUTES } from '@admin-ui/pms/key-result-feedbacks/key-result-feedbacks.routes';
+import { PERFORMANCE_ROUTES } from '@admin-ui/pms/performances/performances.routes';
+import { PERIOD_ROUTES } from '@admin-ui/pms/periods/periods.routes';
+import { QUESTION_OPTION_ROUTES } from '@admin-ui/pms/question-options/question-options.routes';
+import { QUESTION_TEMPLATE_ROUTES } from '@admin-ui/pms/question-templates/question-templates.routes';
+import { QUESTION_ROUTES } from '@admin-ui/pms/questions/questions.routes';
+import { Routes } from '@angular/router';
 
 export const PMS_ROUTES: Routes = [
   {
     path: '',
-    children: PERFORMANCE_ROUTES
+    children: PERFORMANCE_ROUTES,
   },
   {
     path: 'answers',
-    children: ANSWER_ROUTES
+    children: ANSWER_ROUTES,
   },
   {
     path: 'comments',
-    children: COMMENT_ROUTES
+    children: COMMENT_ROUTES,
   },
   {
     path: 'employee-key-results',
-    children: EMPLOYEE_KEY_RESULT_ROUTES
+    children: EMPLOYEE_KEY_RESULT_ROUTES,
   },
   {
     path: 'employee-objectives',
-    children: EMPLOYEE_OBJECTIVE_ROUTES
+    children: EMPLOYEE_OBJECTIVE_ROUTES,
   },
   {
     path: 'feedbacks',
-    children: FEEDBACK_ROUTES
+    children: FEEDBACK_ROUTES,
   },
   {
     path: 'key-result-feedbacks',
-    children: KEY_RESULT_FEEDBACK_ROUTES
+    children: KEY_RESULT_FEEDBACK_ROUTES,
   },
   {
     path: 'periods',
-    children: PERIOD_ROUTES
+    children: PERIOD_ROUTES,
   },
   {
     path: 'question-options',
-    children: QUESTION_OPTION_ROUTES
+    children: QUESTION_OPTION_ROUTES,
   },
   {
     path: 'question-templates',
-    children: QUESTION_TEMPLATE_ROUTES
+    children: QUESTION_TEMPLATE_ROUTES,
   },
   {
     path: 'questions',
-    children: QUESTION_ROUTES
-  }
+    children: QUESTION_ROUTES,
+  },
 ];

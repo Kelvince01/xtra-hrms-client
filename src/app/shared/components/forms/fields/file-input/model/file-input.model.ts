@@ -6,7 +6,7 @@ export class FileInput {
 
   constructor(
     private _files: File[] | null,
-    private delimiter: string = ', '
+    private delimiter: string = ', ',
   ) {
     this._fileNames = (this._files || []).map((f: File) => f.name).join(delimiter);
   }

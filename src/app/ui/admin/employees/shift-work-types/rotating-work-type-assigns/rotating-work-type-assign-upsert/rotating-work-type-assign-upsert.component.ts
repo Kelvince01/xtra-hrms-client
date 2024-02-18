@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-rotating-work-type-assign-upsert',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      rotating-work-type-assign-upsert works!
-    </p>
+    <p>rotating-work-type-assign-upsert works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class RotatingWorkTypeAssignUpsertComponent {
-
-}
+export class RotatingWorkTypeAssignUpsertComponent {}

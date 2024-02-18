@@ -1,0 +1,179 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use './colors/palette.scss' as xtra-colors;
+
+@use './darkTheme';
+@use './xtraTheme';
+@use './margins';
+@use './fonts';
+@use './typography/config' as typography;
+@use './common';
+
+@mixin sharedConfig() {
+  @include margins.reasonable-margins();
+  @include fonts.bodyfont();
+  @include typography.typography();
+  @include common.common();
+}
+
+$xtra-light-primary: mat.define-palette(xtra-colors.$xtra-blue);
+$xtra-light-accent: mat.define-palette(xtra-colors.$xtra-lightBlue);
+$xtra-light-warn: mat.define-palette(xtra-colors.$xtra-red);
+
+//$xtra-light-primary: mat.define-palette(xtra-colors.$mat-primary, 500);
+//$xtra-light-accent: mat.define-palette(xtra-colors.$mat-accent, A200, A100, A400);
+//$xtra-light-warn: mat.define-palette(mat.$red-palette);
+$xtra-light-success: mat.define-palette(mat.$green-palette);
+$xtra-light-info: mat.define-palette(mat.$blue-palette);
+
+$xtra-light-variants: (
+  success: $xtra-light-success,
+  info: $xtra-light-info,
+);
+
+$typography-config: mat.define-legacy-typography-config(
+  $font-family: '"Quicksand", Arial, Helvetica, sans-serif;',
+  $display-4: mat.define-typography-level(6rem, 1.167, 300),
+  $display-2: mat.define-typography-level(3rem, 1.167, 400),
+  $display-1: mat.define-typography-level(2.125rem, 1.235, 400),
+  $headline: mat.define-typography-level(1.5rem, 1.334, 400),
+  $title: mat.define-typography-level(1.25rem, 1.6, 600),
+  $subheading-2: mat.define-typography-level(1rem, 1.75, 400),
+  $subheading-1: mat.define-typography-level(0.875rem, 1.57, 600),
+  $body-2: mat.define-typography-level(0.875rem, 1.43, 500),
+  $body-1: mat.define-typography-level(1rem, 1.5, 400),
+  $caption: mat.define-typography-level(0.75rem, 1.66, 400),
+  $button: mat.define-typography-level(0.875rem, 1, 600),
+  $input: mat.define-typography-level(inherit, 1.125, 400),
+);
+
+@function xtra-light-theme($primary, $accent, $warn) {
+  $theme: (
+    color: (
+      primary: $primary,
+      //primary: mat.define-palette(xtra-colors.$xtra-ui-purple),
+      accent: $accent,
+      //accent: mat.define-palette(xtra-colors.$xtra-ui-white),
+      warn: $warn,
+    ),
+    typography: $typography-config,
+    density: 0,
+  );
+
+  @return map.deep-merge(
+    mat.define-light-theme($theme),
+    (
+      color: (
+        foreground: (
+          text: map-get(xtra-colors.$xtra-black, 500),
+          disabled: rgba(map-get(xtra-colors.$xtra-black, 500), 0.3),
+        ),
+      ),
+      foreground: (
+        onPrimary: map-get(xtra-colors.$xtra-white, 50),
+        onAccent: map-get(xtra-colors.$xtra-white, 50),
+        onWarn: map-get(xtra-colors.$xtra-white, 50),
+        text: map-get(xtra-colors.$xtra-black, 500),
+        secondary-text: map-get(xtra-colors.$xtra-gray, 500),
+        hint-text: map-get(xtra-colors.$xtra-gray, 500),
+        base: map-get(xtra-colors.$xtra-darkBlack, 900),
+        divider: rgba(map-get(xtra-colors.$xtra-black, 500), 0.12),
+        disabled: rgba(map-get(xtra-colors.$xtra-black, 500), 0.3),
+        icon: rgba(black, 0.54),
+        icons: rgba(black, 0.54),
+      ),
+      background: (
+        card: map-get(xtra-colors.$xtra-white, 50),
+        dialog: map-get(xtra-colors.$xtra-white, 50),
+        disabled-button: rgba(114, 126, 132, 0.12),
+        disabled-button-toggle: map-get(xtra-colors.$xtra-gray, 200),
+      ),
+    )
+  );
+}
+
+@mixin light-theme($primary, $accent, $warn) {
+  $theme: xtra-light-theme($primary, $accent, $warn);
+  @include sharedConfig();
+
+  @include xtraTheme.xtraTheme($theme);
+}
+
+@mixin xtraLight() {
+  @include shared();
+  @include light-theme($xtra-light-primary, $xtra-light-accent, $xtra-light-warn);
+}
+
+$xtra-dark-primary: mat.define-palette(xtra-colors.$xtra-blue);
+$xtra-dark-accent: mat.define-palette(xtra-colors.$xtra-lightBlue, 200);
+$xtra-dark-warn: mat.define-palette(xtra-colors.$xtra-red, 200);
+
+//$xtra-dark-primary: mat.define-palette(mat.$blue-grey-palette);
+//$xtra-dark-accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
+//$xtra-dark-warn: mat.define-palette(mat.$deep-orange-palette);
+$xtra-dark-success: mat.define-palette(mat.$green-palette);
+$xtra-dark-info: mat.define-palette(mat.$blue-palette);
+
+$xtra-dark-variants: (
+  success: $xtra-dark-success,
+  info: $xtra-dark-info,
+);
+
+@function xtra-dark-theme($primary, $accent, $warn) {
+  $theme: (
+    color: (
+      primary: $primary,
+      //primary: mat.define-palette(xtra-colors.$xtra-ui-purple),
+      accent: $accent,
+      //accent: mat.define-palette(xtra-colors.$xtra-ui-gray),
+      warn: $warn,
+    ),
+    typography: $typography-config,
+    density: 0,
+  );
+
+  @return map.deep-merge(
+    mat.define-dark-theme($theme),
+    (
+      color: (
+        foreground: (
+          text: map-get(xtra-colors.$xtra-black, 50),
+          disabled: rgba(map-get(xtra-colors.$xtra-black, 300), 0.3),
+          divider: rgba(map-get(xtra-colors.$xtra-black, 200), 0.36),
+        ),
+      ),
+      foreground: (
+        text: map-get(xtra-colors.$xtra-black, 50),
+        secondary-text: map-get(xtra-colors.$xtra-black, 200),
+        hint-text: map-get(xtra-colors.$xtra-gray, 300),
+        base: map-get(xtra-colors.$xtra-white, 50),
+        divider: rgba(map-get(xtra-colors.$xtra-black, 200), 0.36),
+        disabled: rgba(map-get(xtra-colors.$xtra-black, 300), 0.36),
+        icon: map-get(xtra-colors.$xtra-black, 50),
+        icons: map-get(xtra-colors.$xtra-black, 50),
+      ),
+      background: (
+        app-bar: map-get(xtra-colors.$xtra-darkBlack, 100),
+        card: map-get(xtra-colors.$xtra-black, 900),
+        dialog: map-get(xtra-colors.$xtra-black, 900),
+        disabled-button: rgba(white, 0.12),
+        disabled-button-toggle: black,
+      ),
+    )
+  );
+}
+
+@mixin dark-theme($primary, $accent, $warn) {
+  $theme: xtra-dark-theme($primary, $accent, $warn);
+  @include sharedConfig();
+
+  @include darkTheme.darkTheme($theme);
+}
+
+@mixin xtraDark() {
+  @include shared();
+  @include dark-theme($xtra-dark-primary, $xtra-dark-accent, $xtra-dark-warn);
+}
+
+@mixin shared() {
+}

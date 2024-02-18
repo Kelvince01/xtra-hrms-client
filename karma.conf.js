@@ -21,13 +21,16 @@ module.exports = function (config) {
       },
       clearContext: false, // leave Jasmine Spec Runner output visible in browser
     },
+    mime: {
+      'text/x-typescript': ['ts', 'tsx'],
+    },
     jasmineHtmlReporter: {
       suppressAll: true, // removes the duplicated traces
     },
     coverageReporter: {
       dir: require('path').join(__dirname, './coverage/xtra-hrms-client'),
       subdir: '.',
-      reporters: [{type: 'html'}, {type: 'text-summary'}],
+      reporters: [{ type: 'html' }, { type: 'text-summary' }],
     },
     reporters: ['progress', 'kjhtml'],
     browsers: ['Chrome', 'ChromeHeadless'],
@@ -37,6 +40,10 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     singleRun: false,
+
+    // Enable source maps for debugging
+    sourceMap: true,
+
     customLaunchers: {
       HeadlessChrome: {
         base: 'ChromeHeadless',

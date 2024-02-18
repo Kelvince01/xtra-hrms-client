@@ -1,4 +1,4 @@
-import { ValidatorFn, AbstractControl } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { FileInput } from '../model/file-input.model';
 
 export class FileValidator {
@@ -21,8 +21,8 @@ export class FileValidator {
         : {
             maxContentSize: {
               actualSize: size,
-              maxSize: bytes
-            }
+              maxSize: bytes,
+            },
           };
     };
   }

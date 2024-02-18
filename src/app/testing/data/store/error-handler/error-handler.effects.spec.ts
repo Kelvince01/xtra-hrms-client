@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action, StoreModule } from '@ngrx/store';
-import { hot } from 'jasmine-marbles';
+// import {hot} from 'jasmine-marbles';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'rxjs';
 
@@ -14,7 +14,8 @@ describe('ErrorHandlerEffects', () => {
       imports: [StoreModule.forRoot({}), RouterTestingModule.withRoutes([])],
       providers: [
         // ErrorHandlerEffects,
-        provideMockActions(() => actions$)],
+        provideMockActions(() => actions$),
+      ],
     });
 
     // effects = TestBed.inject(ErrorHandlerEffects);
@@ -22,7 +23,7 @@ describe('ErrorHandlerEffects', () => {
 
   describe('someEffect', () => {
     it('should work', async () => {
-      actions$ = hot('-a-|', { a: { type: 'LOAD_DATA' } });
+      // actions$ = hot('-a-|', {a: {type: 'LOAD_DATA'}});
       expect(true).toBeTruthy();
     });
   });

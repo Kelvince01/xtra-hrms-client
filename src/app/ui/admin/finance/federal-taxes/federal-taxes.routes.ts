@@ -10,16 +10,16 @@ export const FEDERAL_TAX_ROUTES: Routes = [
   {
     path: '',
     component: FederalTaxListComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'add',
     component: FederalTaxUpsertComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'edit/:id',
     component: FederalTaxUpsertComponent,
-    data: { revalidate: 60 }
-  }
+    data: { revalidate: 60 },
+  },
 ];

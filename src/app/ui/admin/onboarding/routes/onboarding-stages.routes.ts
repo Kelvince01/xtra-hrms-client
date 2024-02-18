@@ -10,14 +10,14 @@ import { OnboardingStageUpsertComponent } from '@admin-ui/onboarding/upsert/onbo
 export const ONBOARDING_STAGE_ROUTES: Routes = [
   {
     path: '',
-    component: OnboardingStageListComponent
+    component: OnboardingStageListComponent,
   },
   {
     path: 'add',
-    component: OnboardingStageUpsertComponent
+    component: OnboardingStageUpsertComponent,
   },
   {
     path: 'edit:/id',
-    component: OnboardingStageUpsertComponent
-  }
+    component: OnboardingStageUpsertComponent,
+  },
 ];

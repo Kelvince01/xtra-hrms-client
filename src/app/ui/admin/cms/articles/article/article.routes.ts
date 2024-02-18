@@ -4,9 +4,9 @@
  */
 
 import { Routes } from '@angular/router';
+import { articleEffects } from '@data/store/cms/articles';
 import { provideEffects } from '@ngrx/effects';
 import { ArticleComponent } from './article.component';
-import {articleEffects} from '@data/store/cms/articles';
 
 export const ARTICLE_ROUTES: Routes = [
   {

@@ -12,7 +12,7 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
-import {ContentChange, QuillEditorComponent, QuillModules} from 'ngx-quill';
+import { ContentChange, QuillEditorComponent, QuillModules } from 'ngx-quill';
 import Quill from 'quill';
 
 @Component({
@@ -28,8 +28,7 @@ import Quill from 'quill';
       (onFocus)="onFocus()"
       (onEditorCreated)="editorCreated($event)"
       classes="font-sans text-sm"
-      [styles]="{minHeight: '6rem'}"
-    ></quill-editor>
+      [styles]="{ minHeight: '6rem' }"></quill-editor>
   `,
   styles: ``,
   providers: [
@@ -49,18 +48,18 @@ export class RichTextEditorComponent implements OnInit, ControlValueAccessor {
 
   quillConfig: QuillModules = {
     toolbar: [
-      [{'header': [1, 2, 3, 4, 5, 6, false]}],
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 
       ['bold', 'italic', 'underline'],
-      [{'color': []}],
-      [{'list': 'ordered'}, {'list': 'bullet'}],
+      [{ 'color': [] }],
+      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
       ['link', 'image', 'video'],
 
       ['blockquote', 'code-block'],
 
-      [{'indent': '-1'}, {'indent': '+1'}],
+      [{ 'indent': '-1' }, { 'indent': '+1' }],
 
-      [{'align': []}],
+      [{ 'align': [] }],
     ],
   };
 

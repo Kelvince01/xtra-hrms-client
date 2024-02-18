@@ -10,16 +10,16 @@ export const ALLOWANCE_ROUTES: Routes = [
   {
     path: '',
     component: AllowanceListComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'add',
     component: AllowanceUpsertComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'edit/:id',
     component: AllowanceUpsertComponent,
-    data: { revalidate: 60 }
-  }
+    data: { revalidate: 60 },
+  },
 ];

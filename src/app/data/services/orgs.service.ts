@@ -1,5 +1,4 @@
-import {Injectable} from '@angular/core';
-import {BaseService} from './base.service';
+import { Injectable } from '@angular/core';
 import {
   IBranch,
   IDepartment,
@@ -9,6 +8,7 @@ import {
   IOrganization,
   IWorkType,
 } from '@data/models/organizations.model';
+import { BaseService } from './base.service';
 
 @Injectable()
 export class OrganizationService extends BaseService<IOrganization> {

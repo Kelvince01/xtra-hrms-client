@@ -1,31 +1,31 @@
-import {Component, HostBinding, inject, Input, ViewChild} from '@angular/core';
-import {AsyncPipe, NgClass, NgForOf, NgOptimizedImage, SlicePipe} from '@angular/common';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSidenav, MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
-import {MatIconModule} from '@angular/material/icon';
-import {IUser} from '@data/models';
-import {RouterLink, RouterLinkActive} from '@angular/router';
-import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
-import {MatLine} from '@angular/material/core';
-import {TranslateModule} from '@ngx-translate/core';
-import {LangComponent} from '@shared/components/lang/lang.component';
-import {AuthService} from '@data/services';
-import {UiSpacerComponent} from '@ui-components/ui-spacer/ui-spacer.component';
-import {MsgIconBtnComponent} from '@shared/components/msg-icon-btn/msg-icon-btn.component';
-import {DrawerNavItem, NAV_ITEMS} from '@admin-ui/partials/sidenav/admin.menu';
-import {SidenavListItemComponent} from '@admin-ui/partials/sidenav/sidenav-list-item/sidenav-list-item.component';
-import {MatTooltip} from '@angular/material/tooltip';
-import {MatExpansionPanel, MatExpansionPanelHeader} from '@angular/material/expansion';
-import {ThemeService} from '@shared/services/theme.service';
-import {StateService} from '@shared/services/state.service';
-import {ViewportService} from '@shared/services/viewport.service';
-import {NotificationItemComponent} from '@admin-ui/partials/sidenav/notification-item/notification-item.component';
-import {INotification} from '@models/notification.model';
-import {CdkOverlayOrigin} from '@angular/cdk/overlay';
-import {FlexModule} from '@ngbracket/ngx-layout';
-import {CapitalizePipe} from '@shared/pipes/capitalize.pipe';
+import { DrawerNavItem, NAV_ITEMS } from '@admin-ui/partials/sidenav/admin.menu';
+import { NotificationItemComponent } from '@admin-ui/partials/sidenav/notification-item/notification-item.component';
+import { SidenavListItemComponent } from '@admin-ui/partials/sidenav/sidenav-list-item/sidenav-list-item.component';
+import { CdkOverlayOrigin } from '@angular/cdk/overlay';
+import { AsyncPipe, NgClass, NgForOf, NgOptimizedImage, SlicePipe } from '@angular/common';
+import { Component, HostBinding, Input, ViewChild, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatLine } from '@angular/material/core';
+import { MatExpansionPanel, MatExpansionPanelHeader } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltip } from '@angular/material/tooltip';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { IUser } from '@data/models';
+import { AuthService } from '@data/services';
+import { INotification } from '@models/notification.model';
+import { FlexModule } from '@ngbracket/ngx-layout';
+import { TranslateModule } from '@ngx-translate/core';
+import { LangComponent } from '@shared/components/lang/lang.component';
+import { MsgIconBtnComponent } from '@shared/components/msg-icon-btn/msg-icon-btn.component';
+import { CapitalizePipe } from '@shared/pipes/capitalize.pipe';
+import { StateService } from '@shared/services/state.service';
+import { ThemeService } from '@shared/services/theme.service';
+import { ViewportService } from '@shared/services/viewport.service';
+import { UiSpacerComponent } from '@ui-components/ui-spacer/ui-spacer.component';
 
 @Component({
   selector: 'xtra-sidenav',
@@ -34,8 +34,7 @@ import {CapitalizePipe} from '@shared/pipes/capitalize.pipe';
       class="sidenav-container"
       (backdropClick)="closeDrawer()"
       [autosize]="false"
-      [ngClass]="{'container-closed': !isShowing}"
-    >
+      [ngClass]="{ 'container-closed': !isShowing }">
       <mat-sidenav
         #drawer
         class="sidenav"
@@ -43,15 +42,13 @@ import {CapitalizePipe} from '@shared/pipes/capitalize.pipe';
         [attr.role]="isMobile() ? 'dialog' : 'navigation'"
         [mode]="isMobile() ? 'over' : 'side'"
         [opened]="true && !isMobile()"
-        [disableClose]="true"
-      >
+        [disableClose]="true">
         <mat-toolbar class="sidenav-header">
           <img
             ngSrc="./../../../../../assets/images/logo.png"
             [height]="25"
             [width]="25"
-            alt="Xtra HRMS Admin Logo"
-          />
+            alt="Xtra HRMS Admin Logo" />
           <span class="sidenav-header-title">Xtra HRMS (Admin)</span>
         </mat-toolbar>
 
@@ -105,8 +102,7 @@ import {CapitalizePipe} from '@shared/pipes/capitalize.pipe';
               type="button"
               aria-label="Toggle sidenav"
               mat-icon-button
-              (click)="drawer.toggle()"
-            >
+              (click)="drawer.toggle()">
               <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
           }
@@ -122,14 +118,23 @@ import {CapitalizePipe} from '@shared/pipes/capitalize.pipe';
               <mat-icon>apps</mat-icon>
             </button>
 
-            <button
+            <!--button
               (click)="toggleTheme()"
               class="toggle-theme"
               mat-icon-button
               style="margin: 0 4px"
-              matTooltip="Toggle Theme"
-            >
+              matTooltip="Toggle Theme">
               <mat-icon>invert_colors</mat-icon>
+            </button-->
+
+            <button
+              mat-icon-button
+              (click)="toggleTheme()"
+              class="theme-toggle"
+              aria-label="Toggle Dark Theme"
+              style="margin: 0 4px"
+              matTooltip="Toggle Theme">
+              <mat-icon>{{ _themeService.isDarkMode ? 'dark_mode' : 'light_mode' }}</mat-icon>
             </button>
 
             <xtra-lang class="flex flex-auto" matTooltip="Select Language"></xtra-lang>
@@ -140,8 +145,7 @@ import {CapitalizePipe} from '@shared/pipes/capitalize.pipe';
               icon="notifications"
               number="5"
               [matMenuTriggerFor]="menu"
-              matTooltip="Notifications"
-            ></xtra-msg-icon-btn>
+              matTooltip="Notifications"></xtra-msg-icon-btn>
             <mat-menu #menu="matMenu" class="notificationsMenu">
               <h6 class="title">
                 <i class="mdi mdi-bell-outline mr-2 tx-16"></i>
@@ -159,8 +163,7 @@ import {CapitalizePipe} from '@shared/pipes/capitalize.pipe';
               matTooltip="My Account"
               [matMenuTriggerFor]="accountMenu"
               fxFlex
-              class="avatar-col"
-            >
+              class="avatar-col">
               <!--<mat-icon>account_circle</mat-icon>-->
               <span class="flex items-center avatar accent-1 large">
                 {{ user.username! | slice: 0 : 2 | capitalize }}
@@ -175,8 +178,7 @@ import {CapitalizePipe} from '@shared/pipes/capitalize.pipe';
                 data-e2e-id="loggedin-user"
                 class="nav-link"
                 [routerLink]="['/profile', user.username]"
-                routerLinkActive="active"
-              >
+                routerLinkActive="active">
                 <mat-icon>person</mat-icon>
                 <span>My Account</span>
                 <span class="ml-2">({{ user.username }})</span>
@@ -234,7 +236,7 @@ import {CapitalizePipe} from '@shared/pipes/capitalize.pipe';
   ],
 })
 export class SidenavComponent {
-  @ViewChild('drawer', {static: true}) snavRef!: MatSidenav;
+  @ViewChild('drawer', { static: true }) snavRef!: MatSidenav;
 
   @HostBinding('class.is-expanded')
   get isExpanded() {
@@ -277,7 +279,7 @@ export class SidenavComponent {
   hoverDelayTimeout: any;
 
   authService = inject(AuthService);
-  private readonly _themeService = inject(ThemeService);
+  protected readonly _themeService = inject(ThemeService);
   protected readonly _stateService = inject(StateService);
   private readonly _viewportService = inject(ViewportService);
 
@@ -320,11 +322,11 @@ export class SidenavComponent {
   toggleTheme(): void {
     const body = document.querySelector('body') as HTMLElement;
     if (this._themeService.isDarkMode) {
-      body.classList.remove('xtra-ui-blue-dark');
-      body.classList.add('xtra-ui-blue');
+      body.classList.remove('xtra-dark');
+      body.classList.add('xtra-light');
     } else {
-      body.classList.remove('xtra-ui-blue');
-      body.classList.add('xtra-ui-blue-dark');
+      body.classList.remove('xtra-light');
+      body.classList.add('xtra-dark');
     }
     this._themeService.isDarkMode = !this._themeService.isDarkMode;
   }

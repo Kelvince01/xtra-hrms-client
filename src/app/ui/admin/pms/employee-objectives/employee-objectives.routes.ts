@@ -10,16 +10,16 @@ export const EMPLOYEE_OBJECTIVE_ROUTES: Routes = [
   {
     path: '',
     component: EmployeeObjectiveListComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'add',
     component: EmployeeObjectiveUpsertComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'edit/:id',
     component: EmployeeObjectiveUpsertComponent,
-    data: { revalidate: 60 }
-  }
+    data: { revalidate: 60 },
+  },
 ];

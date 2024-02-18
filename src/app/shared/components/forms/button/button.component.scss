@@ -67,7 +67,7 @@ $jira-bg: rgb(222, 235, 255);
 
 .btn-secondary {
   //text-textDark
-  @apply  font-normal;
+  @apply font-normal;
   //background: $secondary;
 
   &:not(:disabled) {

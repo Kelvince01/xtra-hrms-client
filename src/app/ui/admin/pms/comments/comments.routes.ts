@@ -10,16 +10,16 @@ export const COMMENT_ROUTES: Routes = [
   {
     path: '',
     component: CommentListComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'add',
     component: CommentUpsertComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'edit/:id',
     component: CommentUpsertComponent,
-    data: { revalidate: 60 }
-  }
+    data: { revalidate: 60 },
+  },
 ];

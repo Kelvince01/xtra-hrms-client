@@ -3,14 +3,14 @@
  */
 
 import { InjectionToken } from '@angular/core';
-import {LogLevel} from '@data/types/logger.type';
+import { LogLevel } from '@data/types/logger.type';
 
 export type LoggerConfig = {
   minLevel: LogLevel;
 };
 
 export const DEFAULT_CONFIG = {
-  minLevel: LogLevel.info
+  minLevel: LogLevel.info,
 };
 
 /** Logger configuration token*/

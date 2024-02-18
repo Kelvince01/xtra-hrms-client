@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-filing-status-upsert',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      filing-status-upsert works!
-    </p>
+    <p>filing-status-upsert works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class FilingStatusUpsertComponent {
-
-}
+export class FilingStatusUpsertComponent {}

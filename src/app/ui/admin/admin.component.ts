@@ -1,12 +1,12 @@
-import {ChangeDetectionStrategy, Component, OnInit, inject} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
-import {LocalStorageJwtService} from '@shared/services';
-import {AuthStore} from '@stores/auth';
-import {filter, take} from 'rxjs';
-import {FooterComponent} from './partials/footer/footer.component';
-import {SidenavComponent} from '@admin-ui/partials/sidenav/sidenav.component';
-import {SvgDefinitionsComponent} from '@shared/components/svgs/svg-definitions/svg-definitions.component';
-import {INotification} from '@models/notification.model';
+import { SidenavComponent } from '@admin-ui/partials/sidenav/sidenav.component';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { INotification } from '@models/notification.model';
+import { SvgDefinitionsComponent } from '@shared/components/svgs/svg-definitions/svg-definitions.component';
+import { LocalStorageJwtService } from '@shared/services';
+import { AuthStore } from '@stores/auth';
+import { filter, take } from 'rxjs';
+import { FooterComponent } from './partials/footer/footer.component';
 
 @Component({
   selector: 'xtra-admin',
@@ -51,7 +51,7 @@ export class AdminComponent implements OnInit {
       .getItem()
       .pipe(
         take(1),
-        filter((token) => !!token?.access),
+        filter(token => !!token?.access),
       )
       .subscribe(() => this.authStore.getUser());
   }

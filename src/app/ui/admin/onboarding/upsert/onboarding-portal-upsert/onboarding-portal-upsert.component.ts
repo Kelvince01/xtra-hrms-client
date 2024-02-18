@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-onboarding-portal-upsert',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      onboarding-portal-upsert works!
-    </p>
+    <p>onboarding-portal-upsert works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class OnboardingPortalUpsertComponent {
-
-}
+export class OnboardingPortalUpsertComponent {}

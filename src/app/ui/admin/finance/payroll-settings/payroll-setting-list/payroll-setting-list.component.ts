@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-payroll-setting-list',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      payroll-setting-list works!
-    </p>
+    <p>payroll-setting-list works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class PayrollSettingListComponent {
-
-}
+export class PayrollSettingListComponent {}

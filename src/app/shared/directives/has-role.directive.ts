@@ -1,7 +1,7 @@
-import {DestroyRef, Directive, Input, TemplateRef, inject, ViewContainerRef} from '@angular/core';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {AuthService, UsersService} from '@data/services';
-import {IRole} from '@models/accounts.model';
+import { DestroyRef, Directive, Input, TemplateRef, ViewContainerRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { AuthService, UsersService } from '@data/services';
+import { IRole } from '@models/accounts.model';
 
 @Directive({
   selector: '[xtraHasRole]',
@@ -18,7 +18,7 @@ export class HasRoleDirective {
     this.userService
       .hasRole(value, this.authService.user())
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((hasRole) => (hasRole ? this.addTemplate() : this.clearTemplate()));
+      .subscribe(hasRole => (hasRole ? this.addTemplate() : this.clearTemplate()));
   }
 
   private addTemplate(): void {

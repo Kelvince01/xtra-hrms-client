@@ -10,14 +10,14 @@ import { OnboardingTaskUpsertComponent } from '@admin-ui/onboarding/upsert/onboa
 export const ONBOARDING_TASK_ROUTES: Routes = [
   {
     path: '',
-    component: OnboardingTaskListComponent
+    component: OnboardingTaskListComponent,
   },
   {
     path: 'add',
-    component: OnboardingTaskUpsertComponent
+    component: OnboardingTaskUpsertComponent,
   },
   {
     path: 'edit:/id',
-    component: OnboardingTaskUpsertComponent
-  }
+    component: OnboardingTaskUpsertComponent,
+  },
 ];

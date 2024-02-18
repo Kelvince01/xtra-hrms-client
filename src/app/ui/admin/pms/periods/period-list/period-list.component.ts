@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-period-list',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      period-list works!
-    </p>
+    <p>period-list works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class PeriodListComponent {
-
-}
+export class PeriodListComponent {}

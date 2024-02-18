@@ -1,5 +1,7 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { Router, RouterOutlet } from '@angular/router';
+import { AuthService } from '@data/services';
 
 @Component({
   selector: 'xtra-auth',
@@ -31,4 +33,17 @@ import {RouterOutlet} from '@angular/router';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AuthComponent {}
+export class AuthComponent implements OnInit {
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private titleService: Title,
+  ) {}
+
+  async ngOnInit() {
+    this.titleService.setTitle('Xtra HRMS' + ' - Authentication');
+    // if (this.authService.isAuthenticated()) {
+    //   await this.router.navigate(['/']);
+    // }
+  }
+}

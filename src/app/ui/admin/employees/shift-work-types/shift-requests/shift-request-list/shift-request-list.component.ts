@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-shift-request-list',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      shift-request-list works!
-    </p>
+    <p>shift-request-list works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class ShiftRequestListComponent {
-
-}
+export class ShiftRequestListComponent {}

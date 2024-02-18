@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import {
   IAsset,
   IAssetAssignment,
@@ -5,10 +6,9 @@ import {
   IAssetLot,
   IRequestAsset,
 } from '@models/organizations.model';
-import {Injectable} from '@angular/core';
-import {BaseService} from './base.service';
+import { BaseService } from './base.service';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AssetService extends BaseService<IAsset> {
   override collectionName = 'assets';
 }

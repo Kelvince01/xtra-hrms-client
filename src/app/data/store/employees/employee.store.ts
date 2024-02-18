@@ -1,17 +1,16 @@
-import {signalStore, withState, withMethods, patchState} from '@ngrx/signals';
-import {inject} from '@angular/core';
-import {rxMethod} from '@ngrx/signals/rxjs-interop';
-import {pipe, switchMap, tap} from 'rxjs';
-import {tapResponse} from '@ngrx/operators';
-import {Router} from '@angular/router';
-import {Store} from '@ngrx/store';
-import {concatLatestFrom} from '@ngrx/effects';
-import {EmployeesService} from '@data/services';
-import {EmployeeState} from './employee.state';
-import {setLoaded, setLoading, withCallState} from '../call-state.feature';
-import {ngrxFormsQuery} from '@stores/forms';
-import {formsActions} from '@stores/forms';
-import {IEmployee} from '@data/models';
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { IEmployee } from '@data/models';
+import { EmployeesService } from '@data/services';
+import { concatLatestFrom } from '@ngrx/effects';
+import { tapResponse } from '@ngrx/operators';
+import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { Store } from '@ngrx/store';
+import { formsActions, ngrxFormsQuery } from '@stores/forms';
+import { pipe, switchMap, tap } from 'rxjs';
+import { setLoaded, setLoading, withCallState } from '../call-state.feature';
+import { EmployeeState } from './employee.state';
 
 export const employeeInitialState: EmployeeState = {
   employee: {
@@ -25,7 +24,7 @@ export const employeeInitialState: EmployeeState = {
 };
 
 export const EmployeeStore = signalStore(
-  {providedIn: 'root'},
+  { providedIn: 'root' },
   withState<EmployeeState>(employeeInitialState),
   withMethods(
     (
@@ -38,11 +37,11 @@ export const EmployeeStore = signalStore(
       getEmployee: rxMethod<number>(
         pipe(
           tap(() => setLoading('getEmployee')),
-          switchMap((id) =>
+          switchMap(id =>
             employeesService.getById(id).pipe(
               tapResponse({
-                next: (employee) => {
-                  patchState(store, {employee: employee, ...setLoaded('getEmployee')});
+                next: employee => {
+                  patchState(store, { employee: employee, ...setLoaded('getEmployee') });
                 },
                 error: () => {
                   patchState(store, {
@@ -61,12 +60,12 @@ export const EmployeeStore = signalStore(
           switchMap(() =>
             employeesService.get().pipe(
               tapResponse({
-                next: (employees) => {
-                  patchState(store, {employees: employees});
+                next: employees => {
+                  patchState(store, { employees: employees });
                   setLoaded('getEmployees');
                 },
                 error: () => {
-                  patchState(store, {employee: employeeInitialState.employee});
+                  patchState(store, { employee: employeeInitialState.employee });
                   setLoaded('getEmployees');
                 },
               }),
@@ -76,7 +75,7 @@ export const EmployeeStore = signalStore(
       ),
       deleteEmployee: rxMethod<number>(
         pipe(
-          switchMap((id) =>
+          switchMap(id =>
             employeesService.delete(id).pipe(
               tapResponse({
                 next: () => router.navigate(['/']),
@@ -93,9 +92,9 @@ export const EmployeeStore = signalStore(
             employeesService.create(employee).pipe(
               tapResponse({
                 // next: () => patchState(store, { data: [data.comment, ...store.comments()] }),
-                next: () => patchState(store, {employee}),
-                error: ({error}) =>
-                  reduxStore.dispatch(formsActions.setErrors({errors: error.errors})),
+                next: () => patchState(store, { employee }),
+                error: ({ error }) =>
+                  reduxStore.dispatch(formsActions.setErrors({ errors: error.errors })),
               }),
             ),
           ),
@@ -106,5 +105,5 @@ export const EmployeeStore = signalStore(
       },
     }),
   ),
-  withCallState({collection: 'getEmployee'}),
+  withCallState({ collection: 'getEmployee' }),
 );

@@ -1,7 +1,7 @@
-import {HttpEvent, HttpHandlerFn, HttpRequest} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {inject} from '@angular/core';
-import {LocalStorageJwtService} from '@shared/services';
+import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { LocalStorageJwtService } from '@shared/services';
+import { Observable } from 'rxjs';
 
 export const tokenInterceptor = (
   request: HttpRequest<any>,
@@ -10,7 +10,7 @@ export const tokenInterceptor = (
   let token: object | null = null;
   inject(LocalStorageJwtService)
     .getItem()
-    .subscribe((t) => (token = t));
+    .subscribe(t => (token = t));
 
   if (token) {
     request = request.clone({

@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-attendance-validation-condition-upsert',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      attendance-validation-condition-upsert works!
-    </p>
+    <p>attendance-validation-condition-upsert works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class AttendanceValidationConditionUpsertComponent {
-
-}
+export class AttendanceValidationConditionUpsertComponent {}

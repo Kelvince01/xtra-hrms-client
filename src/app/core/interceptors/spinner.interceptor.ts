@@ -1,7 +1,7 @@
-import { inject, Renderer2, RendererFactory2 } from '@angular/core';
 import { HttpEvent, HttpInterceptorFn, HttpResponse } from '@angular/common/http';
-import { tap } from 'rxjs';
+import { inject, Renderer2, RendererFactory2 } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { tap } from 'rxjs';
 
 export function spinnerInterceptor(): HttpInterceptorFn {
   return (req, next) => {
@@ -34,8 +34,8 @@ export function spinnerInterceptor(): HttpInterceptorFn {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         (err: any) => {
           onEnd();
-        }
-      )
+        },
+      ),
     );
   };
 }

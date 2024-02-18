@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-attendance-activity-list',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      attendance-activity-list works!
-    </p>
+    <p>attendance-activity-list works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class AttendanceActivityListComponent {
-
-}
+export class AttendanceActivityListComponent {}

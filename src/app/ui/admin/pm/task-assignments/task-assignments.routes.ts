@@ -10,16 +10,16 @@ export const TASK_ASSIGNMENT_ROUTES: Routes = [
   {
     path: '',
     component: TaskAssignmentListComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'add',
     component: TaskAssignmentUpsertComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'edit/:id',
     component: TaskAssignmentUpsertComponent,
-    data: { revalidate: 60 }
-  }
+    data: { revalidate: 60 },
+  },
 ];

@@ -10,16 +10,16 @@ export const QUESTION_TEMPLATE_ROUTES: Routes = [
   {
     path: '',
     component: QuestionTemplateListComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'add',
     component: QuestionTemplateUpsertComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'edit/:id',
     component: QuestionTemplateUpsertComponent,
-    data: { revalidate: 60 }
-  }
+    data: { revalidate: 60 },
+  },
 ];

@@ -4,20 +4,20 @@
 
 import { Routes } from '@angular/router';
 
-import { OnboardingPortalUpsertComponent } from '@admin-ui/onboarding/upsert/onboarding-portal-upsert/onboarding-portal-upsert.component';
 import { OnboardingPortalListComponent } from '@admin-ui/onboarding/list/onboarding-portal-list/onboarding-portal-list.component';
+import { OnboardingPortalUpsertComponent } from '@admin-ui/onboarding/upsert/onboarding-portal-upsert/onboarding-portal-upsert.component';
 
 export const ONBOARDING_PORTAL_ROUTES: Routes = [
   {
     path: '',
-    component: OnboardingPortalListComponent
+    component: OnboardingPortalListComponent,
   },
   {
     path: 'add',
-    component: OnboardingPortalUpsertComponent
+    component: OnboardingPortalUpsertComponent,
   },
   {
     path: 'edit:/id',
-    component: OnboardingPortalUpsertComponent
-  }
+    component: OnboardingPortalUpsertComponent,
+  },
 ];

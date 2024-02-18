@@ -10,16 +10,16 @@ export const ROTATING_WORK_TYPE_ROUTES: Routes = [
   {
     path: '',
     component: RotatingWorkTypeListComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'add',
     component: RotatingWorkTypeUpsertComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'edit/:id',
     component: RotatingWorkTypeUpsertComponent,
-    data: { revalidate: 60 }
-  }
+    data: { revalidate: 60 },
+  },
 ];

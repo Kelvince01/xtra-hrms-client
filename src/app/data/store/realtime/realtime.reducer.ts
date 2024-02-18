@@ -10,5 +10,5 @@ export const realtimeReducer = createReducer<RealTimeState>(
       ...state,
       realTimeConnection: connection,
     };
-  })
+  }),
 );

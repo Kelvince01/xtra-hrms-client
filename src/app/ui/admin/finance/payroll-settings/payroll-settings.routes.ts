@@ -10,16 +10,16 @@ export const PAYROLL_SETTING_ROUTES: Routes = [
   {
     path: '',
     component: PayrollSettingListComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'add',
     component: PayrollSettingUpsertComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'edit/:id',
     component: PayrollSettingUpsertComponent,
-    data: { revalidate: 60 }
-  }
+    data: { revalidate: 60 },
+  },
 ];

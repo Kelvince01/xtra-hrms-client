@@ -3,12 +3,12 @@
  *  Terms and Conditions Apply.
  */
 
-import {TestBed} from '@angular/core/testing';
-import {provideMockActions} from '@ngrx/effects/testing';
+import { TestBed } from '@angular/core/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
 
-import {NgrxFormsFacade} from '@stores/forms/forms.facade';
-import {hot} from 'jasmine-marbles';
-import {Injectable} from '@angular/core';
+import { NgrxFormsFacade } from '@stores/forms/forms.facade';
+// import {hot} from 'jasmine-marbles';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class NgrxFormsEffects {}
@@ -27,7 +27,7 @@ describe('NgrxFormsEffects', () => {
 
   describe('someEffect', () => {
     it('should work', async () => {
-      actions = hot('-a-|', {a: {type: 'LOAD_DATA'}});
+      // actions = hot('-a-|', {a: {type: 'LOAD_DATA'}});
       expect(true).toBeTruthy();
     });
   });

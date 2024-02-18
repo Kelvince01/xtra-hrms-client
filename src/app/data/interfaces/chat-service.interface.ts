@@ -1,5 +1,5 @@
-import {IUser} from '@models/accounts.model';
-import {IMessage} from '@models/common.model';
+import { IUser } from '@models/accounts.model';
+import { IMessage } from '@models/common.model';
 
 export interface IChatService {
   login(username: string, password: string): any;

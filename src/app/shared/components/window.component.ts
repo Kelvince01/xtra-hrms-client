@@ -1,3 +1,4 @@
+import { CdkPortal, DomPortalOutlet } from '@angular/cdk/portal';
 import {
   AfterViewInit,
   ApplicationRef,
@@ -7,9 +8,8 @@ import {
   Injector,
   OnDestroy,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
-import { CdkPortal, DomPortalOutlet } from '@angular/cdk/portal';
 
 /**
  * This component template wraps the projected content

@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-branch-list',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      branch-list works!
-    </p>
+    <p>branch-list works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class BranchListComponent {
-
-}
+export class BranchListComponent {}

@@ -10,16 +10,16 @@ export const EMPLOYEE_KEY_RESULT_ROUTES: Routes = [
   {
     path: '',
     component: EmployeeKeyResultListComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'add',
     component: EmployeeKeyResultUpsertComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'edit/:id',
     component: EmployeeKeyResultUpsertComponent,
-    data: { revalidate: 60 }
-  }
+    data: { revalidate: 60 },
+  },
 ];

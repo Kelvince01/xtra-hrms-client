@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-upsert-event',
@@ -13,6 +13,6 @@ import { CommonModule } from '@angular/common';
       </form>
     </div>
   `,
-  styles: []
+  styles: [],
 })
 export class EventUpsertComponent {}

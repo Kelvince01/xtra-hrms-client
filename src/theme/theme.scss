@@ -1,0 +1,46 @@
+/*!
+ * Copyright (c) 2024. Kelvince Phillips.
+ *  Terms and Conditions Apply.
+ */
+
+@use '@angular/material' as mat;
+
+//@use "./components";
+@use './typography/config' as typography;
+@use './colors/palette';
+
+@use './theme-bases';
+
+@include mat.core();
+
+$xtra-ui-blue-primary: theme-bases.$xtra-light-primary;
+$xtra-ui-blue-accent: theme-bases.$xtra-light-accent;
+$xtra-ui-blue-warn: theme-bases.$xtra-light-warn;
+
+// Apply the light theme by default
+.xtra-light {
+  @include theme-bases.xtraLight();
+}
+
+$xtra-ui-blue-dark-primary: theme-bases.$xtra-dark-primary;
+$xtra-ui-blue-dark-accent: theme-bases.$xtra-dark-accent;
+$xtra-ui-blue-dark-warn: theme-bases.$xtra-dark-warn;
+
+// Dark Theme
+.xtra-dark {
+  @include theme-bases.xtraDark();
+}
+
+.mat-elevation-z7 {
+  box-shadow:
+    0 4px 5px -2px #0003,
+    0 7px 10px 1px #00000024,
+    0 2px 16px 1px #0000001f !important;
+}
+
+.mat-elevation-z10 {
+  box-shadow:
+    0 6px 6px -3px #0003,
+    0 10px 14px 1px #00000024,
+    0 4px 18px 3px #0000001f !important;
+}

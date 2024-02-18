@@ -10,7 +10,7 @@
   $total: 200;
   position: absolute;
   width: 20px;
-  height: 20px;  
+  height: 20px;
   font-size: 20px;
   border-radius: 50%;
   pointer-events: none;
@@ -37,7 +37,7 @@
       #{percentage($random-yoyo-time)} {
         transform: translate($random-x-end, $random-yoyo-y) scale($random-scale);
       }
-      
+
       to {
         transform: translate($random-x-end-yoyo, 100vh) scale($random-scale);
       }

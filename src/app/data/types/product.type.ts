@@ -1,4 +1,4 @@
-import {PartialRequired} from "./partial-required.type";
+import { PartialRequired } from './partial-required.type';
 
 export type Product = {
   id: number;
@@ -8,6 +8,5 @@ export type Product = {
   description: string;
   tags: string[];
 };
-
 
 export type ProductDetails = PartialRequired<Product, 'title' | 'price' | 'image'>;

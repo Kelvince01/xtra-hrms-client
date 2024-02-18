@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-work-record-list',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      work-record-list works!
-    </p>
+    <p>work-record-list works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class WorkRecordListComponent {
-
-}
+export class WorkRecordListComponent {}

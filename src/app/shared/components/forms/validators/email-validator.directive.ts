@@ -1,5 +1,11 @@
 import { Directive } from '@angular/core';
-import { NG_VALIDATORS, AbstractControl, Validator, ValidationErrors, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl,
+  NG_VALIDATORS,
+  ValidationErrors,
+  Validator,
+  ValidatorFn,
+} from '@angular/forms';
 
 export function emailValidator(): ValidatorFn {
   const EMAIL_REGEXP =
@@ -13,8 +19,8 @@ export function emailValidator(): ValidatorFn {
     }
     return {
       emailValidator: {
-        valid: false
-      }
+        valid: false,
+      },
     };
   };
 }
@@ -26,9 +32,9 @@ export function emailValidator(): ValidatorFn {
     {
       provide: NG_VALIDATORS,
       useExisting: EmailValidatorDirective,
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class EmailValidatorDirective implements Validator {
   constructor() {}

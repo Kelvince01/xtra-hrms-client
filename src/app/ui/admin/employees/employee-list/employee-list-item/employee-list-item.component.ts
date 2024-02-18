@@ -1,26 +1,27 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {EmployeeModel} from '@data/models';
-import {DatePipe, NgClass} from '@angular/common';
-import {RouterLink} from '@angular/router';
+import { DatePipe, NgClass, NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { EmployeeModel } from '@data/models';
+import { TruncateDirective } from '@shared/directives/truncate.directive';
 
 @Component({
   selector: 'xtra-employee-list-item',
   standalone: true,
-  imports: [DatePipe, NgClass, RouterLink],
+  imports: [DatePipe, NgClass, RouterLink, NgOptimizedImage, TruncateDirective],
   template: `
     <div class="article-preview">
       <div class="article-meta">
         <a>
-          <img [src]="employee.photo" />
+          <img [ngSrc]="employee.photo!" width="20" height="20" />
         </a>
         <div class="info">
           <a
             data-e2e-id="article-author"
             class="author"
-            [routerLink]="['/profile', employee.firstname]"
-          >
+            [routerLink]="['/profile', employee.firstname]">
             {{ employee.firstname }}
           </a>
+          <p xtraTruncate [limit]="10">{{ employee.surname }}</p>
           <span class="date">
             {{ employee.created_at | date: 'longDate' }}
           </span>
@@ -28,16 +29,16 @@ import {RouterLink} from '@angular/router';
         <span [hidden]="!canModify">
           <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/edit', employee.id]">
             <i class="ion-edit"></i>
-            Edit Article
+            Edit
           </a>
 
-          <button class="btn btn-sm btn-outline-danger" (click)="deleteArticle()">
+          <button class="btn btn-sm btn-outline-danger" (click)="deleteEmployee()">
             <i class="ion-trash-a"></i>
-            Delete Article
+            Delete
           </button>
         </span>
       </div>
-      <a (click)="navigateToArticle.emit(employee.id?.toString())" class="preview-link">
+      <a (click)="navigateToEmployee.emit(employee.id?.toString())" class="preview-link">
         <h1 data-e2e-id="article-list-title">{{ employee.surname }}</h1>
         <p>{{ employee.email }}</p>
         <span>Read more...</span>
@@ -61,11 +62,11 @@ import {RouterLink} from '@angular/router';
 })
 export class EmployeeListItemComponent {
   @Input() employee!: EmployeeModel;
-  @Output() navigateToArticle: EventEmitter<string> = new EventEmitter();
+  @Output() navigateToEmployee: EventEmitter<string> = new EventEmitter();
   @Input() canModify!: boolean;
   @Output() delete: EventEmitter<string> = new EventEmitter();
 
-  deleteArticle() {
+  deleteEmployee() {
     this.delete.emit(this.employee.id?.toString());
   }
 }

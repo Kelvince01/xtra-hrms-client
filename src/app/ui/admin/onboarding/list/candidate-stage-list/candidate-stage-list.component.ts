@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-candidate-stage-list',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      candidate-stage-list works!
-    </p>
+    <p>candidate-stage-list works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class CandidateStageListComponent {
-
-}
+export class CandidateStageListComponent {}

@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-question-template-list',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      question-template-list works!
-    </p>
+    <p>question-template-list works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class QuestionTemplateListComponent {
-
-}
+export class QuestionTemplateListComponent {}

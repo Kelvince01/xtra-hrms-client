@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { BehaviorSubject, merge, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, merge } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
 
 const DEFAULT_TITLE = 'Xtra HRMS';
@@ -12,20 +12,20 @@ export class TitleService {
 
   private titleRoute$: Observable<string | undefined> = this.router.events.pipe(
     filter(event => event instanceof NavigationEnd),
-    map(() => this.getPageTitle(this.activatedRoute.firstChild))
+    map(() => this.getPageTitle(this.activatedRoute.firstChild)),
   );
 
   private titleState$ = merge(this.title$, this.titleRoute$).pipe(
     filter(title => title !== undefined),
     tap(title => {
       this.titleService.setTitle(`${DEFAULT_TITLE} - ${title}`);
-    })
+    }),
   );
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private titleService: Title
+    private titleService: Title,
   ) {
     this.titleState$.subscribe();
   }

@@ -7,10 +7,9 @@ import {
   OnInit,
   inject,
 } from '@angular/core';
-import {Store} from '@ngrx/store';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {ngrxFormsQuery} from '@stores/forms';
-import {formsActions} from '@stores/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Store } from '@ngrx/store';
+import { formsActions, ngrxFormsQuery } from '@stores/forms';
 
 @Component({
   selector: 'xtra-list-errors',
@@ -39,8 +38,8 @@ export class ListErrorsComponent implements OnInit, OnDestroy {
     this.store
       .select(ngrxFormsQuery.selectErrors)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((e) => {
-        this.errors = Object.keys(e || {}).map((key) => `${key} ${e[key]}`);
+      .subscribe(e => {
+        this.errors = Object.keys(e || {}).map(key => `${key} ${e[key]}`);
         this.changeDetectorRef.markForCheck();
       });
   }

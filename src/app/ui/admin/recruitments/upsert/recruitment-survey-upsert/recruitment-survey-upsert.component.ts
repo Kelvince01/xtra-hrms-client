@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-recruitment-survey-upsert',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      recruitment-survey-upsert works!
-    </p>
+    <p>recruitment-survey-upsert works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class RecruitmentSurveyUpsertComponent {
-
-}
+export class RecruitmentSurveyUpsertComponent {}

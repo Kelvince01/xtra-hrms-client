@@ -1,32 +1,36 @@
-import {CommonModule} from '@angular/common';
+import { LeaveUpsertComponent } from '@admin-ui/lms/leaves/leave-upsert/leave-upsert.component';
+import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  inject,
   OnInit,
-  signal,
   ViewChild,
   WritableSignal,
+  inject,
+  signal,
 } from '@angular/core';
-import {MatButtonModule} from '@angular/material/button';
-import {MatDialog} from '@angular/material/dialog';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatSort, MatSortModule, Sort} from '@angular/material/sort';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
-import {IExportColumn} from '@models/export-column.model';
-import {TranslateModule} from '@ngx-translate/core';
-import {NgMatTableQueryReflectorDirective} from '@shared/directives/ng-mat-table-query-reflector.directive';
-import {DataPropertyGetterPipe} from '@shared/pipes/data-property-getter.pipe';
-import {ITableColumn} from '@shared/components/table/table-column.model';
-import {LeaveUpsertComponent} from '@admin-ui/lms/leaves/leave-upsert/leave-upsert.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ILeave } from '@data/models/lms.model';
+import { IExportColumn } from '@models/export-column.model';
+import { Store } from '@ngrx/store';
+import { TranslateModule } from '@ngx-translate/core';
+import { ITableColumn } from '@shared/components/table/table-column.model';
+import { NgMatTableQueryReflectorDirective } from '@shared/directives/ng-mat-table-query-reflector.directive';
+import { DataPropertyGetterPipe } from '@shared/pipes/data-property-getter.pipe';
+import { LeavesActions } from '@stores/lms/leave.action';
+import { getMyLeaves } from '@stores/lms/leave.selector';
 
 @Component({
   selector: 'xtra-leave-list',
@@ -64,8 +68,7 @@ import {LeaveUpsertComponent} from '@admin-ui/lms/leaves/leave-upsert/leave-upse
       @if (isLoading) {
         <div
           style="display: flex; justify-content: center;
-           align-items: center; background: white;"
-        >
+           align-items: center; background: white;">
           <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
         </div>
       }
@@ -78,8 +81,7 @@ import {LeaveUpsertComponent} from '@admin-ui/lms/leaves/leave-upsert/leave-upse
         (matSortChange)="sortTable($event)"
         xtraNgMatTableQueryReflector
         (scroll)="onTableScroll($event)"
-        class="table-container mat-elevation-z8"
-      >
+        class="table-container mat-elevation-z8">
         @for (tableColumn of displayTableColumns; track tableColumn) {
           <ng-container [matColumnDef]="tableColumn.name">
             <!-- if sortable column header -->
@@ -88,16 +90,14 @@ import {LeaveUpsertComponent} from '@admin-ui/lms/leaves/leave-upsert/leave-upse
                 mat-header-cell
                 *matHeaderCellDef
                 [mat-sort-header]="tableColumn.name"
-                [arrowPosition]="tableColumn.position === 'right' ? 'before' : 'after'"
-              >
+                [arrowPosition]="tableColumn.position === 'right' ? 'before' : 'after'">
                 {{ tableColumn.name }}
               </th>
             } @else {
               <th
                 mat-header-cell
                 *matHeaderCellDef
-                [class.text-right]="tableColumn.position === 'right'"
-              >
+                [class.text-right]="tableColumn.position === 'right'">
                 {{ tableColumn.name }}
               </th>
             }
@@ -107,8 +107,7 @@ import {LeaveUpsertComponent} from '@admin-ui/lms/leaves/leave-upsert/leave-upse
             <td
               mat-cell
               *matCellDef="let element"
-              [class.text-right]="tableColumn.position === 'right'"
-            >
+              [class.text-right]="tableColumn.position === 'right'">
               {{ element | dataPropertyGetter: tableColumn.dataKey! }}
             </td>
           </ng-container>
@@ -131,8 +130,7 @@ import {LeaveUpsertComponent} from '@admin-ui/lms/leaves/leave-upsert/leave-upse
                         placeholder="filter"
                         #input
                         type="text"
-                        name="search"
-                      />
+                        name="search" />
                     </mat-form-field>
                   </ng-container>
                 }
@@ -146,8 +144,7 @@ import {LeaveUpsertComponent} from '@admin-ui/lms/leaves/leave-upsert/leave-upse
                     class="right-2 export-button"
                     mat-raised-button
                     color="primary"
-                    (click)="exportPdf()"
-                  >
+                    (click)="exportPdf()">
                     <mat-icon class="mat-icon-size">save_alt</mat-icon>
                     {{ 'common.export-button' | translate }}
                   </button>
@@ -167,8 +164,7 @@ import {LeaveUpsertComponent} from '@admin-ui/lms/leaves/leave-upsert/leave-upse
             <td
               mat-cell
               *matCellDef="let element"
-              [attr.data-label]="'common.caption.actions' | translate"
-            >
+              [attr.data-label]="'common.caption.actions' | translate">
               <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
               </button>
@@ -220,8 +216,7 @@ import {LeaveUpsertComponent} from '@admin-ui/lms/leaves/leave-upsert/leave-upse
           #paginator
           [length]="totalRows"
           [pageIndex]="currentPage"
-          aria-label="Select page"
-        ></mat-paginator>
+          aria-label="Select page"></mat-paginator>
       }
     </ng-container>
   `,
@@ -261,8 +256,8 @@ export class LeaveListComponent implements OnInit, AfterViewInit {
   public dataSource = new MatTableDataSource<any>([]);
   public displayedColumns: WritableSignal<string[]> = signal<string[]>([]);
 
-  @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort!: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   hasMenu = true;
   isPageable = true;
@@ -321,14 +316,16 @@ export class LeaveListComponent implements OnInit, AfterViewInit {
   protected router = inject(Router);
   protected route = inject(ActivatedRoute);
   // filesService = inject(FilesService);
+  private readonly store = inject(Store);
 
   private upsert!: LeaveUpsertComponent;
+  doggos = this.store.selectSignal(getMyLeaves);
 
   constructor() {}
 
   get displayTableColumns(): ITableColumn[] {
     // tslint:disable-next-line:no-non-null-assertion
-    return this.tableColumns()!.filter((x) => x.name !== 'menu');
+    return this.tableColumns()!.filter(x => x.name !== 'menu');
   }
 
   // we need this, to make pagination work with *ngIf
@@ -346,7 +343,7 @@ export class LeaveListComponent implements OnInit, AfterViewInit {
     }
 
     if (this.cols.length) {
-      this.exportColumns = this.cols.map((col) => ({
+      this.exportColumns = this.cols.map(col => ({
         title: col.header,
         dataKey: col.field,
       }));
@@ -354,6 +351,7 @@ export class LeaveListComponent implements OnInit, AfterViewInit {
 
     // this.loadData(this.page, this.per_page);
     this.loadData();
+    this.store.dispatch(LeavesActions.loadMyLeaves());
   }
 
   loadData(page?: number, per_page?: number): void {
@@ -380,6 +378,10 @@ export class LeaveListComponent implements OnInit, AfterViewInit {
   edit(id: number): void {}
 
   delete(element: any): void {}
+
+  deleteDoggo(leave: ILeave): void {
+    this.store.dispatch(LeavesActions.deleteLeave({ leave }));
+  }
 
   exportPdf(): void {
     // this.filesService.exportPdf(this.cols, this.objects, this.filename);
@@ -438,13 +440,13 @@ export class LeaveListComponent implements OnInit, AfterViewInit {
   sortTable(sortParameters: Sort): void {
     // defining name of data property, to sort by, instead of column name
     sortParameters.active = this.tableColumns().find(
-      (column) => column.name === sortParameters.active,
+      column => column.name === sortParameters.active,
     )!.dataKey!;
     this.sortData(sortParameters);
   }
 
   newRouteNav(): void {
-    this.router.navigate(['add'], {relativeTo: this.route});
+    this.router.navigate(['add'], { relativeTo: this.route });
   }
 }
 

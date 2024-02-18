@@ -55,6 +55,9 @@
       "@shared/*": [
         "src/app/shared/*"
       ],
+      "@theme/*": [
+        "src/theme/*"
+      ],
       "@env": [
         "src/environments/emvironment*"
       ]

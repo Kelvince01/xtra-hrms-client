@@ -5,7 +5,7 @@
 
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
-import {ArticleStore} from '@data/store/cms/articles';
+import { ArticleStore } from '@data/store/cms/articles';
 import { of } from 'rxjs';
 
 export const articleEditResolver: ResolveFn<boolean> = (route: ActivatedRouteSnapshot) => {

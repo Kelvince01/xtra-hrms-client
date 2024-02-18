@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-task-assignment-list',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      task-assignment-list works!
-    </p>
+    <p>task-assignment-list works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class TaskAssignmentListComponent {
-
-}
+export class TaskAssignmentListComponent {}

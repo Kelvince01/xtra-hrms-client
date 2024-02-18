@@ -1,6 +1,6 @@
-import { Errors, Field } from './forms.interfaces';
-import { formsActions } from './forms.actions';
 import { createFeature, createReducer, on } from '@ngrx/store';
+import { formsActions } from './forms.actions';
+import { Errors, Field } from './forms.interfaces';
 
 export interface NgrxFormsState {
   data: any;
@@ -27,10 +27,13 @@ export const ngrxFormsFeature = createFeature({
       const data = { ...state.data, ...action.data };
       return { ...state, data, touched: true };
     }),
-    on(formsActions.setStructure, (state, action) => ({ ...state, structure: action.structure.slice(0) })),
+    on(formsActions.setStructure, (state, action) => ({
+      ...state,
+      structure: action.structure.slice(0),
+    })),
     on(formsActions.setErrors, (state, action) => ({ ...state, errors: action.errors })),
-    on(formsActions.initializeErrors, (state) => ({ ...state, errors: {} })),
+    on(formsActions.initializeErrors, state => ({ ...state, errors: {} })),
     on(formsActions.initializeForm, () => ngrxFormsInitialState),
-    on(formsActions.resetForm, (state) => ({ ...state, touched: false })),
+    on(formsActions.resetForm, state => ({ ...state, touched: false })),
   ),
 });

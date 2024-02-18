@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-rotating-shift-assign-list',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      rotating-shift-assign-list works!
-    </p>
+    <p>rotating-shift-assign-list works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class RotatingShiftAssignListComponent {
-
-}
+export class RotatingShiftAssignListComponent {}

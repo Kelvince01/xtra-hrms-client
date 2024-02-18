@@ -1,4 +1,4 @@
-import {IBaseModel} from './base.model';
+import { IBaseModel } from './base.model';
 
 export interface EmployeeModel extends IBaseModel {
   is_available?: boolean;
@@ -11,13 +11,7 @@ export interface EmployeeModel extends IBaseModel {
   photo?: string;
 }
 
-export interface NewEmployeeModel {
-  firstname: string;
-  surname: string;
-  date_of_birth: Date;
-  gender: string;
-  marital_status: string;
-}
+export interface NewEmployeeModel extends Partial<EmployeeModel> {}
 
 export interface UpdateEmployeeModel extends IBaseModel {
   firstname: string;

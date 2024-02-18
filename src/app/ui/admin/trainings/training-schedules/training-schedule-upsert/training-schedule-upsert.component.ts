@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-training-schedule-upsert',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      training-schedule-upsert works!
-    </p>
+    <p>training-schedule-upsert works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class TrainingScheduleUpsertComponent {
-
-}
+export class TrainingScheduleUpsertComponent {}

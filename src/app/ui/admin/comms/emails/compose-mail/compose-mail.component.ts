@@ -1,23 +1,24 @@
+import { ENTER } from '@angular/cdk/keycodes';
+import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   Inject,
   ViewChild,
   ViewEncapsulation,
-  ChangeDetectionStrategy
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import { MatInputModule } from '@angular/material/input';
-import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import {
   MatAutocompleteModule,
-  MatAutocompleteSelectedEvent
+  MatAutocompleteSelectedEvent,
 } from '@angular/material/autocomplete';
-import { map, Observable, startWith } from 'rxjs';
-import { ENTER } from '@angular/cdk/keycodes';
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { RichTextEditorComponent } from '@shared/components/forms/rich-text-editor/rich-text-editor.component';
+import { Observable, map, startWith } from 'rxjs';
 
 const COMMA = 188;
 
@@ -33,7 +34,8 @@ const COMMA = 188;
     MatInputModule,
     MatChipsModule,
     ReactiveFormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    RichTextEditorComponent,
   ],
   encapsulation: ViewEncapsulation.None,
   template: `
@@ -76,15 +78,16 @@ const COMMA = 188;
       <mat-form-field class="subject-input">
         <input matInput placeholder="Subject" [formControl]="subjectCtrl" />
       </mat-form-field>
-      <mat-form-field class="body-input">
-        <textarea matInput placeholder="Body" [formControl]="bodyCtrl" rows="15"></textarea>
-      </mat-form-field>
+      <!--      <mat-form-field class="body-input">-->
+      <!--        <textarea matInput placeholder="Body" [formControl]="bodyCtrl" rows="15"></textarea>-->
+      <xtra-rich-text-editor></xtra-rich-text-editor>
+      <!--      </mat-form-field>-->
     </mat-dialog-content>
     <mat-dialog-actions>
       <button mat-raised-button color="primary" [mat-dialog-close]="true">Send</button>
     </mat-dialog-actions>
   `,
-  styleUrls: ['./compose-mail.component.scss']
+  styleUrls: ['./compose-mail.component.scss'],
 })
 export class ComposeMailComponent {
   separatorKeysCodes = [ENTER, COMMA];
@@ -94,7 +97,7 @@ export class ComposeMailComponent {
     'Jeremy Elbourn',
     'Jules Kremer',
     'Brad Green',
-    'Tina Gao'
+    'Tina Gao',
   ];
   recipients: string[] = [];
   subjectCtrl = new FormControl();
@@ -112,7 +115,7 @@ export class ComposeMailComponent {
 
     this.filteredContacts = this.recipientsCtrl.valueChanges.pipe(
       startWith(null),
-      map(contact => (contact ? this.filterContacts(contact) : this.contacts.slice()))
+      map(contact => (contact ? this.filterContacts(contact) : this.contacts.slice())),
     );
   }
 

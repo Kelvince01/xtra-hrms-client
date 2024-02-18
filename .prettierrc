@@ -6,6 +6,14 @@
   "semi": true,
   "trailingComma": "all",
   "quoteProps": "preserve",
-  "bracketSpacing": false,
-  "htmlWhitespaceSensitivity": "ignore"
+  "bracketSpacing": true,
+  "htmlWhitespaceSensitivity": "ignore",
+  "arrowParens": "avoid",
+  "bracketSameLine": true,
+  "insertPragma": false,
+  "jsxBracketSameLine": false,
+  "jsxSingleQuote": true,
+  "proseWrap": "always",
+  "requirePragma": false,
+  "plugins": ["prettier-plugin-organize-imports"]
 }

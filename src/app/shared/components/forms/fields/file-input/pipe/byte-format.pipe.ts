@@ -1,9 +1,9 @@
-import { Pipe, PipeTransform, Optional, Inject } from '@angular/core';
+import { Inject, Optional, Pipe, PipeTransform } from '@angular/core';
 import { FileInputConfig, NGX_MAT_FILE_INPUT_CONFIG } from '../model/file-input-config.model';
 
 @Pipe({
   standalone: true,
-  name: 'byteFormat'
+  name: 'byteFormat',
 })
 export class ByteFormatPipe implements PipeTransform {
   private unit: string;
@@ -11,7 +11,7 @@ export class ByteFormatPipe implements PipeTransform {
   constructor(
     @Optional()
     @Inject(NGX_MAT_FILE_INPUT_CONFIG)
-    private config: FileInputConfig
+    private config: FileInputConfig,
   ) {
     this.unit = config ? config.sizeUnit : 'Byte';
   }
@@ -30,7 +30,17 @@ export class ByteFormatPipe implements PipeTransform {
     const B = this.unit.charAt(0);
     const k = 1024;
     const dm = decimals || 2;
-    const sizes = [this.unit, `K${B}`, `M${B}`, `G${B}`, `T${B}`, `P${B}`, `E${B}`, `Z${B}`, `Y${B}`];
+    const sizes = [
+      this.unit,
+      `K${B}`,
+      `M${B}`,
+      `G${B}`,
+      `T${B}`,
+      `P${B}`,
+      `E${B}`,
+      `Z${B}`,
+      `Y${B}`,
+    ];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
   }

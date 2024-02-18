@@ -13,7 +13,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     </dialog>
   `,
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConfirmationDialogComponent {
   isConfirmationOpen = true;

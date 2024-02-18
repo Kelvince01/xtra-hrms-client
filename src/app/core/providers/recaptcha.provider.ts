@@ -14,7 +14,7 @@ export const provideRecaptcha = () => {
   return {
     provide: RECAPTCHA_SETTINGS,
     useValue: {
-      siteKey: environment.recaptchaKey
-    } as RecaptchaSettings
+      siteKey: environment.recaptchaKey,
+    } as RecaptchaSettings,
   };
 };

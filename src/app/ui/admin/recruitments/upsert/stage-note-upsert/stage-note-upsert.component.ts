@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-stage-note-upsert',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      stage-note-upsert works!
-    </p>
+    <p>stage-note-upsert works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class StageNoteUpsertComponent {
-
-}
+export class StageNoteUpsertComponent {}

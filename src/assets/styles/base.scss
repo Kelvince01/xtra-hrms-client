@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
+//@import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
-@import "quill";
-@import "scrollbar";
-@import "sweetalert2-theme";
+@import 'quill';
+@import 'scrollbar';
+@import 'sweetalert2-theme';
 
 * {
   font-family: Quicksand, 'Helvetica Neue', sans-serif;
@@ -31,11 +32,13 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Playfair Display', 'Helvetica Neue', sans-serif !important;
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif !important;
 }
 
 @keyframes spinner {
-  to {transform: rotate(360deg);}
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .spinner:before {
@@ -51,7 +54,7 @@ h6 {
   border-radius: 50%;
   border: 2px solid #ffffff;
   border-top-color: #000000;
-  animation: spinner .8s linear infinite;
+  animation: spinner 0.8s linear infinite;
 }
 
 .not-available {
@@ -64,7 +67,6 @@ button {
   margin: 0 10px;
   cursor: pointer;
 }
-
 
 .tooltip {
   position: absolute;

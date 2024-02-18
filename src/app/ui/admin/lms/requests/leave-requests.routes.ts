@@ -9,24 +9,24 @@ export const LEAVE_REQUEST_ROUTES: Routes = [
     path: '',
     loadComponent: () =>
       import('./leave-request-list/leave-request-list.component').then(
-        c => c.LeaveRequestListComponent
+        c => c.LeaveRequestListComponent,
       ),
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'add',
     loadComponent: () =>
       import('./leave-request-upsert/leave-request-upsert.component').then(
-        c => c.LeaveRequestUpsertComponent
+        c => c.LeaveRequestUpsertComponent,
       ),
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'edit/:id',
     loadComponent: () =>
       import('./leave-request-upsert/leave-request-upsert.component').then(
-        c => c.LeaveRequestUpsertComponent
+        c => c.LeaveRequestUpsertComponent,
       ),
-    data: { revalidate: 60 }
-  }
+    data: { revalidate: 60 },
+  },
 ];

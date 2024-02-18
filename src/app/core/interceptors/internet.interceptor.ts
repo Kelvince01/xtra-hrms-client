@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
 import {
-  HttpRequest,
-  HttpHandler,
+  HttpErrorResponse,
   HttpEvent,
+  HttpHandler,
   HttpInterceptor,
-  HttpErrorResponse
+  HttpRequest,
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable()
 export class InternetInterceptor implements HttpInterceptor {
@@ -23,8 +23,8 @@ export class InternetInterceptor implements HttpInterceptor {
 
       return throwError(
         new HttpErrorResponse({
-          error
-        })
+          error,
+        }),
       );
     }
 

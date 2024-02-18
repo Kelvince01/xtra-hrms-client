@@ -1,0 +1,68 @@
+/*!
+ * Copyright (c) 2024. Kelvince Phillips.
+ *  Terms and Conditions Apply.
+ */
+
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin color($theme) {
+  // Get the color config from the theme.
+  $color-config: mat.get-color-config($theme);
+
+  // Get the primary color palette from the color-config.
+  $primary-palette: map.get($color-config, 'primary');
+
+  .alert {
+    color: mat.get-color-from-palette($primary-palette, 700);
+    background-color: mat.get-color-from-palette($primary-palette, 100);
+    border-color: mat.get-color-from-palette($primary-palette, 300);
+
+    .alert-link {
+      color: mat.get-color-from-palette($primary-palette, 900);
+    }
+  }
+
+  //.alert {
+  //  color: #084298;
+  //  background-color: #cfe2ff;
+  //  border-color: #b6d4fe;
+  //
+  //  .alert-link {
+  //    color: #06357a;
+  //  }
+  //}
+}
+
+@mixin typography($typography-config) {
+  .alert {
+    .alert-heading {
+      @include mat.typography-level($typography-config, 'subtitle-1');
+    }
+    .alert-footer {
+      @include mat.typography-level($typography-config, 'caption');
+    }
+  }
+
+  //.alert {
+  //  .alert-heading {
+  //    font-size: calc(
+  //      1.275rem + 0.3vw
+  //    );
+  //  }
+  //  .alert-footer {
+  //    font-size: 80%;
+  //  }
+  //}
+}
+
+@mixin theme($theme, $typography-config) {
+  $color-config: mat.get-color-config($theme);
+  @if $color-config != null {
+    @include color($theme);
+  }
+
+  @if $typography-config != null {
+    @include typography($typography-config);
+  }
+}

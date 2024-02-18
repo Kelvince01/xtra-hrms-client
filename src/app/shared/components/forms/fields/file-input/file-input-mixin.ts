@@ -10,7 +10,7 @@ export class FileInputBase {
     public _parentForm: NgForm,
     public _parentFormGroup: FormGroupDirective,
     public ngControl: NgControl,
-    public stateChanges: Subject<void>
+    public stateChanges: Subject<void>,
   ) {}
 }
 

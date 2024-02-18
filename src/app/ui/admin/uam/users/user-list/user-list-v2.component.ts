@@ -1,36 +1,38 @@
+import { CopyUserDirective } from '@admin-ui/uam/users/user-list/actions/copy-user.directive';
+import { DeleteUserDirective } from '@admin-ui/uam/users/user-list/actions/delete-user.directive';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  inject,
   OnInit,
-  signal,
   ViewChild,
+  inject,
+  signal,
 } from '@angular/core';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
-import {IUser} from '@data/models';
-import {RouterLink} from '@angular/router';
-import {MatSort} from '@angular/material/sort';
-import {FilesService} from '@data/services/common/files.service';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {UsersService} from '@data/services';
-import {IOptions} from '@data/models/http-param-options.model';
-import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
-import {TranslateModule} from '@ngx-translate/core';
-import {CopyUserDirective} from '@admin-ui/uam/users/user-list/actions/copy-user.directive';
-import {DeleteUserDirective} from '@admin-ui/uam/users/user-list/actions/delete-user.directive';
+import { MatButtonModule } from '@angular/material/button';
+import { MatChip, MatChipSet } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInput } from '@angular/material/input';
+import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
+import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterLink } from '@angular/router';
+import { IUser } from '@data/models';
+import { IOptions } from '@data/models/http-param-options.model';
+import { UsersService } from '@data/services';
+import { FilesService } from '@data/services/common/files.service';
+import { FlexModule } from '@ngbracket/ngx-layout';
+import { TranslateModule } from '@ngx-translate/core';
+import { DefaultImgDirective } from '@shared/directives/default-img.directive';
+import { HasRoleDirective } from '@shared/directives/has-role.directive';
+import { defaultImageLocation } from '@shared/models/image-locations.model';
+import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
-import {ToastrService} from 'ngx-toastr';
-import {HttpErrorResponse} from '@angular/common/http';
-import {MatChip, MatChipSet} from '@angular/material/chips';
-import {FlexModule} from '@ngbracket/ngx-layout';
-import {MatSlideToggle} from '@angular/material/slide-toggle';
-import {MatInput} from '@angular/material/input';
 
 @Component({
   selector: 'xtra-user-list',
@@ -56,6 +58,8 @@ import {MatInput} from '@angular/material/input';
     FlexModule,
     MatSlideToggle,
     MatInput,
+    DefaultImgDirective,
+    HasRoleDirective,
   ],
   template: `
     <mat-toolbar color="primary">
@@ -74,8 +78,7 @@ import {MatInput} from '@angular/material/input';
           placeholder="Search..."
           (keyup)="applyFilter($event)"
           #input
-          name="search"
-        />
+          name="search" />
       </div>
       <div fxFlex="200px" class="export-col">
         <span class="avatar accent-1 large">
@@ -103,15 +106,14 @@ import {MatInput} from '@angular/material/input';
             <a
               [routerLink]="['/uam/users/edit', element.id]"
               [state]="element"
-              class="flex py-4 first:pt-0 last:pb-0"
-            >
+              class="flex py-4 first:pt-0 last:pb-0">
               <img
-                [ngSrc]="element.photo"
+                (error)="$any($event.target).src = defaultLocalImage"
+                [src]="element.photo"
                 [height]="25"
                 [width]="25"
                 alt="Avatar of user"
-                class="h-10 w-10 rounded-full"
-              />
+                class="h-10 w-10 rounded-full" />
               <div class="ml-3 overflow-hidden">
                 <p class="text-sm font-medium text-slate-900">{{ element.username }}</p>
                 <p class="text-sm text-slate-500 truncate">{{ element.email }}</p>
@@ -183,8 +185,7 @@ import {MatInput} from '@angular/material/input';
           <td
             mat-cell
             *matCellDef="let element"
-            [attr.data-label]="'common.caption.actions' | translate"
-          >
+            [attr.data-label]="'common.caption.actions' | translate">
             <button mat-icon-button [matMenuTriggerFor]="menu">
               <mat-icon>more_vert</mat-icon>
             </button>
@@ -199,12 +200,11 @@ import {MatInput} from '@angular/material/input';
               </button>
               <button
                 mat-menu-item
-                *hasRole="[]"
+                *xtraHasRole="[]"
                 xtraDeleteUser
                 [user]="element"
                 [activeFor]="[]"
-                message="Deletion is irreversible"
-              >
+                message="Deletion is irreversible">
                 <mat-icon>delete_forever</mat-icon>
                 <span>Delete</span>
               </button>
@@ -228,8 +228,7 @@ import {MatInput} from '@angular/material/input';
         [pageSize]="pageSize"
         [pageSizeOptions]="pageSizeOptions"
         (page)="pageChanged($event)"
-        aria-label="Select page"
-      ></mat-paginator>
+        aria-label="Select page"></mat-paginator>
     </div>
   `,
   styles: [
@@ -283,7 +282,7 @@ export class UserListComponent implements AfterViewInit, OnInit {
   currentPage = 0;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   isLoading = signal(false);
-
+  protected defaultLocalImage: string = defaultImageLocation;
   displayedColumns: string[] = [
     'id',
     'photo',
@@ -298,7 +297,7 @@ export class UserListComponent implements AfterViewInit, OnInit {
   dataSource: MatTableDataSource<IUser> = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort!: MatSort;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   service = inject(UsersService);
   filesService = inject(FilesService);
@@ -319,7 +318,7 @@ export class UserListComponent implements AfterViewInit, OnInit {
     };
     this.isLoading.set(true);
 
-    this.service.getPaginated().subscribe((r) => {
+    this.service.getPaginated().subscribe(r => {
       this.isLoading.set(false);
       this.dataSource.data = r.results;
       this.users = r.results;
@@ -343,7 +342,7 @@ export class UserListComponent implements AfterViewInit, OnInit {
         showCancelButton: true,
         confirmButtonText: 'Delete',
         cancelButtonText: 'Cancel',
-      }).then(async (result) => {
+      }).then(async result => {
         if (result.value) {
           this.service.delete(user.id!).subscribe({
             next: () => {

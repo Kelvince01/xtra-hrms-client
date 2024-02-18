@@ -2,16 +2,16 @@
  * Copyright (c) 2023.  Kelvince Phillips
  */
 
+import { Injectable } from '@angular/core';
 import {
   IAvailableLeave,
   IHoliday,
   ILeave,
   ILeaveRequest,
   ILeaveType,
-  IOrganizationLeave
+  IOrganizationLeave,
 } from '@models/lms.model';
-import { Injectable } from '@angular/core';
-import {BaseService} from './base.service';
+import { BaseService } from './base.service';
 
 @Injectable({ providedIn: 'root' })
 export class LeavesService extends BaseService<ILeave> {

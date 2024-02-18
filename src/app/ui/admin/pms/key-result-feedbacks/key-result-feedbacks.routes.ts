@@ -10,16 +10,16 @@ export const KEY_RESULT_FEEDBACK_ROUTES: Routes = [
   {
     path: '',
     component: KeyResultFeedbackListComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'add',
     component: KeyResultFeedbackUpsertComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'edit/:id',
     component: KeyResultFeedbackUpsertComponent,
-    data: { revalidate: 60 }
-  }
+    data: { revalidate: 60 },
+  },
 ];

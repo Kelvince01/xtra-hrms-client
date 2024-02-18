@@ -1,6 +1,6 @@
-import {ImageLoaderConfig} from '@angular/common';
-import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
-import {TruncateLimit} from '@shared/directives/truncate.directive';
+import { ImageLoaderConfig } from '@angular/common';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { TruncateLimit } from '@shared/directives/truncate.directive';
 
 /**
  * Provides base providers
@@ -10,8 +10,8 @@ import {TruncateLimit} from '@shared/directives/truncate.directive';
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const provideBaseProviders = () => {
   return [
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 3500}},
-    {provide: TruncateLimit, useValue: 70},
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3500 } },
+    { provide: TruncateLimit, useValue: 70 },
   ];
 };
 

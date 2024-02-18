@@ -7,5 +7,5 @@ const getRealTimeState = createFeatureSelector<RealTimeState>(featureName);
 
 export const getRealTimeConnection = createSelector(
   getRealTimeState,
-  (state: RealTimeState) => state?.realTimeConnection || 'Not Set'
+  (state: RealTimeState) => state?.realTimeConnection || 'Not Set',
 );

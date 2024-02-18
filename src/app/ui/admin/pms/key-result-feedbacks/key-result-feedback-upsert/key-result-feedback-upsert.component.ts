@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-key-result-feedback-upsert',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      key-result-feedback-upsert works!
-    </p>
+    <p>key-result-feedback-upsert works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class KeyResultFeedbackUpsertComponent {
-
-}
+export class KeyResultFeedbackUpsertComponent {}

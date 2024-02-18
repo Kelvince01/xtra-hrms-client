@@ -1,0 +1,122 @@
+/*!
+ * Copyright (c) 2024. Kelvince Phillips.
+ *  Terms and Conditions Apply.
+ */
+@use '@angular/material' as mat;
+
+$heading-font-family: "'Work Sans', sans-serif";
+
+$xtra-typography: mat.define-typography-config(
+  //$display-4: mat.define-typography-level(112px, $font-family: $heading-font-family),
+  //$display-3: mat.define-typography-level(56px, $font-family: $heading-font-family),
+  //$display-2: mat.define-typography-level(45px, $font-family: $heading-font-family),
+  //$display-1: mat.define-typography-level(34px, $font-family: $heading-font-family),
+  //$headline: mat.define-typography-level(24px, $font-family: $heading-font-family),
+  //$title: mat.define-typography-level(20px, $font-family: $heading-font-family),
+  $headline-1: mat.define-typography-level(112px, $font-family: $heading-font-family),
+  $headline-2: mat.define-typography-level(112px, $font-family: $heading-font-family),
+  $headline-3: mat.define-typography-level(112px, $font-family: $heading-font-family),
+  $headline-4: mat.define-typography-level(112px, $font-family: $heading-font-family),
+  $headline-5: mat.define-typography-level(112px, $font-family: $heading-font-family),
+  $headline-6: mat.define-typography-level(112px, $font-family: $heading-font-family),
+  $subtitle-1: mat.define-typography-level(112px, $font-family: $heading-font-family),
+  $subtitle-2: mat.define-typography-level(112px, $font-family: $heading-font-family),
+  $body-1: mat.define-typography-level(112px, $font-family: $heading-font-family),
+  $body-2: mat.define-typography-level(112px, $font-family: $heading-font-family),
+  $caption: mat.define-typography-level(112px, $font-family: $heading-font-family),
+  $button: mat.define-typography-level(112px, $font-family: $heading-font-family),
+  $overline: mat.define-typography-level(112px, $font-family: $heading-font-family),
+  $font-family: mat.define-typography-level(112px, $font-family: $heading-font-family)
+);
+
+@mixin typography() {
+  .mat-display-4,
+  .mat-display-3,
+  .mat-display-2 {
+    letter-spacing: 0;
+  }
+
+  .mat-display-4,
+  .mat-display-3,
+  .mat-display-2,
+  .mat-display-1,
+  .mat-headline,
+  .mat-title,
+  .mat-subheading-1,
+  .mat-subheading-2,
+  .mat-body-1,
+  .mat-body-2,
+  .mat-caption,
+  .mat-button {
+    margin-bottom: 0;
+  }
+
+  .mat-overline {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.125rem;
+    line-height: 2.66;
+    text-transform: uppercase;
+  }
+  .mat-display-4 {
+    font-size: 6rem;
+    font-weight: 300;
+    line-height: 1.167em;
+  }
+  .mat-display-3 {
+    font-size: 3.75rem;
+    font-weight: 300;
+    line-height: 1.2em;
+  }
+  .mat-display-2 {
+    font-weight: 400;
+    font-size: 3rem;
+    line-height: 1.167em;
+  }
+  .mat-display-1 {
+    font-weight: 400;
+    font-size: 2.125rem;
+    line-height: 1.235em;
+  }
+  .mat-headline {
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 1.334em;
+  }
+  .mat-title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.6em;
+  }
+  .mat-subheading-1 {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.75em;
+  }
+  .mat-subheading-2 {
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.57em;
+  }
+  .mat-body-1 {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5em;
+  }
+  .mat-body-2 {
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.43em;
+  }
+  .mat-button {
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: unset;
+    line-height: 1.75em;
+  }
+  .mat-caption {
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.67em;
+  }
+}

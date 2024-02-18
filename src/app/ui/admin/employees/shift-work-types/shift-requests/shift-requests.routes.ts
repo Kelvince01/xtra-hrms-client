@@ -10,16 +10,16 @@ export const SHIFT_REQUEST_ROUTES: Routes = [
   {
     path: '',
     component: ShiftRequestListComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'add',
     component: ShiftRequestUpsertComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'edit/:id',
     component: ShiftRequestUpsertComponent,
-    data: { revalidate: 60 }
-  }
+    data: { revalidate: 60 },
+  },
 ];

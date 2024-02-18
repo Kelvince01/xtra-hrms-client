@@ -10,16 +10,16 @@ export const ROTATING_SHIFT_ROUTES: Routes = [
   {
     path: '',
     component: RotatingShiftListComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'add',
     component: RotatingShiftUpsertComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'edit/:id',
     component: RotatingShiftUpsertComponent,
-    data: { revalidate: 60 }
-  }
+    data: { revalidate: 60 },
+  },
 ];

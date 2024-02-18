@@ -8,6 +8,8 @@ passwordForm: FormGroup = new FormGroup({
       { validators: [confirmPasswordValidator]}
   });
  */
-export const confirmPasswordValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+export const confirmPasswordValidator: ValidatorFn = (
+  control: AbstractControl,
+): ValidationErrors | null => {
   return control.value.password1 === control.value.password2 ? null : { PasswordNoMatch: true };
 };

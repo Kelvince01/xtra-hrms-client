@@ -1,24 +1,21 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {Router} from '@angular/router';
-import {Store} from '@ngrx/store';
-import {employeeListQuery} from '@stores/employees';
-import {employeeListActions} from '@stores/employees';
-import {EmployeeListItemComponent} from './employee-list-item/employee-list-item.component';
-import {AsyncPipe} from '@angular/common';
-import {PagerComponent} from '@shared/components';
-import {EmployeeStore} from '@stores/employees';
+import { AsyncPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { PagerComponent } from '@shared/components';
+import { EmployeeStore, employeeListActions, employeeListQuery } from '@stores/employees';
+import { EmployeeListItemComponent } from './employee-list-item/employee-list-item.component';
 
 @Component({
   selector: 'xtra-employee-list',
   standalone: true,
   imports: [EmployeeListItemComponent, AsyncPipe, PagerComponent],
   template: `
-    @if (!(isLoading$ | async)) {
+    @if ((isLoading$ | async) == false) {
       @for (employee of employees$ | async; track employee.id) {
         <xtra-employee-list-item
           data-e2e-id="employee-list"
-          [employee]="employee"
-        ></xtra-employee-list-item>
+          [employee]="employee"></xtra-employee-list-item>
       } @empty {
         <div>No employees are here... yet.</div>
       }
@@ -26,8 +23,7 @@ import {EmployeeStore} from '@stores/employees';
       <xtra-pager
         (setPage)="setPage($event)"
         [currentPage]="(listConfig$ | async)?.currentPage"
-        [totalPages]="totalPages$ | async"
-      ></xtra-pager>
+        [totalPages]="totalPages$ | async"></xtra-pager>
     } @else {
       <div>Loading employees...</div>
     }
@@ -50,7 +46,7 @@ export class EmployeeListComponent {
   }
 
   setPage(page: number) {
-    this.store.dispatch(employeeListActions.setListPage({page}));
+    this.store.dispatch(employeeListActions.setListPage({ page }));
   }
 
   delete(id: number) {

@@ -1,18 +1,18 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
   HostBinding,
   Input,
   Output,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { FlexLayoutModule } from '@ngbracket/ngx-layout';
 
 @Component({
@@ -26,7 +26,7 @@ import { FlexLayoutModule } from '@ngbracket/ngx-layout';
     MatTooltipModule,
     MatIconModule,
     MatMenuModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
   encapsulation: ViewEncapsulation.None,
   template: `
@@ -98,7 +98,8 @@ import { FlexLayoutModule } from '@ngbracket/ngx-layout';
           </div>
           <div fxFlex>
             <div class="email-body-toolbar">
-              <span class="email-from">{{ from }}</span> <span class="email-to">to me</span>
+              <span class="email-from">{{ from }}</span>
+              <span class="email-to">to me</span>
               <button mat-icon-button class="email-more" [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
               </button>
@@ -205,8 +206,8 @@ import { FlexLayoutModule } from '@ngbracket/ngx-layout';
           font-size: 85%;
         }
       }
-    `
-  ]
+    `,
+  ],
 })
 export class EmailDetailComponent {
   @HostBinding('class.email-opened')
@@ -229,7 +230,7 @@ export class EmailDetailComponent {
   onReply(): void {
     this.reply.emit({
       to: this.from,
-      subject: `RE: ${this.subject}`
+      subject: `RE: ${this.subject}`,
     });
   }
 }

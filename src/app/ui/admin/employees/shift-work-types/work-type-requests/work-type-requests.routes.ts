@@ -10,16 +10,16 @@ export const WORK_TYPE_REQUEST_ROUTES: Routes = [
   {
     path: '',
     component: WorkTypeRequestListComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'add',
     component: WorkTypeRequestUpsertComponent,
-    data: { revalidate: 60 }
+    data: { revalidate: 60 },
   },
   {
     path: 'edit/:id',
     component: WorkTypeRequestUpsertComponent,
-    data: { revalidate: 60 }
-  }
+    data: { revalidate: 60 },
+  },
 ];

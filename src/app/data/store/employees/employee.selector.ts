@@ -1,16 +1,16 @@
-import {createSelector} from '@ngrx/store';
-import {employeeListFeature} from './employee.reducer';
+import { createSelector } from '@ngrx/store';
+import { employeeListFeature } from './employee.reducer';
 
-const {selectEmployeesListState, selectEmployees, selectListConfig} = employeeListFeature;
+const { selectEmployeesListState, selectEmployees, selectListConfig } = employeeListFeature;
 export const selectEmployeeEntities = createSelector(
   selectEmployees,
-  (employees) => employees.entities,
+  employees => employees.entities,
 );
 export const selectEmployeesCount = createSelector(
   selectEmployees,
-  (employees) => employees.employeesCount,
+  employees => employees.employeesCount,
 );
-export const isLoading = createSelector(selectEmployees, (employees) => employees.loading);
+export const isLoading = createSelector(selectEmployees, employees => employees.loading);
 export const selectTotalPages = createSelector(
   selectEmployeesCount,
   selectListConfig,

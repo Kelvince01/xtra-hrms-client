@@ -1,22 +1,23 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router, RouterOutlet} from '@angular/router';
-import {SeoService} from '@core/services/seo-v2.service';
-import {NgxSpinnerModule} from 'ngx-spinner';
-import {AnalyticsService} from '@core/services/analytics.service';
-import {filter, map, mergeMap} from 'rxjs';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { AnalyticsService } from '@core/services/analytics.service';
+import { SeoService } from '@core/services/seo-v2.service';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { filter, map, mergeMap } from 'rxjs';
 
 @Component({
   selector: 'xtra-root',
   standalone: true,
-  imports: [RouterOutlet, NgxSpinnerModule],
+  imports: [RouterOutlet, NgxSpinnerModule, MatIconButton, MatIcon],
   template: `
     <div>
       <ngx-spinner
         bdColor="rgba(0,0,0,0.2)"
         size="medium"
         color="#0049AF"
-        type="ball-spin-clockwise-fade"
-      >
+        type="ball-spin-clockwise-fade">
         <p style="font-size: 20px; color: white">Loading...</p>
       </ngx-spinner>
       <router-outlet />
@@ -37,17 +38,17 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.router.events
       .pipe(
-        filter((e) => e instanceof NavigationEnd),
+        filter(e => e instanceof NavigationEnd),
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        map((e) => this.activatedRoute),
-        map((route) => {
+        map(e => this.activatedRoute),
+        map(route => {
           while (route.firstChild) route = route.firstChild;
           return route;
         }),
-        filter((route) => route.outlet === 'primary'),
-        mergeMap((route) => route.data),
+        filter(route => route.outlet === 'primary'),
+        mergeMap(route => route.data),
       )
-      .subscribe((data) => {
+      .subscribe(data => {
         const seoData = data['seo'];
         if (seoData) {
           this.seoService.updateTitle(seoData['title']);

@@ -8,9 +8,9 @@ import {
   ICandidateTask,
   IOnboardingPortal,
   IOnboardingStage,
-  IOnboardingTask
+  IOnboardingTask,
 } from '@models/onboarding.model';
-import {BaseService} from './base.service';
+import { BaseService } from './base.service';
 
 @Injectable()
 export class OnboardingStagesService extends BaseService<IOnboardingStage> {

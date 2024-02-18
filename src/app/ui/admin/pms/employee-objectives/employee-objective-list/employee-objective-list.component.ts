@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-employee-objective-list',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <p>
-      employee-objective-list works!
-    </p>
+    <p>employee-objective-list works!</p>
   `,
-  styles: ``
+  styles: ``,
 })
-export class EmployeeObjectiveListComponent {
-
-}
+export class EmployeeObjectiveListComponent {}
