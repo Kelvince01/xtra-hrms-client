@@ -1,27 +1,26 @@
-import {ChangeDetectionStrategy, Component, inject, OnInit, ViewChild} from '@angular/core';
-import {RolesService} from '@data/services/users.service';
-import {MatInputModule} from '@angular/material/input';
-import {CommonModule} from '@angular/common';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSelect, MatSelectModule} from '@angular/material/select';
-import {FormsModule} from '@angular/forms';
-import {MatTableModule} from '@angular/material/table';
-import {RouterLink} from '@angular/router';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {IRole} from '@models/accounts.model';
-import {AuthService} from '@data/services';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {ToastrService} from 'ngx-toastr';
-import {IUser} from '@data/models';
+import { ChangeDetectionStrategy, Component, inject, OnInit, ViewChild } from '@angular/core';
+import { MatInputModule } from '@angular/material/input';
+import { RolesService } from '@data/services/users.service';
+
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelect, MatSelectModule } from '@angular/material/select';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterLink } from '@angular/router';
+import { IUser } from '@data/models';
+import { AuthService } from '@data/services';
+import { IRole } from '@models/accounts.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'xtra-role-list',
   standalone: true,
   imports: [
-    CommonModule,
     MatIconModule,
     MatButtonModule,
     MatInputModule,
@@ -71,8 +70,7 @@ import {IUser} from '@data/models';
               style="margin-left: 1.5em;"
               (click)="resetData()"
               mat-stroked-button
-              color="accent"
-            >
+              color="accent">
               Reset
             </button>
           </form>
@@ -172,8 +170,7 @@ import {IUser} from '@data/models';
         [pageSize]="10"
         [length]="tableLength"
         [pageSizeOptions]="[5, 10, 20]"
-        [showFirstLastButtons]="true"
-      ></mat-paginator>
+        [showFirstLastButtons]="true"></mat-paginator>
     </div>
   `,
   styles: [
@@ -198,8 +195,8 @@ import {IUser} from '@data/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoleListComponent implements OnInit {
-  @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
-  @ViewChild('matSelect', {static: true}) selection!: MatSelect;
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild('matSelect', { static: true }) selection!: MatSelect;
 
   searchData = {
     client_id: null,
@@ -239,7 +236,7 @@ export class RoleListComponent implements OnInit {
   }
 
   getRoles(query?: any): void {
-    this.roleService.getPaginated().subscribe((_) => {
+    this.roleService.getPaginated().subscribe(_ => {
       this.roles = _.results;
     });
     /*merge(this.paginator.page)

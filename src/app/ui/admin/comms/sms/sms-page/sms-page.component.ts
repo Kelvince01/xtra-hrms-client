@@ -1,18 +1,17 @@
-import {Component, ChangeDetectionStrategy} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {MatCardModule} from '@angular/material/card';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatInputModule} from '@angular/material/input';
-import {FormControl, FormGroup, FormsModule} from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSelectModule} from '@angular/material/select';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'xtra-sms-page',
   standalone: true,
   imports: [
-    CommonModule,
     MatCardModule,
     MatSlideToggleModule,
     MatInputModule,

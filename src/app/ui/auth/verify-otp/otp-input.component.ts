@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -33,7 +32,7 @@ function getFormArray(size: number): FormArray {
 @Component({
   selector: 'xtra-otp-input',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -59,8 +58,7 @@ function getFormArray(size: number): FormArray {
         [formControl]="$any(input)"
         [attr.autocomplete]="i === 0 ? 'one-time-code' : null"
         type="text"
-        inputmode="numeric"
-      />
+        inputmode="numeric" />
     }
   `,
   styles: [

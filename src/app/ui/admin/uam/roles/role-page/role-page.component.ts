@@ -1,22 +1,21 @@
-import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {IRole, IUser} from '@data/models/accounts.model';
-import {AuthService} from '@data/services';
-import {RolesService} from '@data/services/users.service';
-import {ToastrService} from 'ngx-toastr';
-import {CommonModule} from '@angular/common';
-import {FormsModule, NgForm} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatOption, MatSelect, MatSelectModule} from '@angular/material/select';
-import {MatCheckboxChange, MatCheckboxModule} from '@angular/material/checkbox';
-import {MatButtonModule} from '@angular/material/button';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { IRole, IUser } from '@data/models/accounts.model';
+import { AuthService } from '@data/services';
+import { RolesService } from '@data/services/users.service';
+import { ToastrService } from 'ngx-toastr';
+
+import { FormsModule, NgForm } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
+import { MatOption, MatSelect, MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'xtra-role-page',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     MatInputModule,
     MatSlideToggleModule,
@@ -38,8 +37,7 @@ import {MatButtonModule} from '@angular/material/button';
                 name="role"
                 id="role"
                 required
-                type="text"
-              />
+                type="text" />
               <mat-error>Required</mat-error>
               <mat-hint>Please enter a one word eg-creditor or seperated by space</mat-hint>
             </mat-form-field>
@@ -60,8 +58,7 @@ import {MatButtonModule} from '@angular/material/button';
                     <mat-select
                       #matSelect
                       name="user_category"
-                      [(ngModel)]="formData.user_category"
-                    >
+                      [(ngModel)]="formData.user_category">
                       @for (level of dropdownRoles; track level) {
                         <mat-option [value]="level.user_category">
                           {{ level.user_category }}--({{ level.role }})
@@ -85,8 +82,7 @@ import {MatButtonModule} from '@angular/material/button';
                 required
                 type="text"
                 cols="20"
-                rows="5"
-              ></textarea>
+                rows="5"></textarea>
               <mat-error>Required</mat-error>
               <mat-hint>Role Description</mat-hint>
             </mat-form-field>
@@ -97,8 +93,7 @@ import {MatButtonModule} from '@angular/material/button';
                   [(ngModel)]="isClient"
                   title="toogle to see options"
                   name="client"
-                  [checked]="isClient"
-                >
+                  [checked]="isClient">
                   create for client
                 </mat-slide-toggle>
                 <br />
@@ -112,8 +107,7 @@ import {MatButtonModule} from '@angular/material/button';
                   #matSelect
                   name="client_id"
                   [(ngModel)]="formData.client_id"
-                  [multiple]="true"
-                >
+                  [multiple]="true">
                   <mat-checkbox class="mat-option" (change)="selectAll($event, matSelect)">
                     select all
                   </mat-checkbox>
@@ -216,7 +210,7 @@ export class RolePageComponent implements OnInit {
     return _string.join('');
   }
 
-  mapData({client_id}: any): void {
+  mapData({ client_id }: any): void {
     if (!this.isHost) {
       this.formData.client_id = client_id;
     } else {

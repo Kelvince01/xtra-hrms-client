@@ -1,11 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {IHoliday} from '@models/lms.model';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+import { IHoliday } from '@models/lms.model';
 
 @Component({
   selector: 'xtra-holiday-item',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     <h1>
       <a [href]="'https://interview.community/question/' + holiday.id" target="_blank">
@@ -24,7 +24,7 @@ import {IHoliday} from '@models/lms.model';
   ],
 })
 export class HolidayItemComponent implements OnInit {
-  @Input({required: true}) holiday!: IHoliday;
+  @Input({ required: true }) holiday!: IHoliday;
   @Output() loaded = new EventEmitter<number>();
 
   ngOnInit(): void {

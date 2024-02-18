@@ -1,17 +1,17 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
-import {AuthService} from '@data/services';
-import {ToastrService} from 'ngx-toastr';
-import {finalize, first} from 'rxjs';
-import {NgClass, NgIf} from '@angular/common';
-import {MatInputModule} from '@angular/material/input';
-import {MatButton} from '@angular/material/button';
+import { NgClass } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButton } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { AuthService } from '@data/services';
+import { ToastrService } from 'ngx-toastr';
+import { finalize, first } from 'rxjs';
 
 @Component({
   selector: 'xtra-forgot-password',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, NgClass, MatInputModule, NgIf, MatButton],
+  imports: [ReactiveFormsModule, RouterLink, NgClass, MatInputModule, MatButton],
   template: `
     <div class="card">
       <h4 class="card-header">Forgot Password</h4>
@@ -23,16 +23,23 @@ import {MatButton} from '@angular/material/button';
               matInput
               type="email"
               formControlName="email"
-              [ngClass]="{'is-invalid': submitted && f['email'].errors}"
-            />
-            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
-              <div *ngIf="f['email'].errors?.['required']">Email is required</div>
-              <div *ngIf="f['email'].errors?.['email']">Enter Valid Email</div>
-            </div>
+              [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+            @if (submitted && f['email'].errors) {
+              <div class="invalid-feedback">
+                @if (f['email'].errors?.['required']) {
+                  <div>Email is required</div>
+                }
+                @if (f['email'].errors?.['email']) {
+                  <div>Enter Valid Email</div>
+                }
+              </div>
+            }
           </mat-form-field>
           <div>
             <button mat-button [disabled]="loading || !form.valid" class="mb-3">
-              <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+              @if (loading) {
+                <span class="spinner-border spinner-border-sm me-1"></span>
+              }
               Submit
             </button>
             <a routerLink="/accounts/sign-in" class="mt-3">Cancel</a>
@@ -88,7 +95,7 @@ export class ForgotPasswordComponent implements OnInit {
       .pipe(finalize(() => (this.loading = false)))
       .subscribe({
         next: () => this.toastr.show('Please check your email for password reset instructions'),
-        error: (error) => this.toastr.error('error', error),
+        error: error => this.toastr.error('error', error),
       });
   }
 }

@@ -1,16 +1,19 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {NgForOf, NgIf} from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'xtra-breadcrumbs',
   standalone: true,
-  imports: [NgForOf, NgIf],
+  imports: [],
   template: `
     <div class="text-textMedium text-15">
-      <span *ngFor="let item of items; let idx = index">
-        <span class="relative mx-2 font-lg" *ngIf="idx !== 0">/</span>
-        {{ item }}
-      </span>
+      @for (item of items; track item; let idx = $index) {
+        <span>
+          @if (idx !== 0) {
+            <span class="relative mx-2 font-lg">/</span>
+          }
+          {{ item }}
+        </span>
+      }
     </div>
   `,
   styles: ``,

@@ -1,15 +1,14 @@
-import {CommonModule} from '@angular/common';
-import {ChangeDetectionStrategy, Component, signal, WritableSignal} from '@angular/core';
-import {IExportColumn} from '@models/export-column.model';
-import {TableComponent} from '@shared/components/table/table.component';
-import {ITableColumn} from '@shared/components/table/table-column.model';
-import {StagesService} from '@services/recruitments.service';
+import { ChangeDetectionStrategy, Component, signal, WritableSignal } from '@angular/core';
+import { IExportColumn } from '@models/export-column.model';
+import { StagesService } from '@services/recruitments.service';
+import { ITableColumn } from '@shared/components/table/table-column.model';
+import { TableComponent } from '@shared/components/table/table.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'xtra-stage-list',
   standalone: true,
-  imports: [CommonModule, TableComponent],
+  imports: [TableComponent],
   template: `
     <xtra-table [title]="title" [tableColumns]="tableColumns" />
   `,
@@ -53,9 +52,9 @@ export class StageListComponent {
       customExportHeader: 'Name',
       dataKey: 'name',
     },
-    {field: 'description', header: 'Description', dataKey: 'description'},
-    {field: 'purchase_cost', header: 'Purchase Cost', dataKey: 'purchase_cost'},
-    {field: 'purchase_date', header: 'Purchase Date', dataKey: 'purchase_date'},
+    { field: 'description', header: 'Description', dataKey: 'description' },
+    { field: 'purchase_cost', header: 'Purchase Cost', dataKey: 'purchase_cost' },
+    { field: 'purchase_date', header: 'Purchase Date', dataKey: 'purchase_date' },
   ];
   isPaginated = true;
 }

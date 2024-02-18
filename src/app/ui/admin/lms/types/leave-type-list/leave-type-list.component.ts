@@ -1,10 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-leave-type-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     <p>leave-type-list works!</p>
   `,

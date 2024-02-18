@@ -1,10 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-employee-shift-schedule-upsert',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     <p>employee-shift-schedule-upsert works!</p>
   `,

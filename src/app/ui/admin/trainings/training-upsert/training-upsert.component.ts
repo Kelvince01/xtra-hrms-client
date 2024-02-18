@@ -1,28 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {Observable, tap} from 'rxjs';
-import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {ITraining} from '@data/models/training.model';
-import {TrainingsService} from '@services/training.service';
-import {ButtonComponent} from '@shared/components/forms/button/button.component';
-import {DateUtil} from '@core/utils/date.util';
-import {NoWhitespaceValidator} from '@shared/components/forms/validators/no-whitespace.validator';
-import {DialogService} from '@shared/services/dialog.service';
-import {QuillEditorComponent} from 'ngx-quill';
-import {AutofocusDirective} from '@shared/directives/autofocus.directive';
-import {quillConfiguration} from '@shared/config/editor';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { DateUtil } from '@core/utils/date.util';
+import { ITraining } from '@data/models/training.model';
+import { TrainingsService } from '@services/training.service';
+import { ButtonComponent } from '@shared/components/forms/button/button.component';
+import { NoWhitespaceValidator } from '@shared/components/forms/validators/no-whitespace.validator';
+import { quillConfiguration } from '@shared/config/editor';
+import { AutofocusDirective } from '@shared/directives/autofocus.directive';
+import { DialogService } from '@shared/services/dialog.service';
+import { QuillEditorComponent } from 'ngx-quill';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'xtra-training-upsert',
   standalone: true,
-  imports: [
-    CommonModule,
-    ButtonComponent,
-    ReactiveFormsModule,
-    QuillEditorComponent,
-    AutofocusDirective,
-  ],
+  imports: [ButtonComponent, ReactiveFormsModule, QuillEditorComponent, AutofocusDirective],
   template: `
     <div class="px-8 py-5">
       <div class="flex items-center py-3 text-textDarkest">
@@ -32,8 +24,7 @@ import {quillConfiguration} from '@shared/config/editor';
           icon="times"
           [iconSize]="24"
           (click)="closeModal()"
-          [className]="'btn-empty'"
-        ></xtra-button>
+          [className]="'btn-empty'"></xtra-button>
       </div>
       <form class="issue-form" [formGroup]="issueForm">
         <div class="form-group">
@@ -52,11 +43,10 @@ import {quillConfiguration} from '@shared/config/editor';
           <label class="label">Description</label>
           <quill-editor
             class="content-editor"
-            [styles]="{'min-height': '120px'}"
+            [styles]="{ 'min-height': '120px' }"
             [modules]="editorOptions"
             formControlName="description"
-            [placeholder]="''"
-          ></quill-editor>
+            [placeholder]="''"></quill-editor>
         </div>
         <div class="mt-3 form-group">
           <label class="label">Reporter</label>
@@ -77,8 +67,7 @@ import {quillConfiguration} from '@shared/config/editor';
             className="btn-primary mr-2"
             type="submit"
             [disabled]="issueForm.invalid"
-            (click)="submitForm()"
-          >
+            (click)="submitForm()">
             Create Issue
           </xtra-button>
           <xtra-button className="btn-empty" (click)="cancel()">Cancel</xtra-button>

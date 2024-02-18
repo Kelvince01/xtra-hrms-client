@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { AsyncPipe, NgStyle } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  inject,
   Input,
   OnInit,
   Output,
@@ -12,27 +12,21 @@ import {
   ViewChild,
   WritableSignal,
 } from '@angular/core';
-import {ITableColumn} from './table-column.model';
-import {MatSort, MatSortModule, Sort} from '@angular/material/sort';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {AsyncPipe, NgForOf, NgIf, NgStyle} from '@angular/common';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {TranslateModule} from '@ngx-translate/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {NgMatTableQueryReflectorDirective} from '@shared/directives/ng-mat-table-query-reflector.directive';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {DataPropertyGetterPipe} from '@shared/pipes/data-property-getter.pipe';
-import {BaseService} from '@data/services';
-import {IBaseModel} from '@data/models';
-import {FilesService} from '@services/common';
-import {MatDialog} from '@angular/material/dialog';
-import {ToastrService} from 'ngx-toastr';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { NgMatTableQueryReflectorDirective } from '@shared/directives/ng-mat-table-query-reflector.directive';
+import { DataPropertyGetterPipe } from '@shared/pipes/data-property-getter.pipe';
+import { ITableColumn } from './table-column.model';
 
 @Component({
   selector: 'xtra-table',
@@ -61,8 +55,7 @@ import {ToastrService} from 'ngx-toastr';
       @if (isLoading) {
         <div
           style="display: flex; justify-content: center;
-           align-items: center; background: white;"
-        >
+           align-items: center; background: white;">
           <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
         </div>
       }
@@ -75,8 +68,7 @@ import {ToastrService} from 'ngx-toastr';
         (matSortChange)="sortTable($event)"
         xtraNgMatTableQueryReflector
         (scroll)="onTableScroll($event)"
-        class="table-container mat-elevation-z8"
-      >
+        class="table-container mat-elevation-z8">
         @for (tableColumn of displayTableColumns; track tableColumn) {
           <ng-container [matColumnDef]="tableColumn.name">
             <!-- if sortable column header -->
@@ -85,16 +77,14 @@ import {ToastrService} from 'ngx-toastr';
                 mat-header-cell
                 *matHeaderCellDef
                 [mat-sort-header]="tableColumn.name"
-                [arrowPosition]="tableColumn.position === 'right' ? 'before' : 'after'"
-              >
+                [arrowPosition]="tableColumn.position === 'right' ? 'before' : 'after'">
                 {{ tableColumn.name }}
               </th>
             } @else {
               <th
                 mat-header-cell
                 *matHeaderCellDef
-                [class.text-right]="tableColumn.position === 'right'"
-              >
+                [class.text-right]="tableColumn.position === 'right'">
                 {{ tableColumn.name }}
               </th>
             }
@@ -104,8 +94,7 @@ import {ToastrService} from 'ngx-toastr';
             <td
               mat-cell
               *matCellDef="let element"
-              [class.text-right]="tableColumn.position === 'right'"
-            >
+              [class.text-right]="tableColumn.position === 'right'">
               {{ element | dataPropertyGetter: tableColumn.dataKey! }}
             </td>
           </ng-container>
@@ -128,8 +117,7 @@ import {ToastrService} from 'ngx-toastr';
                         placeholder="filter"
                         #input
                         type="text"
-                        name="search"
-                      />
+                        name="search" />
                     </mat-form-field>
                   </ng-container>
                 }
@@ -143,8 +131,7 @@ import {ToastrService} from 'ngx-toastr';
                     class="right-2 export-button"
                     mat-raised-button
                     color="primary"
-                    (click)="emitExportDataAction()"
-                  >
+                    (click)="emitExportDataAction()">
                     <mat-icon class="mat-icon-size">save_alt</mat-icon>
                     {{ 'common.export-button' | translate }}
                   </button>
@@ -174,8 +161,7 @@ import {ToastrService} from 'ngx-toastr';
             <td
               mat-cell
               *matCellDef="let element"
-              [attr.data-label]="'common.caption.actions' | translate"
-            >
+              [attr.data-label]="'common.caption.actions' | translate">
               <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
               </button>
@@ -227,8 +213,7 @@ import {ToastrService} from 'ngx-toastr';
           #paginator
           [length]="totalRows"
           [pageIndex]="currentPage"
-          aria-label="Select page"
-        ></mat-paginator>
+          aria-label="Select page"></mat-paginator>
       }
     </ng-container>
   `,
@@ -239,8 +224,6 @@ import {ToastrService} from 'ngx-toastr';
     MatPaginatorModule,
     MatButtonModule,
     MatIconModule,
-    NgIf,
-    NgForOf,
     AsyncPipe,
     MatToolbarModule,
     TranslateModule,
@@ -287,16 +270,16 @@ import {ToastrService} from 'ngx-toastr';
 export class TableComponent implements OnInit, AfterViewInit {
   public tableDataSource = new MatTableDataSource<any>([]);
   public displayedColumns: WritableSignal<string[]> = signal<string[]>([]);
-  @ViewChild(MatPaginator, {static: false}) matPaginator!: MatPaginator;
-  @ViewChild(MatSort, {static: true}) matSort!: MatSort;
+  @ViewChild(MatPaginator, { static: false }) matPaginator!: MatPaginator;
+  @ViewChild(MatSort, { static: true }) matSort!: MatSort;
   @Input() isLoading = true;
-  @Input({required: true}) title = '';
+  @Input({ required: true }) title = '';
   @Input() hasMenu = false;
   @Input() isPageable = false;
   @Input() isSortable = false;
   @Input() isFilterable = false;
   @Input() tableColumns: WritableSignal<ITableColumn[]> = signal<ITableColumn[]>([]);
-  @Input({required: false}) rowFilterAction: string = 'filter';
+  @Input({ required: false }) rowFilterAction: string = 'filter';
   @Input() pageSizeOptions: number[] = [5, 10, 25, 100];
   @Input() defaultPageSize = this.pageSizeOptions[1];
   @Input() newButtonHidden: boolean = false;
@@ -323,12 +306,12 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   get columnsToDisplay(): Array<string> {
     // tslint:disable-next-line:no-non-null-assertion
-    return this.displayedColumns()!.filter((x) => x !== 'menu');
+    return this.displayedColumns()!.filter(x => x !== 'menu');
   }
 
   get displayTableColumns(): ITableColumn[] {
     // tslint:disable-next-line:no-non-null-assertion
-    return this.tableColumns()!.filter((x) => x.name !== 'menu');
+    return this.tableColumns()!.filter(x => x.name !== 'menu');
   }
 
   ngOnInit(): void {
@@ -381,7 +364,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   sortTable(sortParameters: Sort): void {
     // defining name of data property, to sort by, instead of column name
     sortParameters.active = this.tableColumns().find(
-      (column) => column.name === sortParameters.active,
+      column => column.name === sortParameters.active,
     )!.dataKey!;
     this.sort!.emit(sortParameters);
   }
@@ -403,6 +386,6 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   onNewButtonClick(): void {
-    this.router.navigate(['add'], {relativeTo: this.route});
+    this.router.navigate(['add'], { relativeTo: this.route });
   }
 }

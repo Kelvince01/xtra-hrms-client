@@ -1,20 +1,26 @@
-import {ChangeDetectionStrategy, Component, computed, inject, OnInit, signal} from '@angular/core';
-import {HrDetailsService} from '@data/services/employees.service';
-import {IHrDetail} from '@models/employee.model';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {CommonModule} from '@angular/common';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {RouterLink} from '@angular/router';
-import {MatListModule} from '@angular/material/list';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { HrDetailsService } from '@data/services/employees.service';
+import { IHrDetail } from '@models/employee.model';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'xtra-hr-detail-list',
   standalone: true,
   imports: [
-    CommonModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -66,7 +72,7 @@ export class HrDetailListComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.service.getPaginated().subscribe((_) => {
+    this.service.getPaginated().subscribe(_ => {
       this.hrDetails.set(_.results);
     });
   }

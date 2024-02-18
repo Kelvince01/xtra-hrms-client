@@ -1,24 +1,23 @@
-import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {MatButtonModule} from '@angular/material/button';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import {
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import {MatIconModule} from '@angular/material/icon';
-import {FormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {PermissionsService} from '@services/users.service';
-import {IPermission} from '@models/accounts.model';
-import {ToastrService} from 'ngx-toastr';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { IPermission } from '@models/accounts.model';
+import { PermissionsService } from '@services/users.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'xtra-permission-page',
   standalone: true,
   imports: [
-    CommonModule,
     MatButtonModule,
     MatDialogActions,
     MatDialogContent,
@@ -45,8 +44,7 @@ import {ToastrService} from 'ngx-toastr';
             id="name"
             required
             [(ngModel)]="permission.name"
-            matInput
-          />
+            matInput />
           <mat-error>Name is Required!</mat-error>
           <mat-hint>Action to performed plus model name</mat-hint>
         </mat-form-field>
@@ -59,8 +57,7 @@ import {ToastrService} from 'ngx-toastr';
             id="namespace"
             required
             [(ngModel)]="permission.namespace"
-            matInput
-          />
+            matInput />
           <mat-error>Namespace is Required!</mat-error>
           <mat-hint>Plural model name</mat-hint>
         </mat-form-field>
@@ -76,8 +73,7 @@ import {ToastrService} from 'ngx-toastr';
         class="pull-xs-right flex-auto w-64"
         [disabled]="!form.valid || isLoading()"
         [class.spinner]="isLoading()"
-        (click)="onSubmit()"
-      >
+        (click)="onSubmit()">
         SAVE
       </button>
     </div>
@@ -104,7 +100,7 @@ import {ToastrService} from 'ngx-toastr';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PermissionPageComponent {
-  permission: IPermission = {name: '', namespace: ''};
+  permission: IPermission = { name: '', namespace: '' };
   service = inject(PermissionsService);
   toastr = inject(ToastrService);
   isLoading = signal(false);
@@ -117,7 +113,7 @@ export class PermissionPageComponent {
         this.isLoading.set(false);
         this.toastr.success(`Permission Created Successfully`);
       },
-      (err) => {
+      err => {
         this.isLoading.set(false);
         this.toastr.error(`Error creating permission: ${err}`);
       },

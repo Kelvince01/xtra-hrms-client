@@ -1,7 +1,16 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {MatSort} from '@angular/material/sort';
-import {SelectionModel} from '@angular/cdk/collections';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import {
   MatCell,
   MatCellDef,
@@ -14,19 +23,15 @@ import {
   MatTable,
   MatTableDataSource,
 } from '@angular/material/table';
-import {ITrainingResource} from '@models/training.model';
-import {Observable, of} from 'rxjs';
-import {MatDialog} from '@angular/material/dialog';
-import {TranslateService} from '@ngx-translate/core';
-import {Store} from '@ngrx/store';
-import {MatCheckbox} from '@angular/material/checkbox';
-import {MatPaginator} from '@angular/material/paginator';
+import { ITrainingResource } from '@models/training.model';
+import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'xtra-training-resource-list',
   standalone: true,
   imports: [
-    CommonModule,
     MatTable,
     MatSort,
     MatColumnDef,
@@ -48,8 +53,7 @@ import {MatPaginator} from '@angular/material/paginator';
       #customerSort="matSort"
       matSortActive="Username"
       matSortDirection="asc"
-      [matSortDisableClear]="true"
-    >
+      [matSortDisableClear]="true">
       >
       <!-- Checkbox Column -->
       <ng-container matColumnDef="select">
@@ -57,15 +61,13 @@ import {MatPaginator} from '@angular/material/paginator';
           <mat-checkbox
             (change)="$event ? masterToggle() : null"
             [checked]="selection.hasValue() && isAllSelected()"
-            [indeterminate]="selection.hasValue() && !isAllSelected()"
-          ></mat-checkbox>
+            [indeterminate]="selection.hasValue() && !isAllSelected()"></mat-checkbox>
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <mat-checkbox
             (click)="$event.stopPropagation()"
             (change)="$event ? selection.toggle(row) : null"
-            [checked]="selection.isSelected(row)"
-          ></mat-checkbox>
+            [checked]="selection.isSelected(row)"></mat-checkbox>
         </mat-cell>
       </ng-container>
       <!-- Position Column -->
@@ -99,8 +101,7 @@ import {MatPaginator} from '@angular/material/paginator';
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row
         *matRowDef="let row; columns: displayedColumns"
-        (click)="selection.toggle(row)"
-      ></mat-row>
+        (click)="selection.toggle(row)"></mat-row>
     </mat-table>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true"></mat-paginator>
@@ -153,7 +154,7 @@ export class TrainingResourceListComponent implements OnInit, AfterViewInit {
   masterToggle() {
     this.isAllSelected()
       ? this.selection.clear()
-      : this.dataSource.data.forEach((row) => this.selection.select(row));
+      : this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
   loadCustomersList() {
@@ -163,7 +164,7 @@ export class TrainingResourceListComponent implements OnInit, AfterViewInit {
   }
 
   subscribeToCustomers() {
-    this.customers$.subscribe((customers) => {
+    this.customers$.subscribe(customers => {
       this.dataSource = new MatTableDataSource<ITrainingResource>(customers);
     });
   }

@@ -1,17 +1,17 @@
-import {Component, DestroyRef, inject, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {RouterLink, RouterOutlet} from '@angular/router';
-import {FormControl, ReactiveFormsModule} from '@angular/forms';
-import {NavigationService} from '@shared/services/navigation.service';
-import {IUser} from '@data/models';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {AuthService, UsersService} from '@data/services';
-import {tap} from 'rxjs';
-import {MatSelect} from '@angular/material/select';
-import {SelectUsersDirective} from '@admin-ui/uam/users/directives/select-users.directive';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+
+import { SelectUsersDirective } from '@admin-ui/uam/users/directives/select-users.directive';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelect } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { IUser } from '@data/models';
+import { AuthService, UsersService } from '@data/services';
+import { NavigationService } from '@shared/services/navigation.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'xtra-ep-drawer',
@@ -25,9 +25,11 @@ import {SelectUsersDirective} from '@admin-ui/uam/users/directives/select-users.
     <main>
       <mat-drawer-container>
         <mat-drawer mode="side" opened>
-          <a *ngFor="let page of pages$ | async" color="primary" mat-button [routerLink]="page.url">
-            <span>{{ page.label }}</span>
-          </a>
+          @for (page of pages$ | async; track page) {
+            <a color="primary" mat-button [routerLink]="page.url">
+              <span>{{ page.label }}</span>
+            </a>
+          }
         </mat-drawer>
 
         <div class="dip-layout-content">
@@ -121,7 +123,6 @@ import {SelectUsersDirective} from '@admin-ui/uam/users/directives/select-users.
   ],
   standalone: true,
   imports: [
-    CommonModule,
     MatButtonModule,
     MatSidenavModule,
     MatToolbarModule,
@@ -146,13 +147,13 @@ export class EpDrawerComponent implements OnInit {
     this.authService
       .user()
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((currentUser) => {
+      .subscribe(currentUser => {
         this.userFormControl.patchValue(currentUser);
       });
 
     this.userFormControl.valueChanges
       .pipe(
-        tap((user) => this.userService.setCurrentUser(user!)),
+        tap(user => this.userService.setCurrentUser(user!)),
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe();

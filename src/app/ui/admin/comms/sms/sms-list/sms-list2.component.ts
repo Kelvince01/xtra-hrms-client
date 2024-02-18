@@ -1,16 +1,16 @@
-import {Component, ViewChild, ChangeDetectionStrategy} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatPaginator} from '@angular/material/paginator';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'xtra-sms-list',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatIconModule, MatButtonModule],
+  imports: [MatTableModule, MatIconModule, MatButtonModule],
   template: `
     <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
       @for (column of columnsToDisplay; track column) {
@@ -28,8 +28,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
             (click)="
               expandedElement = expandedElement === element ? null : element;
               $event.stopPropagation()
-            "
-          >
+            ">
             @if (expandedElement !== element) {
               <mat-icon>keyboard_arrow_down</mat-icon>
             }
@@ -45,8 +44,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
         <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
           <div
             class="example-element-detail"
-            [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
-          >
+            [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
             <div class="example-element-diagram">
               <div class="example-element-position">{{ element.position }}</div>
               <div class="example-element-symbol">{{ element.symbol }}</div>
@@ -67,8 +65,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
         *matRowDef="let element; columns: columnsToDisplayWithExpand"
         class="example-element-row"
         [class.example-expanded-row]="expandedElement === element"
-        (click)="expandedElement = expandedElement === element ? null : element"
-      ></tr>
+        (click)="expandedElement = expandedElement === element ? null : element"></tr>
       <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
     </table>
 
@@ -144,8 +141,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   ],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
@@ -154,7 +151,7 @@ export default class SmsListComponent {
   //Columns names, table data from datasource, pagination and sorting
   columnsToDisplay: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  @ViewChild(MatPaginator, {static: true}) paginator: any = MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: any = MatPaginator;
   expandedElement: PeriodicElement | null | undefined;
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
 

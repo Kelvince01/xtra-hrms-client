@@ -1,5 +1,5 @@
 import { ENTER } from '@angular/cdk/keycodes';
-import { CommonModule } from '@angular/common';
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -27,7 +27,6 @@ const COMMA = 188;
   selector: 'xtra-compose-mail',
   standalone: true,
   imports: [
-    CommonModule,
     MatIconModule,
     MatButtonModule,
     MatDialogModule,

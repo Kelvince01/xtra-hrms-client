@@ -1,20 +1,19 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {PermissionsService} from '@data/services/users.service';
-import {ToastrService} from 'ngx-toastr';
-import {CommonModule} from '@angular/common';
-import {MatCardModule} from '@angular/material/card';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectChange, MatSelectModule} from '@angular/material/select';
-import {FormsModule} from '@angular/forms';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { PermissionsService } from '@data/services/users.service';
+import { ToastrService } from 'ngx-toastr';
+
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'xtra-permission-assign',
   standalone: true,
   imports: [
-    CommonModule,
     MatCardModule,
     MatInputModule,
     MatSelectModule,
@@ -35,8 +34,7 @@ import {MatButtonModule} from '@angular/material/button';
                 <mat-select
                   name="role"
                   [(ngModel)]="permissionData.role_id"
-                  (selectionChange)="filterPermissions($event)"
-                >
+                  (selectionChange)="filterPermissions($event)">
                   @for (role of roles; track role) {
                     <mat-option [value]="role.id">{{ role.role }}</mat-option>
                   }
@@ -56,8 +54,7 @@ import {MatButtonModule} from '@angular/material/button';
                           data-toggle="list"
                           href="#list-home"
                           role="tab"
-                          aria-controls="home"
-                        >
+                          aria-controls="home">
                           {{ actionCat.name }}
                         </a>
                       }
@@ -70,8 +67,7 @@ import {MatButtonModule} from '@angular/material/button';
                       class="tab-pane fade show active"
                       id="list-home"
                       role="tabpanel"
-                      aria-labelledby="list-home-list"
-                    >
+                      aria-labelledby="list-home-list">
                       <div class="actions">
                         <div class="container">
                           <div class="row">
@@ -131,7 +127,7 @@ export class PermissionAssignComponent {
   toastr = inject(ToastrService);
 
   getPermissions(query: any): void {
-    this.permissionsService.get(query).subscribe((objs) => {
+    this.permissionsService.get(query).subscribe(objs => {
       this.permissions = objs;
     });
   }
@@ -148,8 +144,8 @@ export class PermissionAssignComponent {
 
   selectActions(actions: any[]): void {
     if (actions.length) {
-      const entityActions = actions.filter((element) =>
-        this.allEntityPerms.find((data) => data.action_id === element.id),
+      const entityActions = actions.filter(element =>
+        this.allEntityPerms.find(data => data.action_id === element.id),
       );
       this.actions = this.addCheckStatus(entityActions, this.permissions);
       //make a copy
@@ -157,18 +153,18 @@ export class PermissionAssignComponent {
     }
   }
 
-  addCheckStatus(actions: any[], roleActions: any[]): {id: any; name: any; checked: boolean}[] {
-    return actions.map((action) => ({
+  addCheckStatus(actions: any[], roleActions: any[]): { id: any; name: any; checked: boolean }[] {
+    return actions.map(action => ({
       id: action.id,
       name: action.name,
-      checked: roleActions.filter((x) => x.action_id === action.id).length > 0,
+      checked: roleActions.filter(x => x.action_id === action.id).length > 0,
     }));
   }
 
   updateRoleActions(): void {
     const updateRoles: any[] = this.checkRolePermsChange(this.actionsCopy, this.actions);
-    const permsToRemove: any[] = updateRoles.filter((r) => r.checked === false);
-    const permsToAdd: any[] = updateRoles.filter((r) => r.checked === true);
+    const permsToRemove: any[] = updateRoles.filter(r => r.checked === false);
+    const permsToAdd: any[] = updateRoles.filter(r => r.checked === true);
     if (permsToAdd.length === 0 && permsToRemove.length === 0) {
       this.toastr.error('Please select an action(s)');
     }
@@ -181,8 +177,8 @@ export class PermissionAssignComponent {
   }
 
   checkRolePermsChange(original: any[], edited: any[]): any[] {
-    return edited.filter((oRole) => {
-      return original.find((eRole) => oRole.id === eRole.id && eRole.checked !== oRole.checked);
+    return edited.filter(oRole => {
+      return original.find(eRole => oRole.id === eRole.id && eRole.checked !== oRole.checked);
     });
   }
 
@@ -190,7 +186,7 @@ export class PermissionAssignComponent {
     if (!perms.length || !this.permissionData.role_id) return;
     this.submitting = true;
     const data: any[] = [];
-    perms.forEach((perm) => {
+    perms.forEach(perm => {
       const userRole = {
         role_id: this.permissionData.role_id,
         action_id: perm.id,
@@ -204,7 +200,7 @@ export class PermissionAssignComponent {
   private removeRolePerms(actions: any[]): void {
     if (!actions.length || !this.permissionData.role_id) return;
     this.submitting = true;
-    const actionIds = actions.map((action) => action.id);
+    const actionIds = actions.map(action => action.id);
     const query: any = {
       role_id: this.permissionData.role_id,
       action_id: {

@@ -1,21 +1,20 @@
-import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormBuilder, FormGroup, NgForm, ReactiveFormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {FlexLayoutModule} from '@ngbracket/ngx-layout';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {map, Observable, of} from 'rxjs';
-import {IAttendance, IEmployeeShiftDay} from '@models/attendance.model';
-import {MatSelectModule} from '@angular/material/select';
-import {FormLayoutComponent} from '@shared/components/forms/form-layout';
-import {AttendanceService} from '@services/attendance.service';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+
+import { FormBuilder, FormGroup, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { IAttendance, IEmployeeShiftDay } from '@models/attendance.model';
+import { FlexLayoutModule } from '@ngbracket/ngx-layout';
+import { AttendanceService } from '@services/attendance.service';
+import { FormLayoutComponent } from '@shared/components/forms/form-layout';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'xtra-attendance-upsert',
   standalone: true,
   imports: [
-    CommonModule,
     FormLayoutComponent,
     MatInputModule,
     MatButtonModule,
@@ -28,8 +27,7 @@ import {AttendanceService} from '@services/attendance.service';
     <xtra-form-layout
       class="attendance-page"
       innerClass="col-md-10 offset-md-1 col-xs-12"
-      title="Upsert Attendance"
-    >
+      title="Upsert Attendance">
       <form
         [formGroup]="form"
         (ngSubmit)="onSubmit(form)"
@@ -37,22 +35,19 @@ import {AttendanceService} from '@services/attendance.service';
         fxLayout="row wrap"
         fxLayout.lt-sm="column"
         fxLayoutGap="32px"
-        fxLayoutAlign="flex-start"
-      >
+        fxLayoutAlign="flex-start">
         <mat-form-field
           appearance="outline"
           fxFlex="0 1 calc(50% - 32px)"
           fxFlex.lt-md="0 1 calc(50% - 32px)"
-          fxFlex.lt-sm="100%"
-        >
+          fxFlex.lt-sm="100%">
           <mat-label>Employee</mat-label>
           <input
             type="number"
             matInput
             placeholder="Article Title"
             name="employee"
-            formControlName="employee"
-          />
+            formControlName="employee" />
           @if (form.controls['employee'].errors) {
             <mat-error>
               {{ form.controls['employee'].errors['error'] }}
@@ -63,16 +58,14 @@ import {AttendanceService} from '@services/attendance.service';
           appearance="outline"
           fxFlex="0 1 calc(50% - 32px)"
           fxFlex.lt-md="0 1 calc(50% - 32px)"
-          fxFlex.lt-sm="100%"
-        >
+          fxFlex.lt-sm="100%">
           <mat-label>Shift</mat-label>
           <input
             type="text"
             matInput
             placeholder="What's this article about?"
             name="shift"
-            formControlName="shift"
-          />
+            formControlName="shift" />
           @if (form.controls['shift'].errors) {
             <mat-error>
               {{ form.controls['shift'].errors['error'] }}
@@ -117,16 +110,14 @@ import {AttendanceService} from '@services/attendance.service';
           appearance="outline"
           fxFlex="0 1 calc(100% - 32px)"
           fxFlex.lt-md="0 1 calc(100% - 32px)"
-          fxFlex.lt-sm="100%"
-        >
+          fxFlex.lt-sm="100%">
           <mat-label>Additional Data</mat-label>
           <textarea
             rows="8"
             matInput
             placeholder="Write your article (in markdown)"
             name="requested_data"
-            formControlName="requested_data"
-          ></textarea>
+            formControlName="requested_data"></textarea>
         </mat-form-field>
         <!--fieldset class="form-group">
                   <input
@@ -151,8 +142,7 @@ import {AttendanceService} from '@services/attendance.service';
           type="button"
           class="p-3"
           style="padding: 10px; margin-right: 16px"
-          [disabled]="form.invalid"
-        >
+          [disabled]="form.invalid">
           Save
         </button>
       </form>

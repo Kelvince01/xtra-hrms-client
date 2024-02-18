@@ -1,21 +1,21 @@
 import {
-  Component,
-  inject,
-  OnInit,
   ChangeDetectionStrategy,
-  signal,
+  Component,
+  OnInit,
   WritableSignal,
+  inject,
+  signal,
 } from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {RouterLink} from '@angular/router';
-import {EventsService} from '@data/services/orgs.service';
-import {EventListComponent} from '@admin-ui/orgs/events/event-list/event-list.component';
-import {IEvent} from '@models/organizations.model';
+
+import { EventListComponent } from '@admin-ui/orgs/events/event-list/event-list.component';
+import { RouterLink } from '@angular/router';
+import { EventsService } from '@data/services/orgs.service';
+import { IEvent } from '@models/organizations.model';
 
 @Component({
   selector: 'xtra-events',
   standalone: true,
-  imports: [CommonModule, RouterLink, EventListComponent],
+  imports: [RouterLink, EventListComponent],
   template: `
     <div>
       <h1>
@@ -33,7 +33,7 @@ export class EventsComponent implements OnInit {
   events: WritableSignal<IEvent[]> = signal([]);
 
   ngOnInit(): void {
-    this.service.get().subscribe((res) => {
+    this.service.get().subscribe(res => {
       this.events.set(res);
     });
   }

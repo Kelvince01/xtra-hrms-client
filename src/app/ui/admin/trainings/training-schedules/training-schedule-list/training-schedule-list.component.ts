@@ -1,18 +1,16 @@
-import {ChangeDetectionStrategy, Component, signal, WritableSignal} from '@angular/core';
-import {
-  AbstractTableComponent,
-  componentDecoratorPreset,
-} from '@shared/components/table/abstract-table/abstract-table.component';
-import {ITrainingSchedule} from '@models/training.model';
-import {TrainingSchedulesService} from '@data/services';
-import {ITableColumn} from '@shared/components/table/table-column.model';
+import { ChangeDetectionStrategy, Component, WritableSignal, signal } from '@angular/core';
+import { TrainingSchedulesService } from '@data/services';
+import { ITrainingSchedule } from '@models/training.model';
+import { AbstractTableComponent } from '@shared/components/table/abstract-table/abstract-table.component';
+import { ITableColumn } from '@shared/components/table/table-column.model';
 
 @Component({
   selector: 'xtra-training-schedule-list',
   standalone: true,
-  imports: componentDecoratorPreset.imports,
-  template: componentDecoratorPreset.template,
-  styles: componentDecoratorPreset.styles,
+  // imports: componentDecoratorPreset.imports,
+  // template: componentDecoratorPreset.template,
+  template: ``,
+  // styles: componentDecoratorPreset.styles,
   providers: [TrainingSchedulesService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

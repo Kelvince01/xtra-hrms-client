@@ -1,11 +1,11 @@
-import {ChangeDetectionStrategy, Component, QueryList, ViewChildren} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {LeaveRequestItemComponent} from '../leave-request-item/leave-request-item.component';
+import { ChangeDetectionStrategy, Component, QueryList, ViewChildren } from '@angular/core';
+
+import { LeaveRequestItemComponent } from '../leave-request-item/leave-request-item.component';
 
 @Component({
   selector: 'xtra-leave-request-upsert',
   standalone: true,
-  imports: [CommonModule, LeaveRequestItemComponent],
+  imports: [LeaveRequestItemComponent],
   template: `
     @if (!inEditMode) {
       <button (click)="onEdit()">Edit</button>
@@ -32,12 +32,12 @@ export class LeaveRequestUpsertComponent {
   }
 
   onCancel(): void {
-    this.forms.forEach((c) => c.cancel());
+    this.forms.forEach(c => c.cancel());
     this.inEditMode = false;
   }
 
   onSave(): void {
-    this.forms.forEach((c) => c.save());
+    this.forms.forEach(c => c.save());
     this.inEditMode = false;
   }
 }

@@ -1,10 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-available-leave-upsert',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     <p>available-leave-upsert works!</p>
   `,

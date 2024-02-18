@@ -1,15 +1,17 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {ProjectCardComponent} from '@admin-ui/pm/projects/project-card/project-card.component';
-import {AsyncPipe, NgForOf} from '@angular/common';
-import {ProjectsService} from '@services/pm.service';
+import { ProjectCardComponent } from '@admin-ui/pm/projects/project-card/project-card.component';
+import { AsyncPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ProjectsService } from '@services/pm.service';
 
 @Component({
   selector: 'xtra-project-list',
   standalone: true,
-  imports: [ProjectCardComponent, NgForOf, AsyncPipe],
+  imports: [ProjectCardComponent, AsyncPipe],
   template: `
     <div class="row">
-      <xtra-project-card *ngFor="let project of projects$ | async" [projectId]="project.id!" />
+      @for (project of projects$ | async; track project) {
+        <xtra-project-card [projectId]="project.id!" />
+      }
     </div>
   `,
   styles: ``,

@@ -1,15 +1,15 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {TranslateModule} from '@ngx-translate/core';
-import {FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatInputModule} from '@angular/material/input';
-import {BanksService} from '@data/services/finance.service';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material/input';
+import { BanksService } from '@data/services/finance.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'xtra-bank-upsert',
   standalone: true,
-  imports: [CommonModule, TranslateModule, ReactiveFormsModule, MatGridListModule, MatInputModule],
+  imports: [TranslateModule, ReactiveFormsModule, MatGridListModule, MatInputModule],
   template: `
     <p>Test</p>
     <!--    <xtra-base-page [saveButtonDisabled]="vm.form?.invalid" (save)="vm.save()">-->
@@ -32,8 +32,7 @@ import {BanksService} from '@data/services/finance.service';
             <input
               matInput
               [placeholder]="'banks.caption.name' | translate"
-              formControlName="name"
-            />
+              formControlName="name" />
           </mat-form-field>
         </mat-grid-tile>
 

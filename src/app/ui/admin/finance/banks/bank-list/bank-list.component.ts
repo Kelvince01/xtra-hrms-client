@@ -1,13 +1,13 @@
-import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ITableColumn} from '@shared/components/table/table-column.model';
-import {TableComponent} from '@shared/components/table/table.component';
-import {BanksService} from '@services/finance.service';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+
+import { BanksService } from '@services/finance.service';
+import { ITableColumn } from '@shared/components/table/table-column.model';
+import { TableComponent } from '@shared/components/table/table.component';
 
 @Component({
   selector: 'xtra-bank-list',
   standalone: true,
-  imports: [CommonModule, TableComponent],
+  imports: [TableComponent],
   template: `
     <xtra-table [title]="title" [tableColumns]="tableColumns" [tableData]="[]" />
   `,

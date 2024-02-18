@@ -2,7 +2,7 @@ import { DrawerNavItem, NAV_ITEMS } from '@admin-ui/partials/sidenav/admin.menu'
 import { NotificationItemComponent } from '@admin-ui/partials/sidenav/notification-item/notification-item.component';
 import { SidenavListItemComponent } from '@admin-ui/partials/sidenav/sidenav-list-item/sidenav-list-item.component';
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
-import { AsyncPipe, NgClass, NgForOf, NgOptimizedImage, SlicePipe } from '@angular/common';
+import { AsyncPipe, NgClass, NgOptimizedImage, SlicePipe } from '@angular/common';
 import { Component, HostBinding, Input, ViewChild, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatLine } from '@angular/material/core';
@@ -219,7 +219,6 @@ import { UiSpacerComponent } from '@ui-components/ui-spacer/ui-spacer.component'
     TranslateModule,
     LangComponent,
     RouterLinkActive,
-    NgForOf,
     UiSpacerComponent,
     MsgIconBtnComponent,
     SidenavListItemComponent,

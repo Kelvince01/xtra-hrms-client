@@ -1,16 +1,15 @@
-import {ChangeDetectionStrategy, Component, computed, inject, signal} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {RouterLink} from '@angular/router';
-import {IHrDetail} from '@data/models/employee.model';
-import {HrDetailsService} from '@data/services/employees.service';
-import {CommonModule} from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { RouterLink } from '@angular/router';
+import { IHrDetail } from '@data/models/employee.model';
+import { HrDetailsService } from '@data/services/employees.service';
 
 @Component({
   selector: 'xtra-hr-detail-page',
   standalone: true,
-  imports: [CommonModule, MatInputModule, FormsModule, MatButtonModule, RouterLink],
+  imports: [MatInputModule, FormsModule, MatButtonModule, RouterLink],
   template: `
     <div class="container">
       <h2>Add HR Details</h2>

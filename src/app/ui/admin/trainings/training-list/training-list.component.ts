@@ -6,20 +6,20 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {BreadcrumbsComponent} from '@shared/components/breadcrumbs/breadcrumbs.component';
-import {ITableColumn} from '@shared/components/table/table-column.model';
-import {TrainingsService} from '@data/services';
-import {MatDialog} from '@angular/material/dialog';
-import {ToastrService} from 'ngx-toastr';
-import {ITraining} from '@models/training.model';
-import {TableComponent} from '@shared/components/table/table.component';
-import {FilesService} from '@services/common';
+
+import { MatDialog } from '@angular/material/dialog';
+import { TrainingsService } from '@data/services';
+import { ITraining } from '@models/training.model';
+import { FilesService } from '@services/common';
+import { BreadcrumbsComponent } from '@shared/components/breadcrumbs/breadcrumbs.component';
+import { ITableColumn } from '@shared/components/table/table-column.model';
+import { TableComponent } from '@shared/components/table/table.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'xtra-training-list',
   standalone: true,
-  imports: [CommonModule, BreadcrumbsComponent, TableComponent],
+  imports: [BreadcrumbsComponent, TableComponent],
   template: `
     <xtra-breadcrumbs [items]="breadcrumbs"></xtra-breadcrumbs>
     <xtra-table
@@ -29,8 +29,7 @@ import {FilesService} from '@services/common';
       [hasMenu]="true"
       [isFilterable]="true"
       [isPageable]="true"
-      [isLoading]="isLoading"
-    ></xtra-table>
+      [isLoading]="isLoading"></xtra-table>
   `,
   providers: [TrainingsService],
   styles: ``,
@@ -80,11 +79,11 @@ export class TrainingListComponent implements OnInit {
 
   getTrainings() {
     this.service?.get().subscribe(
-      (res) => {
+      res => {
         this.isLoading = false;
         this.trainings = res;
       },
-      (error) => {
+      error => {
         this.isLoading = false;
         this.toastr.error(error);
       },

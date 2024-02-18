@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -19,7 +18,6 @@ import { FlexLayoutModule } from '@ngbracket/ngx-layout';
   selector: 'xtra-email-detail',
   standalone: true,
   imports: [
-    CommonModule,
     MatCardModule,
     MatExpansionModule,
     MatButtonModule,

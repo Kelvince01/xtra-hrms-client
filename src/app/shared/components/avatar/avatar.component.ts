@@ -1,12 +1,14 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {NgClass, NgIf, NgStyle} from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'xtra-avatar',
   standalone: true,
-  imports: [NgIf, NgClass, NgStyle],
+  imports: [NgClass, NgStyle],
   template: `
-    <div *ngIf="avatarUrl" [ngClass]="['avatar-container', className]" [ngStyle]="style"></div>
+    @if (avatarUrl) {
+      <div [ngClass]="['avatar-container', className]" [ngStyle]="style"></div>
+    }
   `,
   styles: [
     `

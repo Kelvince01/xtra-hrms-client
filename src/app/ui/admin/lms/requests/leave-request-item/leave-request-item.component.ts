@@ -1,15 +1,15 @@
-import {ChangeDetectionStrategy, Component, inject, Input, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule, NgForm} from '@angular/forms';
-import {LeaveRequestsService} from '@services/lms.service';
-import {ILeaveRequest} from '@models/lms.model';
-import {ActivatedRoute} from '@angular/router';
-import {ToastrService} from 'ngx-toastr';
+import { ChangeDetectionStrategy, Component, inject, Input, OnInit } from '@angular/core';
+
+import { FormsModule, NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ILeaveRequest } from '@models/lms.model';
+import { LeaveRequestsService } from '@services/lms.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'xtra-leave-request-item',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   template: `
     <h4>{{ title }}</h4>
 
@@ -93,13 +93,13 @@ export class LeaveRequestItemComponent implements OnInit {
 
   loadEntity(): void {
     if (this.id) {
-      this.entityService.getById(this.id).subscribe((entity) => {
+      this.entityService.getById(this.id).subscribe(entity => {
         this.entity = entity ?? this.defaultEntity;
       });
     } else {
       this.entity = {} as ILeaveRequest;
     }
-    this.unchangedEntity = {...this.entity};
+    this.unchangedEntity = { ...this.entity };
   }
 
   save(): void {
@@ -110,11 +110,11 @@ export class LeaveRequestItemComponent implements OnInit {
               relativeTo: this.route,
             });*/
 
-      this.unchangedEntity = {...this.entity};
+      this.unchangedEntity = { ...this.entity };
     }
   }
 
   cancel(): void {
-    this.entity = {...this.unchangedEntity};
+    this.entity = { ...this.unchangedEntity };
   }
 }

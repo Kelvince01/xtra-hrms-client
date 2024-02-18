@@ -1,10 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-onboarding-stage-upsert',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     <p>onboarding-stage-upsert works!</p>
   `,

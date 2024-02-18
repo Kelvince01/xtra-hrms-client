@@ -1,13 +1,13 @@
-import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {HolidayItemComponent} from '@admin-ui/lms/holidays/holiday-item/holiday-item.component';
-import {HolidaysService} from '@services/lms.service';
-import {IHoliday} from '@models/lms.model';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+
+import { HolidayItemComponent } from '@admin-ui/lms/holidays/holiday-item/holiday-item.component';
+import { IHoliday } from '@models/lms.model';
+import { HolidaysService } from '@services/lms.service';
 
 @Component({
   selector: 'xtra-holiday-list',
   standalone: true,
-  imports: [CommonModule, HolidayItemComponent],
+  imports: [HolidayItemComponent],
   template: `
     @for (holiday of holidays(); track holiday.id) {
       @defer (on viewport) {
@@ -37,7 +37,7 @@ export class HolidayListComponent {
     const holidays: string | any[] = [];
     this.total = holidays.length;
 
-    this.holidays.update((oldHolidays) => {
+    this.holidays.update(oldHolidays => {
       return [...oldHolidays, ...holidays];
     });
   }

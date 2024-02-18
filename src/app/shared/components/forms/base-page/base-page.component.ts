@@ -1,20 +1,20 @@
+import { Location } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
   OnInit,
   Output,
-  ChangeDetectionStrategy,
 } from '@angular/core';
-import {Location, NgForOf, NgIf} from '@angular/common';
 
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatIconModule} from '@angular/material/icon';
-import {TranslateModule} from '@ngx-translate/core';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -43,8 +43,7 @@ import {MatDividerModule} from '@angular/material/divider';
               mat-raised-button
               color="primary"
               [disabled]="saveButtonDisabled"
-              (click)="onSaveButtonClick()"
-            >
+              (click)="onSaveButtonClick()">
               {{ 'common.save-button' | translate }}
             </button>
           }
@@ -72,8 +71,6 @@ import {MatDividerModule} from '@angular/material/divider';
     MatIconModule,
     TranslateModule,
     MatExpansionModule,
-    NgIf,
-    NgForOf,
     MatDividerModule,
   ],
 })

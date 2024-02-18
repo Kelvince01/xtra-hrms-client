@@ -1,14 +1,14 @@
-import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
-import {CandidatesService} from '@services/recruitments.service';
-import {FormControl, ReactiveFormsModule} from '@angular/forms';
-import {createSearch} from '@shared/functions/create-search.func';
-import {RouterLink} from '@angular/router';
-import {AsyncPipe, NgForOf} from '@angular/common';
+import { AsyncPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { CandidatesService } from '@services/recruitments.service';
+import { createSearch } from '@shared/functions/create-search.func';
 
 @Component({
   selector: 'xtra-candidate-list',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, NgForOf, AsyncPipe],
+  imports: [ReactiveFormsModule, RouterLink, AsyncPipe],
   template: `
     <h2>Candidates list</h2>
     <table>
@@ -24,13 +24,17 @@ import {AsyncPipe, NgForOf} from '@angular/common';
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let candidate of candidates$ | async">
-          <td>
-            <a [routerLink]="[candidate.id]">{{ candidate.firstName }} {{ candidate.lastName }}</a>
-          </td>
-          <td>{{ candidate.email }}</td>
-          <td>{{ candidate.position }}</td>
-        </tr>
+        @for (candidate of candidates$ | async; track candidate) {
+          <tr>
+            <td>
+              <a [routerLink]="[candidate.id]">
+                {{ candidate.firstName }} {{ candidate.lastName }}
+              </a>
+            </td>
+            <td>{{ candidate.email }}</td>
+            <td>{{ candidate.position }}</td>
+          </tr>
+        }
       </tbody>
     </table>
   `,
@@ -44,7 +48,7 @@ export class CandidateListComponent implements OnInit {
   search$ = createSearch(this.searchControl);
 
   ngOnInit(): void {
-    this.search$.subscribe((value) => {
+    this.search$.subscribe(value => {
       if (value) {
         this.candidates$ = this.candidateService.getCandidatesByName(value);
       } else {

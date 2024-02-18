@@ -1,25 +1,24 @@
-import {Component, Inject, inject, OnInit, signal, ChangeDetectionStrategy} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {EmployeesService} from '@services/employees.service';
-import {IRecruitment, IStage} from '@models/recruitments.model';
-import {IEmployeeInfo} from '@models/employee.model';
-import {ToastrService} from 'ngx-toastr';
-import {Router} from '@angular/router';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatButtonModule} from '@angular/material/button';
-import {RecruitmentsService, StagesService} from '@data/services/recruitments.service';
-import {ErrorMessageComponent} from '@shared/components/error-message/error-message.component';
+import { ChangeDetectionStrategy, Component, Inject, OnInit, inject, signal } from '@angular/core';
+
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { Router } from '@angular/router';
+import { RecruitmentsService, StagesService } from '@data/services/recruitments.service';
+import { IEmployeeInfo } from '@models/employee.model';
+import { IRecruitment, IStage } from '@models/recruitments.model';
+import { EmployeesService } from '@services/employees.service';
+import { ErrorMessageComponent } from '@shared/components/error-message/error-message.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'xtra-stage-upsert',
   standalone: true,
   imports: [
-    CommonModule,
     MatDialogModule,
     ReactiveFormsModule,
     MatInputModule,
@@ -174,10 +173,10 @@ export class StageUpsertComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.recruitmentService.getPaginated().subscribe((res) => {
+    this.recruitmentService.getPaginated().subscribe(res => {
       this.recruitments.set(res.results);
     });
-    this.employeeService.get().subscribe((res) => {
+    this.employeeService.get().subscribe(res => {
       this.stageManagers.set(res);
     });
   }

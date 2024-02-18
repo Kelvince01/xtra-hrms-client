@@ -1,11 +1,11 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {animateConditional} from '../../../animations';
+import { NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { animateConditional } from '../../../animations';
 
 @Component({
   selector: 'xtra-offline',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [NgOptimizedImage],
   animations: [animateConditional],
   template: `
     <div style="position:relative; height:100%; width:100%;">
@@ -19,14 +19,12 @@ import {animateConditional} from '../../../animations';
             border="0"
             height="40"
             alt="Gmail"
-            vspace="10"
-          />
+            vspace="10" />
         }
       </div>
       <div
         tabindex="-1"
-        style="margin:0; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); outline:none; text-align:center;"
-      >
+        style="margin:0; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); outline:none; text-align:center;">
         <div style="display:block; margin-left:auto; margin-right:auto; width:200px; height:200px;">
           <img
             alt="No connection found."
@@ -34,8 +32,7 @@ import {animateConditional} from '../../../animations';
             id="no-connection"
             ngSrc="./../../../../assets/images/default_400.png"
             srcset="./../../../../assets/images/default_800.png"
-            width="200px"
-          />
+            width="200px" />
         </div>
         <div style="padding-top:20px;" dir="auto">
           <span class="maintextFont">You appear to be offline</span>

@@ -3,8 +3,7 @@
  *  Terms and Conditions Apply.
  */
 
-import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
-import {NgIf} from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'xtra-ui-user-menu-avatar',
@@ -28,7 +27,7 @@ import {NgIf} from '@angular/common';
   host: {
     class: 'xtra-ui-user-menu-avatar',
   },
-  imports: [NgIf],
+  imports: [],
 })
 export class UserMenuAvatarComponent {
   @Input() avatarValue: string = '';

@@ -1,16 +1,16 @@
-import {Component, inject} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
-import {Input, ChangeDetectionStrategy} from '@angular/core';
-import {IEmailSetting} from '@models/communication.model';
-import {EmailSettingsService} from '@data/services/comms.service';
+import { Component, inject } from '@angular/core';
+
+import { ChangeDetectionStrategy, Input } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { EmailSettingsService } from '@data/services/comms.service';
+import { IEmailSetting } from '@models/communication.model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'xtra-page',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatCardModule],
+  imports: [MatButtonModule, MatCardModule],
   template: `
     <mat-card class="email-settings-card">
       <mat-card-header>
@@ -37,7 +37,7 @@ import {EmailSettingsService} from '@data/services/comms.service';
   providers: [EmailSettingsService],
 })
 export class PageComponent {
-  @Input({required: true}) emailSetting!: IEmailSetting;
+  @Input({ required: true }) emailSetting!: IEmailSetting;
   service = inject(EmailSettingsService);
 
   title = 'Add Project';

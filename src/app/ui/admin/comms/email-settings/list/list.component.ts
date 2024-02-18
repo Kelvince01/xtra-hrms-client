@@ -1,16 +1,13 @@
-import {CommonModule} from '@angular/common';
-import {ChangeDetectionStrategy, Component, OnInit, signal, WritableSignal} from '@angular/core';
-import {MatButtonModule} from '@angular/material/button';
-import {IEmailSetting} from '@data/models/communication.model';
-import {ITableColumn} from '@shared/components/table/table-column.model';
-import {EmailSettingsService} from '@services/comms.service';
-import {TableComponent} from '@shared/components/table/table.component';
-import {PageComponent} from '@admin-ui/comms/email-settings/page/page.component';
+import { PageComponent } from '@admin-ui/comms/email-settings/page/page.component';
+import { ChangeDetectionStrategy, Component, OnInit, signal, WritableSignal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { EmailSettingsService } from '@services/comms.service';
+import { ITableColumn } from '@shared/components/table/table-column.model';
 
 @Component({
   selector: 'xtra-email-settings-list',
   standalone: true,
-  imports: [CommonModule, MatButtonModule],
+  imports: [MatButtonModule],
   template: `
     <div class="my-3">
       <button mat-flat-button color="primary">Add Email Settings</button>

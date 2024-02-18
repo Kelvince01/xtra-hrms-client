@@ -1,5 +1,5 @@
 import { LeaveUpsertComponent } from '@admin-ui/lms/leaves/leave-upsert/leave-upsert.component';
-import { CommonModule } from '@angular/common';
+
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -36,7 +36,6 @@ import { getMyLeaves } from '@stores/lms/leave.selector';
   selector: 'xtra-leave-list',
   standalone: true,
   imports: [
-    CommonModule,
     DataPropertyGetterPipe,
     MatButtonModule,
     MatFormFieldModule,

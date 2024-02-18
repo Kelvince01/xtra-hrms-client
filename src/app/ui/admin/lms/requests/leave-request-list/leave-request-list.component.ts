@@ -1,10 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-leave-request-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     <p>leave-request-list works!</p>
   `,

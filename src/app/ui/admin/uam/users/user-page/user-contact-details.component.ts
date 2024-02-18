@@ -1,11 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {Router} from '@angular/router';
-import {ControlErrorStateMatcher} from '@core/error-matchers/control-error-state-matcher';
-import {FormProvider} from '@core/base/form-provider';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {CommonModule} from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { Router } from '@angular/router';
+import { FormProvider } from '@core/base/form-provider';
+import { ControlErrorStateMatcher } from '@core/error-matchers/control-error-state-matcher';
 
 @Component({
   selector: 'xtra-user-contact-details',
@@ -19,20 +18,25 @@ import {CommonModule} from '@angular/common';
           [errorStateMatcher]="matcher"
           autocomplete="on"
           minlength="2"
-          maxlength="20"
-        />
-        <mat-error *ngIf="firstNameFormControl.hasError('required')">
-          First Name is
-          <strong>required</strong>
-        </mat-error>
-        <mat-error *ngIf="firstNameFormControl.hasError('minlength')">
-          First Name needs to have at least
-          <strong>2 characters</strong>
-        </mat-error>
-        <mat-error *ngIf="firstNameFormControl.hasError('maxlength')">
-          First Name needs to have max
-          <strong>20 characters</strong>
-        </mat-error>
+          maxlength="20" />
+        @if (firstNameFormControl.hasError('required')) {
+          <mat-error>
+            First Name is
+            <strong>required</strong>
+          </mat-error>
+        }
+        @if (firstNameFormControl.hasError('minlength')) {
+          <mat-error>
+            First Name needs to have at least
+            <strong>2 characters</strong>
+          </mat-error>
+        }
+        @if (firstNameFormControl.hasError('maxlength')) {
+          <mat-error>
+            First Name needs to have max
+            <strong>20 characters</strong>
+          </mat-error>
+        }
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Last Name</mat-label>
@@ -42,20 +46,25 @@ import {CommonModule} from '@angular/common';
           [errorStateMatcher]="matcher"
           autocomplete="on"
           minlength="2"
-          maxlength="30"
-        />
-        <mat-error *ngIf="lastNameFormControl.hasError('required')">
-          Last Name is
-          <strong>required</strong>
-        </mat-error>
-        <mat-error *ngIf="lastNameFormControl.hasError('minlength')">
-          Last Name needs to have at least
-          <strong>2 characters</strong>
-        </mat-error>
-        <mat-error *ngIf="lastNameFormControl.hasError('maxlength')">
-          Last Name needs to have max
-          <strong>30 characters</strong>
-        </mat-error>
+          maxlength="30" />
+        @if (lastNameFormControl.hasError('required')) {
+          <mat-error>
+            Last Name is
+            <strong>required</strong>
+          </mat-error>
+        }
+        @if (lastNameFormControl.hasError('minlength')) {
+          <mat-error>
+            Last Name needs to have at least
+            <strong>2 characters</strong>
+          </mat-error>
+        }
+        @if (lastNameFormControl.hasError('maxlength')) {
+          <mat-error>
+            Last Name needs to have max
+            <strong>30 characters</strong>
+          </mat-error>
+        }
       </mat-form-field>
       <div class="amsf-form__actions amsf-form__actions--flex-end">
         <button
@@ -63,15 +72,14 @@ import {CommonModule} from '@angular/common';
           type="button"
           color="primary"
           (click)="next()"
-          [disabled]="form.invalid"
-        >
+          [disabled]="form.invalid">
           Next
         </button>
       </div>
     </form>
   `,
   standalone: true,
-  imports: [ReactiveFormsModule, MatInputModule, MatButtonModule, CommonModule],
+  imports: [ReactiveFormsModule, MatInputModule, MatButtonModule],
   styles: [
     `
       .amsf-form {

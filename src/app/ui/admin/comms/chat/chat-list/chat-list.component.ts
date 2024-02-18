@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {PaginationComponent} from '@shared/components/pagination/pagination.component';
-import {ChatService} from '@data/services/comms.service';
+import { Component, OnInit } from '@angular/core';
+
+import { ChatService } from '@data/services/comms.service';
+import { PaginationComponent } from '@shared/components/pagination/pagination.component';
 
 @Component({
   selector: 'xtra-chat-list',
   standalone: true,
-  imports: [CommonModule, PaginationComponent],
+  imports: [PaginationComponent],
   template: `
     <div class="data-list">
       @for (item of paginatedData; track item.id; let idx = $index, e = $even) {
@@ -20,8 +20,7 @@ import {ChatService} from '@data/services/comms.service';
       [currentPage]="currentPage"
       [itemsPerPage]="itemsPerPage"
       [totalItems]="totalItems"
-      (pageChanged)="onPageChange($event)"
-    ></xtra-pagination>
+      (pageChanged)="onPageChange($event)"></xtra-pagination>
 
     <div class="pagination-controls">
       <button (click)="goToPreviousPage()" [disabled]="currentPage === 1">Previous</button>
@@ -58,12 +57,12 @@ export class ChatListComponent implements OnInit {
       );
     } else {
       this.dataService.getPaginatedData(this.currentPage, this.itemsPerPage).subscribe(
-        (data) => {
+        data => {
           this.paginatedData = data.results;
           this.totalItems = data.totalItems;
           this.cachedData = data.results; // Store the fetched data for future use
         },
-        (error) => {
+        error => {
           // Handle error
         },
       );
@@ -103,7 +102,7 @@ export class ChatListComponent implements OnInit {
   }
 
   get pageNumbers(): number[] {
-    return Array.from({length: this.totalPages}, (_, index) => index + 1);
+    return Array.from({ length: this.totalPages }, (_, index) => index + 1);
   }
 
   trackByFn(index: number, item: any): any {

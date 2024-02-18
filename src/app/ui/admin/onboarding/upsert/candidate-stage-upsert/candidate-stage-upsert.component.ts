@@ -1,18 +1,17 @@
-import {Component} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {MatCard, MatCardActions, MatCardContent, MatCardTitle} from '@angular/material/card';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {MatError, MatFormField, MatInput} from '@angular/material/input';
-import {AsyncSubject, Subject} from 'rxjs';
-import {maxLength} from '@shared/components/forms/validators/maxlength.validator';
-import {RichTextEditorComponent} from '@shared/components/forms/rich-text-editor/rich-text-editor.component';
-import {MatButton} from '@angular/material/button';
+import { Component } from '@angular/core';
+
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButton } from '@angular/material/button';
+import { MatCard, MatCardActions, MatCardContent, MatCardTitle } from '@angular/material/card';
+import { MatError, MatFormField, MatInput } from '@angular/material/input';
+import { RichTextEditorComponent } from '@shared/components/forms/rich-text-editor/rich-text-editor.component';
+import { maxLength } from '@shared/components/forms/validators/maxlength.validator';
+import { AsyncSubject, Subject } from 'rxjs';
 
 @Component({
   selector: 'xtra-candidate-stage-upsert',
   standalone: true,
   imports: [
-    CommonModule,
     MatCard,
     MatCardTitle,
     MatCardContent,
@@ -32,24 +31,24 @@ import {MatButton} from '@angular/material/button';
           <mat-form-field class="title">
             <input matInput [formControl]="myForm.controls.title" placeholder="Title" type="text" />
 
-            <mat-error *ngIf="myForm.controls.title.hasError('required')">
-              Title is required
-            </mat-error>
+            @if (myForm.controls.title.hasError('required')) {
+              <mat-error>Title is required</mat-error>
+            }
           </mat-form-field>
 
           <div class="mat-form-field-wrapper">
             <xtra-rich-text-editor></xtra-rich-text-editor>
             <div class="mat-form-field-subscript-wrapper">
-              <mat-error *ngIf="myForm.controls.body.hasError('maxlength')">
-                Your post exceeds exceeds the character limit
-                {{ myForm.controls.body.getError('maxlength').actualLength }} /
-                {{ myForm.controls.body.getError('maxlength').requiredLength }}
-              </mat-error>
-              <mat-error
-                *ngIf="myForm.controls.body.touched && myForm.controls.body.hasError('required')"
-              >
-                This form is required
-              </mat-error>
+              @if (myForm.controls.body.hasError('maxlength')) {
+                <mat-error>
+                  Your post exceeds exceeds the character limit
+                  {{ myForm.controls.body.getError('maxlength').actualLength }} /
+                  {{ myForm.controls.body.getError('maxlength').requiredLength }}
+                </mat-error>
+              }
+              @if (myForm.controls.body.touched && myForm.controls.body.hasError('required')) {
+                <mat-error>This form is required</mat-error>
+              }
             </div>
           </div>
         </form>

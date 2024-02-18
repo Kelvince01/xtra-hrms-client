@@ -1,10 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-comment-upsert',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     <p>comment-upsert works!</p>
   `,

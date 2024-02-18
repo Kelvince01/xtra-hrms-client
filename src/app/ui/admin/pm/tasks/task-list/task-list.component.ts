@@ -1,10 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-task-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     <p>task-list works!</p>
   `,

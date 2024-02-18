@@ -1,7 +1,7 @@
-import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogModule} from '@angular/material/dialog';
-import {CommonModule} from '@angular/common';
-import {MatButtonModule} from '@angular/material/button';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+
+import { MatButtonModule } from '@angular/material/button';
 
 export type DialogData = {
   title: string;
@@ -21,7 +21,7 @@ export class AppComponent {
 @Component({
   selector: 'xtra-simple-dialog',
   standalone: true,
-  imports: [CommonModule, MatDialogModule, MatButtonModule],
+  imports: [MatDialogModule, MatButtonModule],
   template: `
     <h1 mat-dialog-title>{{ data.title }}</h1>
     <div mat-dialog-content>

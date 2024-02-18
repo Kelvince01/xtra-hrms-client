@@ -1,13 +1,13 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 // import suite from './suite';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'xtra-leave-detail',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   template: `
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       @for (input of formInputs | keyvalue: noSort; track input) {
@@ -24,8 +24,7 @@ import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
               id="{{ input.key }}"
               type="text"
               formControlName="{{ input.key }}"
-              (change)="handleChange($event.target)"
-            />
+              (change)="handleChange($event.target)" />
           </div>
         </div>
       }
@@ -36,8 +35,7 @@ import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
           id="tos"
           type="checkbox"
           formControlName="tos"
-          (change)="handleChange($event.target)"
-        />
+          (change)="handleChange($event.target)" />
         <span>I have read and agreed to the terms of service</span>
       </div>
 
@@ -109,9 +107,9 @@ export class LeaveDetailComponent implements OnInit {
   });
 
   formInputs: any = {
-    username: {label: 'UserName'},
-    password: {label: 'Password'},
-    confirm: {label: 'Confirm'},
+    username: { label: 'UserName' },
+    password: { label: 'Password' },
+    confirm: { label: 'Confirm' },
   };
 
   formValidations: any = {

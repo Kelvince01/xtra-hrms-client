@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -6,7 +5,9 @@ import { Component, Input } from '@angular/core';
   template: `
     <div class="loading-container">
       <ng-content />
-      <div *ngIf="loading" class="blocker">spinner</div>
+      @if (loading) {
+        <div class="blocker">spinner</div>
+      }
     </div>
   `,
   standalone: true,
@@ -26,7 +27,7 @@ import { Component, Input } from '@angular/core';
       }
     `,
   ],
-  imports: [NgIf],
+  imports: [],
 })
 export class LoaderComponent {
   @Input() loading = false;

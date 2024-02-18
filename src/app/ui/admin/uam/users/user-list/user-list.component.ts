@@ -1,27 +1,24 @@
-import {ChangeDetectionStrategy, Component, OnInit, TrackByFunction, inject} from '@angular/core';
-import {UserFacade} from '@stores/users';
-import {Observable, of} from 'rxjs';
-import {UserCardComponent} from './user-card/user-card.component';
-import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
-import {RouterLink} from '@angular/router';
-import {HasPermissionDirective} from '@shared/directives/has-permission.directive';
-import {IUser} from '@data/models';
+import { AsyncPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnInit, TrackByFunction, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { IUser } from '@data/models';
+import { HasPermissionDirective } from '@shared/directives/has-permission.directive';
+import { UserFacade } from '@stores/users';
+import { Observable, of } from 'rxjs';
+import { UserCardComponent } from './user-card/user-card.component';
 
 @Component({
   selector: 'xtra-user-list',
   standalone: true,
-  imports: [UserCardComponent, AsyncPipe, RouterLink, HasPermissionDirective, NgIf, NgForOf],
+  imports: [UserCardComponent, AsyncPipe, RouterLink, HasPermissionDirective],
   template: `
     <a *xtraHasPermission="'CreateUser'" routerLink="/uam/users/add">Create User</a>
 
-    <ng-container *ngIf="users$ | async as users">
-      <xtra-user-card
-        *ngFor="let user of users; trackBy: trackById"
-        [user]="user"
-        (removeUser)="remove($event)"
-        (editUser)="edit($event)"
-      />
-    </ng-container>
+    @if (users$ | async; as users) {
+      @for (user of users; track trackById($index, user)) {
+        <xtra-user-card [user]="user" (removeUser)="remove($event)" (editUser)="edit($event)" />
+      }
+    }
   `,
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,7 +28,7 @@ export class UserListComponent implements OnInit {
 
   users$: Observable<IUser[]> = of([]);
 
-  trackById: TrackByFunction<IUser> = (index: number, {id}: IUser): number => Number(id);
+  trackById: TrackByFunction<IUser> = (index: number, { id }: IUser): number => Number(id);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   saveUser(event?: any): void {

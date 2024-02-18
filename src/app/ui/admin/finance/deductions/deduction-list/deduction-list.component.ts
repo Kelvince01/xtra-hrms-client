@@ -1,10 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-deduction-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     <p>deduction-list works!</p>
   `,

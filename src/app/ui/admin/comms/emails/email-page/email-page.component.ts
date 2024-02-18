@@ -1,18 +1,17 @@
-import {Component, ChangeDetectionStrategy} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatInputModule} from '@angular/material/input';
-import {TranslateModule} from '@ngx-translate/core';
-import {EmailService} from '@services/comms.service';
-import {BasePageComponent} from '@shared/components/forms/base-page/base-page.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material/input';
+import { TranslateModule } from '@ngx-translate/core';
+import { EmailService } from '@services/comms.service';
+import { BasePageComponent } from '@shared/components/forms/base-page/base-page.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'xtra-email-page',
   standalone: true,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     MatGridListModule,
     MatInputModule,
@@ -31,8 +30,7 @@ import {BasePageComponent} from '@shared/components/forms/base-page/base-page.co
               <input
                 matInput
                 [placeholder]="'emails.caption.from_account' | translate"
-                formControlName="from_account"
-              />
+                formControlName="from_account" />
             </mat-form-field>
           </mat-grid-tile>
 
@@ -41,8 +39,7 @@ import {BasePageComponent} from '@shared/components/forms/base-page/base-page.co
               <input
                 matInput
                 [placeholder]="'emails.caption.from_email' | translate"
-                formControlName="from_email"
-              />
+                formControlName="from_email" />
             </mat-form-field>
           </mat-grid-tile>
 
@@ -51,8 +48,7 @@ import {BasePageComponent} from '@shared/components/forms/base-page/base-page.co
               <input
                 matInput
                 [placeholder]="'emails.caption.subject' | translate"
-                formControlName="subject"
-              />
+                formControlName="subject" />
             </mat-form-field>
           </mat-grid-tile>
 
@@ -61,8 +57,7 @@ import {BasePageComponent} from '@shared/components/forms/base-page/base-page.co
               <input
                 matInput
                 [placeholder]="'emails.caption.body' | translate"
-                formControlName="body"
-              />
+                formControlName="body" />
             </mat-form-field>
           </mat-grid-tile>
         </mat-grid-list>

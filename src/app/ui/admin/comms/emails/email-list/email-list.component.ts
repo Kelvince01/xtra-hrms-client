@@ -1,19 +1,19 @@
-import {Component, inject, ChangeDetectionStrategy, ViewEncapsulation} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ComposeMailComponent} from '../compose-mail/compose-mail.component';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatDialog} from '@angular/material/dialog';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatButtonModule} from '@angular/material/button';
-import {MatListModule} from '@angular/material/list';
-import {RouterLink, RouterLinkActive} from '@angular/router';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatIconModule} from '@angular/material/icon';
-import {FlexLayoutModule} from '@ngbracket/ngx-layout';
-import {EmailDetailComponent} from '../email-detail/email-detail.component';
-import {EmailService} from '@data/services/comms.service';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, inject } from '@angular/core';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { EmailService } from '@data/services/comms.service';
+import { FlexLayoutModule } from '@ngbracket/ngx-layout';
+import { ComposeMailComponent } from '../compose-mail/compose-mail.component';
+import { EmailDetailComponent } from '../email-detail/email-detail.component';
 
 interface IEmail {
   recieved: Date;
@@ -28,7 +28,6 @@ interface IEmail {
   selector: 'xtra-email-list',
   standalone: true,
   imports: [
-    CommonModule,
     MatSidenavModule,
     MatButtonModule,
     MatListModule,
@@ -114,8 +113,7 @@ interface IEmail {
                   [body]="email.body"
                   [recieved]="email.recieved"
                   (removed)="onRemove(i)"
-                  (reply)="onNewMessage($event)"
-                ></xtra-email-detail>
+                  (reply)="onNewMessage($event)"></xtra-email-detail>
               </mat-list-item>
             }
           </mat-list>
@@ -126,8 +124,7 @@ interface IEmail {
           class="new-fab"
           (click)="onNewMessage()"
           matTooltip="New Message"
-          matTooltipPosition="before"
-        >
+          matTooltipPosition="before">
           <mat-icon>add</mat-icon>
         </button>
       </div>
@@ -158,7 +155,7 @@ export default class EmailListComponent {
       data,
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.snackBar.open('Email sent!', null as any, {
           duration: 2000,

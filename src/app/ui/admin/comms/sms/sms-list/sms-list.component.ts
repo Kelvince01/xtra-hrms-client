@@ -1,14 +1,13 @@
-import {Component, ChangeDetectionStrategy, WritableSignal, signal} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ISms} from '@models/communication.model';
-import {TableComponent} from '@shared/components/table/table.component';
-import {ITableColumn} from '@shared/components/table/table-column.model';
+import { ChangeDetectionStrategy, Component, WritableSignal, signal } from '@angular/core';
+
+import { ITableColumn } from '@shared/components/table/table-column.model';
+import { TableComponent } from '@shared/components/table/table.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'xtra-sms-list',
   standalone: true,
-  imports: [CommonModule, TableComponent],
+  imports: [TableComponent],
   template: `
     <xtra-table [title]="_title" [tableColumns]="_tableColumns" />
   `,

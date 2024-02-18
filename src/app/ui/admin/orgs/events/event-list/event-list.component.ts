@@ -1,13 +1,13 @@
-import {ChangeDetectionStrategy, Component, Input, signal, Signal} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {RouterLink} from '@angular/router';
-import {IEvent} from '@models/organizations.model';
-import {EventsService} from '@data/services/orgs.service';
+import { ChangeDetectionStrategy, Component, Input, signal, Signal } from '@angular/core';
+
+import { RouterLink } from '@angular/router';
+import { EventsService } from '@data/services/orgs.service';
+import { IEvent } from '@models/organizations.model';
 
 @Component({
   selector: 'xtra-event-list',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [RouterLink],
   template: `
     <h2>Events</h2>
     <ul>

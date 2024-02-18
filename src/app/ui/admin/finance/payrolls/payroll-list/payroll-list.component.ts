@@ -1,13 +1,12 @@
-import {CommonModule} from '@angular/common';
-import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
-import {TableComponent} from '@shared/components/table/table.component';
-import {ITableColumn} from '@shared/components/table/table-column.model';
-import {PayrollsService} from '@services/finance.service';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { PayrollsService } from '@services/finance.service';
+import { ITableColumn } from '@shared/components/table/table-column.model';
+import { TableComponent } from '@shared/components/table/table.component';
 
 @Component({
   selector: 'xtra-payroll-list',
   standalone: true,
-  imports: [CommonModule, TableComponent],
+  imports: [TableComponent],
   template: `
     <xtra-table [title]="title" [tableColumns]="tableColumns" [tableData]="[]" />
   `,

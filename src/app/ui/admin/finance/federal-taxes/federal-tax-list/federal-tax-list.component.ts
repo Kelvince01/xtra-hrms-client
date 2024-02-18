@@ -1,10 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'xtra-federal-tax-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     <p>federal-tax-list works!</p>
   `,
